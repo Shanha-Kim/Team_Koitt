@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="useGeneratedKeys" value="true"/>
+		<setting name="defaultExecutorType" value="REUSE"/>
+	</settings>
+	
+	<!--  mybatis 에서 사용할 타입 정의  -->
+	<typeAliases>
+		<typeAlias alias="mVO" type="com.musicolor.www.vo.MemberVO"/>
+		<typeAlias alias="bVO" type="com.musicolor.www.vo.BoardVO"/>
+		<typeAlias alias="cVO" type="com.musicolor.www.vo.ChartVO"/>
+		<typeAlias alias="fVO" type="com.musicolor.www.vo.FileVO"/>
+	</typeAliases>
+	
+	<!--  mybatis에서 사용할 질의명령문서 추가  -->
+	<mappers>
+		<mapper resource="com/musicolor/www/sql/EunbinSQL.xml"/>
+		<mapper resource="com/musicolor/www/sql/HeeyoonSQL.xml"/>
+		<mapper resource="com/musicolor/www/sql/JinhyeokSQL.xml"/>
+		<mapper resource="com/musicolor/www/sql/ShanhaSQL.xml"/>
+		<mapper resource="com/musicolor/www/sql/YoujoonSQL.xml"/>
+		<mapper resource="com/musicolor/www/sql/FileSQL.xml"/>
+	</mappers>
+</configuration>

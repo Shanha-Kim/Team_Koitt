@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="fSQL">
+	<insert id="addproPic" parameterType="fVO" >
+		INSERT INTO 
+			profilepicture
+		values(
+			(SELECT NVL(MAX(p_no) + 1, 10000001) FROM profilepicture), #{oname}, #{sname}, #{dir}, #{len}, sysdate
+		)
+	</insert>
+	
+	<insert id="addalbumPic" parameterType="fVO" >
+		INSERT INTO 
+			albumpicture
+		values(
+			(SELECT NVL(MAX(a_no) + 1, 100000000001) FROM albumpicture), #{oname}, #{sname}, #{dir}, #{len}, sysdate
+		)
+	</insert>
+
+</mapper>
+
+
