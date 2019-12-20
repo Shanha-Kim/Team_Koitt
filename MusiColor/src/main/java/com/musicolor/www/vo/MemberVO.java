@@ -14,6 +14,7 @@ public class MemberVO {
 	private int m_following;
 	private int m_follower;
 	private String m_date;
+	private String m_about; // 자기소개
 	//m_date 활용은 sql문에서 TO_CHAR(m_date, 'YYYY/MM/DD HH24:MI:SS DY') 형태로 활용
 
 	private MultipartFile sFile;
@@ -21,7 +22,12 @@ public class MemberVO {
 	
 	
 	
-	
+	public String getM_about() {
+		return m_about;
+	}
+	public void setM_about(String m_about) {
+		this.m_about = m_about;
+	}
 	public MultipartFile getsFile() {
 		return sFile;
 	}
