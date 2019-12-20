@@ -20,7 +20,7 @@ public class BoardVO {
 	private MultipartFile[] file;
 	
 	
-	
+	 
 	//vocal 
 	private String v_name;
 	
