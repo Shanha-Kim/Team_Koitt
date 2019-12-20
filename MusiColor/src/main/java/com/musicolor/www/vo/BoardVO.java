@@ -31,7 +31,7 @@ public class BoardVO {
 	private String y_link;
 	private char y_ismain;
 	
-	
+	 
 	
 	
 	public String getB_body() {
