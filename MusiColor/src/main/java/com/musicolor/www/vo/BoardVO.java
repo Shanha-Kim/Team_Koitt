@@ -14,6 +14,7 @@ public class BoardVO {
 	private int b_emotion;
 	private char b_isshow;
 	private String b_date;
+	private String b_body;
 	
 	private MultipartFile sFile;
 	private MultipartFile[] file;
@@ -33,6 +34,12 @@ public class BoardVO {
 	
 	
 	
+	public String getB_body() {
+		return b_body;
+	}
+	public void setB_body(String b_body) {
+		this.b_body = b_body;
+	}
 	public MultipartFile getsFile() {
 		return sFile;
 	}
