@@ -4,7 +4,7 @@ public class SongVO {
 	// song 테이블
 	private int s_no; // 노래번호
 	private int s_vno; // 가수번호
-	private int s_title; // 노래제목
+	private String s_title; // 노래제목
 	private int s_ano; // 사진번호
 	
 	// vocal 테이블
@@ -27,10 +27,10 @@ public class SongVO {
 	public void setS_vno(int s_vno) {
 		this.s_vno = s_vno;
 	}
-	public int getS_title() {
+	public String getS_title() {
 		return s_title;
 	}
-	public void setS_title(int s_title) {
+	public void setS_title(String s_title) {
 		this.s_title = s_title;
 	}
 	public int getS_ano() {
