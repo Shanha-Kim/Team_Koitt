@@ -18,7 +18,12 @@ import com.musicolor.www.vo.SongVO;
 //경로수정 필요합니다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 public class FileService {
+	FileDAO fDAO;
 	
+	public void setDAO(FileDAO fDAO) {
+		this.fDAO = fDAO;
+	};
+
 	//프로필사진
 	public void singleUpProc(HttpSession session, MemberVO vo) {
 		String saveName = "";
