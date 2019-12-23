@@ -1,5 +1,7 @@
 package com.musicolor.www.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class SongVO { 
 	// song 테이블
 	private int s_no; // 노래번호
@@ -14,6 +16,10 @@ public class SongVO {
 	private int y_no; // 유튜브 번호
 	private String y_link; // 유튜브 링크
 	private int y_mno; // 업로드 회원 번호
+	
+	// 파일 업로드 관련
+	private MultipartFile sFile;
+	private MultipartFile[] file;
 	
 	public int getS_no() {
 		return s_no;
@@ -62,5 +68,17 @@ public class SongVO {
 	}
 	public void setY_mno(int y_mno) {
 		this.y_mno = y_mno;
+	}
+	public MultipartFile getsFile() {
+		return sFile;
+	}
+	public void setsFile(MultipartFile sFile) {
+		this.sFile = sFile;
+	}
+	public MultipartFile[] getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile[] file) {
+		this.file = file;
 	}
 }

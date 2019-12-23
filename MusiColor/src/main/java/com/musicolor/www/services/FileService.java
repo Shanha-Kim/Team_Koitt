@@ -11,6 +11,7 @@ import com.musicolor.www.util.FileUtil;
 import com.musicolor.www.vo.BoardVO;
 import com.musicolor.www.vo.FileVO;
 import com.musicolor.www.vo.MemberVO;
+import com.musicolor.www.vo.SongVO;
 
 //경로수정 필요합니다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //경로수정 필요합니다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -67,14 +68,16 @@ public class FileService {
 	
 	//앨범사진
 	
-	public void singleUpProc(HttpSession session, BoardVO vo) {
+	public void singleUpProc(HttpSession session, SongVO vo) {
 		String saveName = "";
 		
 		long len = 0;
 		
-		String spath =  session.getServletContext().getRealPath("resources/upload");
-		String rePath = spath.substring(0, spath.indexOf("\\source\\.metadata"));
-		rePath = rePath + "\\git\\springsimple\\simple\\src\\main\\webapp\\resources\\upload\\";
+		String spath =  session.getServletContext().getRealPath("resources/album");
+		System.out.println("spath: " + spath);
+//		String rePath = spath.substring(0, spath.indexOf("\\source\\.metadata"));
+		String rePath = "/Users/mac297/musicolor/git/Team_koitt/MusiColor/src/main/webapp/resources/album";
+		System.out.println("rePath : " + rePath);
 		
 		String oriName = "";
 		try {
@@ -100,7 +103,7 @@ public class FileService {
 		}
 		
 		FileVO fVO = new FileVO();
-		fVO.setNo(vo.getB_no());
+		fVO.setNo(vo.getS_no());
 		fVO.setOname(oriName);
 		fVO.setSname(saveName);
 		fVO.setDir(rePath);
