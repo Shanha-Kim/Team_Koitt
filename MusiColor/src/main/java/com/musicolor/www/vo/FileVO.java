@@ -1,5 +1,7 @@
 package com.musicolor.www.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class FileVO {
 	private int no;
 	private String oname;
@@ -7,9 +9,16 @@ public class FileVO {
 	private String dir;
 	private long len;
 	private char isshow;
+	private MultipartFile sFile;
 	
 	
 	
+	public MultipartFile getsFile() {
+		return sFile;
+	}
+	public void setsFile(MultipartFile sFile) {
+		this.sFile = sFile;
+	}
 	public String getDir() {
 		return dir;
 	}

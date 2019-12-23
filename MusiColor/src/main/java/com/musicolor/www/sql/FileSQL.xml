@@ -11,6 +11,7 @@
 		values(
 			(SELECT NVL(MAX(p_no) + 1, 10000001) FROM profilepicture), #{oname}, #{sname}, #{dir}, #{len}, sysdate
 		)
+		
 	</insert>
 	
 	<insert id="addalbumPic" parameterType="fVO" >

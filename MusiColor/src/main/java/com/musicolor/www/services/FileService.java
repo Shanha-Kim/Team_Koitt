@@ -25,8 +25,8 @@ public class FileService {
 		long len = 0;
 		
 		String spath =  session.getServletContext().getRealPath("resources/upload");
-		String rePath = spath.substring(0, spath.indexOf("\\source\\.metadata"));
-		rePath = rePath + "\\git\\FSpring\\src\\main\\webapp\\resources\\upload\\";
+		String rePath = spath.substring(0, spath.indexOf("\\.metadata"));
+		rePath = rePath + "\\Team_koitt\\MusiColor\\src\\main\\webapp\\resources\\upload";
 		
 		String oriName = "";
 		try {
@@ -54,14 +54,19 @@ public class FileService {
 		fVO.setNo(vo.getM_no());
 		fVO.setOname(oriName);
 		fVO.setSname(saveName);
+		
 		fVO.setDir(rePath);
+		
 		fVO.setLen(len);
+		
 		FileDAO fDAO = new FileDAO();
+		
 		fDAO.profilePicture(fVO);
 	}
 	
 	
 	//앨범사진
+	
 	public void singleUpProc(HttpSession session, BoardVO vo) {
 		String saveName = "";
 		
@@ -69,7 +74,7 @@ public class FileService {
 		
 		String spath =  session.getServletContext().getRealPath("resources/upload");
 		String rePath = spath.substring(0, spath.indexOf("\\source\\.metadata"));
-		rePath = rePath + "\\git\\FSpring\\src\\main\\webapp\\resources\\upload\\";
+		rePath = rePath + "\\git\\springsimple\\simple\\src\\main\\webapp\\resources\\upload\\";
 		
 		String oriName = "";
 		try {
@@ -103,5 +108,8 @@ public class FileService {
 		FileDAO fDAO = new FileDAO();
 		fDAO.albumPicture(fVO);
 	}
+
+	
+
 	
 }

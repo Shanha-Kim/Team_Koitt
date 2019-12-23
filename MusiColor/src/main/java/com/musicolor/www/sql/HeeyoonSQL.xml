@@ -7,6 +7,56 @@
 
 <mapper namespace="hSQL">
 
-</mapper>
 
+<!-- 프로필 사진 올리기 SQL -->
+<update id="addpic" parameterType="fVO">
+
+UPDATE
+	profilepicture
+<set>
+ p_no = #{pno}, p_oriname =#{oriname} , p_savename=#{savename}, p_dir=#{dir} p_length=#{length}, p_date=#{date} 
+
+WHERE
+p_no = #{no}
+
+</set>
+</update>
+
+ <!-- 프로필 텍스트 수정 SQL -->
+
+<update id="profileconfig" parameterType="mVO">
+<selectKey resultType="int" keyProperty ="m_no" order ="BEFORE">
+	  SELECT
+   		m_no	
+   	FROM
+   		member
+   	WHERE
+   		m_id = #{m_id}
+</selectKey>
+UPDATE
+member
+<set>
+m_id=#{m_id}, m_about=#{m_about}, m_email=#{m_email}, m_tel=#{m_tel}
+WHERE
+m_no =#{m_no}
+</set>
+
+</update>
+
+<!-- 개인프로필 음악앨범  리스트  SQL-->
+<select id ="addalbumpic"  resultType="fVO" >
+
+SELECT
+p_no no, p_oname oname, p_sname sname, p_dir dir, p_length len, (SELECT m_id FROM member WHERE m_no = p_no) id
+
+FROM
+profilepicture
+
+ORDER BY no desc
+
+</select> 
+ 
+
+
+</mapper>
 
