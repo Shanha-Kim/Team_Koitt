@@ -13,4 +13,8 @@ public class ShanhaDAO {
 		java.util.List<BoardVO> list = sqlSession.selectList("sSQL.SearchBefore");
 		return list;
 	}
+	public java.util.List<BoardVO> searchAfter(){
+		java.util.List<BoardVO> list = sqlSession.selectList("sSQL.SearchAfter");
+		return list;
+	}
 }

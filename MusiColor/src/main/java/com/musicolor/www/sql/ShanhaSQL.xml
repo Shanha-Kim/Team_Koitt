@@ -9,18 +9,29 @@
 	<select id="SearchBefore"  resultType="bVO">
 	<![CDATA[    
 		SELECT
-			bno, bmno, btitle, bbody, joinDate
+			b_no, b_mno, b_like, b_emotion, b_date
+		FROM
+			board
+		WHERE
+			b_emotion = #{b_emotion}
+	]]>
+	</select>
+	
+	<select id="SearchAfter"  resultType="bVO">
+	<![CDATA[ 
+		SELECT
+			b_no, b_mno, b_like, b_emotion, b_date
 		FROM
 			(
 				SELECT 
 					a.*, ROWNUM rno, count(*)over() total
 				FROM 
 					(
-						SELECT * FROM board ORDER BY bno desc					
+						SELECT * FROM board ORDER BY b_no desc					
 					) a
 			)
 		WHERE
-			rno > 15 AND rno <= 30
+			rno > 0 AND rno <= 15
 	]]>
 	</select>
 </mapper>
