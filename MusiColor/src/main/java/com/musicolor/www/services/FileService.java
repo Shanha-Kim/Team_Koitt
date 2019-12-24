@@ -110,7 +110,6 @@ public class FileService {
 		
 		rePath = "/resources/album";
 		
-		
 		fVO.setDir(rePath);
 		fVO.setLen(len);
 		fDAO.albumPicture(fVO);
