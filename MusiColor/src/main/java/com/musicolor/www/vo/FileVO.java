@@ -3,7 +3,7 @@ package com.musicolor.www.vo;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileVO {
-	private int no;
+	private long no;
 	private String oname;
 	private String sname;
 	private String dir;
@@ -26,10 +26,10 @@ public class FileVO {
 		this.dir = dir;
 	}
 	
-	public int getNo() {
+	public long getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+	public void setNo(long no) {
 		this.no = no;
 	}
 	public String getOname() {
