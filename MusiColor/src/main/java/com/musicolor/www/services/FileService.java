@@ -64,9 +64,6 @@ public class FileService {
 		fVO.setDir(rePath);
 		
 		fVO.setLen(len);
-		
-//		FileDAO fDAO = new FileDAO();
-		
 		fDAO.profilePicture(fVO);
 	}
 	
@@ -116,7 +113,6 @@ public class FileService {
 		
 		fVO.setDir(rePath);
 		fVO.setLen(len);
-//		FileDAO fDAO = new FileDAO();
 		fDAO.albumPicture(fVO);
 	}
 
