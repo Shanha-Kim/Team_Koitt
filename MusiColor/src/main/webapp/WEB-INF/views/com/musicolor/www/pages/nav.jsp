@@ -33,7 +33,7 @@
             <a class="nav-link" href="#"><i class="fas fa-cloud-upload-alt f-20"></i></a>
           </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-user f-20"></i></a>
+          <a class="nav-link" href="/www/musiccolor/profilelist.mr"><i class="fas fa-user f-20"></i></a>
         </li>
       </ul>
     </nav>
