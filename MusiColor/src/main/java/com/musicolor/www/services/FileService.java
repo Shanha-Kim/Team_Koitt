@@ -70,7 +70,7 @@ public class FileService {
 	
 	//앨범사진
 	
-	public void singleUpProc(HttpSession session, SongVO vo) {
+	public long singleUpProc(HttpSession session, SongVO vo) {
 		String saveName = "";
 		
 		long len = 0;
@@ -113,6 +113,8 @@ public class FileService {
 		fVO.setDir(rePath);
 		fVO.setLen(len);
 		fDAO.albumPicture(fVO);
+		
+		return fVO.getNo();
 	}
 
 }
