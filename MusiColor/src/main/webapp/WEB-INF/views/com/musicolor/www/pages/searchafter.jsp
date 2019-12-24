@@ -24,7 +24,7 @@
 
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/www/searchBefore.mr"><i class="fas fa-search f-20"></i></a>
+          <a class="nav-link" href="#"><i class="fas fa-search f-20"></i></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="fas fa-random f-20"></i></a>
@@ -39,7 +39,7 @@
     </nav>
 	
     <div class="container" id="main">
-      <form class="form-inline my-lg-0" method="post" action="/www/searchAfter.mr">
+      <form class="form-inline my-lg-0">
       	<input class="form-control col-sm text-center" type="text" placeholder="Search">
       </form>
       <!-- 감정 선택 버튼 -->

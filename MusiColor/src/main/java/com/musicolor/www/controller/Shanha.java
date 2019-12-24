@@ -23,4 +23,13 @@ public class Shanha {
 		return mv;
 	}
 	
+	@RequestMapping("/searchAfter.mr")
+	public ModelAndView searchAfter(ModelAndView mv, String str) {
+		ArrayList<BoardVO> list = (ArrayList<BoardVO>)sDAO.showBefore();
+		mv.addObject("LIST", list);
+		mv.setViewName("pages/searchafter");
+		
+		return mv;
+	}
 }
+	
