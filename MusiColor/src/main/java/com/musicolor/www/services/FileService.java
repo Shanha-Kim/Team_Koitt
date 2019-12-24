@@ -65,7 +65,7 @@ public class FileService {
 		
 		fVO.setLen(len);
 		
-		FileDAO fDAO = new FileDAO();
+//		FileDAO fDAO = new FileDAO();
 		
 		fDAO.profilePicture(fVO);
 	}
@@ -88,7 +88,7 @@ public class FileService {
 		try {
 			oriName = vo.getsFile().getOriginalFilename();
 		} catch(Exception e) {
-			return;
+			e.printStackTrace();
 		}
 		
 		saveName = FileUtil.rename(spath, oriName);
@@ -108,12 +108,15 @@ public class FileService {
 		}
 		
 		FileVO fVO = new FileVO();
-		fVO.setNo(vo.getS_no());
 		fVO.setOname(oriName);
 		fVO.setSname(saveName);
+		
+		rePath = "/resources/album";
+		
+		
 		fVO.setDir(rePath);
 		fVO.setLen(len);
-		FileDAO fDAO = new FileDAO();
+//		FileDAO fDAO = new FileDAO();
 		fDAO.albumPicture(fVO);
 	}
 
