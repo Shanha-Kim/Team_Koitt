@@ -14,12 +14,18 @@
 		
 	</insert>
 	
-	<insert id="addalbumPic" parameterType="fVO" >
-		INSERT INTO 
-			albumpicture
-		values(
-			(SELECT NVL(MAX(a_no) + 1, 100000000001) FROM albumpicture), #{oname}, #{sname}, #{dir}, #{len}, sysdate
-		)
+	<insert id="addalbumPic1" parameterType="fVO">
+		<selectKey keyProperty="no" resultType="long" order="BEFORE">
+			SELECT 
+				NVL(MAX(a_no) + 1, 100000000001) 
+			FROM 
+				albumpicture
+		</selectKey>
+			INSERT INTO 
+				albumpicture
+			values(
+				#{no}, #{oname}, #{sname}, #{dir}, #{len}, sysdate
+			)
 	</insert>
 
 </mapper>
