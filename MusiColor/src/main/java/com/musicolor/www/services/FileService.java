@@ -115,7 +115,4 @@ public class FileService {
 		fDAO.albumPicture(fVO);
 	}
 
-	
-
-	
 }
