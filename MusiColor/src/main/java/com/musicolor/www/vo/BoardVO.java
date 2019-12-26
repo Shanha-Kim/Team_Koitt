@@ -19,7 +19,8 @@ public class BoardVO {
 	private MultipartFile sFile;
 	private MultipartFile[] file;
 	
-	
+	//picture
+	private String sname;
 	 
 	//vocal 
 	private String v_name;
@@ -34,6 +35,12 @@ public class BoardVO {
 	 
 	
 	
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
 	public String getB_body() {
 		return b_body;
 	}
