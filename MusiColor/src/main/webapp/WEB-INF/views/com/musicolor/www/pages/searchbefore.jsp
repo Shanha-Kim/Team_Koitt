@@ -12,85 +12,114 @@
 <link rel="stylesheet" href="/www/css/random.css" >
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script> -->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<script type="text/javascript">
+$(function(){
+	//리프레쉬버튼
+	$('#refresh').click(function(){
+		$(location).attr("href", "/www/searchBefore.mr");
+	});
+	
+	//포스트 상세보기
+	var bno = "";
+	$('.square').click(function(){
+		bno = $(this).attr('id');
+		alert(bno);
+		
+		$('#myModal1').modal("show");
+		$.ajax({
+			url : "/www/searchAfter.mr",
+			type : "post",
+			dataType : "json",
+			data : {
+				b_no : bno
+			},
+			success : function(vo){
+				alert("success");
+				$('#mid').append(vo.m_id);
+				$('#bbody').html(vo.b_body);
+				$('#blike').append("<strong>" + vo.b_like + "likes</strong>");
+				$('#stitle').html(vo.s_title);
+				$('#psname').attr("src", "/www/profile/" + vo.sname);
+				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
+				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
+			},
+			error : function(){
+				alert('### 통신 에러 ###');
+			}
+		});
+	});
+	
+// 	검색시 탭 반영 
+	var tabmenu="";
+	$('#tab').each(function(){
+		var tab = $(this).children("button")
+		tab.click(function(){
+			tab.removeClass("selected");
+			tab.removeClass("text-muted");
+			tab.addClass("text-muted");
+			$(this).removeClass("text-muted");
+			$(this).addClass("selected");
+			tabmenu = $(this).text();
+		});
+	});
+	
+	
+	
+})
+	
 </script>
 </head>
  <body class="bg-primary">
-    <!-- nav -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
-      <a class="navbar-brand ml-5" href="#"><h3 class="logo">musicolor</h3></a>
-
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/www/searchBefore.mr"><i class="fas fa-search f-20"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-random f-20"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-cloud-upload-alt f-20"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-user f-20"></i></a>
-        </li>
-      </ul>
-    </nav>
+    <jsp:include page="nav.jsp" flush="false" />
 	
     <div class="container" id="main">
       <form class="form-inline my-lg-0" method="post" action="/www/searchAfter.mr">
       	<input class="form-control col-sm text-center" type="text" placeholder="Search">
       </form>
       <!-- 감정 선택 버튼 -->
-      <div class="btn-group btn-block mb-2" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary selected">EMO</button>
-        <button type="button" class="btn btn-primary text-muted">EMO</button>
-        <button type="button" class="btn btn-primary text-muted">EMO</button>
-        <button type="button" class="btn btn-primary text-muted">EMO</button>
+      <div class="btn-group btn-block mb-2" role="group" aria-label="Basic example" id="tab">
+        <button type="button" class="btn btn-primary selected" >Emotion</button>
+        <button type="button" class="btn btn-primary text-muted" >Title</button>
+        <button type="button" class="btn btn-primary text-muted" >Posting</button>
+        <button type="button" class="btn btn-primary text-muted" >User</button>
       </div>
 
-      <div class="text-center mb-3">
-        <span class="badge badge-pill badge-danger">REFRESH THIS PAGE</span>
+      <div class="text-center mb-3" id="refresh">
+        <a class="badge badge-pill badge-danger hover">REFRESH THIS PAGE</a>
       </div>
 
       <!-- 앨범 이미지 -->
       <div class="row">
+      	<c:forEach var="data" items="${LIST}" begin="0" end="2">
         <div class="col-4 big-square">
-          <div class="square small-angry"><img class="album" src="/www/img/album1.jpg" /></div>
+          <div class="square small-angry" id="${data.no}"><img class="album" src="/www/album/${data.sname}" /></div>
         </div>
-        <div class="col-4 big-square">
-          <div class="square small-sad"><img class="album" src="/www/img/album2.jpg" /></div>
-        </div>
-        <div class="col-4 big-square">
-          <div class="square small-happy"><img class="album" src="/www/img/album3.jpg" /></div>
-        </div>
+		</c:forEach>
       </div>
 
       <div class="row">
+      	<c:forEach var="data" items="${LIST}" begin="3" end="5">
         <div class="col-4 big-square">
-          <div class="square small-angry"><img class="album" src="/www/img/album1.jpg" /></div>
+          <div class="square small-angry" id="${data.no}"><img class="album" src="/www/album/${data.sname}" /></div>
         </div>
-        <div class="col-4 big-square">
-          <div class="square small-sad"><img class="album" src="/www/img/album2.jpg" /></div>
-        </div>
-        <div class="col-4 big-square">
-          <div class="square small-happy"><img class="album" src="/www/img/album3.jpg" /></div>
-        </div>
+		</c:forEach>
       </div>
 
       <div class="row">
+      	<c:forEach var="data" items="${LIST}" begin="6" end="8">
         <div class="col-4 big-square">
-          <div class="square small-angry"><img class="album" src="/www/img/album1.jpg" /></div>
+          <div class="square small-angry" id="${data.no}"><img class="album" src="/www/album/${data.sname}" /></div>
         </div>
-        <div class="col-4 big-square">
-          <div class="square small-sad"><img class="album" src="/www/img/album2.jpg" /></div>
-        </div>
-        <div class="col-4 big-square">
-          <div class="square small-happy"><img class="album" src="/www/img/album3.jpg" /></div>
-        </div>
-    </div>
-
+		</c:forEach>
+      </div>
+	</div>
     <!-- modal, content detail -->
     <div class="modal" id="myModal1">
       <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -102,24 +131,23 @@
               <div class="col desktop-youtube" style="padding: 10px; border-right: 1px solid #282828;">
                 <div style="height: 25%; width:100%;"></div>
                 <div class="youtube text-left" style="height: 50%; width:100%;">
-                  <iframe src="https://www.youtube.com/embed/4l2jpzPDtuQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
+                  <iframe id="ylink1"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div> 
               </div>
               <!-- Modal right -->
               <div class="col text-left" style="padding: 10px;">
-                <h3 class="card-header" style="padding: 10px;"><img class="profile" src="/www/img/profile1.jpg" />USERNAME</h3>
+                <h3 id="mid" class="card-header" style="padding: 10px;">
+                	<img id="psname" class="profile"  />
+                </h3>
                 <!-- 일정 크기 이상 작아지면 보이는 유튜브-->
                 <div class="youtube mobile-youtube mb-3">
-                  <iframe src="https://www.youtube.com/embed/4l2jpzPDtuQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe id="ylink2"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="card-body" style="padding: 0px;">
-                  <span class="ml-auto"><i class="far fa-heart"></i> <strong>5 likes</strong></span>
-                  <h6 class="card-subtitle text-muted mb-2 mt-2">Dua Lipa - New Rules</h6>
+                  <span id="blike" class="ml-auto"><i class="far fa-heart"></i></span>
+                  <h6 id="stitle" class="card-subtitle text-muted mb-2 mt-2"></h6>
                   <div class="body-scroll mb-3">
-                    <p class="card-text">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five
-                      centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-                      versions of Lorem Ipsum.
+                    <p id="bbody" class="card-text">
                     </p>
                   </div>
                 </div>
@@ -146,18 +174,8 @@
         </div>
       </div>
     </div>
+    
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script>
-      $(function() {
-        $(".square").click(function() {
-          $("#myModal1").modal("show") //앨범 이미지 누르면 모달창 열림
-        })
-      })
-    </script>
+   
 </body>
 </html>

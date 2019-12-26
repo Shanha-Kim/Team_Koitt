@@ -6,33 +6,35 @@
 
 
 <mapper namespace="sSQL">
-	<select id="SearchBefore"  resultType="bVO">
+	<select id="SearchBefore"  resultType="fVO">
 	<![CDATA[    
 		SELECT
-			b_no, b_mno, b_like, b_emotion, b_date
+			*
 		FROM
-			board
+			(SELECT
+				b_no no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
+			FROM
+				board
+			WHERE
+				b_emotion = 2
+			ORDER BY DBMS_RANDOM.value
+			)
 		WHERE
-			b_emotion = #{b_emotion}
+			rownum <= 9
 	]]>
 	</select>
 	
-	<select id="SearchAfter"  resultType="bVO">
-	<![CDATA[ 
+	<select id="SearchAfter" parameterType="bVO"  resultType="bVO">
 		SELECT
-			b_no, b_mno, b_like, b_emotion, b_date
+			(SELECT m_id FROM member WHERE b_mno=m_no), 
+			(SELECT p_sname FROM profilepicture WHERE p_no=(SELECT m_pno FROM member WHERE m_no=b_mno)) sname, 
+			(SELECT y_link FROM youtube WHERE y_no=b_yno),
+			(SELECT s_title FROM song WHERE s_no=b_sno),
+			b_like, b_body, b_date
 		FROM
-			(
-				SELECT 
-					a.*, ROWNUM rno, count(*)over() total
-				FROM 
-					(
-						SELECT * FROM board ORDER BY b_no desc					
-					) a
-			)
+			board
 		WHERE
-			rno > 0 AND rno <= 15
-	]]>
+			b_no = #{b_no}
 	</select>
 </mapper>
 

@@ -4,17 +4,18 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.musicolor.www.vo.BoardVO;
+import com.musicolor.www.vo.FileVO;
 
 public class ShanhaDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public java.util.List<BoardVO> showBefore(){
-		java.util.List<BoardVO> list = sqlSession.selectList("sSQL.SearchBefore");
+	public java.util.List<FileVO> showBefore(){
+		java.util.List<FileVO> list = sqlSession.selectList("sSQL.SearchBefore");
 		return list;
 	}
-	public java.util.List<BoardVO> searchAfter(){
-		java.util.List<BoardVO> list = sqlSession.selectList("sSQL.SearchAfter");
-		return list;
+	public BoardVO searchAfter(BoardVO bVO){
+		BoardVO vo = sqlSession.selectOne("sSQL.", bVO);
+		return vo;
 	}
 }
