@@ -4,6 +4,11 @@
 .square {
   padding: 0px;
   margin: 0px;
+  position:relative;
+  width:100%;
+  heigth:0;
+  overflow:hidden;
+  padding-bottom:95%;
 }
 .big-square {
   padding: 10px;
@@ -22,7 +27,8 @@
   border-bottom: 2px solid white;
 }
 .album {
-  width: 100%;
+  position: absolute; top:0; left: 0;
+  width:100%; heigth:100%;
 }
 
 /* 모달 관련 설정 */
