@@ -44,19 +44,83 @@ m_no =#{m_no}
 </update>
 
 <!-- 개인프로필 음악앨범  리스트  SQL-->
-<select id ="addalbumpic"  resultType="fVO" >
-
+<select id ="addalbumpic"  resultType="fVO" parameterType="String" >
+<![CDATA[
 SELECT
-p_no no, p_oname oname, p_sname sname, p_dir dir, p_length len, (SELECT m_id FROM member WHERE m_no = p_no) id
-
-FROM
-profilepicture
-
-ORDER BY no desc
+            b_no no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
+         FROM
+            board
+         WHERE
+            b_mno = (SELECT m_no  FROM member WHERE m_id =#{SID})
+            AND rownum <= 9 ]]>
 
 </select> 
- 
 
+ <select id="mNo" resultType="int" parameterType="String">
+ 	SELECT
+ 		m_no
+ 	FROM
+ 		member
+ 	WHERE
+ 		m_id = #{SID}
+ </select>
+
+
+<!-- 프로필 파일 로고 가져오기 -->
+<select id="proflogo" resultType="fVO" parameterType="String">
+SELECT
+	p_sname sname, p_oname oname, p_dir dir
+FROM
+
+profilepicture
+
+WHERE
+
+p_no = (SELECT
+			m_pno
+		FROM
+			member
+		WHERE
+			m_id= #{SID}
+		)
+
+
+</select>
+
+<!-- 자기소개글 보내기  -->
+<select id ="introtext" resultType="mVO" parameterType="String">
+
+SELECT
+m_about m_about
+
+FROM
+member
+
+WHERE
+	m_id =#{SID}
+</select>
+
+<!-- 게시물 카운트 전담처리함수 -->
+
+<select id ="textcount" resultType="int" parameterType="String">
+SELECT
+
+count (*)
+
+FROM 
+board
+
+WHERE
+ b_mno = (SELECT
+  			m_no
+  			FROM
+  			member
+			WHERE
+			m_id =#{SID}  		
+ 	)
+ 
+  
+</select>
 
 </mapper>
 

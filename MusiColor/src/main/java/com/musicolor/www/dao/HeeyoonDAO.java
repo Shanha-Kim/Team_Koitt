@@ -21,8 +21,8 @@ public class HeeyoonDAO {
 	}
 	
 	//개인프로필 사진 리스트 전담 처리 함수
-	public List<FileVO> profileList(){
-	List<FileVO> list = sqlSession.selectList("hSQL.addalbumpic");
+	public List<FileVO> profileList (String SID){
+	List<FileVO> list = sqlSession.selectList("hSQL.addalbumpic",SID);
 		return list;
 		
 	}
@@ -31,5 +31,24 @@ public class HeeyoonDAO {
 		return sqlSession.update("hSQL.profileconfig",mVO);
 		
 	}
+	public int mNo(String SID) {
+		return sqlSession.selectOne("hSQL.mNo", SID);
+		
+	}
+	//개인프로필 로고 사진 수정 전담처리 함수
 	
+		public FileVO proflogo(String SID) {
+			return sqlSession.selectOne("hSQL.proflogo",SID);
+			
+		}
+		
+	//개인프로필 자기소개글 전담 처리 함수
+		public MemberVO profintro(String SID) {
+			return sqlSession.selectOne("hSQL.introtext",SID);
+		}
+	//개인 프로필 앨범 수 카운트 점담 처리 함수
+		public int profilecont(String SID) {
+			return sqlSession.selectOne("hSQL.textcount",SID);
+		}
+		
 }

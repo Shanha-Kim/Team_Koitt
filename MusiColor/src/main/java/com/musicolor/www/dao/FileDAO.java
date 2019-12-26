@@ -15,7 +15,7 @@ public class FileDAO {
 		System.out.println(fVO.getDir());
 		System.out.println(fVO.getLen());
 		System.out.println(fVO.getNo());
-		return sqlSession.insert("fSQL.addproPic", fVO);
+		return sqlSession.update("fSQL.addpic", fVO);
 		// 성공하면 1 실패하면 0 리턴
 	}
 

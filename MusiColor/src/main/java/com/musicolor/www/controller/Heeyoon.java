@@ -39,6 +39,10 @@ public class Heeyoon {
 	
 	@RequestMapping("profilepic.mr") //프로필 사진 수정 controller
 	public ModelAndView configpic(ModelAndView mv, HttpSession session, MemberVO mVO, RedirectView rv) {
+		String SID = (String)session.getAttribute("SID");
+		mVO.setM_no(hDAO.mNo(SID));
+		System.out.println("mno : " + mVO.getM_no());
+		fileSrvc.setDAO(fDAO);
 		fileSrvc.singleUpProc(session, mVO); 
 		rv.setUrl("/www/musiccolor/profconfig.mr");
 		mv.setView(rv);
@@ -54,24 +58,35 @@ public class Heeyoon {
 		return mv;
 	}
 	
-	@RequestMapping("profile.mr") //개인 프로필 폼 controller
-		public ModelAndView profile(ModelAndView mv) {
-			
-		mv.setViewName("pages/profile");
-		return mv;
-		}
+	/*
+	 * @RequestMapping("profile.mr") //개인 프로필 폼 controller public ModelAndView
+	 * profile(ModelAndView mv) {
+	 * 
+	 * mv.setViewName("pages/profile"); return mv; }
+	 */
 	
 	  @RequestMapping("profilelist.mr")//개인 프로필 리스트 controller
 	  public ModelAndView profilelist (ModelAndView mv, HttpSession session) {
-		  List<FileVO> list = hDAO.profileList();
 		  session.setAttribute("SID", "kk");
+		  List<FileVO> list = hDAO.profileList((String)session.getAttribute("SID"));
 		  mv.addObject("LIST",list);
-		  mv.setViewName("pages/profile");
+		  //프로필 로고 사진 	
+		  FileVO fVO = hDAO.proflogo((String)session.getAttribute("SID"));
+		  System.out.println("저장이름"+fVO.getSname()); 
+		  mv.addObject("VO",fVO);		  
 		  
+		  //프로필 자기소개글 
+		  MemberVO mVO = hDAO.profintro((String)session.getAttribute("SID"));
+		  mv.addObject("IVO",mVO);
+		  //프로필 게시글 카운트 
+		   int cnt= hDAO.profilecont((String)session.getAttribute("SID"));
+		   mv.addObject("CNT",cnt);
+		  
+		  
+		  
+		  mv.setViewName("pages/profile");
 		  return mv;
-	  
 	  }
-	  
 	  
 	 }
 	
