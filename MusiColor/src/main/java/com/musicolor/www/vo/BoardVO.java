@@ -19,6 +19,9 @@ public class BoardVO {
 	private MultipartFile sFile;
 	private MultipartFile[] file;
 	
+	//member
+	private String m_id;
+	
 	//picture
 	private String sname;
 	 
@@ -35,6 +38,12 @@ public class BoardVO {
 	 
 	
 	
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
 	public String getSname() {
 		return sname;
 	}
