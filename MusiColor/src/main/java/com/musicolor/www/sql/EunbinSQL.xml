@@ -6,9 +6,91 @@
 			
 
 <mapper namespace="eSQL">
-<!-- 	<select id=""  parameterType="" resultType="">
-
-	</select> -->
+	<insert id="vocalIn"  parameterType="sVO">
+		<selectKey keyProperty="s_vno" resultType="int" order="BEFORE">
+				SELECT 
+					(NVL(MAX(v_no) + 1, 10000001))
+				FROM
+					vocal
+		</selectKey>
+		INSERT INTO 
+			vocal(v_no, v_name) 
+		VALUES(
+			#{s_vno}, #{v_name}
+		)
+	</insert>
+	
+	<select id="vocalSearch" parameterType="sVO" resultType="sVO">
+		SELECT
+		    v_no s_vno, v_name
+		FROM
+		    vocal
+		WHERE
+		    REPLACE(UPPER(v_name), ' ', '') 
+		    LIKE '%'||REPLACE(UPPER(#{v_name}), ' ','')||'%'
+	</select>
+	
+	<insert id="songIn" parameterType="sVO">
+	<selectKey keyProperty="s_no" resultType="long" order="BEFORE">
+		SELECT 
+			(NVL(MAX(s_no) + 1, 100000000001)) 
+		FROM song
+	</selectKey>
+		INSERT INTO
+			song
+		VALUES (
+			#{s_no}, #{s_vno}, #{s_title}, #{s_ano}
+			)
+	</insert>
+	
+	<insert id="youtubeIn" parameterType="sVO">
+	<selectKey keyProperty="y_no" resultType="long" order="BEFORE">
+		SELECT 
+			(NVL(MAX(y_no) + 1, 100000000001)) 
+		FROM youtube
+	</selectKey>
+		INSERT INTO
+	    	youtube(y_no, y_sno, y_link, y_mno)
+		VALUES (
+	    	#{y_no}, #{s_no}, #{y_link}, 10000001 
+		)
+	</insert>
+	
+	<select id="searchSong" parameterType="String" resultType="sVO">
+		SELECT 
+		    s_no, s_title, s_vno, s_ano, 
+		    (SELECT v_name FROM vocal WHERE v_no = s_vno) v_name,
+		    (SELECT y_link FROM youtube WHERE s_no = y_sno) y_link,
+		    (SELECT y_no FROM youtube WHERE s_no = y_sno) y_no
+		FROM
+		    song
+		WHERE 
+		    REPLACE(UPPER(s_title), ' ', '') 
+		    LIKE '%'||REPLACE(UPPER(#{keywords}), ' ','')||'%'
+	</select>
+	
+	<insert id="boardIn" parameterType="bVO">
+		<selectKey keyProperty="b_no" resultType="long" order="BEFORE">
+			SELECT
+				(NVL(MAX(b_no) + 1, 100000000001))
+			FROM board
+		</selectKey>
+		INSERT INTO
+    		board(b_no, b_mno, b_vno, b_sno, b_yno, b_ano, b_emotion, b_body)
+		VALUES (
+			#{b_no}, #{b_mno}, #{b_vno}, #{b_sno}, #{b_yno}, #{b_ano}, 1, #{b_body}
+		)
+	</insert>
+	
+	<select id="findMno" parameterType="string" resultType="int">
+		SELECT
+		    m_no
+		FROM
+		    member
+		WHERE
+		    m_id = #{m_id}
+		
+	</select>
 </mapper>
 
 

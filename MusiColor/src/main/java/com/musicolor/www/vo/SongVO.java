@@ -16,9 +16,13 @@ public class SongVO {
 	private long y_no; // 유튜브 번호
 	private String y_link; // 유튜브 링크
 	private int y_mno; // 업로드 회원 번호
+	
 	// 파일 업로드 관련
 	private MultipartFile sFile;
 	private MultipartFile[] file;
+	
+	// 검색 키워드 저장용
+	private String keywords;
 	
 	public long getS_no() {
 		return s_no;
@@ -79,5 +83,11 @@ public class SongVO {
 	}
 	public void setFile(MultipartFile[] file) {
 		this.file = file;
+	}
+	public String getKeywords() {
+		return keywords;
+	}
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
 	}
 }
