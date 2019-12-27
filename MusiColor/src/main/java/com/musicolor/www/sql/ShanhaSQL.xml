@@ -24,7 +24,7 @@
 	]]>
 	</select>
 	
-	<select id="SearchAfter" parameterType="bVO"  resultType="bVO">
+	<select id="showDetail" parameterType="bVO"  resultType="bVO">
 		SELECT
 			(SELECT m_id FROM member WHERE b_mno=m_no), 
 			(SELECT p_sname FROM profilepicture WHERE p_no=(SELECT m_pno FROM member WHERE m_no=b_mno)) sname, 
@@ -36,6 +36,63 @@
 		WHERE
 			b_no = #{b_no}
 	</select>
+	
+	<select id="SearchAfter"  resultType="fVO" parameterType="bVO">
+		SELECT
+			*
+		FROM
+			(SELECT
+				b_no no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
+			FROM
+				board
+			WHERE
+				<if test="key_tab != null and key_tab == 'All'">
+					b_sno = (SELECT s_no FROM song WHERE s_title = #{key_main}) OR
+					b_vno = (SELECT v_no FROM vocal WHERE v_name = #{key_main}) OR
+					b_mno = (SELECT m_no FROM member WHERE m_id = #{key_main}) OR
+					b_body like '%#'||#{key_main}||'%'
+				</if>
+				<if test="key_tab != null and key_tab == 'Song'">
+					b_sno = (SELECT s_no FROM song WHERE s_title = #{key_main})
+				</if>
+				<if test="key_tab != null and key_tab == 'Artist'">
+					b_vno = (SELECT v_no FROM vocal WHERE v_name = #{key_main})	
+				</if>
+				<if test="key_tab != null and key_tab == 'User'">
+					b_mno = (SELECT m_no FROM member WHERE m_id = #{key_main})
+				</if>
+				<if test="key_tab != null and key_tab == 'Hashtag'">
+					b_body like '%#'||#{key_main}||'%'
+				</if>
+			ORDER BY 
+				DBMS_RANDOM.value
+			)
+		WHERE
+	<![CDATA[    
+ 			rownum <= 9
+ 	]]> 
+	</select>
+	<select id="PreView"  resultType="fVO" parameterType="bVO">
+	<![CDATA[    
+		SELECT
+			*
+		FROM
+			(SELECT
+				b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
+			FROM
+				board
+			WHERE
+				b_sno = (SELECT s_no FROM song WHERE s_title = #{key_main}) OR
+				b_vno = (SELECT v_no FROM vocal WHERE v_name = #{key_main}) OR
+				b_mno = (SELECT m_no FROM member WHERE m_id = #{key_main}) OR
+				b_body like '%#'||#{key_main}||'%'
+			ORDER BY DBMS_RANDOM.value
+			)
+		WHERE
+			rownum <= 9
+	]]>
+	</select>
+	
 </mapper>
 
 

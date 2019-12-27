@@ -19,17 +19,34 @@ public class Shanha {
 	public ModelAndView searchBefore(ModelAndView mv) {
 		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.showBefore();
 		mv.addObject("LIST", list);
-		mv.setViewName("pages/searchbefore");
+		mv.setViewName("pages/search");
 		
 		return mv;
 	}
 	
 	
-	@RequestMapping("/searchAfter.mr")
+	@RequestMapping("/showDetail.mr")
 	@ResponseBody
-	public BoardVO searchAfter(ModelAndView mv, BoardVO bVO) {
-		BoardVO vo = sDAO.searchAfter(bVO);
+	public BoardVO showDetail(BoardVO bVO) {
+		BoardVO vo = sDAO.showDetail(bVO);
 		return vo;
+	}
+	
+	
+	@RequestMapping("/searchAfter.mr")
+	public ModelAndView searchAfter(ModelAndView mv, BoardVO bVO) {
+		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.searchAfter(bVO);
+		mv.addObject("LIST", list);
+		mv.setViewName("pages/search");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/preView.mr")
+	@ResponseBody
+	public java.util.List<FileVO> preView(BoardVO bVO) {
+		java.util.List<FileVO> plist = sDAO.preView(bVO);
+		return plist;
 	}
 }
 	
