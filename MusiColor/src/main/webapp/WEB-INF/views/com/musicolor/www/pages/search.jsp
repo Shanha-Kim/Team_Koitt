@@ -12,83 +12,26 @@
 <link rel="stylesheet" href="/www/css/random.css" >
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<!-- <script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script> -->
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<script type="text/javascript">
-$(function(){
-	//리프레쉬버튼
-	$('#refresh').click(function(){
-		$(location).attr("href", "/www/searchBefore.mr");
-	});
-	
-	//포스트 상세보기
-	var bno = "";
-	$('.square').click(function(){
-		bno = $(this).attr('id');
-		alert(bno);
-		
-		$('#myModal1').modal("show");
-		$.ajax({
-			url : "/www/searchAfter.mr",
-			type : "post",
-			dataType : "json",
-			data : {
-				b_no : bno
-			},
-			success : function(vo){
-				alert("success");
-				$('#mid').append(vo.m_id);
-				$('#bbody').html(vo.b_body);
-				$('#blike').append("<strong>" + vo.b_like + "likes</strong>");
-				$('#stitle').html(vo.s_title);
-				$('#psname').attr("src", "/www/profile/" + vo.sname);
-				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
-				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
-			},
-			error : function(){
-				alert('### 통신 에러 ###');
-			}
-		});
-	});
-	
-// 	검색시 탭 반영 
-	var tabmenu="";
-	$('#tab').each(function(){
-		var tab = $(this).children("button")
-		tab.click(function(){
-			tab.removeClass("selected");
-			tab.removeClass("text-muted");
-			tab.addClass("text-muted");
-			$(this).removeClass("text-muted");
-			$(this).addClass("selected");
-			tabmenu = $(this).text();
-		});
-	});
-	
-	
-	
-})
-	
-</script>
+
 </head>
  <body class="bg-primary">
     <jsp:include page="nav.jsp" flush="false" />
 	
     <div class="container" id="main">
-      <form class="form-inline my-lg-0" method="post" action="/www/searchAfter.mr">
-      	<input class="form-control col-sm text-center" type="text" placeholder="Search">
+      <form id="search_frm" class="form-inline my-lg-0" method="post" action="/www/searchAfter.mr">
+      	<input id="search_key" class="form-control col-sm text-center" type="text" placeholder="Search" name="key_main">
+      	<input id="search_tab" type="hidden" name="key_tab">
       </form>
       <!-- 감정 선택 버튼 -->
       <div class="btn-group btn-block mb-2" role="group" aria-label="Basic example" id="tab">
-        <button type="button" class="btn btn-primary selected" >Emotion</button>
-        <button type="button" class="btn btn-primary text-muted" >Title</button>
-        <button type="button" class="btn btn-primary text-muted" >Posting</button>
+        <button type="button" class="btn btn-primary text-muted" >All</button>
+        <button type="button" class="btn btn-primary text-muted" >Song</button>
+        <button type="button" class="btn btn-primary text-muted" >Artist</button>
         <button type="button" class="btn btn-primary text-muted" >User</button>
+        <button type="button" class="btn btn-primary text-muted" >Hashtag</button>
       </div>
 
       <div class="text-center mb-3" id="refresh">
@@ -131,7 +74,7 @@ $(function(){
               <div class="col desktop-youtube" style="padding: 10px; border-right: 1px solid #282828;">
                 <div style="height: 25%; width:100%;"></div>
                 <div class="youtube text-left" style="height: 50%; width:100%;">
-                  <iframe id="ylink1"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe id="ylink1"  src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div> 
               </div>
               <!-- Modal right -->
@@ -141,7 +84,7 @@ $(function(){
                 </h3>
                 <!-- 일정 크기 이상 작아지면 보이는 유튜브-->
                 <div class="youtube mobile-youtube mb-3">
-                  <iframe id="ylink2"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe id="ylink2" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="card-body" style="padding: 0px;">
                   <span id="blike" class="ml-auto"><i class="far fa-heart"></i></span>
@@ -174,8 +117,103 @@ $(function(){
         </div>
       </div>
     </div>
-    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		
+<script type="text/javascript">
+$(function(){
+	//리프레쉬버튼
+	$('#refresh').click(function(){
+		$(location).attr("href", "/www/searchBefore.mr");
+	});
+	
+	//포스트 상세보기
+	var bno = "";
+	$('.square').click(function(){
+		bno = $(this).attr('id');
+		alert(bno);
+		
+		$('#myModal1').modal("show");
+		$.ajax({
+			url : "/www/showDetail.mr",
+			type : "post",
+			dataType : "json",
+			data : {
+				b_no : bno
+			},
+			success : function(vo){
+				$('#mid').append(vo.m_id);
+				$('#bbody').html(vo.b_body);
+				$('#blike').append("<strong>" + vo.b_like + "likes</strong>");
+				$('#stitle').html(vo.s_title);
+				$('#psname').attr("src", "/www/profile/" + vo.sname);
+				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
+				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
+			},
+			error : function(){
+				alert('### 통신 에러 ###');
+			}
+		});
+	});
+	
+// 	검색시 탭 반영 
+	var tabmenu="";
+	$('#tab').each(function(){
+		var tab = $(this).children("button")
+		tab.click(function(){
+			tab.removeClass("selected");
+			tab.removeClass("text-muted");
+			tab.addClass("text-muted");
+			$(this).removeClass("text-muted");
+			$(this).addClass("selected");
+			tabmenu = $(this).text();
+		});
+	});
+	
+	//검색 엔터
+	$("#search_key").keydown(function(e){
+		if(e.keyCode == 13){
+			e.preventDefault();
+			$('#search_tab').val(tabmenu);	
+			$("#search_frm").submit();
+		}
+	});
+	
+	//검색 프리뷰
+// 	$("#search_key").keyup(function(e){
+// 		$('#myModal1').modal("show");
+// 		$.ajax({
+// 			url : "/www/preView.mr",
+// 			type : "post",
+// 			dataType : "json",
+// 			data : {
+// 				b_no : bno
+// 			},
+// 			success : function(vo){
+// 				alert("success");
+// 				$('#mid').append(vo.m_id);
+// 				$('#bbody').html(vo.b_body);
+// 				$('#blike').append("<strong>" + vo.b_like + "likes</strong>");
+// 				$('#stitle').html(vo.s_title);
+// 				$('#psname').attr("src", "/www/profile/" + vo.sname);
+// 				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
+// 				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
+// 			},
+// 			error : function(){
+// 				alert('### 통신 에러 ###');
+// 			}
+// 		});
+// 	});
 
+
+	
+	
+})
+	
+</script>
    
 </body>
 </html>
