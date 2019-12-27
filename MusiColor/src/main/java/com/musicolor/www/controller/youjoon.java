@@ -16,7 +16,7 @@ import javafx.scene.control.Alert;
 import com.musicolor.www.dao.YoujoonDAO;
 
 @Controller
-@RequestMapping("/member/")
+@RequestMapping("/member/") 
 public class youjoon {
 	@Autowired
 	YoujoonDAO mDAO;

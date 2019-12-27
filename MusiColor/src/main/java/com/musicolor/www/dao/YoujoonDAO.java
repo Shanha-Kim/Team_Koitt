@@ -9,7 +9,7 @@ import com.musicolor.www.vo.MemberVO;
  
 public class YoujoonDAO {
 	
-	@Autowired
+	@Autowired 
 	SqlSessionTemplate sqlSession;
 	
 	public int loginProc(MemberVO mVO) {
