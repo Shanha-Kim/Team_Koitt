@@ -4,12 +4,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVO {
 	//board
-	private int b_no;
+	private long b_no;
 	private int b_mno;
 	private int b_vno;
-	private int b_sno;
-	private int b_yno;
-	private int b_ano;
+	private long b_sno;
+	private long b_yno;
+	private long b_ano;
 	private int b_like;
 	private int b_emotion;
 	private char b_isshow;
@@ -83,10 +83,10 @@ public class BoardVO {
 	public void setFile(MultipartFile[] file) {
 		this.file = file;
 	}
-	public int getB_no() {
+	public long getB_no() {
 		return b_no;
 	}
-	public void setB_no(int b_no) {
+	public void setB_no(long b_no) {
 		this.b_no = b_no;
 	}
 	public int getB_mno() {
@@ -101,22 +101,22 @@ public class BoardVO {
 	public void setB_vno(int b_vno) {
 		this.b_vno = b_vno;
 	}
-	public int getB_sno() {
+	public long getB_sno() {
 		return b_sno;
 	}
-	public void setB_sno(int b_sno) {
+	public void setB_sno(long b_sno) {
 		this.b_sno = b_sno;
 	}
-	public int getB_yno() {
+	public long getB_yno() {
 		return b_yno;
 	}
-	public void setB_yno(int b_yno) {
+	public void setB_yno(long b_yno) {
 		this.b_yno = b_yno;
 	}
-	public int getB_ano() {
+	public long getB_ano() {
 		return b_ano;
 	}
-	public void setB_ano(int b_ano) {
+	public void setB_ano(long b_ano) {
 		this.b_ano = b_ano;
 	}
 	public int getB_like() {
