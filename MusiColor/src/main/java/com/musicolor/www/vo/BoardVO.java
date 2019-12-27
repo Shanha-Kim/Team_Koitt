@@ -35,9 +35,24 @@ public class BoardVO {
 	private String y_link;
 	private char y_ismain;
 	
-	 
+	//search
+	private String key_main;
+	private String key_tab;
 	
 	
+	
+	public String getKey_main() {
+		return key_main;
+	}
+	public void setKey_main(String key_main) {
+		this.key_main = key_main;
+	}
+	public String getKey_tab() {
+		return key_tab;
+	}
+	public void setKey_tab(String key_tab) {
+		this.key_tab = key_tab;
+	}
 	public String getM_id() {
 		return m_id;
 	}
