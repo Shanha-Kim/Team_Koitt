@@ -69,6 +69,10 @@ public class Eunbin {
 		String yLink = tmp.substring(idx + 1);
 		vo.setY_link(yLink);
 		
+		// mno 가져오기
+		int m_no = eDAO.findMno(vo.getId());
+		vo.setY_mno(m_no);
+		
 		// 앨범 사진 업로드 (song 업로드시 앨범 사진 번호가 필요하므로 우선 업로드)
 		fileSrvc.setDAO(fDAO);
 		long a_no = fileSrvc.singleUpProc(session, vo);
@@ -82,10 +86,8 @@ public class Eunbin {
 		int ycnt = eDAO.youtubeUpdate(vo);
 		
 		if (scnt == 1 && ycnt == 1 ) {
-			rv.setUrl("/www/update.mr");
-		} else {
-			rv.setUrl("/www/random.mr");
-		}
+			rv.setUrl("/www/upload.mr");
+		} else {}
 		
 		mv.setView(rv);
 		
@@ -109,7 +111,7 @@ public class Eunbin {
 		int cnt = eDAO.boardIn(vo);
 		
 		if(cnt == 1) {
-			rv.setUrl("/www/random.mr");
+			rv.setUrl("/www/random.mr"); // 임시 경로
 		} else {
 			rv.setUrl("/www/upload.mr");
 		}

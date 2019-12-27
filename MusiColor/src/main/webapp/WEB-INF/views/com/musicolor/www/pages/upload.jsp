@@ -126,6 +126,7 @@
 							</div>
 							<div class="text-center mt-5">
 								<button type="submit" type="button" class="btn btn-black btn-block" id="add">등록</button>
+								<input type="hidden" name="id" id="id" value="${SID}">
 							</div>
 						</div>
 					</div>
@@ -294,7 +295,7 @@
 					}
 				});
 			});
-
+			
 			/* 게시물 작성 */
 			$('#boardWriteProc').click(function() {
 				$('#boardIn').submit();

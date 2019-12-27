@@ -13,6 +13,7 @@ public class EunbinDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+//	upload 관련
 	public int vocalUpdate(SongVO vo){
 		return sqlSession.insert("eSQL.vocalIn", vo);
 	}
@@ -39,4 +40,6 @@ public class EunbinDAO {
 	public int boardIn(BoardVO vo) {
 		return sqlSession.insert("eSQL.boardIn", vo);
 	}
+	
+// 	random 관련
 }

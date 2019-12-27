@@ -52,7 +52,7 @@
 		INSERT INTO
 	    	youtube(y_no, y_sno, y_link, y_mno)
 		VALUES (
-	    	#{y_no}, #{s_no}, #{y_link}, 10000001 
+	    	#{y_no}, #{s_no}, #{y_link}, #{y_mno}
 		)
 	</insert>
 	

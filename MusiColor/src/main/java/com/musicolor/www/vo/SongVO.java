@@ -24,6 +24,9 @@ public class SongVO {
 	// 검색 키워드 저장용
 	private String keywords;
 	
+	// 아이디
+	private String id;
+	
 	public long getS_no() {
 		return s_no;
 	}
@@ -90,4 +93,11 @@ public class SongVO {
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 }
