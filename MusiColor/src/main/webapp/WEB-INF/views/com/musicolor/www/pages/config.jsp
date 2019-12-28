@@ -19,7 +19,7 @@
 		
 		 });
 		
-		 });
+		 });	
 		 */
 		$(function () {
 			$("#myBtn").click(function () {
@@ -27,8 +27,9 @@
 			});
 			
 			
+			
 			$('#backbtn').click(function(){
-			$(location).attr('href','/www/musiccolor/profile.mr');	
+			$(location).attr('href','/www/musiccolor/profilelist.mr');	
 			});
 			
 			$("#addpic").click(function(e){
@@ -37,11 +38,33 @@
 				$("#fileup").change(function(){
 				alert("첨부가 완료 되었습니다.");
 				$(".close").click();
-				 $("#fileup-frm").submit();  
-		
+				$("#fileup-frm").submit();
+				
 				});
 			});
+			
+			$('#fileup').change(function (e){
+		          var tmp = URL.createObjectURL(e.target.files[0]);
+		          $('#profImg').attr('src', tmp);
+		          });
+			
+	/* 	
+		$('#fileup-frm').submit();
+
 		});
+		 $(function(){
+			
+			 
+			 
+		 });
+		  */
+		  
+		  $("#tembtn").click(function(){
+			alert("계정이 비활성화 되었습니다.")
+			$(location).attr('href','/www/musiccolor/lock.mr');
+		  });
+	  });
+		 
 	</script>
 	<style>
 		.box {
@@ -62,24 +85,13 @@
 </head>
 
 <body class="bg-primary">
-	<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
-		<a class="navbar-brand ml-5" href="#">
-			<h3 class="logo">musicolor</h3>
-		</a>
-
-		<ul class="nav navbar-nav ml-auto">
-			<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-search f-20"></i></a></li>
-			<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-random f-20"></i></a></li>
-			<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-cloud-upload-alt f-20"></i></a></li>
-			<li class="nav-item"><a class="nav-link" href="#" 	><i class="fas fa-user f-20"></i></a></li>
-		</ul>
-	</nav>
+<jsp:include page="nav.jsp" flush="false" />
 
 	<form action="/www/musiccolor/profilepic.mr" method="post" enctype="multipart/form-data" style="display: none;" id="fileup-frm">
 	 	<input type="file" name="sFile" id="fileup"> 
 	</form>
 	
-	<form action="/www/musiccolor/profiletext.mr" method="post" >
+	<form action="/www/musiccolor/profiletext.mr" method="post" id="textup-frm" >
 	<input type="text" name="m_id" value="${SID}">
 		<div class="container" id="main">
 			<div class="card text-white bg-primary mb-" style="max-width: 40rem;">
@@ -92,7 +104,9 @@
 				<div class="card-body">
 					<h4 class="card-title" style= "margin-bottom: 30px;">사용자 ID</h4>
 					<div class="imgbox text-center">
-						<img src="/www/img/logo.jpg">
+					
+						<img src="/www/upload/${VO.sname}" alt="noimage" class="profIn" id="profImg">
+						
 						<p></p>
 						<button type="button" class="btn btn-info" style="padding: 0px; width: 135px; height: 25px;"
 							name="sFile" id="myBtn"> 프로필 사진 바꾸기</button>
@@ -120,7 +134,7 @@
 					</div>
 
 					<div class="configtextbox text-center">
-						<button type="submit" class="btn btn-info" style="width: 40%; display: inline;">회원정보 수정</button>
+						<button type="submit" class="btn btn-info"  style="width: 40%; display: inline;">회원정보 수정</button>
 						<br>
 
 						<div class="card-header">계정을 일시적으로 비활성화 하고 싶습니까?</div>

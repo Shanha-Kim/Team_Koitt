@@ -84,7 +84,6 @@ p_no = (SELECT
 			m_id= #{SID}
 		)
 
-
 </select>
 
 <!-- 자기소개글 보내기  -->
@@ -120,6 +119,57 @@ WHERE
  	)
  
   
+</select>
+
+<!-- 계정 비활성화 함수 -->
+
+<update id ="lock" parameterType="mVO">
+<selectKey resultType="int" keyProperty="m_no" order="BEFORE">
+SELECT
+	m_no
+FROM
+	member
+WHERE
+	m_id= #{m_id}
+<!-- 	member 테이블에 m_no 를 m_id 로 찾는다 -->
+</selectKey>
+	UPDATE
+		member
+	<set>
+	m_isshow = 'N'
+	WHERE
+	m_no = #{m_no}
+	</set>
+</update>
+
+
+<update id="unlock" parameterType="mVO">  <!-- 비공개 계정 비활성화 -->
+<selectKey resultType="int" keyProperty="m_no" order="BEFORE">
+SELECT
+	m_no
+FROM
+	member
+WHERE
+	m_id =#{m_id}
+</selectKey>
+UPDATE 
+member 
+<set>
+m_isshow ='Y'
+WHERE
+m_no =#{m_no}
+</set>
+</update>
+
+<select id="isshow" resultType="String" parameterType="String"> <!-- 계정 비활성화 여부 확인 -->
+
+SELECT
+m_isshow
+FROM
+member
+WHERE
+m_id = #{SID}
+
 </select>
 
 </mapper>

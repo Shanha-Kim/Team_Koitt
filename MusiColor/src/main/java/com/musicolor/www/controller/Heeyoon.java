@@ -41,7 +41,6 @@ public class Heeyoon {
 	public ModelAndView configpic(ModelAndView mv, HttpSession session, MemberVO mVO, RedirectView rv) {
 		String SID = (String)session.getAttribute("SID");
 		mVO.setM_no(hDAO.mNo(SID));
-		System.out.println("mno : " + mVO.getM_no());
 		fileSrvc.setDAO(fDAO);
 		fileSrvc.singleUpProc(session, mVO); 
 		rv.setUrl("/www/musiccolor/profconfig.mr");
@@ -72,21 +71,50 @@ public class Heeyoon {
 		  mv.addObject("LIST",list);
 		  //프로필 로고 사진 	
 		  FileVO fVO = hDAO.proflogo((String)session.getAttribute("SID"));
-		  System.out.println("저장이름"+fVO.getSname()); 
 		  mv.addObject("VO",fVO);		  
 		  
 		  //프로필 자기소개글 
 		  MemberVO mVO = hDAO.profintro((String)session.getAttribute("SID"));
 		  mv.addObject("IVO",mVO);
+		
+		  //프로필 계정 비활성화 여부 
+		  String str = (String)session.getAttribute("SID");
+		  String isshow = hDAO.proisshow(str);
+		  mv.addObject("ISSHOW",isshow);
+		 
 		  //프로필 게시글 카운트 
 		   int cnt= hDAO.profilecont((String)session.getAttribute("SID"));
 		   mv.addObject("CNT",cnt);
-		  
-		  
-		  
 		  mv.setViewName("pages/profile");
 		  return mv;
 	  }
+	  
+	  @RequestMapping("lock.mr") //프로필 계정 비활성화 표시 
+	  //프로필 계정 비활성화 controller
+	  public ModelAndView lock(ModelAndView mv, HttpSession session, RedirectView rv) {
+		 String str = (String)session.getAttribute("SID");
+		 MemberVO mVO = new MemberVO();
+		  mVO.setM_id(str);
+		  int cnt = hDAO.prolock(mVO);
+		  mv.addObject("LOCK", cnt);	  
+		  rv.setUrl("/www/musiccolor/profilelist.mr");
+		  mv.setView(rv);
+		  return mv;
+	  }
+	  
+	  @RequestMapping("unlock.mr")//프로필 계정 다시 활성화 표시
+	  public ModelAndView unlock(ModelAndView mv, HttpSession session, RedirectView rv) {
+		  String str = (String)session.getAttribute("SID");
+		  MemberVO mVO = new MemberVO();
+		  mVO.setM_id(str);
+		  int cnt = hDAO.prounlock(mVO);
+		  mv.addObject("UNLOCK",cnt);
+		  rv.setUrl("/www/musiccolor/profilelist.mr");
+		  mv.setView(rv);
+		  
+		  return mv;
+	  }
+	  
 	  
 	 }
 	
