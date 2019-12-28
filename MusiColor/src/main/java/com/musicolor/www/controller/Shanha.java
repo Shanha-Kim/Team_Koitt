@@ -41,8 +41,10 @@ public class Shanha {
 	
 	@RequestMapping("/searchAfter.mr")
 	public ModelAndView searchAfter(ModelAndView mv, BoardVO bVO) {
+		String tabnow = bVO.getKey_tab();
 		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.searchAfter(bVO);
 		mv.addObject("LIST", list);
+		mv.addObject("tabnow", tabnow);
 		mv.setViewName("pages/search");
 		
 		return mv;

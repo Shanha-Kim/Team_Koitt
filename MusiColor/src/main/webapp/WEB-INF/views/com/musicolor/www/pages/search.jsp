@@ -27,11 +27,11 @@
       </form>
       <!-- 감정 선택 버튼 -->
       <div class="btn-group btn-block mb-2" role="group" aria-label="Basic example" id="tab">
-        <button type="button" class="btn btn-primary text-muted" >All</button>
-        <button type="button" class="btn btn-primary text-muted" >Song</button>
-        <button type="button" class="btn btn-primary text-muted" >Artist</button>
-        <button type="button" class="btn btn-primary text-muted" >User</button>
-        <button type="button" class="btn btn-primary text-muted" >Hashtag</button>
+        <button id="All" type="button" class="btn btn-primary text-muted" >All</button>
+        <button id="Song" type="button" class="btn btn-primary text-muted" >Song</button>
+        <button id="Artist" type="button" class="btn btn-primary text-muted" >Artist</button>
+        <button id="User" type="button" class="btn btn-primary text-muted" >User</button>
+        <button id="Hashtag" type="button" class="btn btn-primary text-muted" >Hashtag</button>
       </div>
 
       <div class="text-center mb-3" id="refresh">
@@ -195,11 +195,24 @@ $(function(){
 	$("#search_key").keydown(function(e){
 		if(e.keyCode == 13){
 			e.preventDefault();
+			if(tabmenu==""){
+				tabmenu="All";
+			}
 			$('#search_tab').val(tabmenu);	
 			$("#search_frm").submit();
 		}
 	});
-	
+	//검색전에 누른 tab 유지
+	tabmenu = '<c:out value="${tabnow}"/>'+"";
+	if(tabmenu==""){
+		tabmenu = "All";
+	}
+	var tab = $('#tab').children('button');
+	tab.removeClass("selected");
+	tab.removeClass("text-muted");
+	tab.addClass("text-muted");
+	$('#'+tabmenu).removeClass("text-muted");
+	$('#'+tabmenu).addClass("selected");
 	//검색 프리뷰
 // 	$("#search_key").keyup(function(e){
 // 		$('#myModal1').modal("show");
