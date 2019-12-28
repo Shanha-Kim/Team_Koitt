@@ -32,6 +32,12 @@ public class Shanha {
 		return vo;
 	}
 	
+	@RequestMapping("/likeProc.mr")
+	@ResponseBody
+	public BoardVO likeProc(BoardVO bVO) {
+		BoardVO vo = sDAO.likeProc(bVO);
+		return vo;
+	}
 	
 	@RequestMapping("/searchAfter.mr")
 	public ModelAndView searchAfter(ModelAndView mv, BoardVO bVO) {

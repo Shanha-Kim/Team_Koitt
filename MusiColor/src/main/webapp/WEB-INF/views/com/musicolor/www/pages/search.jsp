@@ -80,14 +80,13 @@
               <!-- Modal right -->
               <div class="col text-left" style="padding: 10px;">
                 <h3 id="mid" class="card-header" style="padding: 10px;">
-                	<img id="psname" class="profile"  />
                 </h3>
                 <!-- 일정 크기 이상 작아지면 보이는 유튜브-->
                 <div class="youtube mobile-youtube mb-3">
                   <iframe id="ylink2" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="card-body" style="padding: 0px;">
-                  <span id="blike" class="ml-auto"><i class="far fa-heart"></i></span>
+                  <span class="ml-auto"><i id="heart" class="far fa-heart"></i><span id="blike"></span></span>
                   <h6 id="stitle" class="card-subtitle text-muted mb-2 mt-2"></h6>
                   <div class="body-scroll mb-3">
                     <p id="bbody" class="card-text">
@@ -134,7 +133,6 @@ $(function(){
 	var bno = "";
 	$('.square').click(function(){
 		bno = $(this).attr('id');
-		alert(bno);
 		
 		$('#myModal1').modal("show");
 		$.ajax({
@@ -145,19 +143,39 @@ $(function(){
 				b_no : bno
 			},
 			success : function(vo){
-				$('#mid').append(vo.m_id);
+				$('#mid').html('<img id="psname" class="profile"  />'+vo.m_id);
 				$('#bbody').html(vo.b_body);
-				$('#blike').append("<strong>" + vo.b_like + "likes</strong>");
+				$('#blike').html('<strong> ' + vo.b_like + " likes</strong>");
 				$('#stitle').html(vo.s_title);
 				$('#psname').attr("src", "/www/profile/" + vo.sname);
 				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
 				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
+				
+				//좋아요 누르기
+				$('#heart').click(function(){
+					$.ajax({
+						url : "/www/likeProc.mr",
+						type : "post",
+						dataType : "json",
+						data : {
+							b_no : bno,
+							m_id : vo.m_id
+						},
+						success : function(data){
+							$('#blike').html('<strong> ' + data.b_like + " likes</strong>");
+						},
+						error : function(){
+							alert('### 통신 에러 ###');
+						}
+					});
+				});
 			},
 			error : function(){
 				alert('### 통신 에러 ###');
 			}
 		});
 	});
+	
 	
 // 	검색시 탭 반영 
 	var tabmenu="";
