@@ -1,5 +1,7 @@
 package com.musicolor.www.vo;
 
+import java.util.ArrayList;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVO {
@@ -39,8 +41,17 @@ public class BoardVO {
 	private String key_main;
 	private String key_tab;
 	
+	//ComtVO 담을 list
+	private ArrayList<ComtVO> comt;
 	
 	
+	
+	public ArrayList<ComtVO> getComt() {
+		return comt;
+	}
+	public void setComt(ArrayList<ComtVO> comt) {
+		this.comt = comt;
+	}
 	public String getKey_main() {
 		return key_main;
 	}
