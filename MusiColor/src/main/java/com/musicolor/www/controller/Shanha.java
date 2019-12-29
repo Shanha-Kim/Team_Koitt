@@ -2,6 +2,8 @@ package com.musicolor.www.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,8 @@ public class Shanha {
 	ShanhaDAO sDAO;
 	
 	@RequestMapping("/searchBefore.mr")
-	public ModelAndView searchBefore(ModelAndView mv) {
+	public ModelAndView searchBefore(ModelAndView mv ,HttpSession session) {
+		session.setAttribute("SID", "lbrade0");
 		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.showBefore();
 		mv.addObject("LIST", list);
 		mv.setViewName("pages/search");
@@ -55,6 +58,14 @@ public class Shanha {
 	public java.util.List<FileVO> preView(BoardVO bVO) {
 		java.util.List<FileVO> plist = sDAO.preView(bVO);
 		return plist;
+	}
+	
+	@RequestMapping("/comtWrite.mr")
+	@ResponseBody
+	public ComtVO comtWirte(ComtVO cmVO) {
+		System.out.println(cmVO.getC_body());
+		ComtVO vo = sDAO.comtWrite(cmVO);
+		return vo;
 	}
 }
 	

@@ -24,6 +24,7 @@
       <form id="search_frm" class="form-inline my-lg-0" method="post" action="/www/searchAfter.mr">
       	<input id="search_key" class="form-control col-sm text-center" type="text" placeholder="Search" name="key_main">
       	<input id="search_tab" type="hidden" name="key_tab">
+      	
       </form>
       <!-- 감정 선택 버튼 -->
       <div class="btn-group btn-block mb-2" role="group" aria-label="Basic example" id="tab">
@@ -95,35 +96,28 @@
                 </div>
                 <!-- comment -->
                 <div class="bg-primary comment-scroll">
-                  <ul class="list-group list-group-flush p-0 m-p">
-                    <li class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong>USERNAME</strong> Cras justo odio</li>
+                  <ul id="comt" class="list-group list-group-flush p-0 m-p">
+                    <li data-cno=""  data-user="rmccuish5" class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">USERNAME</strong> Cras justo odio</li>
                     <li class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong>USERNAME</strong> Dapibus ac facilisis in</li>
-                    <li class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong>USERNAME</strong> Vestibulum at eros</li>
-                    <li class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong>USERNAME</strong> Cras justo odio</li>
-                    <li class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong>USERNAME</strong> Dapibus ac facilisis in</li>
-                    <li class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong>USERNAME</strong> Vestibulum at eros</li>
-                    <li class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong>USERNAME</strong> Cras justo odio</li>
-                    <li class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong>USERNAME</strong> Dapibus ac facilisis in</li>
-                    <li class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong>USERNAME</strong> Vestibulum at eros</li>
                   </ul>
                 </div>
-                <form class="pt-3" method="POST" action="#">
-                  <input class="comment-write-dark" type="text" placeholder="댓글을 입력해주세요" />
-                </form>
+                <div class="pt-3">
+                  <input id="c_body" class="comment-write-dark" type="text" placeholder="댓글을 입력해주세요" />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-		
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	//세션 ID 저장
+	var sid = '<c:out value="${SID}"/>';
+	
 	//리프레쉬버튼
 	$('#refresh').click(function(){
 		$(location).attr("href", "/www/searchBefore.mr");
@@ -150,6 +144,9 @@ $(function(){
 				$('#psname').attr("src", "/www/profile/" + vo.sname);
 				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
 				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
+				for(ComtVO cmVO : vo.comt){
+					$('#comt').append('<li data-cno="'+cVO.c_no+'data-user="'+cVO.c_mid+'"  " class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+cVO.c_mid+'</strong> '+cVO.c_body+'</li>');
+				} 
 				
 				//좋아요 누르기
 				$('#heart').click(function(){
@@ -159,7 +156,7 @@ $(function(){
 						dataType : "json",
 						data : {
 							b_no : bno,
-							m_id : vo.m_id
+							m_id : sid
 						},
 						success : function(data){
 							$('#blike').html('<strong> ' + data.b_like + " likes</strong>");
@@ -168,6 +165,35 @@ $(function(){
 							alert('### 통신 에러 ###');
 						}
 					});
+				});
+				
+				//댓글기능
+				$("#c_body").keyup(function(e){
+					if(e.keyCode == 13){
+						var cbody = $('#c_body').val();
+						var upno = '';
+						var upid = '';
+						$('.list-group-item').click(function(){
+							upno = $(this).attr('data-cno');
+							upid = $(this).attr('data-user');
+						});
+						$.ajax({
+							url : "/www/comtWrite.mr",
+							type : "post",
+							dataType : "json",
+							data : {
+								c_bno : bno,
+								c_mid : sid,
+								c_body : cbody
+							},
+							success : function(cVO){
+								$('#comt').append('<li data-cno="'+cVO.c_no+'data-user="'+cVO.c_mid+'"  " class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+cVO.c_mid+'</strong> '+cVO.c_body+'</li>');
+							},
+							error : function(){
+								alert('### 통신 에러 ###');
+							}
+						});
+					}
 				});
 			},
 			error : function(){
@@ -213,6 +239,7 @@ $(function(){
 	tab.addClass("text-muted");
 	$('#'+tabmenu).removeClass("text-muted");
 	$('#'+tabmenu).addClass("selected");
+	
 	//검색 프리뷰
 // 	$("#search_key").keyup(function(e){
 // 		$('#myModal1').modal("show");
@@ -239,8 +266,6 @@ $(function(){
 // 		});
 // 	});
 
-
-	
 	
 })
 	

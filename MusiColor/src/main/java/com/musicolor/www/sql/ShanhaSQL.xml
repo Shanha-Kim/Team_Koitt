@@ -36,6 +36,25 @@
 		WHERE
 			b_no = #{b_no}
 	</select>
+	<select id="showComt" parameterType="bVO" resultType="cmVO">
+		SELECT c_no, c_bno, c_mno, c_like, c_upno, c_date, c_isshow, c_body, (SELECT m_id from member where m_no=c_mno) c_mid
+			FROM
+		(SELECT * FROM comt WHERE c_bno = #{b_no})	
+	</select>
+	<insert id="ComtWrite" parameterType="cmVO">
+		INSERT INTO comt VALUES(
+			(SELECT NVL(max(c_no)+1, 100000000001) FROM comt), #{c_bno}, 
+			(SELECT m_no FROM member WHERE m_id = #{c_mid}), 0, null, sysdate, 'Y', #{c_body}
+		)
+	</insert>
+	<select id="ComtAppend" parameterType="cmVO" resultType="long">
+		SELECT c_no FROM comt WHERE 
+		c_bno = #{c_bno} AND
+		c_mno = (SELECT m_no FROM member WHERE m_id = #{c_mid}) AND
+		c_body = #{c_body}
+	
+	</select>
+	
 	
 	<select id="LikeCheck" parameterType="bVO" resultType="int">
 		SELECT count(*) FROM boardlike 

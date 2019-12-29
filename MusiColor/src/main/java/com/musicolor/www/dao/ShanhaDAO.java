@@ -1,23 +1,27 @@
 package com.musicolor.www.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.musicolor.www.vo.BoardVO;
+import com.musicolor.www.vo.ComtVO;
 import com.musicolor.www.vo.FileVO;
 
 public class ShanhaDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public java.util.List<FileVO> showBefore(){
-		java.util.List<FileVO> list = sqlSession.selectList("sSQL.SearchBefore");
+	public List<FileVO> showBefore(){
+		List<FileVO> list = sqlSession.selectList("sSQL.SearchBefore");
 		return list;
 	}
 	public BoardVO showDetail(BoardVO bVO){
 		BoardVO vo = sqlSession.selectOne("sSQL.showDetail", bVO);
+		List<ComtVO> list = sqlSession.selectList("sSQL.showComt", bVO);
+		vo.setComt((ArrayList<ComtVO>)list);
 		return vo;
 	}
 	public BoardVO likeProc(BoardVO bVO){
@@ -56,5 +60,11 @@ public class ShanhaDAO {
 	public java.util.List<FileVO> preView(BoardVO bVO){
 		java.util.List<FileVO> list = sqlSession.selectList("sSQL.PreView", bVO);
 		return list;
+	}
+	public ComtVO comtWrite(ComtVO cmVO) {
+		int cnt = sqlSession.insert("sSQL.ComtWrite", cmVO);
+		long cno = sqlSession.selectOne("sSQL.ComtAppend", cmVO);
+		cmVO.setC_no(cno);
+		return cmVO;
 	}
 }
