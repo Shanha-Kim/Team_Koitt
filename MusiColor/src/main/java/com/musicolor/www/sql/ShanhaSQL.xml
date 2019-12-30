@@ -141,10 +141,11 @@
 				board
 			WHERE
 				<if test="key_tab != null and key_tab == 'All'">
-					b_sno = (SELECT s_no FROM song WHERE s_title = #{key_main}) OR
-					b_vno = (SELECT v_no FROM vocal WHERE v_name = #{key_main}) OR
-					b_mno = (SELECT m_no FROM member WHERE m_id = #{key_main}) OR
-					b_body like '%#'||#{key_main}||'%'
+					b_sno IN (SELECT s_no FROM song WHERE s_title = #{key_main}) OR
+					b_vno IN (SELECT v_no FROM vocal WHERE v_name = #{key_main}) OR
+					b_mno IN (SELECT m_no FROM member WHERE m_id = #{key_main}) OR
+					REPLACE(UPPER(b_body), ' ', '') LIKE '%#'||REPLACE(UPPER(#{key_main}), ' ','')||'%'
+				
 				</if>
 				<if test="key_tab != null and key_tab == 'Song'">
 					b_sno = (SELECT s_no FROM song WHERE s_title = #{key_main})
@@ -185,6 +186,10 @@
 		WHERE
 			rownum <= 9
 	]]>
+	</select>
+	
+	<select id="InfiniteScroll" resultType="fVO" parameterType="bVO">
+		
 	</select>
 	
 </mapper>
