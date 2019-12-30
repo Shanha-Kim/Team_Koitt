@@ -1,13 +1,16 @@
 package com.musicolor.www.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -61,8 +64,9 @@ public class Eunbin {
 		return list;
 	}
 	
+	@ResponseBody
 	@RequestMapping("musicUpdate.mr")
-	public ModelAndView musicUpdate(HttpSession session, RedirectView rv, ModelAndView mv, SongVO vo) {
+	public Map<String, Object> musicUpdate(HttpSession session, RedirectView rv, ModelAndView mv, SongVO vo) {
 		// youtube 주소 메인부 추출
 		String tmp = vo.getY_link();
 		int idx = tmp.indexOf("=");
@@ -85,14 +89,15 @@ public class Eunbin {
 		// youtube 업로드
 		int ycnt = eDAO.youtubeUpdate(vo);
 		
-		if (scnt == 1 && ycnt == 1 ) {
-			rv.setUrl("/www/upload.mr");
-		} else {}
+		// 반환값 설정
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("s_title", vo.getS_title());
+		map.put("s_no", vo.getS_no());
+		map.put("s_vno", vo.getS_vno());
+		map.put("y_no", vo.getY_no());
+		map.put("s_ano", vo.getS_ano());
 		
-		mv.setView(rv);
-		
-		return mv;
-		
+		return map;
 	}
 	
 	@ResponseBody

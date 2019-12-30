@@ -94,7 +94,7 @@
 		</div>
 	</div>
 
-	<form method="POST" action="/www/musicUpdate.mr" enctype="multipart/form-data">
+	<form id="addMusic" method="POST" action="/www/musicUpdate.mr" enctype="multipart/form-data">
 		<!-- second modal, music add -->
 		<div class="modal" id="myModal2">
 			<div class="modal-dialog">
@@ -135,13 +135,13 @@
 		</div>
 	</form>
 
-	<!-- first modal, search music -->
+	<!-- third modal, search music -->
 	<div class="modal" id="myModal3">
 		<div class="modal-dialog">
 			<div class="modal-content bg-primary">
 				<!-- Modal body -->
 				<div class="modal-body">
-					<h1 class="white text-center mt-3 mb-3">SEARCH MUSIC</h1>
+					<h1 class="white text-center mt-3 mb-3">SEARCH VOCAL</h1>
 					<table class="table-sm table-hover white text-center" id="vocalResultTable">
 						<thead>
 							<tr>
@@ -299,6 +299,45 @@
 			/* 게시물 작성 */
 			$('#boardWriteProc').click(function() {
 				$('#boardIn').submit();
+			});
+			
+			/* 파일 업로드 비동기 처리 */
+			$('#add').click(function(){
+		        event.preventDefault();
+
+		        var form = $('#addMusic')[0];
+
+		        var data = new FormData(form);
+
+		        $("#add").prop("disabled", true);
+
+		        $.ajax({
+		            type: "POST",
+		            enctype: 'multipart/form-data',
+		            url: "/www/musicUpdate.mr",
+		            data: data,
+		            processData: false,
+		            contentType: false,
+		            cache: false,
+		            timeout: 600000,
+		            success: function (data) {
+			   			$("#myModal2").modal("hide");
+						
+						$('#keywords').val(data.s_title);
+						$('#b_sno').val(data.s_no);
+						$('#b_vno').val(data.s_vno);
+						$('#b_yno').val(data.y_no);
+						$('#b_ano').val(data.s_ano);
+						
+		                $("#btnSubmit").prop("disabled", false);
+
+		            },
+		            error: function (e) {
+		                alert("ERROR : ", e);
+		                $("#btnSubmit").prop("disabled", false);
+
+		            }
+		        });
 			});
 		});
 	</script>
