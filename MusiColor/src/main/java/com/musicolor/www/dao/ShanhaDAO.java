@@ -14,8 +14,8 @@ public class ShanhaDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public List<FileVO> showBefore(){
-		List<FileVO> list = sqlSession.selectList("sSQL.SearchBefore");
+	public List<FileVO> showBefore(BoardVO bVO){
+		List<FileVO> list = sqlSession.selectList("sSQL.SearchBefore", bVO);
 		return list;
 	}
 	public BoardVO showDetail(BoardVO bVO){
@@ -62,7 +62,15 @@ public class ShanhaDAO {
 		return list;
 	}
 	public ComtVO comtWrite(ComtVO cmVO) {
-		int cnt = sqlSession.insert("sSQL.ComtWrite", cmVO);
+		//댓글내용에서 대댓글 작성자 제거
+		if(cmVO.getC_upno() == 1) {
+			int cnt = sqlSession.insert("sSQL.ComtWrite1", cmVO);
+		}else {
+			String body = cmVO.getC_body();
+			int idx = body.indexOf(" ");
+			cmVO.setC_body(body.substring(idx + 1));
+			int cnt = sqlSession.insert("sSQL.ComtWrite2", cmVO);
+		}
 		long cno = sqlSession.selectOne("sSQL.ComtAppend", cmVO);
 		cmVO.setC_no(cno);
 		return cmVO;

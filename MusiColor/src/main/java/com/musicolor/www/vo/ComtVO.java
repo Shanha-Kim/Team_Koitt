@@ -7,11 +7,19 @@ public class ComtVO {
 	private String c_mid;
 	private int c_like;
 	private long c_upno;
+	private String c_upid;
 	private String c_date;
 	private char c_isshow;
 	private String c_body;
 	
 	
+	
+	public String getC_upid() {
+		return c_upid;
+	}
+	public void setC_upid(String c_upid) {
+		this.c_upid = c_upid;
+	}
 	public String getC_mid() {
 		return c_mid;
 	}

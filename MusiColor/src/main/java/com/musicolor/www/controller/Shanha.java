@@ -18,9 +18,9 @@ public class Shanha {
 	ShanhaDAO sDAO;
 	
 	@RequestMapping("/searchBefore.mr")
-	public ModelAndView searchBefore(ModelAndView mv ,HttpSession session) {
+	public ModelAndView searchBefore(ModelAndView mv, BoardVO bVO, HttpSession session) {
 		session.setAttribute("SID", "lbrade0");
-		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.showBefore();
+		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.showBefore(bVO);
 		mv.addObject("LIST", list);
 		mv.setViewName("pages/search");
 		
@@ -63,7 +63,6 @@ public class Shanha {
 	@RequestMapping("/comtWrite.mr")
 	@ResponseBody
 	public ComtVO comtWirte(ComtVO cmVO) {
-		System.out.println(cmVO.getC_body());
 		ComtVO vo = sDAO.comtWrite(cmVO);
 		return vo;
 	}

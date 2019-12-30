@@ -123,11 +123,14 @@ $(function(){
 		$(location).attr("href", "/www/searchBefore.mr");
 	});
 	
+	//무한스크롤
+	
+	
 	//포스트 상세보기
 	var bno = "";
 	$('.square').click(function(){
 		bno = $(this).attr('id');
-		
+		$("#c_body").val("");
 		$('#myModal1').modal("show");
 		$.ajax({
 			url : "/www/showDetail.mr",
@@ -144,12 +147,17 @@ $(function(){
 				$('#psname').attr("src", "/www/profile/" + vo.sname);
 				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
 				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
-				for(ComtVO cmVO : vo.comt){
-					$('#comt').append('<li data-cno="'+cVO.c_no+'data-user="'+cVO.c_mid+'"  " class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+cVO.c_mid+'</strong> '+cVO.c_body+'</li>');
+				for(var i=0 in vo.comt){
+					if(vo.comt[i].c_upid == null){
+						$('#comt').append('<li data-cno="'+vo.comt[i].c_no+'" data-user="'+vo.comt[i].c_mid+'"  class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+vo.comt[i].c_mid+'</strong> '+vo.comt[i].c_body+'</li>');
+					}else{
+						$('#comt').append('<li data-cno="'+vo.comt[i].c_no+'" data-user="'+vo.comt[i].c_mid+'"  class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+vo.comt[i].c_mid+'</strong> <i>'+vo.comt[i].c_upid+'</i> '+vo.comt[i].c_body+'</li>');
+					}
 				} 
 				
 				//좋아요 누르기
-				$('#heart').click(function(){
+				$('#heart').click(function(e){
+					e.preventDefault();
 					$.ajax({
 						url : "/www/likeProc.mr",
 						type : "post",
@@ -168,15 +176,18 @@ $(function(){
 				});
 				
 				//댓글기능
+				var upno = 1;
+				var upid = '';
+				$('.list-group-item').click(function(){
+					upno = $(this).attr('data-cno');
+					upno = Number(upno);
+					upid = $(this).attr('data-user');
+					$("#c_body").val(upid+" ");
+				});
 				$("#c_body").keyup(function(e){
 					if(e.keyCode == 13){
+						e.preventDefault();
 						var cbody = $('#c_body').val();
-						var upno = '';
-						var upid = '';
-						$('.list-group-item').click(function(){
-							upno = $(this).attr('data-cno');
-							upid = $(this).attr('data-user');
-						});
 						$.ajax({
 							url : "/www/comtWrite.mr",
 							type : "post",
@@ -184,10 +195,17 @@ $(function(){
 							data : {
 								c_bno : bno,
 								c_mid : sid,
-								c_body : cbody
+								c_body : cbody,
+								c_upno : upno,
+								c_upid : upid
 							},
 							success : function(cVO){
-								$('#comt').append('<li data-cno="'+cVO.c_no+'data-user="'+cVO.c_mid+'"  " class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+cVO.c_mid+'</strong> '+cVO.c_body+'</li>');
+								if(cVO.c_upid == null){
+									$('#comt').append('<li data-cno="'+cVO.c_no+'" data-user="'+cVO.c_mid+'" class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+cVO.c_mid+'</strong> '+cVO.c_body+'</li>');
+								}else{
+									$('#comt').append('<li data-cno="'+cVO.c_no+'" data-user="'+cVO.c_mid+'" class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+cVO.c_mid+'</strong> <i>'+cVO.c_upid+'</i> '+cVO.c_body+'</li>');
+								}
+									$("#c_body").val("");
 							},
 							error : function(){
 								alert('### 통신 에러 ###');
