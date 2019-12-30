@@ -97,8 +97,7 @@
                 <!-- comment -->
                 <div class="bg-primary comment-scroll">
                   <ul id="comt" class="list-group list-group-flush p-0 m-p">
-                    <li data-cno=""  data-user="rmccuish5" class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">USERNAME</strong> Cras justo odio</li>
-                    <li class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong>USERNAME</strong> Dapibus ac facilisis in</li>
+<!--                     <li data-cno="100000000001"  data-user="rmccuish5" class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">USERNAME</strong> Cras justo odio</li> -->
                   </ul>
                 </div>
                 <div class="pt-3">
@@ -131,6 +130,8 @@ $(function(){
 	$('.square').click(function(){
 		bno = $(this).attr('id');
 		$("#c_body").val("");
+		$("#comt").html("");
+		
 		$('#myModal1').modal("show");
 		$.ajax({
 			url : "/www/showDetail.mr",
@@ -178,7 +179,7 @@ $(function(){
 				//댓글기능
 				var upno = 1;
 				var upid = '';
-				$('.list-group-item').click(function(){
+				$(document).on("click", '.list-group-item', function() {
 					upno = $(this).attr('data-cno');
 					upno = Number(upno);
 					upid = $(this).attr('data-user');
@@ -187,7 +188,11 @@ $(function(){
 				$("#c_body").keyup(function(e){
 					if(e.keyCode == 13){
 						e.preventDefault();
+						setTimeout(function(){}, 500);
 						var cbody = $('#c_body').val();
+						if(cbody == ""){
+							return;
+						}
 						$.ajax({
 							url : "/www/comtWrite.mr",
 							type : "post",
@@ -199,13 +204,19 @@ $(function(){
 								c_upno : upno,
 								c_upid : upid
 							},
-							success : function(cVO){
-								if(cVO.c_upid == null){
-									$('#comt').append('<li data-cno="'+cVO.c_no+'" data-user="'+cVO.c_mid+'" class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+cVO.c_mid+'</strong> '+cVO.c_body+'</li>');
-								}else{
-									$('#comt').append('<li data-cno="'+cVO.c_no+'" data-user="'+cVO.c_mid+'" class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+cVO.c_mid+'</strong> <i>'+cVO.c_upid+'</i> '+cVO.c_body+'</li>');
-								}
-									$("#c_body").val("");
+							success : function(vo){
+								$('#comt').html("");
+								for(var i=0 in vo){
+									if(vo[i].c_upid == null){
+										$('#comt').append('<li data-cno="'+vo[i].c_no+'" data-user="'+vo[i].c_mid+'"  class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+vo[i].c_mid+'</strong> '+vo[i].c_body+'</li>');
+									}else{
+										$('#comt').append('<li data-cno="'+vo[i].c_no+'" data-user="'+vo[i].c_mid+'"  class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+vo[i].c_mid+'</strong> <i>'+vo[i].c_upid+'</i> '+vo[i].c_body+'</li>');
+									}
+								} 
+								
+								$("#c_body").val("");
+								upno = 1;
+								upid = '';
 							},
 							error : function(){
 								alert('### 통신 에러 ###');

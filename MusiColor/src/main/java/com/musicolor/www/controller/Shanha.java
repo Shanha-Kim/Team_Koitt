@@ -62,9 +62,9 @@ public class Shanha {
 	
 	@RequestMapping("/comtWrite.mr")
 	@ResponseBody
-	public ComtVO comtWirte(ComtVO cmVO) {
-		ComtVO vo = sDAO.comtWrite(cmVO);
-		return vo;
+	public ArrayList<ComtVO> comtWirte(ComtVO cmVO) {
+		ArrayList<ComtVO> list = (ArrayList<ComtVO>)sDAO.comtWrite(cmVO);
+		return list;
 	}
 }
 	

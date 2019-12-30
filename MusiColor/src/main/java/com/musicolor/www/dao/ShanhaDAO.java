@@ -61,7 +61,7 @@ public class ShanhaDAO {
 		java.util.List<FileVO> list = sqlSession.selectList("sSQL.PreView", bVO);
 		return list;
 	}
-	public ComtVO comtWrite(ComtVO cmVO) {
+	public List<ComtVO> comtWrite(ComtVO cmVO) {
 		//댓글내용에서 대댓글 작성자 제거
 		if(cmVO.getC_upno() == 1) {
 			int cnt = sqlSession.insert("sSQL.ComtWrite1", cmVO);
@@ -71,8 +71,9 @@ public class ShanhaDAO {
 			cmVO.setC_body(body.substring(idx + 1));
 			int cnt = sqlSession.insert("sSQL.ComtWrite2", cmVO);
 		}
-		long cno = sqlSession.selectOne("sSQL.ComtAppend", cmVO);
-		cmVO.setC_no(cno);
-		return cmVO;
+		BoardVO bVO = new BoardVO();
+		bVO.setB_no(cmVO.getC_bno());
+		List<ComtVO> list = sqlSession.selectList("sSQL.showComt", bVO);
+		return list;
 	}
 }
