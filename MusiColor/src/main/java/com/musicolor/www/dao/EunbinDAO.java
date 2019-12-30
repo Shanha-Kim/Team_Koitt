@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.musicolor.www.vo.BoardVO;
+import com.musicolor.www.vo.FileVO;
 import com.musicolor.www.vo.SongVO;
 
 public class EunbinDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-//	upload 관련
+//	upload DAO
 	public int vocalUpdate(SongVO vo){
 		return sqlSession.insert("eSQL.vocalIn", vo);
 	}
@@ -41,5 +42,14 @@ public class EunbinDAO {
 		return sqlSession.insert("eSQL.boardIn", vo);
 	}
 	
-// 	random 관련
+// 	random DAO
+	public List<BoardVO> randomSearch(){
+		List<BoardVO> list = sqlSession.selectList("eSQL.randomSearch");
+		return list;
+	}
+	
+	public List<BoardVO> randomSelected(String b_emotion){
+		List<BoardVO> list = sqlSession.selectList("eSQL.randomSelected", b_emotion);
+		return list;
+	}
 }

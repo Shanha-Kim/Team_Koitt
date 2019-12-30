@@ -1,81 +1,101 @@
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
+
 .square {
-  padding: 0px;
-  margin: 0px;
-  position:relative;
-  width:100%;
-  heigth:0;
-  overflow:hidden;
-  padding-bottom:95%;
+	padding: 0px;
+	margin: 0px;
+	position: relative;
+	width: 100%;
+	heigth: 0;
+	overflow: hidden;
+	padding-bottom: 95%;
 }
+
 .big-square {
-  padding: 10px;
-  margin: 0px;
+	padding: 10px;
+	margin: 0px;
 }
+
 .selected {
-  color: white;
+	color: white;
 }
+
 .selected:before {
-  content: "";
-  position: absolute;
-  left: 25%;
-  bottom: 0;
-  height: 1px;
-  width: 50%; /* or 100px */
-  border-bottom: 2px solid white;
+	content: "";
+	position: absolute;
+	left: 25%;
+	bottom: 0;
+	height: 1px;
+	width: 50%; /* or 100px */
+	border-bottom: 2px solid white;
 }
+
 .album {
-  position: absolute; top:0; left: 0;
-  width:100%; heigth:100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	heigth: 100%;
 }
 
 /* 모달 관련 설정 */
 .comment-scroll {
-  overflow: auto;
-  height: 150px;
+	overflow: auto;
+	height: 150px;
 }
 
 .body-scroll {
-  overflow: auto;
-  max-height: 300px;
+	overflow: auto;
+	max-height: 300px;
 }
 
 @media screen and (max-width: 992px) {
-  .desktop-youtube {
-    display: none;
-  }
-  .body-scroll {
-    overflow: auto;
-    max-height: 150px;
-  }
-  .comment-scroll {
-    overflow: auto;
-    height: 50px;
-  }
+	.desktop-youtube {
+		display: none;
+	}
+	.body-scroll {
+		overflow: auto;
+		max-height: 150px;
+	}
+	.comment-scroll {
+		overflow: auto;
+		height: 50px;
+	}
 }
 
 @media screen and (min-width: 993px) {
-  .mobile-youtube {
-    display: none;
-  }
+	.mobile-youtube {
+		display: none;
+	}
 }
 
-.small-angry {
-  border: 4px solid transparent;
-  border-image: linear-gradient(235deg, #ff5e62, #191919, #b20a2c);
-  border-image-slice: 1;
+.small-1 {
+	border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #ee9ca7, #191919, #ffdde1);
+	border-image-slice: 1;
 }
 
-.small-sad {
-  border: 4px solid transparent;
-  border-image: linear-gradient(235deg, #24c6dc, #191919, #514a9d);
-  border-image-slice: 1;
+.small-2 {
+	border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #fb872b, #191919, #d9e021);
+	border-image-slice: 1;
 }
 
-.small-happy {
-  border: 4px solid transparent;
-  border-image: linear-gradient(235deg, #fb872b, #191919, #d9e021);
-  border-image-slice: 1;
+.small-3 {
+	border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #11998e, #191919, #38ef7d);
+	border-image-slice: 1;
+}
+
+.small-4 {
+	border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #24c6dc, #191919, #514a9d);
+	border-image-slice: 1;
+}
+
+.small-5 {
+	border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #ff5e62, #191919, #b20a2c);
+	border-image-slice: 1;
 }

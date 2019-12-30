@@ -6,6 +6,7 @@
 			
 
 <mapper namespace="eSQL">
+	<!-- upload SQL -->
 	<insert id="vocalIn"  parameterType="sVO">
 		<selectKey keyProperty="s_vno" resultType="int" order="BEFORE">
 				SELECT 
@@ -89,6 +90,61 @@
 		    member
 		WHERE
 		    m_id = #{m_id}
+	</select>
+	
+	<!-- random SQL -->
+	
+	<select id="recentEmo">
+		<![CDATA[    
+		SELECT
+			*
+		FROM
+			(SELECT
+				b_emotion, b_no, 
+				(SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
+			FROM
+				board
+			ORDER BY DBMS_RANDOM.value
+			)
+		WHERE
+			rownum <= 9
+	]]>
+	</select>
+	
+	<select id="randomSearch" resultType="bVO">
+	<![CDATA[    
+		SELECT
+			*
+		FROM
+			(SELECT
+				b_emotion, b_no, 
+				(SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
+			FROM
+				board
+			ORDER BY DBMS_RANDOM.value
+			)
+		WHERE
+			rownum <= 9
+	]]>
+	</select>
+	
+	<select id="randomSelected" parameterType="String" resultType="bVO">
+	<![CDATA[    
+		SELECT
+			*
+		FROM
+			(SELECT
+				b_emotion, b_no, 
+				(SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
+			FROM
+				board
+			WHERE
+				b_emotion = #{b_emotion}
+			ORDER BY DBMS_RANDOM.value
+			)
+		WHERE
+			rownum <= 9
+	]]>
 	</select>
 </mapper>
 

@@ -169,6 +169,14 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script>
 		$(function() {
+			/* 감정 라디오 클릭시 배경색 전환 
+			$("input:radio[name=b_emotion]").click(function(){
+ 
+		        if($("input[name=radio]:checked").val() == "4"){
+		        	$('body').removeClass();
+		            $('body').attr('class', 'sadbody');
+		        }
+		    }); */
 			
 			/* 노래 제목 검색 */
 			$("#searchSong").click(function() {

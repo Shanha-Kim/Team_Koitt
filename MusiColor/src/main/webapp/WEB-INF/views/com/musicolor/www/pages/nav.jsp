@@ -27,7 +27,7 @@
           <a class="nav-link" href="#"><i class="fas fa-search f-20"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-random f-20"></i></a>
+          <a class="nav-link" href="/www/random.mr"><i class="fas fa-random f-20"></i></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/www/upload.mr"><i class="fas fa-cloud-upload-alt f-20"></i></a>

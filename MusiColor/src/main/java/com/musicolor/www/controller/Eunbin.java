@@ -19,6 +19,7 @@ import com.musicolor.www.dao.EunbinDAO;
 import com.musicolor.www.dao.FileDAO;
 import com.musicolor.www.services.FileService;
 import com.musicolor.www.vo.BoardVO;
+import com.musicolor.www.vo.FileVO;
 import com.musicolor.www.vo.SongVO;
 
 @Controller
@@ -30,11 +31,7 @@ public class Eunbin {
 	@Autowired
 	FileService fileSrvc;
 	
-	@RequestMapping("/random.mr")
-	public ModelAndView random(ModelAndView mv) {
-		mv.setViewName("pages/random");
-		return mv;
-	}
+// upload Controller
 	
 	@RequestMapping("/upload.mr")
 	public ModelAndView upload(ModelAndView mv) {
@@ -125,4 +122,24 @@ public class Eunbin {
 		return mv;
 	}
 	
+// random Controller
+	
+	@RequestMapping("/random.mr")
+	public ModelAndView random(ModelAndView mv, BoardVO bVO) {
+		ArrayList<BoardVO> list = (ArrayList<BoardVO>)eDAO.randomSearch();
+		mv.addObject("LIST", list);
+		mv.setViewName("pages/random");
+		
+		return mv;
+	}	
+	
+	@RequestMapping("/randomseleced.mr")
+	public ModelAndView randomSelected(ModelAndView mv, BoardVO bVO, String b_emotion) {
+		ArrayList<BoardVO> list = (ArrayList<BoardVO>)eDAO.randomSelected(b_emotion);
+		mv.addObject("LIST", list);
+		mv.addObject("CODE", b_emotion);
+		mv.setViewName("pages/random");
+		
+		return mv;
+	}	
 }
