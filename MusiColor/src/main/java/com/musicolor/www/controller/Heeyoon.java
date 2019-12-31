@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -24,7 +26,7 @@ public class Heeyoon {
 
 	@Autowired
 	FileDAO fDAO;
-	@Autowired
+	@Autowired 
 	FileService fileSrvc;
 	@Autowired
 	HeeyoonDAO hDAO;
@@ -32,7 +34,7 @@ public class Heeyoon {
 	
 	@RequestMapping("profconfig.mr") // 개인 프로필 수정 폼 보이기 
 	public ModelAndView configform(ModelAndView mv, HttpSession session) {
-		session.setAttribute("SID", "kk");
+		/* session.setAttribute("SID", "kk"); */
 		mv.setViewName("pages/config");
 		return mv;		
 	}
@@ -66,9 +68,10 @@ public class Heeyoon {
 	
 	  @RequestMapping("profilelist.mr")//개인 프로필 리스트 controller
 	  public ModelAndView profilelist (ModelAndView mv, HttpSession session) {
-		  session.setAttribute("SID", "kk");
+		session.setAttribute("SID", "lbrade0");/* lbrade0 */
 		  List<FileVO> list = hDAO.profileList((String)session.getAttribute("SID"));
 		  mv.addObject("LIST",list);
+		  
 		  //프로필 로고 사진 	
 		  FileVO fVO = hDAO.proflogo((String)session.getAttribute("SID"));
 		  mv.addObject("VO",fVO);		  
@@ -86,12 +89,20 @@ public class Heeyoon {
 		   int cnt= hDAO.profilecont((String)session.getAttribute("SID"));
 		   mv.addObject("CNT",cnt);
 		  mv.setViewName("pages/profile");
+		  
+		  //팔로워 버튼 눌렀을 때 팔로워 리스트 뽑아오기
+		  List<MemberVO> list1 = hDAO.follwer((String)session.getAttribute("SID"));
+		  mv.addObject("LIST1",list1);
+		  //팔로우 버튼 눌렀을 때 팔로잉 리스트 뽑아오기
+		  List<MemberVO> list2 = hDAO.following((String)session.getAttribute("SID"));
+		  mv.addObject("LIST2",list2);
 		  return mv;
+
 	  }
 	  
-	  @RequestMapping("lock.mr") //프로필 계정 비활성화 표시 
 	  //프로필 계정 비활성화 controller
-	  public ModelAndView lock(ModelAndView mv, HttpSession session, RedirectView rv) {
+	  @RequestMapping("lock.mr") 
+	  	public ModelAndView lock(ModelAndView mv, HttpSession session, RedirectView rv) {
 		 String str = (String)session.getAttribute("SID");
 		 MemberVO mVO = new MemberVO();
 		  mVO.setM_id(str);
@@ -114,7 +125,13 @@ public class Heeyoon {
 		  
 		  return mv;
 	  }
+	  //팔로워    Y or N 체크 컨트롤러 
 	  
-	  
+	  @RequestMapping("followercheck.mr")
+	  @ResponseBody
+	  public int followcheck(MemberVO mVO) {
+		   hDAO.followcheck(mVO);		
+		  return 0;
+	  }
 	 }
 	

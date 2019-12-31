@@ -142,8 +142,8 @@ WHERE
 	</set>
 </update>
 
-
-<update id="unlock" parameterType="mVO">  <!-- 비공개 계정 비활성화 -->
+<!-- 비공개 계정 비활성화 -->
+<update id="unlock" parameterType="mVO">  
 <selectKey resultType="int" keyProperty="m_no" order="BEFORE">
 SELECT
 	m_no
@@ -161,7 +161,9 @@ m_no =#{m_no}
 </set>
 </update>
 
-<select id="isshow" resultType="String" parameterType="String"> <!-- 계정 비활성화 여부 확인 -->
+<!-- 계정 비활성화 여부 확인 -->
+
+<select id="isshow" resultType="String" parameterType="String"> 
 
 SELECT
 m_isshow
@@ -171,6 +173,123 @@ WHERE
 m_id = #{SID}
 
 </select>
+
+<!-- 팔로워한 사람들  뽑아오기 sql -->
+<select id ="follwer" resultType="mVO" parameterType="String">
+SELECT 
+    (SELECT m_id FROM member WHERE m_no = a.f_follower) m_id,
+    (SELECT p_sname FROM profilepicture where p_no = (SELECT m_pno FROM member WHERE m_no=a.f_follower) ) m_name,
+    DECODE((SELECT b.f_isshow FROM follow b WHERE b.f_following = a.f_follower AND b.f_follower = a.f_following ), 'Y' , 0 , 'N', 1, 2 )  m_isban
+FROM
+   (SELECT
+      *
+    FROM
+      follow
+    WHERE
+      f_following = (select
+                       m_no
+                     from
+                       member
+                     where
+                       m_id ='lbrade0')
+   ) a
+   
+  </select> 
+  
+  <!-- 팔로워 가 있는지 없는지 체크 함수 -->
+<select id="followcheck" resultType="int" parameterType="mVO">
+
+SELECT
+	count(*)
+FROM
+ follow
+WHERE
+	f_follower = (SELECT M_NO FROM MEMBER WHERE M_ID = #{m_id})
+	AND
+	f_following = (SELECT M_NO FROM MEMBER WHERE M_ID = #{m_name})
+	
+</select>  
+  
+  
+<!-- 팔로잉 한 사람들 목록 뽑아오기 sql -->
+<select id ="following" resultType="mVO" parameterType="String">
+SELECT
+	m_id, (SELECT p_sname FROM profilepicture WHERE m_pno = p_no) m_name
+
+FROM
+	member
+WHERE
+	m_no in (SELECT
+			  	f_following
+			  FROM
+			   	follow
+			  WHERE
+			  	f_follower = (SELECT 
+			  					m_no
+			  				 FROM
+			  				 	member
+			  				 WHERE
+			  				 	m_id = #{SID})	
+				)	
+</select>
+
+<!-- 팔로워 처음 걸때 전담 sql -->
+
+<insert id  ="finsert" parameterType="mVO">
+INSERT INTO
+FOLLOW
+VALUES( 
+(SELECT NVL(max(f_no)+1, 10000001) FROM follow ),
+(SELECT M_NO FROM MEMBER WHERE M_ID = #{m_name}),
+(SELECT M_NO FROM MEMBER WHERE M_ID = #{m_id}),
+'Y'
+)
+
+</insert>
+<!-- 팔로워가 n y 인지 체크 -->
+<select id = "nycheck" resultType="mVO" parameterType="mVO">
+
+SELECT
+f_isshow m_isshow
+FROM
+follow
+WHERE
+f_follower = (SELECT M_NO FROM MEMBER WHERE M_ID = #{m_id})
+AND
+f_following = (SELECT M_NO FROM MEMBER WHERE M_ID = #{m_name})
+
+
+</select>
+
+
+
+
+<!-- 팔로우 취소 처리 전담 sql -->
+
+<update id="fcansle"  parameterType="mVO">
+UPDATE
+	follow
+SET
+	f_isshow = 'N'
+WHERE
+f_follower = (SELECT M_NO FROM MEMBER WHERE M_ID = #{m_id}) 
+AND
+f_following = (SELECT M_NO FROM MEMBER WHERE M_ID = #{m_name})
+ 
+</update>
+
+<!-- 팔로우 다시 걸기 처리 점담 sql -->
+<update id="fadd"  parameterType="mVO">
+UPDATE
+	follow
+SET
+	f_isshow = 'Y'
+WHERE
+f_follower = (SELECT M_NO FROM MEMBER WHERE M_ID = #{m_id})
+AND
+f_following = (SELECT M_NO FROM MEMBER WHERE M_ID = #{m_name})
+ 
+</update>
 
 </mapper>
 

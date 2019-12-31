@@ -31,13 +31,14 @@ public class HeeyoonDAO {
 		return sqlSession.update("hSQL.profileconfig", mVO);
 
 	}
-	//멤버에다 아이디 값 넣어주기 
+
+	// 멤버에다 아이디 값 넣어주기
 	public int mNo(String SID) {
 		return sqlSession.selectOne("hSQL.mNo", SID);
 
 	}
-	// 개인프로필 로고 사진 수정 전담처리 함수
 
+	// 개인프로필 로고 사진 수정 전담처리 함수
 	public FileVO proflogo(String SID) {
 		return sqlSession.selectOne("hSQL.proflogo", SID);
 	}
@@ -46,26 +47,72 @@ public class HeeyoonDAO {
 	public MemberVO profintro(String SID) {
 		return sqlSession.selectOne("hSQL.introtext", SID);
 	}
-	
+
 	// 개인 프로필 앨범 수 카운트 점담 처리 함수
 	public int profilecont(String SID) {
 		return sqlSession.selectOne("hSQL.textcount", SID);
 	}
-	
+
 	// 개인 프로필 계정비활성화 전담 처리 함수
 	public int prolock(MemberVO mVO) {
 		return sqlSession.update("hSQL.lock", mVO);
-		
+
 	}
-	//개인 프로필 계정 활성화 전담 처리 함수
+
+	// 개인 프로필 계정 활성화 전담 처리 함수
 	public int prounlock(MemberVO mVO) {
-		return sqlSession.update("hSQL.unlock",mVO);
-		
+		return sqlSession.update("hSQL.unlock", mVO);
+
 	}
-	//개인 프로필 계정 비활성화 여부 전담 처리 함수
-	
+	// 개인 프로필 계정 비활성화 여부 전담 처리 함수
+
 	public String proisshow(String SID) {
 		return sqlSession.selectOne("hSQL.isshow", SID);
+
+	}
+
+	// 팔로워 한 사람들 뽑아오기 전담처리 함수
+	public List<MemberVO> follwer(String SID) {
+		List<MemberVO> list1 = sqlSession.selectList("hSQL.follwer", SID);
+		return list1;
+
+	}
+
+	// 팔로우 체크 함수 N Y 구분 전담 처리 함수
+	public void followcheck(MemberVO mVO) {
+		int cnt = sqlSession.selectOne("hSQL.followcheck", mVO);
+		// 팔로워가 N인지 Y인지 확인
 		
+		if (cnt == 0) { // null 값
+			int cnt1 = sqlSession.insert("hSQL.finsert", mVO);
+
+		} else {
+			MemberVO check = sqlSession.selectOne("hSQL.nycheck", mVO);
+
+			if (check.getM_isshow() == 'Y') {
+				// 팔로워가 Y이면 N 바꿔주기
+				int cnt2 = sqlSession.update("hSQL.fcansle",mVO);
+			} else {
+				// 팔로워가 N이면 Y 바꿔주기
+				int cnt3 = sqlSession.update("hSQL.fadd",mVO);
+			}
+		}
+	}
+	
+
+	// 팔로잉 한 사람들 뽑아오기 전담처리 함수
+	public List<MemberVO> following(String SID) {
+		List<MemberVO> list2 = sqlSession.selectList("hSQL.following", SID);
+		return list2;
+	}
+
+	// 팔로우 취소 전담 처리 함수
+	public int cansle(MemberVO mVO) {
+		return sqlSession.update("hSQL.fcansle", mVO);
+	}
+
+	// 팔로우 다시 걸기 전담 처리 함수
+	public int fadd(MemberVO mVO) {
+		return sqlSession.update("hSQL.fadd", mVO);
 	}
 }
