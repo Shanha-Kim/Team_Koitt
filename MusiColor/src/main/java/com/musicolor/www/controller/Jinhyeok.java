@@ -11,4 +11,10 @@ public class Jinhyeok {
 		mv.setViewName("pages/bfMain");
 		return mv;
 	}
+	
+	@RequestMapping("/detailChart.mr")
+	public ModelAndView detailChart(ModelAndView mv) {
+		mv.setViewName("pages/detailChart");
+		return mv;
+	}
 }

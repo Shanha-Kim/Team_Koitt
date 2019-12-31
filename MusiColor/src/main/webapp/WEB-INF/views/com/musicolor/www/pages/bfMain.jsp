@@ -15,6 +15,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
     <title>bfMainView</title>
+    <script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#login').click(function(){
+				$(location).attr('href', '/www/pages/login.mr');
+			});
+		});
+	</script>
   </head>
 
   <body class="bg-primary">
@@ -27,10 +35,12 @@
         
         
         <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="tooltip" data-placement="top" title="로그인"><i class="fas fa-sign-in-alt fa-2x"></i></a>
+        	<c:if test="${empty SID}">
+            <a class="nav-link" href="/www/member/login.mr"  data-toggle="tooltip" data-placement="top" title="로그인"><i class="fas fa-sign-in-alt fa-2x"></i></a>
+          	</c:if>
           </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" data-toggle="tooltip" data-placement="top" title="회원가입"><i class="fas fa-user-plus fa-2x"></i></a>
+          <a class="nav-link" href="/www/member/join.mr" data-toggle="tooltip" data-placement="top" title="회원가입"><i class="fas fa-user-plus fa-2x"></i></a>
         </li>
       </ul>
     </nav>
@@ -177,16 +187,13 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">로그인</button>
+        <c:if test="${empty SID}">
+        <button type="button" id="login" class="btn btn-primary">로그인</button>
+        </c:if>
       </div>
     </div>
   </div>
-</div>
-
-
-
-
-		
+</div>	
     </div>
 	  
 
