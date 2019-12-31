@@ -43,7 +43,9 @@ public class Shanha {
 	}
 	
 	@RequestMapping("/searchAfter.mr")
-	public ModelAndView searchAfter(ModelAndView mv, BoardVO bVO) {
+	public ModelAndView searchAfter(ModelAndView mv, BoardVO bVO, HttpSession session) {
+		session.setAttribute("key_main", bVO.getKey_main());
+		session.setAttribute("key_tab", bVO.getKey_tab());
 		String tabnow = bVO.getKey_tab();
 		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.searchAfter(bVO);
 		mv.addObject("LIST", list);
@@ -51,6 +53,14 @@ public class Shanha {
 		mv.setViewName("pages/search");
 		
 		return mv;
+	}
+	@RequestMapping("/plusList.mr")
+	@ResponseBody
+	public ArrayList<FileVO> plusList(BoardVO bVO, HttpSession session){
+		bVO.setKey_main((String)session.getAttribute("key_main"));
+		bVO.setKey_tab((String)session.getAttribute("key_tab"));
+		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.searchAfter(bVO);
+		return list;
 	}
 	
 	@RequestMapping("/preView.mr")

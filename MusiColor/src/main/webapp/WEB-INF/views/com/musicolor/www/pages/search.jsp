@@ -24,6 +24,7 @@
       <form id="search_frm" class="form-inline my-lg-0" method="post" action="/www/searchAfter.mr">
       	<input id="search_key" class="form-control col-sm text-center" type="text" placeholder="Search" name="key_main">
       	<input id="search_tab" type="hidden" name="key_tab">
+      	<input id="search_rno" type="hidden" name="b_vno">
       	
       </form>
       <!-- 감정 선택 버튼 -->
@@ -114,56 +115,16 @@
 <script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	//세션 ID 저장
+	//세션 ID 저장===========================================================================================
 	var sid = '<c:out value="${SID}"/>';
 	
-	//리프레쉬버튼
+	//리프레쉬버튼===========================================================================================
 	$('#refresh').click(function(){
 		$(location).attr("href", "/www/searchBefore.mr");
 	});
 	
-	//무한스크롤
-	$(window).scroll(function(){
-        let $window = $(this);
-        let scrollTop = $window.scrollTop();
-        let windowHeight = $window.height();
-        let documentHeight = $(document).height();
-        
-        console.log("documentHeight:" + documentHeight + " | scrollTop:" + scrollTop + " | windowHeight: " + windowHeight );
-        
-        // scrollbar의 thumb가 바닥 전 30px까지 도달 하면 리스트를 가져온다.
-        if( scrollTop + windowHeight + 30 > documentHeight ){
-            fetchList();
-        }
-    });
-	let fetchList = function(){
-        if(isEnd == true){
-            return;
-        }
-        
-        // 방명록 리스트를 가져올 때 시작 번호
-        // renderList 함수에서 html 코드를 보면 <li> 태그에 data-no 속성이 있는 것을 알 수 있다.
-        // ajax에서는 data- 속성의 값을 가져오기 위해 data() 함수를 제공.
-        let startNo = $("#list-guestbook li").last().data("no") || 0;
-        $.ajax({
-            url:"/guestbook/api/guestbook/list?no=" + startNo ,
-            type: "GET",
-            dataType: "json",
-            success: function(result){
-                // 컨트롤러에서 가져온 방명록 리스트는 result.data에 담겨오도록 했다.
-                // 남은 데이터가 5개 이하일 경우 무한 스크롤 종료
-                let length = result.data.length;
-                if( length < 5 ){
-                    isEnd = true;
-                }
-                $.each(result.data, function(index, vo){
-                    renderList(false, vo);
-                })
-            }
-        });
-    }
 	
-	//포스트 상세보기
+	//포스트 상세보기===========================================================================================
 	var bno = "";
 	$('.square').click(function(){
 		bno = $(this).attr('id');
@@ -194,7 +155,7 @@ $(function(){
 					}
 				} 
 				
-				//좋아요 누르기
+				//좋아요 누르기===========================================================================================
 				$('#heart').click(function(e){
 					e.preventDefault();
 					$.ajax({
@@ -214,7 +175,7 @@ $(function(){
 					});
 				});
 				
-				//댓글기능
+				//댓글기능===========================================================================================
 				var upno = 1;
 				var upid = '';
 				$(document).on("click", '.list-group-item', function() {
@@ -270,8 +231,64 @@ $(function(){
 		});
 	});
 	
+	//무한스크롤===========================================================================================
+	var rno = 1;
+	var isEnd = false;
+	$(window).scroll(function(){
+		var $window = $(this);
+		var scrollTop = $window.scrollTop();
+		var windowHeight = $window.height();
+		var documentHeight = $(document).height();
+        
+        console.log("documentHeight:" + documentHeight + " | scrollTop:" + scrollTop + " | windowHeight: " + windowHeight );
+        
+        // scrollbar의 thumb가 바닥 전 20px까지 도달 하면 리스트를 가져온다.
+        if( scrollTop + windowHeight + 20 > documentHeight ){
+        	listplus();
+        }
+    });
+	var listplus = function(){
+		console.log(isEnd);
+        if(isEnd == true){
+            return;
+        }
+        
+        // renderList 함수에서 html 코드를 보면 <li> 태그에 data-no 속성이 있는 것을 알 수 있다.
+        // ajax에서는 data- 속성의 값을 가져오기 위해 data() 함수를 제공.
+        rno += 9;
+        $.ajax({
+        	
+            url:"/www/plusList.mr",
+            type: "post",
+            dataType: "json",
+            data : {
+				b_vno : rno
+			},
+            success: function(vo){
+                // 컨트롤러에서 가져온 방명록 리스트는 result.data에 담겨오도록 했다.
+                // 남은 데이터가 9개 이하일 경우 무한 스크롤 종료
+                var length = vo.length;
+                console.log(length);
+//                 if( length < 9 ){
+//                     isEnd = true;
+//                 }
+//                	for(var i=0 in vo){
+//         			$('#comt').append(
+//         				'<div class="row">'
+// 					      	<c:forEach var="data" items="${LIST}" begin="0" end="2">
+// 					        <div class="col-4 big-square">
+// 					          <div class="square small-angry" id="${data.no}"><img class="album" src="/www/album/${data.sname}" /></div>
+// 					        </div>
+// 							</c:forEach>
+// 					      </div>
+//         				'
+//         			);
+//            		}
+            }
+        });
+    }
 	
-// 	검색시 탭 반영 
+	//검색시 탭 반영 ===========================================================================================
 	var tabmenu="";
 	$('#tab').each(function(){
 		var tab = $(this).children("button")
@@ -285,13 +302,15 @@ $(function(){
 		});
 	});
 	
-	//검색 엔터
+	//검색 엔터===============================================================================================
 	$("#search_key").keydown(function(e){
 		if(e.keyCode == 13){
 			e.preventDefault();
 			if(tabmenu==""){
 				tabmenu="All";
 			}
+			rno = 1;
+			$('#search_rno').val(rno);	
 			$('#search_tab').val(tabmenu);	
 			$("#search_frm").submit();
 		}

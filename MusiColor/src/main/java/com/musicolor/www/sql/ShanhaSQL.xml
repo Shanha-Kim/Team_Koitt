@@ -136,7 +136,7 @@
 			*
 		FROM
 			(SELECT
-				b_no no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
+				b_no no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, ROWNUM rno
 			FROM
 				board
 			WHERE
@@ -160,11 +160,11 @@
 					b_body like '%#'||#{key_main}||'%'
 				</if>
 			ORDER BY 
-				DBMS_RANDOM.value
+				no
 			)
 		WHERE
 	<![CDATA[    
- 			rownum <= 9
+		rno BETWEEN ${b_vno} AND ${b_vno}+8
  	]]> 
 	</select>
 	<select id="PreView"  resultType="fVO" parameterType="bVO">
