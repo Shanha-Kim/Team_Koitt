@@ -50,6 +50,7 @@ public class Shanha {
 		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.searchAfter(bVO);
 		mv.addObject("LIST", list);
 		mv.addObject("tabnow", tabnow);
+		mv.addObject("forscroll", "yes");
 		mv.setViewName("pages/search");
 		
 		return mv;

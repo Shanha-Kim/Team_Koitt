@@ -136,7 +136,7 @@
 			*
 		FROM
 			(SELECT
-				b_no no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, ROWNUM rno
+				b_no no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, ROWNUM len
 			FROM
 				board
 			WHERE
@@ -160,11 +160,11 @@
 					b_body like '%#'||#{key_main}||'%'
 				</if>
 			ORDER BY 
-				no
+				len
 			)
 		WHERE
 	<![CDATA[    
-		rno BETWEEN ${b_vno} AND ${b_vno}+8
+		len BETWEEN #{b_vno} AND #{b_vno}+8
  	]]> 
 	</select>
 	<select id="PreView"  resultType="fVO" parameterType="bVO">

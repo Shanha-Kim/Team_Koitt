@@ -24,7 +24,7 @@
       <form id="search_frm" class="form-inline my-lg-0" method="post" action="/www/searchAfter.mr">
       	<input id="search_key" class="form-control col-sm text-center" type="text" placeholder="Search" name="key_main">
       	<input id="search_tab" type="hidden" name="key_tab">
-      	<input id="search_rno" type="hidden" name="b_vno">
+      	<input id="search_rno" type="hidden" name="b_vno" value=1>
       	
       </form>
       <!-- 감정 선택 버튼 -->
@@ -142,7 +142,7 @@ $(function(){
 			success : function(vo){
 				$('#mid').html('<img id="psname" class="profile"  />'+vo.m_id);
 				$('#bbody').html(vo.b_body);
-				$('#blike').html('<strong> ' + vo.b_like + " likes</strong>");
+				$('#blike').html('<strong> ' + vo.b_like + ' likes</strong>');
 				$('#stitle').html(vo.s_title);
 				$('#psname').attr("src", "/www/profile/" + vo.sname);
 				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
@@ -188,7 +188,7 @@ $(function(){
 				$("#c_body").keyup(function(e){
 					if(e.keyCode == 13){
 						e.preventDefault();
-						setTimeout(function(){}, 500);
+						setTimeout(function(){console.log("시간지연성공 ");}, 500);
 						var cbody = $('#c_body').val();
 						if(cbody == ""){
 							return;
@@ -231,63 +231,6 @@ $(function(){
 		});
 	});
 	
-	//무한스크롤===========================================================================================
-	var rno = 1;
-	var isEnd = false;
-	$(window).scroll(function(){
-		var $window = $(this);
-		var scrollTop = $window.scrollTop();
-		var windowHeight = $window.height();
-		var documentHeight = $(document).height();
-        
-        console.log("documentHeight:" + documentHeight + " | scrollTop:" + scrollTop + " | windowHeight: " + windowHeight );
-        
-        // scrollbar의 thumb가 바닥 전 20px까지 도달 하면 리스트를 가져온다.
-        if( scrollTop + windowHeight + 20 > documentHeight ){
-        	listplus();
-        }
-    });
-	var listplus = function(){
-		console.log(isEnd);
-        if(isEnd == true){
-            return;
-        }
-        
-        // renderList 함수에서 html 코드를 보면 <li> 태그에 data-no 속성이 있는 것을 알 수 있다.
-        // ajax에서는 data- 속성의 값을 가져오기 위해 data() 함수를 제공.
-        rno += 9;
-        $.ajax({
-        	
-            url:"/www/plusList.mr",
-            type: "post",
-            dataType: "json",
-            data : {
-				b_vno : rno
-			},
-            success: function(vo){
-                // 컨트롤러에서 가져온 방명록 리스트는 result.data에 담겨오도록 했다.
-                // 남은 데이터가 9개 이하일 경우 무한 스크롤 종료
-                var length = vo.length;
-                console.log(length);
-//                 if( length < 9 ){
-//                     isEnd = true;
-//                 }
-//                	for(var i=0 in vo){
-//         			$('#comt').append(
-//         				'<div class="row">'
-// 					      	<c:forEach var="data" items="${LIST}" begin="0" end="2">
-// 					        <div class="col-4 big-square">
-// 					          <div class="square small-angry" id="${data.no}"><img class="album" src="/www/album/${data.sname}" /></div>
-// 					        </div>
-// 							</c:forEach>
-// 					      </div>
-//         				'
-//         			);
-//            		}
-            }
-        });
-    }
-	
 	//검색시 탭 반영 ===========================================================================================
 	var tabmenu="";
 	$('#tab').each(function(){
@@ -309,8 +252,6 @@ $(function(){
 			if(tabmenu==""){
 				tabmenu="All";
 			}
-			rno = 1;
-			$('#search_rno').val(rno);	
 			$('#search_tab').val(tabmenu);	
 			$("#search_frm").submit();
 		}
@@ -352,8 +293,107 @@ $(function(){
 // 			}
 // 		});
 // 	});
-
 	
+	// 검색 후 무한스크롤===========================================================================================
+	var rno = 1;
+	var isEnd = false;
+	// 무한스크롤은 검색 후에만 적용
+	forscroll = '<c:out value="${forscroll}"/>';
+	if(forscroll == "yes"){
+		$(window).scroll(function(){
+			var $window = $(this);
+			var scrollTop = $window.scrollTop();
+			var windowHeight = $window.height();
+			var documentHeight = $(document).height();
+	        
+	//         console.log("documentHeight:" + documentHeight + " | scrollTop:" + scrollTop + " | windowHeight: " + windowHeight );
+	        
+	        // scrollbar의 thumb가 바닥 전 20px까지 도달 하면 리스트를 가져온다.
+	        if( scrollTop + windowHeight + 20 > documentHeight ){
+	        	//너무 짧은시간에 무한스크롤 중복발동 방지
+	            setTimeout(listplus(), 1000);
+	        }
+	    });
+	}
+	var listplus = function(){
+		console.log(isEnd);
+        if(isEnd == true){
+            return;
+        }
+        
+        // renderList 함수에서 html 코드를 보면 <li> 태그에 data-no 속성이 있는 것을 알 수 있다.
+        // ajax에서는 data- 속성의 값을 가져오기 위해 data() 함수를 제공.
+        rno += 9;
+       	console.log(rno);
+        $.ajax({
+            url:"/www/plusList.mr",
+            type: "post",
+            dataType: "json",
+            data : {
+				b_vno : rno
+			},
+            success: function(vo){
+                // 가져온 데이터가 8개 이하일 경우 무한 스크롤 종료
+                var length = vo.length;
+                console.log(length);
+                if( length < 9 ){
+                    isEnd = true;
+                }
+                var resultlist = '';
+       			if(length<4){
+       				resultlist+='<div class="row">';
+   					for(var i=0; i<length; i++){
+   						resultlist+='<div class="col-4 big-square">';
+   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='</div>';
+   					}
+   					resultlist+='</div>';
+       				$('#main').append(resultlist);
+       			}
+       			if(length>=4 && length<7){
+       				resultlist+='<div class="row">';
+   					for(var i=0; i<3; i++){
+   						resultlist+='<div class="col-4 big-square">';
+   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='</div>';
+   					}
+   					resultlist+='</div>';
+   					resultlist+='<div class="row">';
+   					for(var i=3; i<length; i++){
+   						resultlist+='<div class="col-4 big-square">';
+   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='</div>';
+   					}
+   					resultlist+='</div>';
+   					$('#main').append(resultlist);
+       			}
+       			if(length>=7){
+       				resultlist+='<div class="row">';
+   					for(var i=0; i<3; i++){
+   						resultlist+='<div class="col-4 big-square">';
+   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='</div>';
+   					}
+   					resultlist+='</div>';
+   					resultlist+='<div class="row">';
+   					for(var i=3; i<6; i++){
+   						resultlist+='<div class="col-4 big-square">';
+   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='</div>';
+   					}
+   					resultlist+='</div>';
+   					resultlist+='<div class="row">';
+   					for(var i=6; i<length; i++){
+   						resultlist+='<div class="col-4 big-square">';
+   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='</div>';
+   					}
+   					resultlist+='</div>';
+   					$('#main').append(resultlist);
+       			}
+            }
+        });
+    }
 })
 	
 </script>
