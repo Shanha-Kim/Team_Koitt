@@ -14,37 +14,17 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
  
 	<title>Sign up</title> 
-	<script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#goToMain').click(function() {
-				$(location).attr('href', '/www/member/tempMain.mr');
+				$(location).attr('href', '/www/tempMain.mr');
 			})
 		});
 	</script>
 </head>
 
 <body class="bg-primary">
-	
-	   <!-- nav -->
-	<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
-		<a class="navbar-brand ml-5" href="#"><h3 class="logo">musicolor</h3></a>
-	
-		<ul class="nav navbar-nav ml-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-search f-20"></i></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-random f-20"></i></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-cloud-upload-alt f-20"></i></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-user f-20"></i></a>
-			</li>
-		</ul>
-	</nav>
+	<jsp:include page="nav.jsp" flush="false" />	
 
 	<div class="container" id="main">
 		<c:if test="${empty SID}">
@@ -52,7 +32,7 @@
 				<div class="card-header">Sign Up</div>
 				<div class="card-body">
 					<h4 class="card-title" style="margin-bottom: 30px;">Welcome to MUSICOLOR</h4>
-					<form method="POST" action="/www/member/joinProc.mr">
+					<form method="POST" action="/www/joinProc.mr">
 						
 						<div class="form-group">
 							<label for="m_id">ID</label>

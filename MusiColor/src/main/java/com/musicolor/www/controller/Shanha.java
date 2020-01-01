@@ -20,7 +20,7 @@ public class Shanha {
 	@RequestMapping("/searchBefore.mr")
 	public ModelAndView searchBefore(ModelAndView mv, BoardVO bVO, HttpSession session) {
 		session.setAttribute("SID", "lbrade0");
-		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.showBefore(bVO);
+		ArrayList<BoardVO> list = (ArrayList<BoardVO>)sDAO.showBefore(bVO);
 		mv.addObject("LIST", list);
 		mv.setViewName("pages/search");
 		
@@ -47,7 +47,7 @@ public class Shanha {
 		session.setAttribute("key_main", bVO.getKey_main());
 		session.setAttribute("key_tab", bVO.getKey_tab());
 		String tabnow = bVO.getKey_tab();
-		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.searchAfter(bVO);
+		ArrayList<BoardVO> list = (ArrayList<BoardVO>)sDAO.searchAfter(bVO);
 		mv.addObject("LIST", list);
 		mv.addObject("tabnow", tabnow);
 		mv.addObject("forscroll", "yes");
@@ -57,10 +57,10 @@ public class Shanha {
 	}
 	@RequestMapping("/plusList.mr")
 	@ResponseBody
-	public ArrayList<FileVO> plusList(BoardVO bVO, HttpSession session){
+	public ArrayList<BoardVO> plusList(BoardVO bVO, HttpSession session){
 		bVO.setKey_main((String)session.getAttribute("key_main"));
 		bVO.setKey_tab((String)session.getAttribute("key_tab"));
-		ArrayList<FileVO> list = (ArrayList<FileVO>)sDAO.searchAfter(bVO);
+		ArrayList<BoardVO> list = (ArrayList<BoardVO>)sDAO.searchAfter(bVO);
 		return list;
 	}
 	

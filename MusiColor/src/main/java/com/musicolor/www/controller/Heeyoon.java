@@ -17,11 +17,10 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.musicolor.www.dao.FileDAO;
 import com.musicolor.www.dao.HeeyoonDAO;
 import com.musicolor.www.services.FileService;
-import com.musicolor.www.vo.FileVO;
-import com.musicolor.www.vo.MemberVO;
+import com.musicolor.www.vo.*;
 
 @Controller
-@RequestMapping("/musiccolor/")
+@RequestMapping("/")
 public class Heeyoon {
 
 	@Autowired
@@ -45,7 +44,7 @@ public class Heeyoon {
 		mVO.setM_no(hDAO.mNo(SID));
 		fileSrvc.setDAO(fDAO);
 		fileSrvc.singleUpProc(session, mVO); 
-		rv.setUrl("/www/musiccolor/profconfig.mr");
+		rv.setUrl("/www/profconfig.mr");
 		mv.setView(rv);
 		return mv;
 	}
@@ -54,7 +53,7 @@ public class Heeyoon {
 	public ModelAndView configtext(ModelAndView mv, MemberVO mVO, RedirectView rv ) {
 		hDAO.profiletextconfig(mVO);
 		
-		rv.setUrl("/www/musiccolor/profconfig.mr");
+		rv.setUrl("/www/profconfig.mr");
 		mv.setView(rv);
 		return mv;
 	}
@@ -69,7 +68,7 @@ public class Heeyoon {
 	  @RequestMapping("profilelist.mr")//개인 프로필 리스트 controller
 	  public ModelAndView profilelist (ModelAndView mv, HttpSession session) {
 		session.setAttribute("SID", "lbrade0");/* lbrade0 */
-		  List<FileVO> list = hDAO.profileList((String)session.getAttribute("SID"));
+		  List<BoardVO> list = hDAO.profileList((String)session.getAttribute("SID"));
 		  mv.addObject("LIST",list);
 		  
 		  //프로필 로고 사진 	
@@ -108,7 +107,7 @@ public class Heeyoon {
 		  mVO.setM_id(str);
 		  int cnt = hDAO.prolock(mVO);
 		  mv.addObject("LOCK", cnt);	  
-		  rv.setUrl("/www/musiccolor/profilelist.mr");
+		  rv.setUrl("/www/profilelist.mr");
 		  mv.setView(rv);
 		  return mv;
 	  }
@@ -120,7 +119,7 @@ public class Heeyoon {
 		  mVO.setM_id(str);
 		  int cnt = hDAO.prounlock(mVO);
 		  mv.addObject("UNLOCK",cnt);
-		  rv.setUrl("/www/musiccolor/profilelist.mr");
+		  rv.setUrl("/www/profilelist.mr");
 		  mv.setView(rv);
 		  
 		  return mv;

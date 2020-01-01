@@ -44,7 +44,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIST}" begin="0" end="2">
         <div class="col-4 big-square">
-          <div class="square small-angry" id="${data.no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -52,7 +52,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIST}" begin="3" end="5">
         <div class="col-4 big-square">
-          <div class="square small-angry" id="${data.no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -60,7 +60,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIST}" begin="6" end="8">
         <div class="col-4 big-square">
-          <div class="square small-angry" id="${data.no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -344,7 +344,7 @@ $(function(){
        				resultlist+='<div class="row">';
    					for(var i=0; i<length; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
@@ -354,14 +354,14 @@ $(function(){
        				resultlist+='<div class="row">';
    					for(var i=0; i<3; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
    					resultlist+='<div class="row">';
    					for(var i=3; i<length; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
@@ -371,21 +371,21 @@ $(function(){
        				resultlist+='<div class="row">';
    					for(var i=0; i<3; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
    					resultlist+='<div class="row">';
    					for(var i=3; i<6; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
    					resultlist+='<div class="row">';
    					for(var i=6; i<length; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-angry" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';

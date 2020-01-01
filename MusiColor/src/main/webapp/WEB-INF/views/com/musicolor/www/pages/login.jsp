@@ -15,47 +15,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
 <title>Login</title>
-<script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#goToMain').click(function() {
-			$(location).attr('href', '/www/member/tempMain.mr');
-		})
-		$('#join').click(function() {
-			$(location).attr('href', '/www/member/join.mr');
-		})
-	}); 
-</script>
+
 </head>
 
 <body class="bg-primary">
-
-	   <!-- nav -->
-	<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
-		<a class="navbar-brand ml-5" href="#"><h3 class="logo">musicolor</h3></a>
-	
-		<ul class="nav navbar-nav ml-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-search f-20"></i></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-random f-20"></i></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-cloud-upload-alt f-20"></i></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-user f-20"></i></a>
-			</li>
-		</ul>
-	</nav>
+	<jsp:include page="nav.jsp" flush="false" />
     
 	<c:if test="${empty SID}">
 		<div class="container" id="main">
 			<div class="card text-white bg-primary mb-" style="max-width:40rem;">
 				<div class="card-header">Login</div>
 		
-				<form method="POST" action="/www/member/loginProc.mr">
+				<form method="POST" action="/www/loginProc.mr">
 					<div class="card-body">
 						<h4 class="card-title" style="margin-bottom: 30px;">Welcome to MUSICOLOR</h4>
 	          
@@ -108,6 +79,15 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
+  	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#goToMain').click(function() {
+			$(location).attr('href', '/www/tempMain.mr');
+		})
+		$('#join').click(function() {
+			$(location).attr('href', '/www/join.mr');
+		})
+	}); 
+	</script>
 </body>
 </html>

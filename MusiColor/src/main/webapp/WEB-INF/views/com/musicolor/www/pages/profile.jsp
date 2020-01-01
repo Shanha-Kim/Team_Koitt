@@ -172,7 +172,7 @@ h6 {
 		<div class="row">
 			<c:forEach var="data" items="${LIST}" begin="0" end="2">
 				<div class="col-4 big-square">
-					<div class="square small-angry" id="${data.no}">
+					<div class="square small-${data.b_emotion}" id="${data.b_no}">
 						<img class="album" src="/www/album/${data.sname}" />
 					</div>
 				</div>
@@ -182,7 +182,7 @@ h6 {
 		<div class="row">
 			<c:forEach var="data" items="${LIST}" begin="3" end="5">
 				<div class="col-4 big-square">
-					<div class="square small-angry" id="${data.no}">
+					<div class="square small-${data.b_emotion}" id="${data.b_no}">
 						<img class="album" src="/www/album/${data.sname}" />
 					</div>
 				</div>
@@ -192,7 +192,7 @@ h6 {
 		<div class="row">
 			<c:forEach var="data" items="${LIST}" begin="6" end="8">
 				<div class="col-4 big-square">
-					<div class="square small-angry" id="${data.no}">
+					<div class="square small-${data.b_emotion}" id="${data.b_no}">
 						<img class="album" src="/www/album/${data.sname}" />
 					</div>
 				</div>
@@ -412,7 +412,7 @@ h6 {
 
 			}
 			$('#profile').click(function() {
-				$(location).attr('href', '/www/musiccolor/profconfig.mr');
+				$(location).attr('href', '/www/profconfig.mr');
 
 			});
 
@@ -427,7 +427,7 @@ h6 {
 			});
 
 			$('#unlock2').click(function() {
-				$(location).attr('href', '/www/musiccolor/unlock.mr');
+				$(location).attr('href', '/www/unlock.mr');
 			});
 
 			$("#fw1btn").click(function() {
@@ -449,7 +449,7 @@ h6 {
 
 			$.ajax({
 
-				url : "/www/musiccolor/followercheck.mr",
+				url : "/www/followercheck.mr",
 				type : "post",
 				dataType : "json",
 				data : {
@@ -485,7 +485,7 @@ h6 {
 			var f_name = $('#fname2').html();
 			
 			$.ajax({
-				url : "/www/musiccolor/followercheck.mr",
+				url : "/www/followercheck.mr",
 				type : "post",
 				dataType : "json",
 				data : {

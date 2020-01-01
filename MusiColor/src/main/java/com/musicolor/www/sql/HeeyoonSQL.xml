@@ -44,16 +44,16 @@ m_no =#{m_no}
 </update>
 
 <!-- 개인프로필 음악앨범  리스트  SQL-->
-<select id ="addalbumpic"  resultType="fVO" parameterType="String" >
+<select id ="addalbumpic"  resultType="bVO" parameterType="String" >
 <![CDATA[
 SELECT
-            b_no no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
+            b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, b_emotion
          FROM
             board
          WHERE
             b_mno = (SELECT m_no  FROM member WHERE m_id =#{SID})
-            AND rownum <= 9 ]]>
-
+            AND rownum <= 9 
+]]>
 </select> 
 
  <select id="mNo" resultType="int" parameterType="String">

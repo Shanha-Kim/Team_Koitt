@@ -15,11 +15,10 @@
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 	
-<script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#login').click(function() {
-			$(location).attr('href', '/www/member/login.mr');
+			$(location).attr('href', '/www/login.mr');
 		})
 	});
 </script>
@@ -27,26 +26,7 @@
 </head>
 
 <body class="bg-primary">
-
-	   <!-- nav -->
-	<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
-		<a class="navbar-brand ml-5" href="#"><h3 class="logo">musicolor</h3></a>
-	
-		<ul class="nav navbar-nav ml-auto">
-			<li class="nav-item"> 
-				<a class="nav-link" href="#"><i class="fas fa-search f-20"></i></a>
-			</li> 
-			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-random f-20"></i></a>
-			</li>
-			<li class="nav-item"> 
-				<a class="nav-link" href="#"><i class="fas fa-cloud-upload-alt f-20"></i></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-user f-20"></i></a>
-			</li>
-		</ul>
-	</nav>
+	<jsp:include page="nav.jsp" flush="false" />
  
 	<div class="container" id="main">
 		<div class="card text-white bg-primary mb-3" style="max-width: 40rem;">

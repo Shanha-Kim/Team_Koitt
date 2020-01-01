@@ -5,8 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.musicolor.www.vo.FileVO;
-import com.musicolor.www.vo.MemberVO;
+import com.musicolor.www.vo.*;
 
 public class HeeyoonDAO {
 
@@ -20,8 +19,8 @@ public class HeeyoonDAO {
 	}
 
 	// 개인프로필 사진 리스트 전담 처리 함수
-	public List<FileVO> profileList(String SID) {
-		List<FileVO> list = sqlSession.selectList("hSQL.addalbumpic", SID);
+	public List<BoardVO> profileList(String SID) {
+		List<BoardVO> list = sqlSession.selectList("hSQL.addalbumpic", SID);
 		return list;
 
 	}

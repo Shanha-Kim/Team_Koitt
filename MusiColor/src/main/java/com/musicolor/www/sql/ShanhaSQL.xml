@@ -6,13 +6,13 @@
 
 
 <mapper namespace="sSQL">
-	<select id="SearchBefore" parameterType="bVO" resultType="fVO">
+	<select id="SearchBefore" parameterType="bVO" resultType="bVO">
 	<![CDATA[    
 		SELECT
 			*
 		FROM
 			(SELECT
-				b_no no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
+				b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, b_emotion
 			FROM
 				board
 			WHERE
@@ -131,12 +131,12 @@
 			b_no = #{b_no}
 	</select>
 	
-	<select id="SearchAfter"  resultType="fVO" parameterType="bVO">
+	<select id="SearchAfter"  resultType="bVO" parameterType="bVO">
 		SELECT
 			*
 		FROM
 			(SELECT
-				b_no no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, ROWNUM len
+				b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, b_emotion, ROWNUM b_yno
 			FROM
 				board
 			WHERE
@@ -160,11 +160,11 @@
 					b_body like '%#'||#{key_main}||'%'
 				</if>
 			ORDER BY 
-				len
+				b_yno
 			)
 		WHERE
 	<![CDATA[    
-		len BETWEEN #{b_vno} AND #{b_vno}+8
+		b_yno BETWEEN #{b_vno} AND #{b_vno}+8
  	]]> 
 	</select>
 	<select id="PreView"  resultType="fVO" parameterType="bVO">

@@ -14,8 +14,8 @@ public class ShanhaDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public List<FileVO> showBefore(BoardVO bVO){
-		List<FileVO> list = sqlSession.selectList("sSQL.SearchBefore", bVO);
+	public List<BoardVO> showBefore(BoardVO bVO){
+		List<BoardVO> list = sqlSession.selectList("sSQL.SearchBefore", bVO);
 		return list;
 	}
 	public BoardVO showDetail(BoardVO bVO){
@@ -52,8 +52,8 @@ public class ShanhaDAO {
 		BoardVO vo = sqlSession.selectOne("sSQL.LikeProcSel", bVO);
 		return vo;
 	}
-	public List<FileVO> searchAfter(BoardVO bVO){
-		List<FileVO> list = sqlSession.selectList("sSQL.SearchAfter", bVO);
+	public List<BoardVO> searchAfter(BoardVO bVO){
+		List<BoardVO> list = sqlSession.selectList("sSQL.SearchAfter", bVO);
 		return list;
 	}
 	

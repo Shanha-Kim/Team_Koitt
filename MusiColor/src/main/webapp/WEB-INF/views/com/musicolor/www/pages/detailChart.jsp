@@ -20,19 +20,8 @@
 </head>
 
 <body class="bg-primary">
-<!-- nav -->
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
-  <a class="navbar-brand ml-5" href="#"><h3 class="logo">musicolor</h3></a>    
-  <ul class="nav navbar-nav ml-auto">   
-	<li class="nav-item">
-		<a class="nav-link" href="#" data-toggle="tooltip" data-placement="top" title="로그아웃"><i class="fas fa-sign-out-alt fa-2x"></i></a>
-	</li>
-  </ul>
-</nav>
-	
+<jsp:include page="nav.jsp" flush="false" />
 
-
-	
 <div class="container" id="main">
 	<!-- card -->
       <div class="card mb-3 bg-primary mb-5" id="sad">

@@ -15,36 +15,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
     <title>bfMainView</title>
-    <script type="text/javascript" src="/www/js/jquery-3.4.1.min.js" ></script>
 	<script type="text/javascript">
 		$(function(){
 			$('#login').click(function(){
-				$(location).attr('href', '/www/pages/login.mr');
+				$(location).attr('href', '/www/login.mr');
 			});
 		});
 	</script>
   </head>
 
   <body class="bg-primary">
-
-    <!-- nav -->
-	<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
-      <a class="navbar-brand ml-5" href="#"><h3 class="logo">musicolor</h3></a>
-      
-      <ul class="nav navbar-nav ml-auto">
-        
-        
-        <li class="nav-item">
-        	<c:if test="${empty SID}">
-            <a class="nav-link" href="/www/member/login.mr"  data-toggle="tooltip" data-placement="top" title="로그인"><i class="fas fa-sign-in-alt fa-2x"></i></a>
-          	</c:if>
-          </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/www/member/join.mr" data-toggle="tooltip" data-placement="top" title="회원가입"><i class="fas fa-user-plus fa-2x"></i></a>
-        </li>
-      </ul>
-    </nav>
-      
+    <jsp:include page="nav.jsp" flush="false" />
+    
 	<div class="container" id="main">
       <!-- chart -->
     <div class="card mb-3 bg-primary mb-5" id="angry">

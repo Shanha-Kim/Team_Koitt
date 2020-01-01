@@ -29,7 +29,7 @@
 			
 			
 			$('#backbtn').click(function(){
-			$(location).attr('href','/www/musiccolor/profilelist.mr');	
+			$(location).attr('href','/www/profilelist.mr');	
 			});
 			
 			$("#addpic").click(function(e){
@@ -61,7 +61,7 @@
 		  
 		  $("#tembtn").click(function(){
 			alert("계정이 비활성화 되었습니다.")
-			$(location).attr('href','/www/musiccolor/lock.mr');
+			$(location).attr('href','/www/lock.mr');
 		  });
 	  });
 		 
@@ -87,11 +87,11 @@
 <body class="bg-primary">
 <jsp:include page="nav.jsp" flush="false" />
 
-	<form action="/www/musiccolor/profilepic.mr" method="post" enctype="multipart/form-data" style="display: none;" id="fileup-frm">
+	<form action="/www/profilepic.mr" method="post" enctype="multipart/form-data" style="display: none;" id="fileup-frm">
 	 	<input type="file" name="sFile" id="fileup"> 
 	</form>
 	
-	<form action="/www/musiccolor/profiletext.mr" method="post" id="textup-frm" >
+	<form action="/www/profiletext.mr" method="post" id="textup-frm" >
 	<input type="text" name="m_id" value="${SID}">
 		<div class="container" id="main">
 			<div class="card text-white bg-primary mb-" style="max-width: 40rem;">

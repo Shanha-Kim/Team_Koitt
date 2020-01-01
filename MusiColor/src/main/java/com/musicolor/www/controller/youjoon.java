@@ -16,7 +16,7 @@ import javafx.scene.control.Alert;
 import com.musicolor.www.dao.YoujoonDAO;
 
 @Controller
-@RequestMapping("/member/") 
+@RequestMapping("/") 
 public class youjoon {
 	@Autowired
 	YoujoonDAO mDAO;
@@ -42,14 +42,14 @@ public class youjoon {
 		// 로그인 처리를 해주면 되는데
 		// 로그인 처리는 세션에 아이디를 입력해주기로 하자.
 		session.setAttribute("SID", vo.getM_id());
-		rv.setUrl("/www/member/tempMain.mr");
+		rv.setUrl("/www/tempMain.mr");
 		mv.setView(rv);
 		} else {
 		// 이 경우는 로그인에 실패한 경우이므로 다시 로그인 페이지로 이동한다.
 		System.out.println("### 로그인 실패");
 
 		msg = 1;
-		rv.setUrl("/www/member/login.mr");
+		rv.setUrl("/www/login.mr");
 		mv.setView(rv); 
 		}
 
@@ -62,7 +62,7 @@ public class youjoon {
 								HttpSession session) {
 		System.out.println("### /logout.mr");
 		session.setAttribute("SID", "");
-		rv.setUrl("/www/member/tempMain.mr");
+		rv.setUrl("/www/tempMain.mr");
 		mv.setView(rv); 
 		
 		return mv;
@@ -86,10 +86,10 @@ public class youjoon {
 		
 		if(cnt != 1) {
 			System.out.println("### 회원가입 실패");
-			rv.setUrl("/www/member/join.mr");
+			rv.setUrl("/www/join.mr");
 		} else {
 			System.out.println("### 회원가입 성공");
-			rv.setUrl("/www/member/joinSuccess.mr");
+			rv.setUrl("/www/joinSuccess.mr");
 		}
 		mv.setView(rv);
 		return mv;
