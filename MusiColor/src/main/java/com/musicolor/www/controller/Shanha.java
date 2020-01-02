@@ -29,7 +29,12 @@ public class Shanha {
 		
 		return mv;
 	}
-	
+	@RequestMapping("/delComt.mr")
+	@ResponseBody
+	public int delcomt(ComtVO cmVO) {
+		int cnt = sDAO.delComt(cmVO);
+		return cnt;
+	}
 	
 	
 	@RequestMapping("/searchBefore.mr")

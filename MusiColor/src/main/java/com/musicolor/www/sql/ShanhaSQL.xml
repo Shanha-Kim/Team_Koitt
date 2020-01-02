@@ -24,6 +24,11 @@
 			rno BETWEEN #{rno} AND #{rno}+4
 	</select>
 	
+	<delete id="DelComt" parameterType="cmVO">
+		DELETE comt
+		WHERE c_no = #{c_no}
+	</delete>
+	
 	<select id="SearchBefore" parameterType="bVO" resultType="bVO">
 	<![CDATA[    
 		SELECT

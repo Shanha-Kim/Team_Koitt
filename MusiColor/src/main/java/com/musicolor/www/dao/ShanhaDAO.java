@@ -24,6 +24,10 @@ public class ShanhaDAO {
 		}
 		return list;
 	}
+	public int delComt(ComtVO cmVO) {
+		int cnt = sqlSession.delete("sSQL.DelComt", cmVO);
+		return cnt;
+	}
 	public List<BoardVO> showBefore(BoardVO bVO){
 		List<BoardVO> list = sqlSession.selectList("sSQL.SearchBefore", bVO);
 		return list;
