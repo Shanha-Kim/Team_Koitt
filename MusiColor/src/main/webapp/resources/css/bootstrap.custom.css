@@ -60,6 +60,31 @@
   color: transparent;
 }
 
+.adminlogo {
+  position: relative;
+  white-space: nowrap;
+  color: white;
+  font-family: neon;
+  margin-left: 50px;
+  font-size: 1.5rem;
+}
+
+.adminlogo:before {
+  content: "ADMIN";
+  position: absolute;
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #d585ff, #00ffee);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+
 .navbar {
   padding-top: 10px;
   padding-bottom: 10px;
