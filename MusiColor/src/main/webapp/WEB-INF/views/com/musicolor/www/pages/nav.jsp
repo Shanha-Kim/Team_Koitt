@@ -21,7 +21,7 @@
 
   <!-- nav -->
   <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
-    <a class="navbar-brand" href="#"><p class="logo">musicolor</p></a>
+    <a class="navbar-brand" href="/www/feed.mr"><p class="logo">musicolor</p></a>
     
     <ul class="nav navbar-nav ml-auto">
     	<c:if test="${empty SID}">

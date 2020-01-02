@@ -21,68 +21,136 @@
 
     <div class="container" id="main">
       <!-- content1 -->
-      <div class="card mb-3 bg-primary mb-5" id="angry">
-        <h3 class="card-header"><img class="profile" src="/www/img/profile1.jpg" />USERNAME</h3>
+      <c:forEach var="data" items="${LIST}" varStatus="num">
+      <div class="card mb-3 bg-primary mb-5">
+        <h3 class="card-header"><img class="profile" src="/www/profile/${data.sname }" />${data.m_id}</h3>
         <!-- video -->
         <div class="youtube">
-          <iframe src="https://www.youtube.com/embed/4l2jpzPDtuQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/${data.y_link }" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <!-- body -->
         <div class="card-body pb-0">
-          <span class="ml-auto"><i class="far fa-heart"></i> <strong>5 likes</strong></span>
-          <h6 class="card-subtitle text-muted mb-2 mt-2">Dua Lipa - New Rules</h6>
+          <span class="ml-auto">
+          	<input class="bno" type="hidden" data="${data.b_no}">
+          	<i class="heart far fa-heart"></i> 
+          	<span>${data.b_like } likes</span>
+          </span>
+          <h6 class="card-subtitle text-muted mb-2 mt-2">${data.s_title}</h6>
           <p class="card-text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-            but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          	${data.b_body }
           </p>
         </div>
         <!-- comment -->
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item pt-3 pb-1 active"><strong>USERNAME</strong> Cras justo odio</li>
-          <li class="list-group-item pt-0 pb-1 active"><strong>USERNAME</strong> Dapibus ac facilisis in</li>
-          <li class="list-group-item pt-0 pb-3 active"><strong>USERNAME</strong> Vestibulum at eros</li>
+        <ul id="${data.b_no}a" class="list-group list-group-flush" data="${data.b_no}">
+          <c:forEach var="comment" items="${data.comt}">
+            <li data-cno="${comment.c_no }" data-user="${comment.c_mid }" class="list-group-item pt-0 pb-1 active"><strong>${comment.c_mid} </strong> ${comment.c_body}</li>
+          </c:forEach>
         </ul>
         <div class="card-footer">
-          <form method="POST" action="#">
-            <input class="comment-write-dark" type="text" placeholder="댓글을 입력해주세요" />
-          </form>
+          <div class="pt-3">
+            <input class="bno" type="hidden" data="${data.b_no}">
+            <input id="${data.b_no }" class="comment-write-dark" type="text" placeholder="댓글을 입력해주세요" />
+          </div>
         </div>
       </div>
-
-      <!-- content2 -->
-      <div class="card mb-3 bg-primary mb-5" id="sad">
-        <h3 class="card-header"><img class="profile" src="/www/img/profile2.jpg" />USERNAME</h3>
-        <!-- video -->
-        <div class="youtube">
-          <iframe width="1268" height="713" src="https://www.youtube.com/embed/QYh6mYIJG2Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <!-- body -->
-        <div class="card-body pb-0">
-          <span class="ml-auto"><i class="far fa-heart"></i> <strong>10 likes</strong></span>
-          <h6 class="card-subtitle text-muted mb-2 mt-2">Ariana Grande - 7 rings</h6>
-          <p class="card-text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-            but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-          </p>
-        </div>
-        <!-- comment -->
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item pt-3 pb-1 comment-dark active"><strong>USERNAME</strong> Cras justo odio</li>
-          <li class="list-group-item pt-0 pb-1 comment-dark active"><strong>USERNAME</strong> Dapibus ac facilisis in</li>
-          <li class="list-group-item pt-0 pb-3 comment-dark active"><strong>USERNAME</strong> Vestibulum at eros</li>
-        </ul>
-        <div class="card-footer">
-          <form method="POST" action="#">
-            <input class="comment-write-dark" type="text" placeholder="댓글을 입력해주세요" />
-          </form>
-        </div>
-      </div>
-    </div>
+	  </c:forEach>
+	  <c:if test="${empty LIST}">
+	  <table class="table table-sm">
+  		<thead>
+    	  <tr>
+     	    <h4 style="color:aliceblue; text-align:center;">팔로우가 없어요!</h4>	
+   		  </tr>
+ 		</thead>
+ 	  </table>
+	  </c:if>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  $(function(){
+	//세션 ID 저장===========================================================================================
+	var sid = '${SID}';
+	var bno = 1;
+    //좋아요 누르기===========================================================================================
+	$('.heart').click(function(e){
+		e.preventDefault();
+		bno = $(this).prev().attr("data");
+		var span = $(this).next();
+		$.ajax({
+			url : "/www/likeProc.mr",
+			type : "post",
+			dataType : "json",
+			data : {
+				b_no : bno,
+				m_id : sid
+			},
+			success : function(data){
+				span.html('<strong> ' + data.b_like + " likes</strong>");
+			},
+			error : function(){
+				alert('### 통신 에러 ###');
+			}
+		});
+	});
+	
+	//댓글기능===========================================================================================
+	
+	var upno = 1;
+	var upid = '';
+	$(document).on("click", '.list-group-item', function() {
+		upno = $(this).attr('data-cno');
+		upno = Number(upno);
+		upid = $(this).attr('data-user');
+		bno = $(this).parent().attr("data");
+		$("#"+bno).val(upid+" ");
+	});
+	
+	$(".comment-write-dark").keyup(function(e){
+		if(e.keyCode == 13){
+			e.preventDefault();
+			bno = $(this).prev().attr("data");
+			var cbody = $(this).val();
+			if(cbody == ""){
+				return;
+			}
+			var comt = $("#"+bno+"a");
+			$.ajax({
+				url : "/www/comtWrite.mr",
+				type : "post",
+				dataType : "json",
+				data : {
+					c_bno : bno,
+					c_mid : sid,
+					c_body : cbody,
+					c_upno : upno,
+					c_upid : upid
+				},
+				success : function(vo){
+					comt.html("");
+					for(var i=0 in vo){
+						if(vo[i].c_upid == null){
+							comt.append('<li data-cno="'+vo[i].c_no+'" data-user="'+vo[i].c_mid+'"  class="list-group-item pt-0 pb-1 active"><strong class="user">'+vo[i].c_mid+'</strong> '+vo[i].c_body+'</li>');
+
+						}else{
+							comt.append('<li data-cno="'+vo[i].c_no+'" data-user="'+vo[i].c_mid+'"  class="list-group-item pt-0 pb-1 active"><strong class="user">'+vo[i].c_mid+'</strong> <i>'+vo[i].c_upid+'</i> '+vo[i].c_body+'</li>');
+							
+						}
+					}
+					
+					$("#"+bno).val("");
+					upno = 1;
+					upid = '';
+				},
+				error : function(){
+					alert('### 통신 에러 ###');
+				}
+			});
+		}
+	});
+  })
+  </script>
   </body>
 </html>

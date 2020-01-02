@@ -14,6 +14,16 @@ public class ShanhaDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+	public List<BoardVO> showFeed(BoardVO bVO){
+		List<BoardVO> list = sqlSession.selectList("sSQL.ShowFeed", bVO);
+		for(BoardVO vo : list) {
+			long bno = vo.getB_no();
+			bVO.setB_no(bno);
+			List<ComtVO> colist = sqlSession.selectList("sSQL.showComt", bVO);
+			vo.setComt((ArrayList<ComtVO>)colist);
+		}
+		return list;
+	}
 	public List<BoardVO> showBefore(BoardVO bVO){
 		List<BoardVO> list = sqlSession.selectList("sSQL.SearchBefore", bVO);
 		return list;

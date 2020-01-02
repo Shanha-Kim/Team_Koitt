@@ -6,6 +6,24 @@
 
 
 <mapper namespace="sSQL">
+	<select id="ShowFeed" parameterType="bVO"  resultType="bVO">
+		SELECT * FROM
+			(SELECT
+				(SELECT m_id FROM member WHERE b_mno=m_no) m_id, 
+				(SELECT p_sname FROM profilepicture WHERE p_no=(SELECT m_pno FROM member WHERE m_no=b_mno)) sname, 
+				(SELECT y_link FROM youtube WHERE y_no=b_yno) y_link,
+				(SELECT s_title FROM song WHERE s_no=b_sno) s_title,
+				b_like, b_body, b_date, b_no,
+				ROWNUM rno
+			FROM
+				board
+			WHERE
+				b_mno IN (SELECT f_following FROM follow WHERE f_follower = (SELECT m_no FROM member WHERE m_id=#{m_id}))
+ 			)
+ 		WHERE
+			rno BETWEEN #{rno} AND #{rno}+4
+	</select>
+	
 	<select id="SearchBefore" parameterType="bVO" resultType="bVO">
 	<![CDATA[    
 		SELECT
@@ -136,7 +154,7 @@
 			*
 		FROM
 			(SELECT
-				b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, b_emotion, ROWNUM b_yno
+				b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, b_emotion, ROWNUM rno
 			FROM
 				board
 			WHERE
@@ -160,11 +178,11 @@
 					b_body like '%#'||#{key_main}||'%'
 				</if>
 			ORDER BY 
-				b_yno
+				rno
 			)
 		WHERE
 	<![CDATA[    
-		b_yno BETWEEN #{b_vno} AND #{b_vno}+8
+		rno BETWEEN #{b_vno} AND #{b_vno}+8
  	]]> 
 	</select>
 	<select id="PreView"  resultType="fVO" parameterType="bVO">

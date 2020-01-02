@@ -17,9 +17,24 @@ public class Shanha {
 	@Autowired
 	ShanhaDAO sDAO;
 	
+	@RequestMapping("/feed.mr")
+	public ModelAndView goFeed(ModelAndView mv, HttpSession session) {
+		String SID = (String)session.getAttribute("SID");
+		BoardVO bVO= new BoardVO();
+		bVO.setM_id(SID);
+		bVO.setRno(1);
+		ArrayList<BoardVO> list = (ArrayList<BoardVO>)sDAO.showFeed(bVO);
+		mv.addObject("LIST", list);
+		mv.setViewName("pages/feed");
+		
+		return mv;
+	}
+	
+	
+	
 	@RequestMapping("/searchBefore.mr")
 	public ModelAndView searchBefore(ModelAndView mv, BoardVO bVO, HttpSession session) {
-		session.setAttribute("SID", "lbrade0");
+		session.setAttribute("SID", "nhearle1");
 		ArrayList<BoardVO> list = (ArrayList<BoardVO>)sDAO.showBefore(bVO);
 		mv.addObject("LIST", list);
 		mv.setViewName("pages/search");
