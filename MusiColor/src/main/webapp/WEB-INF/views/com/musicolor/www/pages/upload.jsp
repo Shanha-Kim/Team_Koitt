@@ -70,7 +70,7 @@
 
 	<!-- first modal, search music -->
 	<div class="modal" id="myModal1">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content bg-primary">
 				<!-- Modal body -->
 				<div class="modal-body">
@@ -78,9 +78,11 @@
 					<table class="table-sm table-hover white text-center" id="searchTable">
 						<thead>
 							<tr>
+								<th style="width: 20%;">ALBUM</th>
 								<th style="width: 20%;">VOCAL</th>
-								<th style="width: 75%;">SONG</th>
+								<th style="width: 50%;">SONG</th>
 								<th style="width: 5%;">LINK</th>
+								<th style="width: 5%;">BUG</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -161,6 +163,50 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- fourth modal, bug report -->
+	<div class="modal" id="myModal4">
+		<div class="modal-dialog">
+			<div class="modal-content bg-primary">
+				<!-- Modal body -->
+				<div class="modal-body">
+					<form method="POST" action="" id="reportForm">
+					<input type="hidden" name="id" value="${SID}">
+					<input type="hidden" name="r_sno" id="r_sno" value="">
+						<h1 class="white text-center mt-3 mb-3">BUG REPORT</h1>
+						<p class="text-center mb-5">musicolor 는 회원들의 적극적인 참여로 운영됩니다.<br>신고해주시면 운영자 확인 후 처리하겠습니다.</p>
+						  	<h4 class="white text-center">어떤 항목이 잘못되었나요?</h4>
+							<div class="row form-group ml-2 mr-2 white">
+								<div class="col custom-control custom-radio text-center">
+									<input type="radio" name="r_kind" class="custom-control-input" value="album" id="album"/>
+									<label class="custom-control-label" for="album">ALBUM</label>
+								</div>
+								<div class="col custom-control custom-radio text-center">
+									<input type="radio" name="r_kind" class="custom-control-input" value="vocal" id="vocal"/>
+									<label class="custom-control-label" for="vocal">VOCAL</label>
+								</div>
+								<div class="col custom-control custom-radio text-center">
+									<input type="radio" name="r_kind" class="custom-control-input" value="song" id="song"/>
+									<label class="custom-control-label" for="song">SONG</label>
+								</div>
+								<div class="col custom-control custom-radio text-center">
+									<input type="radio" name="r_kind" class="custom-control-input" value="youtube" id="youtube"/>
+									<label class="custom-control-label" for="youtube">YOUTUBE</label>
+								</div>
+							</div>
+						  
+						  <h4 class="white text-center ml-2 mr-2 mt-5">자세한 신고 내용을 작성해주세요.</h4>
+						  <div class="form-group mb-5">
+						  	<input type="text" class="w-100" name="r_detail" id="r_detail">
+						  </div>
+						<button type="button" class="btn btn-black btn-block" id="report">
+							신고 제출
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -193,13 +239,18 @@
 									},
 									success : function(data) {
 										for ( var i = 0 in data) {
-											$('#searchTable').append('<tr id="' + data[i].s_no + '"><td>'
+											$('#searchTable').append('<tr id="' + data[i].s_no + '"><td><img src="/www/album/'
+												+ data[i].a_sname
+												+ '" width="50"></td><td class="vocal">'
 												+ data[i].v_name
-												+ '</td><td>'
+												+ '</td><td class="song">'
 												+ data[i].s_title
 												+ '</td><td><a href="https://www.youtube.com/watch?v='
 												+ data[i].y_link
-												+ '"><i class="fab fa-youtube white"></i></a>'
+												+ '" target="_blank"><i class="fab fa-youtube white"></i></a>'
+												+'</td><td id="' 
+												+ data[i].s_no
+												+ '" class="bug"><i class="fas fa-bug white"></i>'
 												+ '<input type="hidden" name="savevno" id="savevno' + data[i].s_no + '" value="' + data[i].s_vno + '">'
 												+ '<input type="hidden" name="savevno" id="saveno' + data[i].s_no + '" value="' + data[i].s_no + '">'
 												+ '<input type="hidden" name="savevno" id="saveyno' + data[i].s_no + '" value="' + data[i].y_no + '">'
@@ -212,14 +263,14 @@
 											}
 								});
 							});
-
+		    
 			/* 검색한 노래 정보 삽입 */
-			$(document).on("click", "#searchTable tr", function() {
+			$(document).on("click", "#searchTable .song", function() {
 				$("#myModal1").modal("hide");
 				
-				var keywords = $(this).children().eq(1).text();
-				var id = $(this).attr('id');
-
+				var keywords = $(this).text();
+				var id = $(this).parent().attr('id');
+				
 				var savevno = parseInt($('#savevno' + id).val());
 				var saveno = parseInt($('#saveno' + id).val());
 				var saveyno = parseInt($('#saveyno' + id).val());
@@ -233,6 +284,43 @@
 
 				$('#searchTable > tbody').remove();
 			})
+			
+			/* bug 신고 */
+		    $(document).on("click", "#searchTable .bug", function() {
+		    	var tmp = parseInt($(this).attr('id'));
+		    	
+		    	$("#myModal1").modal("hide");
+		    	$("#myModal4").modal("show");
+		    	
+		    	$('#r_sno').val(tmp);
+		    })
+		    
+		    /* bug 신고 접수 */
+		   $('#report').click(function(){
+		    	var queryString = $("#reportForm").serialize();
+		    	 
+		        $.ajax({
+		            type : "post",
+		            url : "/www/reportProc.mr",
+		            data : queryString,
+		            dataType : "json",
+		            success : function(data) {
+		            	if (data == 1) {
+		                	alert('신고 접수 완료');
+		                	$("#myModal4").modal("hide");
+		                	$('#r_detail').val("");
+		                	$("#album").prop('checked', false); 
+		                	$("#song").prop('checked', false); 
+		                	$("#vocal").prop('checked', false); 
+		                	$("#youtube").prop('checked', false); 
+		                	
+		            	}
+		            },
+		            error: function() {
+		            	alert('### 통신 에러 ###');
+		            }
+		        });
+		    })
 
 			/* 노래 추가 창 진입 */
 			$("#more").click(function() {

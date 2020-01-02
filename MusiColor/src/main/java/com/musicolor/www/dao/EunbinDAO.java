@@ -6,9 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.musicolor.www.vo.BoardVO;
-import com.musicolor.www.vo.FileVO;
-import com.musicolor.www.vo.SongVO;
+import com.musicolor.www.vo.*;
 
 public class EunbinDAO {
 	@Autowired
@@ -51,5 +49,10 @@ public class EunbinDAO {
 	public List<BoardVO> randomSelected(String b_emotion){
 		List<BoardVO> list = sqlSession.selectList("eSQL.randomSelected", b_emotion);
 		return list;
+	}
+	
+// report DAO
+	public int reportProc(ReportVO vo) {
+		return sqlSession.insert("eSQL.reportProc", vo);
 	}
 }

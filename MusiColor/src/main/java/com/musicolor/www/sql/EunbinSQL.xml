@@ -62,7 +62,8 @@
 		    s_no, s_title, s_vno, s_ano, 
 		    (SELECT v_name FROM vocal WHERE v_no = s_vno) v_name,
 		    (SELECT y_link FROM youtube WHERE s_no = y_sno) y_link,
-		    (SELECT y_no FROM youtube WHERE s_no = y_sno) y_no
+		    (SELECT y_no FROM youtube WHERE s_no = y_sno) y_no,
+		    (Select a_sname FROM albumpicture WHERE a_no = s_ano) a_sname
 		FROM
 		    song
 		WHERE 
@@ -146,6 +147,20 @@
 			rownum <= 9
 	]]>
 	</select>
+	
+	<!-- report SQL -->
+	<insert id="reportProc" parameterType="rVO">
+		<selectKey keyProperty="r_no" resultType="long" order="BEFORE">
+			SELECT 
+				(NVL(MAX(r_no) + 1, 100000000001)) 
+			FROM report
+		</selectKey>
+		INSERT INTO
+	    	report(r_no, r_mno, r_sno, r_kind, r_detail)
+		VALUES(
+	    	#{r_no}, #{r_mno}, #{r_sno}, #{r_kind}, #{r_detail}
+		)
+	</insert>
 </mapper>
 
 

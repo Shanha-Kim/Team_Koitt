@@ -15,12 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.musicolor.www.dao.EunbinDAO;
-import com.musicolor.www.dao.FileDAO;
+import com.musicolor.www.dao.*;
 import com.musicolor.www.services.FileService;
-import com.musicolor.www.vo.BoardVO;
-import com.musicolor.www.vo.FileVO;
-import com.musicolor.www.vo.SongVO;
+import com.musicolor.www.vo.*;
 
 @Controller
 public class Eunbin {
@@ -141,5 +138,18 @@ public class Eunbin {
 		mv.setViewName("pages/random");
 		
 		return mv;
+	}
+	
+// report Controller
+	
+	@ResponseBody
+	@RequestMapping("/reportProc.mr")
+	public int reportProc(ReportVO vo) {
+		// mno 가져오기
+		int m_no = eDAO.findMno(vo.getId());
+		vo.setR_mno(m_no);
+		
+		int cnt = eDAO.reportProc(vo);
+		return cnt;
 	}
 }
