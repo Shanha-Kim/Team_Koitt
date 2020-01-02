@@ -17,12 +17,19 @@ public class SongVO {
 	private String y_link; // 유튜브 링크
 	private int y_mno; // 업로드 회원 번호
 	
+	// album 테이블
+	private String a_sname; // 사진 저장 번호
+	private String a_dir; // 사진 저장 위치
+	
 	// 파일 업로드 관련
 	private MultipartFile sFile;
 	private MultipartFile[] file;
 	
 	// 검색 키워드 저장용
 	private String keywords;
+	
+	// 차트 순서 저장용 
+	private int chart;
 	
 	// 아이디
 	private String id;
@@ -75,6 +82,18 @@ public class SongVO {
 	public void setY_mno(int y_mno) {
 		this.y_mno = y_mno;
 	}
+	public String getA_sname() {
+		return a_sname;
+	}
+	public void setA_sname(String a_sname) {
+		this.a_sname = a_sname;
+	}
+	public String getA_dir() {
+		return a_dir;
+	}
+	public void setA_dir(String a_dir) {
+		this.a_dir = a_dir;
+	}
 	public MultipartFile getsFile() {
 		return sFile;
 	}
@@ -92,6 +111,12 @@ public class SongVO {
 	}
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
+	}
+	public int getChart() {
+		return chart;
+	}
+	public void setChart(int chart) {
+		this.chart = chart;
 	}
 	public String getId() {
 		return id;
