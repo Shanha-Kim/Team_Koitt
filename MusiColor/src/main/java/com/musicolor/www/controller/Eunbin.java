@@ -141,5 +141,5 @@ public class Eunbin {
 		mv.setViewName("pages/random");
 		
 		return mv;
-	}	
+	}
 }

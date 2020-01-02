@@ -6,7 +6,55 @@
 			
 
 <mapper namespace="jSQL">
-
+	<!-- chart SQL -->
+	<select id="getChart" resultType="sVO">
+	<![CDATA[
+		SELECT
+		    *
+		FROM
+		    (SELECT
+		        (SELECT v_name FROM vocal WHERE v_no = b_vno) v_name,
+		        (SELECT s_title FROM song WHERE s_no = b_sno) s_title,
+		        (SELECT y_link FROM youtube WHERE y_no = b_yno) y_link,
+		        (SELECT a_sname FROM albumpicture WHERE a_no = b_ano) a_sname,
+		        (SELECT a_dir FROM albumpicture WHERE a_no = b_ano) a_dir,
+		        b_sno, count(*) chart
+		    FROM
+		        board
+		    WHERE
+		        b_isshow = 'Y'
+		    GROUP BY
+		        b_vno, b_sno, b_yno, b_ano
+		    ORDER BY
+		        chart DESC)
+		WHERE rownum <= 50
+	]]>
+	</select>
+	
+	<select id="getChartSelected" parameterType="String" resultType="sVO">
+	<![CDATA[
+		SELECT
+		    *
+		FROM
+		    (SELECT
+		        (SELECT v_name FROM vocal WHERE v_no = b_vno) v_name,
+		        (SELECT s_title FROM song WHERE s_no = b_sno) s_title,
+		        (SELECT y_link FROM youtube WHERE y_no = b_yno) y_link,
+		        (SELECT a_sname FROM albumpicture WHERE a_no = b_ano) a_sname,
+		        (SELECT a_dir FROM albumpicture WHERE a_no = b_ano) a_dir,
+		        b_sno, count(*) chart
+		    FROM
+		        board
+		    WHERE
+		        b_isshow = 'Y'
+		        AND b_emotion = #{b_emotion}
+		    GROUP BY
+		        b_vno, b_sno, b_yno, b_ano
+		    ORDER BY
+		        chart DESC)
+		WHERE rownum <= 50
+	]]>
+	</select>
 </mapper>
 
 
