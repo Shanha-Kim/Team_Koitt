@@ -17,6 +17,7 @@ public class BoardVO {
 	private char b_isshow;
 	private String b_date;
 	private String b_body;
+	private int rno;
 	
 	private MultipartFile sFile;
 	private MultipartFile[] file;
@@ -46,6 +47,12 @@ public class BoardVO {
 	
 	
 	
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
 	public ArrayList<ComtVO> getComt() {
 		return comt;
 	}
