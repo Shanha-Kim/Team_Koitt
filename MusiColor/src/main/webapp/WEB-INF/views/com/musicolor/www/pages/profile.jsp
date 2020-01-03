@@ -119,6 +119,39 @@ h6 {
 .click2 {
 	background-color: white;
 }
+
+
+.modal { 
+	text-align: center;
+ 	padding: 0!important; }
+
+.modal:before { 
+	content: ''; 
+	display: inline-block; 
+	height: 100%; 
+	vertical-align: middle; margin-right: -4px; 
+}
+
+.modal-dialog { 
+	display: inline-block;
+ 	text-align: left; 
+ 	vertical-align: middle;  
+ 	overflow-y: initial !important
+ } 
+ 	.modal-body{ 
+ 	height: 100%; 
+ 	overflow-y: auto; 
+ }
+
+ 
+
+ /* 
+  #fw2button {
+  top: 20%;
+  width:600px;
+  height:750px;
+  margin-top: 50px;
+} */
 </style>
 
 </head>
@@ -137,9 +170,11 @@ h6 {
 							style="display: block;">프로필 편집</button>
 						<button type="button" class="btn btn-warning">게시물 :
 							${CNT}</button>
-						<button type="button" id="fw1btn" class="btn btn-secondary">팔로워</button>
-						<button type="button" id="fw2btn" class="btn btn-success">팔로우</button>
-						<button type="button" class="btn btn-danger">내가 좋아요한 게시물</button>
+						<button type="button" id="fw1btn" class="btn btn-secondary">팔로워 :
+						    ${CNT1}</button>
+						<button type="button" id="fw2btn" class="btn btn-success">팔로우 :
+							${CNT2}</button>
+						<button type="button" id="likedbtn" class="btn btn-danger">내가 좋아요한 게시물</button>
 
 						<button type="button" class="btn btn-outline-secondary"
 							id="unlock" data-id="${ISSHOW}">계정을 다시 활성화</button>
@@ -305,42 +340,44 @@ h6 {
 			</div>
 		</div>
 	</div>
+	
 	<!-- 팔로워 버튼  모달창 -->
 	<div class="modal" id="fw1button">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
+		<div class="modal-dialog" role="document" style="width:44%;">
+			<div class="modal-content" style="overflow:scroll; height:400px;" >
 				<div class="modal-header">
 					<h5 class="modal-title">팔로워 목록</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close"></button>
 					<span aria-hidden="true">&times;</span>
-					<c:forEach var="data" items="${LIST1}">
-						<div>
-							<div class="square small-angry" id="${data.m_id}">
-
-								<img class="album" src="/www/profile/${data.m_name}" />
-							</div>
-							<span class="fname1">${data.m_id}</span>
-							
-							<c:if test="${data.m_isban == 0}">
-
-								<button type="button" class="canslebtn1 click1" style= "background-color: blue;">팔로우</button>
-
-							</c:if>
-
-							<c:if test="${data.m_isban == 1}">
-
-								<button type="button" class="canslebtn1 click2">팔로우</button>
-							</c:if>
-							<c:if test="${data.m_isban == 2}">
-
-								<button type="button" class="canslebtn1 click2">팔로우</button>
-							</c:if>
-						</div>
-					</c:forEach>
+					
 					<div class="canslebtn"></div>
 				</div>
-				<div class="modal-body text-center">
+				<div class="modal-body">
+				<c:forEach var="data" items="${LIST1}">
+						<div class="d-flex">
+							<!-- 이미지 박스 -->
+							<div class="" id="${data.m_id}"
+								style="width: 50px; height: 50px; overflow: hidden; position: relative; display: inline-block; border-radius: 50%;">
+								<!-- 이미지 -->
+								<img class="" src="/www/profile/${data.m_name}"
+									style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" />
+							</div>
+							<!-- 아이디, 버튼 영역 -->
+							<div style="display:inline-block; width:100%;" >
+								<span class="fname1">${data.m_id}</span>
+								<c:if test="${data.m_isban == 0}">
+									<button type="button" class="canslebtn1 click1" style= "background-color: blue; float: right;">팔로우</button>
+								</c:if>
+								<c:if test="${data.m_isban == 1}">
+									<button type="button" class="canslebtn1 click2" style="float: right;">팔로우</button>
+								</c:if>
+								<c:if test="${data.m_isban == 2}">
+									<button type="button" class="canslebtn1 click2" style="float: right;">팔로우</button>
+								</c:if>
+							</div>
+						</div>
+					</c:forEach>
 					<br>
 					<button class="btn btn-secondary btn-block" data-dismiss="modal"
 						aria-label="Close">취소</button>
@@ -359,12 +396,16 @@ h6 {
 					<span aria-hidden="true">&times;</span>
 					<c:forEach var="data" items="${LIST2}">
 						<div>
-							<div class="square small-angry" id="${data.m_id}">
+							<div class="square small-angry" id="${data.m_id}"
+								style="width: 50px; height: 50px; overflow: hidden; position: relative; display: inline-block; border-radius: 50%;">
 
-								<img class="album" src="/www/profile/${data.m_name}" />
+								<img class="album" src="/www/profile/${data.m_name}" 
+								style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" />
 							</div>
+								<div style="display:inline-block; width:100%;" >
 							<span id="fname2">${data.m_id}</span>
-							<button type="button" class="canslebtn2">팔로우</button>
+							<button type="button" class="canslebtn2" style= "background-color: blue; float: right;">팔로우 </button>
+						</div>
 						</div>
 					</c:forEach>
 					<div class="canslebtn"></div>
@@ -377,6 +418,7 @@ h6 {
 			</div>
 		</div>
 	</div>
+
 
 
 	<!-- Optional JavaScript -->
@@ -396,6 +438,10 @@ h6 {
 	
 	<script type="text/javascript"> 
 		$(document).ready(function() {
+			
+			
+			$(document).ready(function () { $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .8) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>'); });
+
 
 			var sid= '<c:out value="${SID}"/>';
 
@@ -414,6 +460,11 @@ h6 {
 			$('#profile').click(function() {
 				$(location).attr('href', '/www/profconfig.mr');
 
+			});
+			
+			$('#likedbtn').click(function(){
+				$(location).attr('href','/www/likedlist.mr');
+				
 			});
 
 			$('.profIn').change(function(e) {
@@ -441,7 +492,8 @@ h6 {
 		});
 
 		//1.팔로워 ajax
-
+			var sid= '<c:out value="${SID}"/>';
+	
 		$(document).on("click", '.canslebtn1', function() {
 			var f_name = $(this).prev().html();
 			
@@ -464,26 +516,31 @@ h6 {
 	                var now2 = now.substring(idx+1);
 
 					if (now2 == 'click1') {
-						$(this).removeClass('click1')
-						$(this).addClass('click2')
+						$(this).removeClass('click1');
+						$(this).addClass('click2');
 
 					} else {
-						$(this).removeClass('click2')
-						$(this).addClass('click1')
+						$(this).removeClass('click2');
+						$(this).addClass('click1');
 
 					}
-
+				
 				},
 				error : function() {
 					alert('### 통신 에러 ###');
 				}
 			});
 		});
-
+	
 		//팔로잉 ajax
+		
+		var sid= '<c:out value="${SID}"/>';
+		
 			$(document).on("click", '.canslebtn2', function() {
-			var f_name = $('#fname2').html();
+			var f_name = $(this).prev().html();
 			
+			console.log( sid + f_name);
+
 			$.ajax({
 				url : "/www/followercheck.mr",
 				type : "post",
@@ -493,11 +550,28 @@ h6 {
 					m_name : f_name
 				},
 				success : function(vo) {
+						
 					alert("성공했습니다.");
+		/* 	
+			var now1 = $(this).attr("class");
+			 
+				var idx1= now1 indexOf(' ');
+				var now3= now1.substring(idx1+1);
 				
-					
-					
-
+				if(now3 == 'click2' ){
+			
+					var now3 =$("click1");
+					$(this).removeclass('click2');
+					$(this).addclass('click1');
+			 	
+				}else{
+						
+						$(this).removeclass('click1');
+						$(this).addclass('click2');
+						
+					}
+		 */		
+		 
 				},
 				error : function() {
 					alert('### 통신 에러 ###');

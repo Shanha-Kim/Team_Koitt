@@ -36,9 +36,10 @@ p_no = #{no}
 UPDATE
 member
 <set>
-m_id=#{m_id}, m_about=#{m_about}, m_email=#{m_email}, m_tel=#{m_tel}
+m_id=#{m_id}, m_about=#{m_about}, m_email= #{m_email}, m_tel=#{m_tel}
 WHERE
 m_no =#{m_no}
+
 </set>
 
 </update>
@@ -191,7 +192,7 @@ FROM
                      from
                        member
                      where
-                       m_id ='lbrade0')
+                       m_id =#{SID})
    ) a
    
   </select> 
@@ -290,6 +291,82 @@ AND
 f_following = (SELECT M_NO FROM MEMBER WHERE M_ID = #{m_name})
  
 </update>
+
+
+
+
+<!-- 팔로워 카운트 전담처리 함수 -->
+
+<select id="followercnt" resultType="int" parameterType="String">
+SELECT
+
+	count(*)
+
+FROM
+
+follow
+
+WHERE
+	f_following = ( SELECT
+	
+			m_no 
+		FROM
+			member
+		WHERE
+			m_id=#{SID}	
+
+)
+
+</select>
+
+<!-- 팔로잉 카운트 전담처리 함수 -->
+<select id ="followeingcnt" resultType="int" parameterType="String">
+SELECT
+	
+	count(*)
+FROM
+	follow
+
+WHERE
+	f_following = (SELECT 
+	
+		m_no
+		
+					FROM
+		
+			member
+					WHERE
+			m_id =#{SID}
+			
+	)
+
+</select>
+
+	<!-- 내가 좋아요 한 게시글 보이기 -->
+<select id ="likedboard" resultType="bVO" parameterType="String">
+SELECT
+b_no, (select a_sname from albumpicture where b_ano = a_no) sname , b_emotion
+
+FROM
+	board
+WHERE
+	b_no = 
+(SELECT
+	 bl_bno 
+
+FROM
+		boardlike
+WHERE
+ 		bl_mno= 
+        		(SELECT  
+					m_no
+				FROM
+					member
+				WHERE 
+            		m_id= #{SID}) 
+              )
+
+</select>
 
 </mapper>
 

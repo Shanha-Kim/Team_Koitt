@@ -4,15 +4,35 @@
 			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 			
+				
+			
 <mapper namespace="fSQL">
-	<insert id="addproPic" parameterType="fVO" >
+
+<!-- 프로필 사진 수정  -->
+<update id="addpic" parameterType="fVO">
+
+UPDATE
+	profilepicture
+<set>
+ p_no = #{no}, p_oname =#{oname}, p_sname=#{sname}, p_dir=#{dir}, p_length=#{len} 
+
+WHERE
+p_no = #{no}
+</set>
+
+</update>
+
+
+
+
+	<!-- <insert id="addproPic" parameterType="fVO" >
 		INSERT INTO 
 			profilepicture
 		values(
 			(SELECT NVL(MAX(p_no) + 1, 10000001) FROM profilepicture), #{oname}, #{sname}, #{dir}, #{len}, sysdate
 		)
 		
-	</insert>
+	</insert> -->
 	
 	<insert id="addalbumPic1" parameterType="fVO">
 		<selectKey keyProperty="no" resultType="long" order="BEFORE">

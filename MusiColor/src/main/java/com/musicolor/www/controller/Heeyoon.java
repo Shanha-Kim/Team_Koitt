@@ -52,7 +52,6 @@ public class Heeyoon {
 	@RequestMapping("profiletext.mr") //프로필 텍스트 수정 controller
 	public ModelAndView configtext(ModelAndView mv, MemberVO mVO, RedirectView rv ) {
 		hDAO.profiletextconfig(mVO);
-		
 		rv.setUrl("/www/profconfig.mr");
 		mv.setView(rv);
 		return mv;
@@ -88,6 +87,12 @@ public class Heeyoon {
 		   int cnt= hDAO.profilecont((String)session.getAttribute("SID"));
 		   mv.addObject("CNT",cnt);
 		  mv.setViewName("pages/profile");
+		  //팔로워 수 카운트
+		  int x = hDAO.followcnt((String)session.getAttribute("SID"));
+		  mv.addObject("CNT1", x);
+		  //팔로잉 수 타운트
+		  int y = hDAO.followingcnt((String)session.getAttribute("SID"));
+		  mv.addObject("CNT2",y); 
 		  
 		  //팔로워 버튼 눌렀을 때 팔로워 리스트 뽑아오기
 		  List<MemberVO> list1 = hDAO.follwer((String)session.getAttribute("SID"));
@@ -132,5 +137,19 @@ public class Heeyoon {
 		   hDAO.followcheck(mVO);		
 		  return 0;
 	  }
+	  
+	// 좋아요한 게시물 보이기
+	  @RequestMapping("likedlist.mr")
+	  public ModelAndView likedlist(ModelAndView mv, HttpSession session){
+			session.setAttribute("SID", "kk");
+		  String SID = (String)session.getAttribute("SID");
+		  List<BoardVO> list3 = hDAO.likelist(SID);
+		  mv.addObject("LIKELIST",list3);	
+		  mv.setViewName("pages/liked");
+		 return mv;
+	  }
+	  
+	  
+	  
 	 }
-	
+	 

@@ -114,4 +114,22 @@ public class HeeyoonDAO {
 	public int fadd(MemberVO mVO) {
 		return sqlSession.update("hSQL.fadd", mVO);
 	}
+	
+	//팔로워 카운트 전담 처리 함수
+	public int followcnt(String SID) {
+		return sqlSession.selectOne("hSQL.followercnt",SID);
+		
+	}
+	//팔로잉 카운트 전담 처리 함수
+	public int followingcnt(String SID) {
+		return sqlSession.selectOne("hSQL.followeingcnt",SID);
+	}
+	
+	//좋아요 게시글 리스트  전담처리 함수
+	public List<BoardVO> likelist(String SID) {
+		List<BoardVO> list3 =  sqlSession.selectList("hSQL.likedboard", SID);
+		return list3;
+		
+	}
 }
+
