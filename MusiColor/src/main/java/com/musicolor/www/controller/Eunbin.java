@@ -200,6 +200,15 @@ public class Eunbin {
 		return mv;
 	}
 	
+	@RequestMapping("/adminrepoSelected.mr")
+	public ModelAndView adminRepoSelected(ModelAndView mv, String r_isokay) {
+		List<ReportVO> list = eDAO.getReportSelected(r_isokay);
+		mv.addObject("LIST", list);
+		mv.addObject("CODE", r_isokay);
+		mv.setViewName("pages/adminRepo");
+		return mv;
+	}
+	
 	@ResponseBody
 	@RequestMapping("/repoDetail.mr")
 	public SongVO repoDetail(String sno) {
@@ -225,7 +234,7 @@ public class Eunbin {
 		
 		// 관리자 mno 가져오기
 		int m_no = eDAO.findADMno(vo.getId());
-		vo.setY_mno(m_no);
+		vo.setM_no(m_no);
 		
 		// 앨범 수정
 		if(vo.getCheck() == 1) {
@@ -242,9 +251,14 @@ public class Eunbin {
 		int ycnt = eDAO.reupdateYoutube(vo);
 		
 		// report isokay 변경
-		int rcnt = eDAO.reupdateReport(vo);
+		int rcnt = 0;
 		// 반환값 설정
-		if(scnt == 1 && ycnt == 1 && ycnt == 1 && rcnt == 1) {
+		if(scnt == 1 && ycnt == 1 && ycnt == 1) {
+			// report isokay 변경
+			rcnt = eDAO.reupdateReport(vo);
+		}
+		
+		if(rcnt == 1) {
 			cnt = 1;
 		}
 		

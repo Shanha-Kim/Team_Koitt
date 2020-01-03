@@ -178,9 +178,25 @@
     		r_no, r_problem, r_kind, r_detail, r_isokay,
     		TO_CHAR(r_date, 'YYYY/MM/DD')r_date,
     		(SELECT m_id FROM member WHERE m_no = r_mno) id,
-    		(SELECT s_title FROM song WHERE s_no = r_problem) song
+    		(SELECT s_title FROM song WHERE s_no = r_problem) song,
+    		(SELECT ad_id FROM admin WHERE ad_no = r_admin) adid
 		FROM
     		report
+		ORDER BY
+    		r_no DESC
+	</select>
+	
+	<select id="getReportSelected" parameterType="String" resultType="rVO">
+		SELECT
+    		r_no, r_problem, r_kind, r_detail, r_isokay,
+    		TO_CHAR(r_date, 'YYYY/MM/DD')r_date,
+    		(SELECT m_id FROM member WHERE m_no = r_mno) id,
+    		(SELECT s_title FROM song WHERE s_no = r_problem) song,
+    		(SELECT ad_id FROM admin WHERE ad_no = r_admin) adid
+		FROM
+    		report
+    	WHERE
+    		r_isokay = #{r_isokay}
 		ORDER BY
     		r_no DESC
 	</select>
@@ -241,7 +257,7 @@
 		UPDATE
 			report
 		<set>
-				r_isokay = 'Y'
+				r_isokay = 'Y', r_admin = #{m_no}
 			WHERE
 				r_no = #{r_no}
 		</set>

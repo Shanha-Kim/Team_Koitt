@@ -11,8 +11,7 @@
 <!-- Bootstrap CSS & theme -->
 <link rel="stylesheet" href="/www/css/bootstrap-lux.css">
 <link rel="stylesheet" href="/www/css/bootstrap.custom.css">
-<link rel="stylesheet"
-	href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
+<link rel="stylesheet" href="/www/css/random.css" />
 
 <!-- Font Awesome 5 -->
 <link rel="stylesheet"
@@ -23,20 +22,24 @@
 <body class="bg-primary">
 	<jsp:include page="adminNav.jsp" flush="false" />
 
-	<div class="container-fluid" style="margin-top: 100px;">
-		<table class="table table-hover" id="table" data-toggle="table"
-			data-sort-class="table-active" data-sortable="true"
-			data-search="true">
+	<div class="container" style="margin-top: 100px;">
+		<div class="btn-group btn-block mb-5" role="group">
+			<button type="button" class="btn btn-primary text-muted" id="btn-0">ALL</button>
+			<button type="button" class="btn btn-primary text-muted" id="btn-1">N</button>
+			<button type="button" class="btn btn-primary text-muted" id="btn-2">Y</button>
+		</div>
+		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th data-sortable="true">NO</th>
-					<th data-sortable="true">REPORTER</th>
-					<th data-sortable="true">PROBLEM</th>
-					<th data-sortable="true">KIND</th>
-					<th data-sortable="true">DETAIL</th>
-					<th data-sortable="true">Y/N</th>
-					<th data-sortable="true">DATE</th>
-					<th data-sortable="true">PROCESSING</th>
+					<th>NO</th>
+					<th>REPORTER</th>
+					<th>PROBLEM</th>
+					<th>KIND</th>
+					<th>DETAIL</th>
+					<th>Y/N</th>
+					<th>DATE</th>
+					<th>ADMIN</th>
+					<th>PROCESSING</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,6 +52,7 @@
 						<td class="detail">${data.r_detail}</td>
 						<td>${data.r_isokay}</td>
 						<td>${data.r_date}</td>
+						<td>${data.adid}</td>
 						<td>
 							<button type="button" class="btn btn-black processing"
 								id="${data.r_problem}">EDIT</button>
@@ -118,13 +122,34 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<!-- Bootstrap Table -->
-	<script
-		src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
-	<script
-		src="https://unpkg.com/bootstrap-table@1.15.5/dist/locale/bootstrap-table-zh-CN.min.js"></script>
 	<script>
 		$(function() {
+			/* 버튼 이벤트 */
+	    	var scode = '${CODE}';
+	  		if(scode == 'N'){
+	  			$('#btn-1').removeClass('text-muted');
+	  			$('#btn-1').addClass('selected');
+	  		} else if(scode == 'Y'){
+	  			$('#btn-2').removeClass('text-muted');
+	  			$('#btn-2').addClass('selected');
+	  		} else {
+	  			$('#btn-0').removeClass('text-muted');
+	  			$('#btn-0').addClass('selected');
+	  		}
+	  		
+	  		/* 버튼 페이지 이동 */
+	        $("#btn-0").click(function(){
+	        	$(location).attr("href", "/www/adminrepo.mr");
+	        })
+	        
+	        $("#btn-1").click(function(){
+	        	$(location).attr("href", "/www/adminrepoSelected.mr?r_isokay=N");
+	        })
+	        
+	        $("#btn-2").click(function(){
+	        	$(location).attr("href", "/www/adminrepoSelected.mr?r_isokay=Y");
+	        })
+	        
 			$('.processing').click(
 					function() {
 						var sno = $(this).attr('id');
@@ -140,7 +165,6 @@
 						$("#r_no").val(rno);
 						$("#repoKind").html(kind);
 						$("#repoDetail").html(detail)
-						
 
 						$.ajax({
 							url : "/www/repoDetail.mr",
@@ -170,17 +194,17 @@
 							}
 						});
 					});
-
+			
 			$('#sFile').change(function(e) {
 				var tmp = URL.createObjectURL(e.target.files[0]);
-				$('#a_sname').attr('src', tmp);
+				$('#sname').attr('src', tmp);
 			});
 
 			$('#edit').click(function() {
 				var fileCheck = $("#sFile").val();
 
 				event.preventDefault();
-				
+
 				if (!fileCheck) {
 					$('#check').val(0);
 					/* 파일 업로드가 존재하지 않는 경우 */

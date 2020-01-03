@@ -33,6 +33,7 @@ public class SongVO {
 	
 	// 아이디
 	private String id;
+	private int m_no;
 	
 	// 임시저장용
 	private int check;
@@ -129,6 +130,12 @@ public class SongVO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
 	}
 	public int getCheck() {
 		return check;

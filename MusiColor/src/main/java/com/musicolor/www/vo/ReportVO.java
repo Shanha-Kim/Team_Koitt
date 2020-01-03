@@ -11,6 +11,7 @@ public class ReportVO {
 	private String r_date;
 	
 	private String id;
+	private String adid;
 	
 	private String song;
 
@@ -76,6 +77,15 @@ public class ReportVO {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+
+	public String getAdid() {
+		return adid;
+	}
+
+	public void setAdid(String adid) {
+		this.adid = adid;
 	}
 
 	public String getSong() {

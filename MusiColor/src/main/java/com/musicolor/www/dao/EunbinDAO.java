@@ -66,6 +66,10 @@ public class EunbinDAO {
 		return sqlSession.selectList("eSQL.getReport");
 	}
 	
+	public List<ReportVO> getReportSelected(String r_isokay){
+		return sqlSession.selectList("eSQL.getReportSelected", r_isokay);
+	}
+	
 	public SongVO repoDetail(String sno) {
 		return sqlSession.selectOne("eSQL.repoDetail", sno);
 	}
