@@ -7,8 +7,12 @@ public class ReportVO {
 	private long r_sno; // 신고된 곡 번호
 	private String r_kind; // 신고 분류
 	private String r_detail; // 신고 자세한 내용
+	private String r_isokay;
+	private String r_date;
 	
 	private String id;
+	
+	private String song;
 
 	public long getR_no() {
 		return r_no;
@@ -50,6 +54,22 @@ public class ReportVO {
 		this.r_detail = r_detail;
 	}
 
+	public String getR_isokay() {
+		return r_isokay;
+	}
+
+	public void setR_isokay(String r_isokay) {
+		this.r_isokay = r_isokay;
+	}
+
+	public String getR_date() {
+		return r_date;
+	}
+
+	public void setR_date(String r_date) {
+		this.r_date = r_date;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -57,4 +77,14 @@ public class ReportVO {
 	public void setId(String id) {
 		this.id = id;
 	}
+
+	public String getSong() {
+		return song;
+	}
+
+	public void setSong(String song) {
+		this.song = song;
+	}
+	
+	
 }

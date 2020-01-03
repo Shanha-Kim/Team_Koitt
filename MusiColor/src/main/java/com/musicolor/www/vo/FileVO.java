@@ -11,6 +11,8 @@ public class FileVO {
 	private char isshow;
 	private MultipartFile sFile;
 	
+	private int check;
+	
 	
 	
 	public MultipartFile getsFile() {
@@ -56,6 +58,10 @@ public class FileVO {
 	public void setIsshow(char isshow) {
 		this.isshow = isshow;
 	}
-	
-	
+	public int getCheck() {
+		return check;
+	}
+	public void setCheck(int check) {
+		this.check = check;
+	}
 }

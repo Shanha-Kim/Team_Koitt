@@ -34,6 +34,9 @@ public class SongVO {
 	// 아이디
 	private String id;
 	
+	// 임시저장용
+	private int check;
+	
 	public long getS_no() {
 		return s_no;
 	}
@@ -124,5 +127,13 @@ public class SongVO {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public int getCheck() {
+		return check;
+	}
+	public void setCheck(int check) {
+		this.check = check;
+	}
+	
+	
 	
 }
