@@ -23,4 +23,11 @@ public class YoujoonDAO {
 		
 		return sqlSession.insert("mSQL.insertMemb", mVO);
 	}
+	
+	public int idCheck(String m_id) {
+		
+		int cnt = sqlSession.selectOne("mSQL.idCheck", m_id);
+		
+		return cnt;
+	}
 }

@@ -28,4 +28,13 @@
 		)
 	</insert>
 	
+	<select id="idCheck" resultType="int" parameterType="string">
+		SELECT
+			count(*) cnt
+		FROM
+			member
+		WHERE
+			m_id = #{m_id}
+	</select>
+	
 </mapper>

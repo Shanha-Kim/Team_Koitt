@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -29,7 +31,7 @@ public class youjoon {
 		return mv;
 	}
 	
-	@RequestMapping("/loginProc.mr")
+	@RequestMapping("loginProc.mr")
 	public ModelAndView loginProc(HttpSession session, 
 									RedirectView rv, 
 									ModelAndView mv, 
@@ -56,7 +58,7 @@ public class youjoon {
 		return mv;
 	}
 	  
-	@RequestMapping("/logout.mr")
+	@RequestMapping("logout.mr")
 	public ModelAndView logout(ModelAndView mv,
 								RedirectView rv,
 								HttpSession session) {
@@ -110,4 +112,24 @@ public class youjoon {
 		
 		return mv; 
 	}
+	
+	// 아이디 체크
+	@RequestMapping(value="idCheck.mr")
+	@ResponseBody
+	public int idCheck(@RequestParam String m_id) {
+		int cnt = 0;
+		cnt = mDAO.idCheck(m_id);
+		
+		return cnt;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
