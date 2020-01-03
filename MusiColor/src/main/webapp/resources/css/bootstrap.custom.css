@@ -167,7 +167,7 @@ iframe {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  z-index: -2;
+  z-index: -2; 
   filter: blur(15px);
   background: linear-gradient(235deg, #ff5e62, #191919, #b20a2c);
 }
