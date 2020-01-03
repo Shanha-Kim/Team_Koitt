@@ -199,6 +199,7 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<!-- 크롤링 라이브러리 -->
 		<dependency>
 		    <groupId>org.jsoup</groupId>
 		    <artifactId>jsoup</artifactId>
