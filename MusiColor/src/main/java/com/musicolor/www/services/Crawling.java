@@ -8,7 +8,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 public class Crawling {
-	public void crawl() {
+	public List<String> songlist;
+	public List<String> vocallist;
+	
+	public Crawling() {
 		try {
 			//웹에서 내용을 가져온다.
 			Document doc = Jsoup.connect("https://www.billboard.com/charts/hot-100/").get();
@@ -18,13 +21,13 @@ public class Crawling {
 			Elements content_vocal = doc.select(".chart-element__information__artist");
 			//원하는 부분은 Elements형태로 되어 있으므로 이를 String 형태로 바꾸어 준다.
 			System.out.println("##################여기는 음악제목################3 ");
-			List<String> songlist = content_song.eachText();
+			songlist = content_song.eachText();
 			for(String x : songlist) {
 				System.out.println(x);
 			}
 			System.out.println(" ");
 			System.out.println("##################여기는 가수이름################3 ");
-			List<String> vocallist = content_vocal.eachText();
+			vocallist = content_vocal.eachText();
 			for(String x : vocallist) {
 				System.out.println(x);
 			}
