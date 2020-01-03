@@ -123,7 +123,7 @@ public class Eunbin {
 	
 	@RequestMapping("/random.mr")
 	public ModelAndView random(ModelAndView mv, BoardVO bVO) {
-		ArrayList<BoardVO> list = (ArrayList<BoardVO>)eDAO.randomSearch();
+		List<BoardVO> list = eDAO.randomSearch();
 		mv.addObject("LIST", list);
 		mv.setViewName("pages/random");
 		
@@ -132,7 +132,7 @@ public class Eunbin {
 	
 	@RequestMapping("/randomseleced.mr")
 	public ModelAndView randomSelected(ModelAndView mv, BoardVO bVO, String b_emotion) {
-		ArrayList<BoardVO> list = (ArrayList<BoardVO>)eDAO.randomSelected(b_emotion);
+		List<BoardVO> list = eDAO.randomSelected(b_emotion);
 		mv.addObject("LIST", list);
 		mv.addObject("CODE", b_emotion);
 		mv.setViewName("pages/random");
@@ -150,6 +150,105 @@ public class Eunbin {
 		vo.setR_mno(m_no);
 		
 		int cnt = eDAO.reportProc(vo);
+		return cnt;
+	}
+	
+// admin Controller
+	
+	@RequestMapping("/admin.mr")
+	public ModelAndView admin(ModelAndView mv) {
+		mv.setViewName("pages/adminMain");
+		return mv;
+	}
+	
+	@RequestMapping("/adminLogin.mr")
+	public ModelAndView adminLoginForm(ModelAndView mv) {
+		mv.setViewName("pages/adminLogin");
+		return mv;
+	}
+	
+	@RequestMapping("/adminLoginProc.mr")
+	public ModelAndView adminLoginProc(HttpSession session, RedirectView rv, ModelAndView mv, MemberVO vo) {
+		int cnt = eDAO.adminLoginProc(vo);
+		
+		if(cnt == 1) {
+			session.setAttribute("AID", vo.getM_id());
+			rv.setUrl("/www/admin.mr");
+			mv.setView(rv);
+		} else {
+			rv.setUrl("/www/adminLogin.mr");
+			mv.setView(rv); 
+		}
+
+		return mv;
+	}
+	
+	@RequestMapping("/adminLogout.mr")
+	public ModelAndView logout(ModelAndView mv, RedirectView rv, HttpSession session) {
+		session.setAttribute("AID", "");
+		rv.setUrl("/www/admin.mr");
+		mv.setView(rv); 
+		
+		return mv;
+	}
+	
+	@RequestMapping("/adminrepo.mr")
+	public ModelAndView adminRepo(ModelAndView mv) {
+		List<ReportVO> list = eDAO.getReport();
+		mv.addObject("LIST", list);
+		mv.setViewName("pages/adminRepo");
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/repoDetail.mr")
+	public SongVO repoDetail(String sno) {
+		SongVO vo = eDAO.repoDetail(sno);
+		
+		String tmp = vo.getY_link();
+		tmp = "https://www.youtube.com/watch?v=" + tmp;
+		vo.setY_link(tmp);
+		
+		return vo;
+	}
+	
+	@ResponseBody
+	@RequestMapping("repoUpdate.mr")
+	public int repoUpdate(HttpSession session, SongVO vo) {
+		int cnt = 0;
+		
+		// youtube 주소 메인부 추출
+		String tmp = vo.getY_link();
+		int idx = tmp.indexOf("=");
+		String yLink = tmp.substring(idx + 1);
+		vo.setY_link(yLink);
+		
+		// 관리자 mno 가져오기
+		int m_no = eDAO.findADMno(vo.getId());
+		vo.setY_mno(m_no);
+		
+		// 앨범 수정
+		if(vo.getCheck() == 1) {
+			System.out.println("파일 수정 진입");
+			fileSrvc.setDAO(fDAO);
+			fileSrvc.singleUpProc(session, vo);
+		}
+		
+		// 가수 수정
+		int vcnt = eDAO.reupdateVocal(vo);
+		// 노래 수정
+		int scnt = eDAO.reupdateSong(vo);
+		
+		// youtube 수정
+		int ycnt = eDAO.reupdateYoutube(vo);
+		
+		// report isokay 변경
+		int rcnt = eDAO.reupdateReport(vo);
+		// 반환값 설정
+		if(scnt == 1 && ycnt == 1 && ycnt == 1 && rcnt == 1) {
+			cnt = 1;
+		}
+		
 		return cnt;
 	}
 }

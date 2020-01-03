@@ -34,7 +34,7 @@ p_no = #{no}
 		
 	</insert> -->
 	
-	<insert id="addalbumPic1" parameterType="fVO">
+	<insert id="addAlbumPic" parameterType="fVO">
 		<selectKey keyProperty="no" resultType="long" order="BEFORE">
 			SELECT 
 				NVL(MAX(a_no) + 1, 100000000001) 
@@ -47,6 +47,16 @@ p_no = #{no}
 				#{no}, #{oname}, #{sname}, #{dir}, #{len}, sysdate
 			)
 	</insert>
+	
+	<update id="updateAlbumPic" parameterType="fVO">
+		UPDATE
+			profilepicture
+		<set>
+				a_oname = #{oname}, a_sname = #{sname}, a_dir = #{dir}, a_length = #{len}, a_date = sysdate
+			WHERE
+				a_no = #{no}
+		</set>
+	</update>
 
 </mapper>
 

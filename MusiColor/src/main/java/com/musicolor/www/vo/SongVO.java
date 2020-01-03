@@ -37,6 +37,9 @@ public class SongVO {
 	// 임시저장용
 	private int check;
 	
+	// report num
+	private long r_no;
+	
 	public long getS_no() {
 		return s_no;
 	}
@@ -133,7 +136,10 @@ public class SongVO {
 	public void setCheck(int check) {
 		this.check = check;
 	}
-	
-	
-	
+	public long getR_no() {
+		return r_no;
+	}
+	public void setR_no(long r_no) {
+		this.r_no = r_no;
+	}
 }

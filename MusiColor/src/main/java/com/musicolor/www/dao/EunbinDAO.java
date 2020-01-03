@@ -55,4 +55,38 @@ public class EunbinDAO {
 	public int reportProc(ReportVO vo) {
 		return sqlSession.insert("eSQL.reportProc", vo);
 	}
+	
+// admin DAO
+	
+	public int adminLoginProc(MemberVO mVO) {
+		return sqlSession.selectOne("eSQL.adminLogin", mVO);
+	}
+	
+	public List<ReportVO> getReport(){
+		return sqlSession.selectList("eSQL.getReport");
+	}
+	
+	public SongVO repoDetail(String sno) {
+		return sqlSession.selectOne("eSQL.repoDetail", sno);
+	}
+	
+	public int findADMno(String ad_id) {
+		return sqlSession.selectOne("eSQL.findADMno", ad_id);
+	}
+	
+	public int reupdateVocal(SongVO vo) {
+		return sqlSession.update("eSQL.reupdateVocal", vo);
+	}
+	
+	public int reupdateSong(SongVO vo) {
+		return sqlSession.update("eSQL.reupdateSong", vo);
+	}
+	
+	public int reupdateYoutube(SongVO vo) {
+		return sqlSession.update("eSQL.reupdateYoutube", vo);
+	}
+	
+	public int reupdateReport(SongVO vo) {
+		return sqlSession.update("eSQL.reupdateReport", vo);
+	}
 }

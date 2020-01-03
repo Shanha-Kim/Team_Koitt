@@ -156,11 +156,96 @@
 			FROM report
 		</selectKey>
 		INSERT INTO
-	    	report(r_no, r_mno, r_sno, r_kind, r_detail)
+	    	report(r_no, r_mno, r_problem, r_kind, r_detail)
 		VALUES(
-	    	#{r_no}, #{r_mno}, #{r_sno}, #{r_kind}, #{r_detail}
+	    	#{r_no}, #{r_mno}, #{r_problem}, #{r_kind}, #{r_detail}
 		)
 	</insert>
+	
+	<!-- admin SQL -->
+	<select id="adminLogin" resultType="int" parameterType="mVO">
+		SELECT
+			count(*)
+		FROM
+			admin
+		WHERE
+			ad_id = #{m_id}
+			and ad_pw = #{m_pw}
+	</select>
+	
+	<select id="getReport" resultType="rVO">
+		SELECT
+    		r_no, r_problem, r_kind, r_detail, r_isokay,
+    		TO_CHAR(r_date, 'YYYY/MM/DD')r_date,
+    		(SELECT m_id FROM member WHERE m_no = r_mno) id,
+    		(SELECT s_title FROM song WHERE s_no = r_problem) song
+		FROM
+    		report
+		ORDER BY
+    		r_no DESC
+	</select>
+	
+	<select id="repoDetail" parameterType="String" resultType="sVO">
+		SELECT
+		    s_title, s_vno, s_no, s_ano,
+		    (SELECT v_name FROM vocal WHERE v_no = s_vno)v_name,
+		    (SELECT a_sname FROM albumpicture WHERE a_no = s_ano)a_sname,
+		    (SELECT y_link FROM youtube WHERE y_sno = s_no) y_link,
+		    (SELECT y_no FROM youtube WHERE y_sno = s_no) y_no  
+		FROM
+		    song
+		WHERE
+		    s_no = #{sno}
+	</select>
+	
+	<select id="findADMno" parameterType="string" resultType="int">
+		SELECT
+		    ad_no
+		FROM
+		    admin
+		WHERE
+		    ad_id = #{ad_id}
+	</select>
+	
+	<update id="reupdateVocal" parameterType="sVO">
+		UPDATE
+			vocal
+		<set>
+				v_name = #{v_name}
+			WHERE
+				v_no = #{s_vno}
+		</set>
+	</update>
+	
+	<update id="reupdateSong" parameterType="sVO">
+		UPDATE
+			song
+		<set>
+				s_title = #{s_title}
+			WHERE
+				s_no = #{s_no}
+		</set>
+	</update>
+	
+	<update id="reupdateYoutube" parameterType="sVO">
+		UPDATE
+			youtube
+		<set>
+				y_link = #{y_link}
+			WHERE
+				y_no = #{y_no}
+		</set>
+	</update>
+	
+	<update id="reupdateReport" parameterType="sVO">
+		UPDATE
+			report
+		<set>
+				r_isokay = 'Y'
+			WHERE
+				r_no = #{r_no}
+		</set>
+	</update>
 </mapper>
 
 

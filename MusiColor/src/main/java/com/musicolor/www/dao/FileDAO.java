@@ -20,10 +20,9 @@ public class FileDAO {
 	}
 
 	public int albumPicture(FileVO fVO) {
-		System.out.println(fVO.getOname());
-		System.out.println(fVO.getSname());
-		System.out.println(fVO.getDir());
-		System.out.println(fVO.getLen());
-		return sqlSession.insert("fSQL.addalbumPic1", fVO);
+		if (fVO.getCheck() == 1) {
+			return sqlSession.update("fSQL.updateAlbumPic", fVO);
+		}
+		return sqlSession.insert("fSQL.addAlbumPic", fVO);
 	}
 }
