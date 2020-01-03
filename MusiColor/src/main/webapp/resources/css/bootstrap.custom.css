@@ -149,7 +149,7 @@ iframe {
 
 /* -------------------------------------------------- */
 /* content border gradient */
-#angry:before {
+.angry:before {
   content: "";
   position: absolute;
   top: -3px;
@@ -160,7 +160,7 @@ iframe {
   background: linear-gradient(235deg, #ff5e62, #191919, #b20a2c);
 }
 
-#angry:after {
+.angry:after {
   content: "";
   position: absolute;
   top: -2px;
@@ -172,7 +172,7 @@ iframe {
   background: linear-gradient(235deg, #ff5e62, #191919, #b20a2c);
 }
 
-#sad:before {
+.sad:before {
   content: "";
   position: absolute;
   top: -3px;
@@ -183,7 +183,7 @@ iframe {
   background: linear-gradient(235deg, #24c6dc, #191919, #514a9d);
 }
 
-#sad:after {
+.sad:after {
   content: "";
   position: absolute;
   top: -2px;
