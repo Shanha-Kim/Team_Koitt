@@ -63,6 +63,7 @@
  		</thead>
  	  </table>
 	  </c:if>
+	</div>
 	<!-- modal, content detail -->
     <div class="modal" id="myModal1">
       <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -124,7 +125,7 @@
 		});
 	});
 	
-//댓글기능===========================================================================================
+	//댓글기능===========================================================================================
 	//댓글 삭제, 신고버튼
 	var cno=0;
 	var cuser = '';
@@ -137,6 +138,7 @@
 		}else{
 			$('#myModal2').modal("show");
 		}
+		
 		//삭제로직
 		$(document).on("click", '#delcomt', function() {
 			$.ajax({
@@ -178,7 +180,7 @@
 		$("#"+bno).val(upid+" ");
 	});
 	
-	$(".comment-write-dark").keyup(function(e){
+	$(document).on("keyup", '.comment-write-dark', function(e){
 		if(e.keyCode == 13){
 			e.preventDefault();
 			bno = $(this).prev().attr("data");
@@ -224,6 +226,79 @@
 			});
 		}
 	});
+	
+	// 검색 후 무한스크롤===========================================================================================
+	var rno = 1;
+	var isEnd = false;
+	$(window).scroll(function(){
+		var $window = $(this);
+		var scrollTop = $window.scrollTop();
+		var windowHeight = $window.height();
+		var documentHeight = $(document).height();
+        
+//         console.log("documentHeight:" + documentHeight + " | scrollTop:" + scrollTop + " | windowHeight: " + windowHeight );
+        
+        // scrollbar의 thumb가 바닥 전 20px까지 도달 하면 리스트를 가져온다.
+        if( scrollTop + windowHeight + 20 > documentHeight ){
+        	//너무 짧은시간에 무한스크롤 중복발동 방지
+            setTimeout(listplus(), 1000);
+        }
+    });
+	var listplus = function(){
+		console.log(isEnd);
+        if(isEnd == true){
+            return;
+        }
+        
+        // renderList 함수에서 html 코드를 보면 <li> 태그에 data-no 속성이 있는 것을 알 수 있다.
+        // ajax에서는 data- 속성의 값을 가져오기 위해 data() 함수를 제공.
+        rno += 5;
+       	console.log(rno);
+        $.ajax({
+            url:"/www/plusListFeed.mr",
+            type: "post",
+            dataType: "json",
+            data : {
+				rno : rno
+			},
+            success: function(vo){
+                // 가져온 데이터가 8개 이하일 경우 무한 스크롤 종료
+                var length = vo.length;
+                console.log(length);
+                if( length < 5 ){
+                    isEnd = true;
+                }
+                var resultlist = '';
+				for(var i=0; i<length; i++){
+   					resultlist+='<div class="card mb-3 bg-primary mb-5 angry">';
+					resultlist+='<h3 class="card-header"><img class="profile" src="/www/profile/'+vo[i].sname+'" />'+vo[i].m_id+'</h3>';
+					resultlist+='<div class="youtube">';
+					resultlist+='<iframe src="https://www.youtube.com/embed/'+vo[i].y_link+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+					resultlist+='</div>';
+					resultlist+='<div class="card-body pb-0">';
+					resultlist+='<span class="ml-auto">';
+					resultlist+='<input class="bno" type="hidden" data="'+vo[i].b_no+'">';
+					resultlist+='<i class="heart far fa-heart"></i>';
+					resultlist+='<span>'+vo[i].b_like+' likes</span></span>';
+					resultlist+='<h6 class="card-subtitle text-muted mb-2 mt-2">'+vo[i].s_title+'</h6>';
+					resultlist+='<p class="card-text">'+vo[i].b_body+'</p>';
+					resultlist+='</div>';
+					resultlist+='<ul id="'+vo[i].b_no+'a" class="list-group list-group-flush" data="'+vo[i].b_no+'">';
+					//댓글
+					for(var j=0; j<vo[i].comt.length; j++){
+						resultlist+='<li class="list-group-item pt-0 pb-1 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo[i].comt[j].c_no+'" data-user="'+vo[i].comt[j].c_mid+'" ><strong>'+vo[i].comt[j].c_mid+' </strong> '+vo[i].comt[j].c_body+' </span><span></span><span class="comtmodi">···</span></li>';
+					}
+					resultlist+='</ul>';
+					resultlist+='<div class="card-footer">';
+					resultlist+='<div class="pt-3">';
+					resultlist+='<input class="bno" type="hidden" data="'+vo[i].b_no+'">';
+					resultlist+='<input id="'+vo[i].b_no+'" class="comment-write-dark" type="text" placeholder="댓글을 입력해주세요" />';
+					resultlist+='</div></div></div>';
+				}
+   				$('#main').append(resultlist);
+            }
+        });
+    }
   })
   </script>
   </body>

@@ -187,7 +187,7 @@
 			)
 		WHERE
 	<![CDATA[    
-		rno BETWEEN #{b_vno} AND #{b_vno}+8
+		rno BETWEEN #{rno} AND #{rno}+8
  	]]> 
 	</select>
 	<select id="PreView"  resultType="fVO" parameterType="bVO">

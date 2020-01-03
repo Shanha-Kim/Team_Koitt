@@ -16,7 +16,7 @@ import com.musicolor.www.dao.ShanhaDAO;
 public class Shanha {
 	@Autowired
 	ShanhaDAO sDAO;
-	
+	//feed페이지
 	@RequestMapping("/feed.mr")
 	public ModelAndView goFeed(ModelAndView mv, HttpSession session) {
 		String SID = (String)session.getAttribute("SID");
@@ -29,14 +29,36 @@ public class Shanha {
 		
 		return mv;
 	}
+	@RequestMapping("/plusListFeed.mr")
+	@ResponseBody
+	public ArrayList<BoardVO> plusListFeed(BoardVO bVO, HttpSession session){
+		String SID = (String)session.getAttribute("SID");
+		bVO.setM_id(SID);
+		ArrayList<BoardVO> list = (ArrayList<BoardVO>)sDAO.showFeed(bVO);
+		return list;
+	}
+	
+	//댓글기능
 	@RequestMapping("/delComt.mr")
 	@ResponseBody
 	public int delcomt(ComtVO cmVO) {
 		int cnt = sDAO.delComt(cmVO);
 		return cnt;
 	}
-	
-	
+	@RequestMapping("/comtWrite.mr")
+	@ResponseBody
+	public ArrayList<ComtVO> comtWirte(ComtVO cmVO) {
+		ArrayList<ComtVO> list = (ArrayList<ComtVO>)sDAO.comtWrite(cmVO);
+		return list;
+	}
+	//좋아요기능
+	@RequestMapping("/likeProc.mr")
+	@ResponseBody
+	public BoardVO likeProc(BoardVO bVO) {
+		BoardVO vo = sDAO.likeProc(bVO);
+		return vo;
+	}
+	//검색페이지
 	@RequestMapping("/searchBefore.mr")
 	public ModelAndView searchBefore(ModelAndView mv, BoardVO bVO, HttpSession session) {
 		session.setAttribute("SID", "nhearle1");
@@ -46,22 +68,12 @@ public class Shanha {
 		
 		return mv;
 	}
-	
-	
 	@RequestMapping("/showDetail.mr")
 	@ResponseBody
 	public BoardVO showDetail(BoardVO bVO) {
 		BoardVO vo = sDAO.showDetail(bVO);
 		return vo;
 	}
-	
-	@RequestMapping("/likeProc.mr")
-	@ResponseBody
-	public BoardVO likeProc(BoardVO bVO) {
-		BoardVO vo = sDAO.likeProc(bVO);
-		return vo;
-	}
-	
 	@RequestMapping("/searchAfter.mr")
 	public ModelAndView searchAfter(ModelAndView mv, BoardVO bVO, HttpSession session) {
 		session.setAttribute("key_main", bVO.getKey_main());
@@ -83,7 +95,6 @@ public class Shanha {
 		ArrayList<BoardVO> list = (ArrayList<BoardVO>)sDAO.searchAfter(bVO);
 		return list;
 	}
-	
 	@RequestMapping("/preView.mr")
 	@ResponseBody
 	public java.util.List<FileVO> preView(BoardVO bVO) {
@@ -91,11 +102,6 @@ public class Shanha {
 		return plist;
 	}
 	
-	@RequestMapping("/comtWrite.mr")
-	@ResponseBody
-	public ArrayList<ComtVO> comtWirte(ComtVO cmVO) {
-		ArrayList<ComtVO> list = (ArrayList<ComtVO>)sDAO.comtWrite(cmVO);
-		return list;
-	}
+	
 }
 	
