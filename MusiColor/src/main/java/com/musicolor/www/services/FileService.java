@@ -70,8 +70,7 @@ public class FileService {
 	// 앨범사진
 
 	public long singleUpProc(HttpSession session, SongVO vo) {
-		FileVO fVO = new FileVO();
-		
+
 		String saveName = "";
 
 		long len = 0;
@@ -79,33 +78,8 @@ public class FileService {
 		String spath = session.getServletContext().getRealPath("resources/album");
 		System.out.println("spath: " + spath);
 //		String rePath = spath.substring(0, spath.indexOf("\\source\\.metadata"));
-		String rePath = "/Users/mac297/musicolor/git/Team_koitt/MusiColor/src/main/webapp/resources/album";
+		String rePath = "/Users/mac297/git/Team_koitt/MusiColor/src/main/webapp/resources/album";
 		System.out.println("rePath : " + rePath);
-
-		// 재업로드 하는 경우 기존 업로드 파일 삭제
-		if (vo.getCheck() == 1) {
-			String smove = spath + vo.getA_sname();
-			String remove = rePath + vo.getA_sname();
-
-			System.out.println("smove : " + smove);
-			System.out.println("remove : " + remove);
-			File sfile = new File(smove);
-			File refile = new File(remove);
-
-			if (refile.exists() == true) {
-				refile.delete();
-				System.out.println("refile 삭제 완료");
-			} else if (sfile.exists() == true) {
-				sfile.delete();
-				System.out.println("sfile 삭제 완료");
-			}
-			
-			fVO.setNo(vo.getS_ano());
-			fVO.setCheck(vo.getCheck());
-			
-			System.out.println("no : " + fVO.getNo());
-			System.out.println("check : " + fVO.getCheck());
-		}
 
 		String oriName = "";
 		try {
@@ -129,7 +103,32 @@ public class FileService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		FileVO fVO = new FileVO();
+
+		// 재업로드 하는 경우 기존 업로드 파일 삭제
+		if (vo.getCheck() == 1) {
+			String smove = spath + vo.getA_sname();
+			String remove = rePath + vo.getA_sname();
+
+			System.out.println("smove : " + smove);
+			System.out.println("remove : " + remove);
+			File sfile = new File(smove);
+			File refile = new File(remove);
+
+			if (refile.exists() == true) {
+				refile.delete();
+				System.out.println("refile 삭제 완료");
+			} else if (sfile.exists() == true) {
+				sfile.delete();
+				System.out.println("sfile 삭제 완료");
+			}
+
+			fVO.setNo(vo.getS_ano());
+			fVO.setCheck(vo.getCheck());
+
+			System.out.println("no : " + fVO.getNo());
+			System.out.println("check : " + fVO.getCheck());
+		}
 		fVO.setOname(oriName);
 		fVO.setSname(saveName);
 

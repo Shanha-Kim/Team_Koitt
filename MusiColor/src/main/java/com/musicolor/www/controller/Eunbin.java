@@ -229,7 +229,6 @@ public class Eunbin {
 		
 		// 앨범 수정
 		if(vo.getCheck() == 1) {
-			System.out.println("파일 수정 진입");
 			fileSrvc.setDAO(fDAO);
 			fileSrvc.singleUpProc(session, vo);
 		}

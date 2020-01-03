@@ -50,7 +50,7 @@ p_no = #{no}
 	
 	<update id="updateAlbumPic" parameterType="fVO">
 		UPDATE
-			profilepicture
+			albumpicture
 		<set>
 				a_oname = #{oname}, a_sname = #{sname}, a_dir = #{dir}, a_length = #{len}, a_date = sysdate
 			WHERE

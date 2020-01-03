@@ -21,6 +21,8 @@ public class FileDAO {
 
 	public int albumPicture(FileVO fVO) {
 		if (fVO.getCheck() == 1) {
+			System.out.println("파일 수정 진입 성공");
+			System.out.println("no" + fVO.getNo());
 			return sqlSession.update("fSQL.updateAlbumPic", fVO);
 		}
 		return sqlSession.insert("fSQL.addAlbumPic", fVO);
