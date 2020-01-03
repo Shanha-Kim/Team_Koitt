@@ -120,32 +120,32 @@ h6 {
 	background-color: white;
 }
 
-
-.modal { 
+.modal {
 	text-align: center;
- 	padding: 0!important; }
-
-.modal:before { 
-	content: ''; 
-	display: inline-block; 
-	height: 100%; 
-	vertical-align: middle; margin-right: -4px; 
+	padding: 0 !important;
 }
 
-.modal-dialog { 
+.modal:before {
+	content: '';
 	display: inline-block;
- 	text-align: left; 
- 	vertical-align: middle;  
- 	overflow-y: initial !important
- } 
- 	.modal-body{ 
- 	height: 100%; 
- 	overflow-y: auto; 
- }
+	height: 100%;
+	vertical-align: middle;
+	margin-right: -4px;
+}
 
- 
+.modal-dialog {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+	overflow-y: initial !important
+}
 
- /* 
+.modal-body {
+	height: 100%;
+	overflow-y: auto;
+}
+
+/* 
   #fw2button {
   top: 20%;
   width:600px;
@@ -163,18 +163,21 @@ h6 {
 			<div class="col-10 main">
 				<div class="contant">
 
+					<br>
 					<img src="/www/upload/${VO.sname}" id="logo">
 
 					<div class="menubar">
 						<button type="button" id="profile" class="btn btn-info"
 							style="display: block;">프로필 편집</button>
+							<br>
 						<button type="button" class="btn btn-warning">게시물 :
 							${CNT}</button>
-						<button type="button" id="fw1btn" class="btn btn-secondary">팔로워 :
-						    ${CNT1}</button>
-						<button type="button" id="fw2btn" class="btn btn-success">팔로우 :
-							${CNT2}</button>
-						<button type="button" id="likedbtn" class="btn btn-danger">내가 좋아요한 게시물</button>
+						<button type="button" id="fw1btn" class="btn btn-secondary">팔로워
+							: ${CNT1}</button>
+						<button type="button" id="fw2btn" class="btn btn-success">팔로우
+							: ${CNT2}</button>
+						<button type="button" id="likedbtn" class="btn btn-danger">내가
+							좋아요한 게시물</button>
 
 						<button type="button" class="btn btn-outline-secondary"
 							id="unlock" data-id="${ISSHOW}">계정을 다시 활성화</button>
@@ -340,21 +343,23 @@ h6 {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 팔로워 버튼  모달창 -->
 	<div class="modal" id="fw1button">
-		<div class="modal-dialog" role="document" style="width:44%;">
-			<div class="modal-content" style="overflow:scroll; height:400px;" >
+		<div class="modal-dialog" role="document" style="width: 44%;">
+			<div class="modal-content" style="overflow: scroll; height: 400px;">
 				<div class="modal-header">
 					<h5 class="modal-title">팔로워 목록</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close"></button>
 					<span aria-hidden="true">&times;</span>
-					
+
 					<div class="canslebtn"></div>
 				</div>
 				<div class="modal-body">
-				<c:forEach var="data" items="${LIST1}">
+
+
+					<c:forEach var="data" items="${LIST1}">
 						<div class="d-flex">
 							<!-- 이미지 박스 -->
 							<div class="" id="${data.m_id}"
@@ -364,16 +369,19 @@ h6 {
 									style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" />
 							</div>
 							<!-- 아이디, 버튼 영역 -->
-							<div style="display:inline-block; width:100%;" >
+							<div style="display: inline-block; width: 100%;">
 								<span class="fname1">${data.m_id}</span>
 								<c:if test="${data.m_isban == 0}">
-									<button type="button" class="canslebtn1 click1" style= "background-color: blue; float: right;">팔로우</button>
+									<button type="button" class="canslebtn1 click1"
+										style="background-color: blue; float: right;">팔로우</button>
 								</c:if>
 								<c:if test="${data.m_isban == 1}">
-									<button type="button" class="canslebtn1 click2" style="float: right;">팔로우</button>
+									<button type="button" class="canslebtn1 click2"
+										style="float: right;">팔로우</button>
 								</c:if>
 								<c:if test="${data.m_isban == 2}">
-									<button type="button" class="canslebtn1 click2" style="float: right;">팔로우</button>
+									<button type="button" class="canslebtn1 click2"
+										style="float: right;">팔로우</button>
 								</c:if>
 							</div>
 						</div>
@@ -387,30 +395,35 @@ h6 {
 	</div>
 	<!-- 	팔로잉 모달창 -->
 	<div class="modal" id="fw2button">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
+		<div class="modal-dialog" role="document" style="width: 44%;">
+			<div class="modal-content" style="overflow: scroll; height: 400px;">
 				<div class="modal-header">
 					<h5 class="modal-title">팔로잉 목록</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close"></button>
 					<span aria-hidden="true">&times;</span>
-					<c:forEach var="data" items="${LIST2}">
-						<div>
-							<div class="square small-angry" id="${data.m_id}"
-								style="width: 50px; height: 50px; overflow: hidden; position: relative; display: inline-block; border-radius: 50%;">
 
-								<img class="album" src="/www/profile/${data.m_name}" 
-								style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" />
-							</div>
-								<div style="display:inline-block; width:100%;" >
-							<span id="fname2">${data.m_id}</span>
-							<button type="button" class="canslebtn2" style= "background-color: blue; float: right;">팔로우 </button>
-						</div>
-						</div>
-					</c:forEach>
 					<div class="canslebtn"></div>
 				</div>
-				<div class="modal-body text-center">
+				<div class="modal-body">
+					<c:forEach var="data" items="${LIST2}">
+						<div class="d-flex">
+							<!-- 이미지 박스 -->
+							<div class="" id="${data.m_id}"
+								style="width: 50px; height: 50px; overflow: hidden; position: relative; display: inline-block; border-radius: 50%;">
+								<!-- 이미지 -->
+								<img class="" src="/www/profile/${data.m_name}"
+									style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" />
+							</div>
+							<!-- 아이디, 버튼 영역 -->
+							<div style="display: inline-block; width: 100%;">
+								<span class="fname2">${data.m_id}</span>
+
+								<button type="button" class="canslebtn2"
+									style="background-color: white; float: right;">팔로우</button>
+							</div>
+						</div>
+					</c:forEach>
 					<br>
 					<button class="btn btn-secondary btn-block" data-dismiss="modal"
 						aria-label="Close">취소</button>
@@ -430,74 +443,87 @@ h6 {
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" /> -->
 	<!--  <script type="text/javascript" src="/www/js/jquery-3.4.1.min.js"></script>  -->
 
-	 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
-	 <script
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	
-	<script type="text/javascript"> 
-		$(document).ready(function() {
-			
-			
-			$(document).ready(function () { $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .8) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>'); });
 
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
 
-			var sid= '<c:out value="${SID}"/>';
+							$(document)
+									.ready(
+											function() {
+												$('head')
+														.append(
+																'<style type="text/css">.modal .modal-body {max-height: '
+																		+ ($(
+																				'body')
+																				.height() * .8)
+																		+ 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>');
+											});
 
-			var isshow = $("#unlock").attr('data-id');
-			if (isshow == 'Y') { /* 계정활성화 되었을때 */
+							var sid = '<c:out value="${SID}"/>';
 
-				$("#unlock").css('display', 'none');
-				$('#main').removeClass('blur');
+							var isshow = $("#unlock").attr('data-id');
+							if (isshow == 'Y') { /* 계정활성화 되었을때 */
 
-			} else {
+								$("#unlock").css('display', 'none');
+								$('#main').removeClass('blur');
 
-				$('#unlock').css('display', 'block');
-				$('#main').addClass('blur');
+							} else {
 
-			}
-			$('#profile').click(function() {
-				$(location).attr('href', '/www/profconfig.mr');
+								$('#unlock').css('display', 'block');
+								$('#main').addClass('blur');
 
-			});
-			
-			$('#likedbtn').click(function(){
-				$(location).attr('href','/www/likedlist.mr');
-				
-			});
+							}
+							$('#profile').click(function() {
+								$(location).attr('href', '/www/profconfig.mr');
 
-			$('.profIn').change(function(e) {
-				var tmp = URL.createObjectURL(e.target.files[0]);
-				$('#profImg').attr('src', tmp);
-			});
+							});
 
-			$("#unlock").click(function() {
-				$('#myModal').modal();
+							$('#likedbtn').click(function() {
+								$(location).attr('href', '/www/likedlist.mr');
 
-			});
+							});
 
-			$('#unlock2').click(function() {
-				$(location).attr('href', '/www/unlock.mr');
-			});
+							$('.profIn')
+									.change(
+											function(e) {
+												var tmp = URL
+														.createObjectURL(e.target.files[0]);
+												$('#profImg').attr('src', tmp);
+											});
 
-			$("#fw1btn").click(function() {
-				$('#fw1button').modal();
-			});
+							$("#unlock").click(function() {
+								$('#myModal').modal();
 
-			$("#fw2btn").click(function() {
-				$('#fw2button').modal();
-			});
+							});
 
-		});
+							$('#unlock2').click(function() {
+								$(location).attr('href', '/www/unlock.mr');
+							});
+
+							$("#fw1btn").click(function() {
+								$('#fw1button').modal();
+							});
+
+							$("#fw2btn").click(function() {
+								$('#fw2button').modal();
+							});
+
+						});
 
 		//1.팔로워 ajax
-			var sid= '<c:out value="${SID}"/>';
-	
+		var sid = '<c:out value="${SID}"/>';
+
 		$(document).on("click", '.canslebtn1', function() {
 			var f_name = $(this).prev().html();
-			
-			console.log( sid + f_name);
+
+			console.log(sid + f_name);
 
 			$.ajax({
 
@@ -505,15 +531,15 @@ h6 {
 				type : "post",
 				dataType : "json",
 				data : {
-					m_id  : sid,
+					m_id : sid,
 					m_name : f_name
 				},
 
 				success : function(vo) {
 					alert("성공했습니다");
 					var now = $(this).attr("class");
-	                var idx = now.indexOf(' ');
-	                var now2 = now.substring(idx+1);
+					var idx = now.indexOf(' ');
+					var now2 = now.substring(idx + 1);
 
 					if (now2 == 'click1') {
 						$(this).removeClass('click1');
@@ -524,22 +550,22 @@ h6 {
 						$(this).addClass('click1');
 
 					}
-				
+
 				},
 				error : function() {
 					alert('### 통신 에러 ###');
 				}
 			});
 		});
-	
+
 		//팔로잉 ajax
-		
-		var sid= '<c:out value="${SID}"/>';
-		
-			$(document).on("click", '.canslebtn2', function() {
+
+		var sid = '<c:out value="${SID}"/>';
+
+		$(document).on("click", '.canslebtn2', function() {
 			var f_name = $(this).prev().html();
-			
-			console.log( sid + f_name);
+
+			console.log(sid + f_name);
 
 			$.ajax({
 				url : "/www/followercheck.mr",
@@ -550,28 +576,28 @@ h6 {
 					m_name : f_name
 				},
 				success : function(vo) {
-						
+
 					alert("성공했습니다.");
-		/* 	
-			var now1 = $(this).attr("class");
-			 
-				var idx1= now1 indexOf(' ');
-				var now3= now1.substring(idx1+1);
-				
-				if(now3 == 'click2' ){
-			
-					var now3 =$("click1");
-					$(this).removeclass('click2');
-					$(this).addclass('click1');
-			 	
-				}else{
+					/* 	
+						var now1 = $(this).attr("class");
+						 
+							var idx1= now1 indexOf(' ');
+							var now3= now1.substring(idx1+1);
+							
+							if(now3 == 'click2' ){
 						
-						$(this).removeclass('click1');
-						$(this).addclass('click2');
-						
-					}
-		 */		
-		 
+								var now3 =$("click1");
+								$(this).removeclass('click2');
+								$(this).addclass('click1');
+						 	
+							}else{
+									
+									$(this).removeclass('click1');
+									$(this).addclass('click2');
+									
+								}
+					 */
+
 				},
 				error : function() {
 					alert('### 통신 에러 ###');
