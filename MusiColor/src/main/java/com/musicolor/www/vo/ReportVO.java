@@ -4,7 +4,7 @@ public class ReportVO {
 	// report 테이블
 	private long r_no; // 신고 번호
 	private long r_mno; // 신고자 번호
-	private long r_sno; // 신고된 곡 번호
+	private long r_problem; // 문제 내용 번호
 	private String r_kind; // 신고 분류
 	private String r_detail; // 신고 자세한 내용
 	private String r_isokay;
@@ -30,12 +30,12 @@ public class ReportVO {
 		this.r_mno = r_mno;
 	}
 
-	public long getR_sno() {
-		return r_sno;
+	public long getR_problem() {
+		return r_problem;
 	}
 
-	public void setR_sno(long r_sno) {
-		this.r_sno = r_sno;
+	public void setR_problem(long r_problem) {
+		this.r_problem = r_problem;
 	}
 
 	public String getR_kind() {
