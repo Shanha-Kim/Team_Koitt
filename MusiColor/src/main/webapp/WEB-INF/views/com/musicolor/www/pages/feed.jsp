@@ -236,7 +236,7 @@
 		var windowHeight = $window.height();
 		var documentHeight = $(document).height();
         
-//         console.log("documentHeight:" + documentHeight + " | scrollTop:" + scrollTop + " | windowHeight: " + windowHeight );
+        console.log("documentHeight:" + documentHeight + " | scrollTop:" + scrollTop + " | windowHeight: " + windowHeight );
         
         // scrollbar의 thumb가 바닥 전 20px까지 도달 하면 리스트를 가져온다.
         if( scrollTop + windowHeight + 20 > documentHeight ){

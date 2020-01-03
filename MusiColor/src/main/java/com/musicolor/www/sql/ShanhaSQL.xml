@@ -164,31 +164,29 @@
 				board
 			WHERE
 				<if test="key_tab != null and key_tab == 'All'">
-					b_sno IN (SELECT s_no FROM song WHERE s_title = #{key_main}) OR
-					b_vno IN (SELECT v_no FROM vocal WHERE v_name = #{key_main}) OR
-					b_mno IN (SELECT m_no FROM member WHERE m_id = #{key_main}) OR
+					b_sno IN (SELECT s_no FROM song WHERE s_title REPLACE(UPPER(LIKE), ' ', '') '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%') OR
+					b_vno IN (SELECT v_no FROM vocal WHERE REPLACE(UPPER(v_name), ' ', '') LIKE '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%') OR
+					b_mno IN (SELECT m_no FROM member WHERE REPLACE(UPPER(m_id), ' ', '') LIKE '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%') OR
 					REPLACE(UPPER(b_body), ' ', '') LIKE '%#'||REPLACE(UPPER(#{key_main}), ' ','')||'%'
 				
 				</if>
 				<if test="key_tab != null and key_tab == 'Song'">
-					b_sno = (SELECT s_no FROM song WHERE s_title = #{key_main})
+					b_sno IN (SELECT s_no FROM song WHERE s_title REPLACE(UPPER(LIKE), ' ', '') '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%')
 				</if>
 				<if test="key_tab != null and key_tab == 'Artist'">
-					b_vno = (SELECT v_no FROM vocal WHERE v_name = #{key_main})	
+					b_vno IN (SELECT v_no FROM vocal WHERE REPLACE(UPPER(v_name), ' ', '') LIKE '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%')	
 				</if>
 				<if test="key_tab != null and key_tab == 'User'">
-					b_mno = (SELECT m_no FROM member WHERE m_id = #{key_main})
+					b_mno IN (SELECT m_no FROM member WHERE REPLACE(UPPER(m_id), ' ', '') LIKE '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%')
 				</if>
 				<if test="key_tab != null and key_tab == 'Hashtag'">
-					b_body like '%#'||#{key_main}||'%'
+					REPLACE(UPPER(b_body), ' ', '') LIKE '%#'||REPLACE(UPPER(#{key_main}), ' ','')||'%'
 				</if>
 			ORDER BY 
 				rno
 			)
 		WHERE
-	<![CDATA[    
 		rno BETWEEN #{rno} AND #{rno}+8
- 	]]> 
 	</select>
 	<select id="PreView"  resultType="fVO" parameterType="bVO">
 	<![CDATA[    
