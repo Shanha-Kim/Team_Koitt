@@ -172,7 +172,7 @@
 				<div class="modal-body">
 					<form method="POST" action="" id="reportForm">
 					<input type="hidden" name="id" value="${SID}">
-					<input type="hidden" name="r_sno" id="r_sno" value="">
+					<input type="hidden" name="r_problem" id="r_problem" value="">
 						<h1 class="white text-center mt-3 mb-3">BUG REPORT</h1>
 						<p class="text-center mb-5">musicolor 는 회원들의 적극적인 참여로 운영됩니다.<br>신고해주시면 운영자 확인 후 처리하겠습니다.</p>
 						  	<h4 class="white text-center">어떤 항목이 잘못되었나요?</h4>
@@ -292,7 +292,7 @@
 		    	$("#myModal1").modal("hide");
 		    	$("#myModal4").modal("show");
 		    	
-		    	$('#r_sno').val(tmp);
+		    	$('#r_problem').val(tmp);
 		    })
 		    
 		    /* bug 신고 접수 */
