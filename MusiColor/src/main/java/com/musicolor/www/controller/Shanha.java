@@ -39,12 +39,6 @@ public class Shanha {
 	}
 	
 	//댓글기능
-	@RequestMapping("/delComt.mr")
-	@ResponseBody
-	public int delcomt(ComtVO cmVO) {
-		int cnt = sDAO.delComt(cmVO);
-		return cnt;
-	}
 	@RequestMapping("/comtWrite.mr")
 	@ResponseBody
 	public ArrayList<ComtVO> comtWirte(ComtVO cmVO) {
@@ -58,6 +52,33 @@ public class Shanha {
 		BoardVO vo = sDAO.likeProc(bVO);
 		return vo;
 	}
+	
+	//신고, 삭제기능
+	@RequestMapping("/delComt.mr")
+	@ResponseBody
+	public int delcomt(ComtVO cmVO) {
+		int cnt = sDAO.delComt(cmVO);
+		return cnt;
+	}
+	@RequestMapping("/decComt.mr")
+	@ResponseBody
+	public int decComt(ComtVO cmVO) {
+		int cnt = sDAO.decComt(cmVO);
+		return cnt;
+	}
+	@RequestMapping("/delPost.mr")
+	@ResponseBody
+	public int delPost(BoardVO bVO) {
+		int cnt = sDAO.delPost(bVO);
+		return cnt;
+	}
+	@RequestMapping("/decPost.mr")
+	@ResponseBody
+	public int decPost(BoardVO bVO) {
+		int cnt = sDAO.decPost(bVO);
+		return cnt;
+	}
+	
 	//검색페이지
 	@RequestMapping("/searchBefore.mr")
 	public ModelAndView searchBefore(ModelAndView mv, BoardVO bVO, HttpSession session) {

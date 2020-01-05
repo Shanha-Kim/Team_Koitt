@@ -23,7 +23,7 @@
       <!-- content1 -->
       <c:forEach var="data" items="${LIST}" varStatus="num">
       <div class="card mb-3 bg-primary mb-5 angry">
-        <h3 class="card-header"><img class="profile" src="/www/profile/${data.sname }" />${data.m_id}</h3>
+        <h3 class="card-header" style="display:flex; justify-content:space-between;"><span><img class="profile" src="/www/profile/${data.sname }" />${data.m_id}</span><span></span><span class="postmodi my-auto"  data-buser="${data.m_id}" data-bno="${data.b_no}">···</span></h3>
         <!-- video -->
         <div class="youtube">
           <iframe src="https://www.youtube.com/embed/${data.y_link }" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -43,7 +43,7 @@
         <!-- comment -->
         <ul id="${data.b_no}a" class="list-group list-group-flush" data="${data.b_no}">
           <c:forEach var="comment" items="${data.comt}">
-            <li class="list-group-item pt-0 pb-1 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="${comment.c_no }" data-user="${comment.c_mid }" ><strong>${comment.c_mid} </strong> ${comment.c_body} </span><span></span><span class="comtmodi">···</span></li>
+            <li class="list-group-item pt-0 pb-1 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="${comment.c_no }" data-user="${comment.c_mid }" ><strong>${comment.c_mid} </strong> ${comment.c_body} </span><span></span><span class="comtmodi my-auto">···</span></li>
           </c:forEach>
         </ul>
         <div class="card-footer">
@@ -64,12 +64,12 @@
  	  </table>
 	  </c:if>
 	</div>
-	<!-- modal, content detail -->
+	<!-- modal 신고, 삭제 -->
     <div class="modal" id="myModal1">
       <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-primary rounded-lg">
+        <div class="modal-content bg-primary rounded">
           <!-- Modal body -->
-          <div id="delcomt" class="modal-body" style="border-bottom:0.5px solid black;">
+          <div id="delproc" class="modal-body" style="border-bottom:0.5px solid black;">
           	<h5 class="text-center" style="color:white;"> 삭제 </h4>
           </div>
           <div class="modal-body">
@@ -80,13 +80,39 @@
     </div>
     <div class="modal" id="myModal2">
       <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-primary rounded-lg">
+        <div class="modal-content bg-primary rounded">
           <!-- Modal body -->
-          <div id="deccomt" class="modal-body" style="border-bottom:0.5px solid black;">
+          <div id="decproc" class="modal-body" style="border-bottom:0.5px solid black;">
           	<h5 class="text-center " style="color:white;"> 신고 </h4>
           </div>
           <div class="modal-body">
           	<h5 class="text-center out1" style="color:white;"> 취소 </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="myModal3">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-light rounded">
+          <!-- Modal body -->
+          <div id="delproc2" class="modal-body" style="border-bottom:0.5px solid black;">
+          	<h5 class="text-center" > 삭제 </h4>
+          </div>
+          <div class="modal-body">
+          	<h5 class="text-center out1" > 취소 </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="myModal4">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-light rounded">
+          <!-- Modal body -->
+          <div id="decproc2" class="modal-body" style="border-bottom:0.5px solid black;">
+          	<h5 class="text-center "> 신고 </h4>
+          </div>
+          <div class="modal-body">
+          	<h5 class="text-center out1" > 취소 </h4>
           </div>
         </div>
       </div>
@@ -102,8 +128,8 @@
 	
 	//세션 ID 저장===========================================================================================
 	var sid = '${SID}';
-	var bno = 1;
     //좋아요 누르기===========================================================================================
+	var bno = 1;
 	$('.heart').click(function(e){
 		e.preventDefault();
 		bno = $(this).prev().attr("data");
@@ -140,7 +166,7 @@
 		}
 		
 		//삭제로직
-		$(document).on("click", '#delcomt', function() {
+		$(document).on("click", '#delproc', function() {
 			$.ajax({
 				url : "/www/delComt.mr",
 				type : "post",
@@ -158,9 +184,23 @@
 			$('#myModal1').modal("hide");
 		});
 		//신고로직
-		$(document).on("click", '#deccomt', function() {
+		$(document).on("click", '#decproc', function() {
+			$.ajax({
+				url : "/www/decComt.mr",
+				type : "post",
+				dataType : "json",
+				data : {
+					c_no : cno,
+					c_mid : sid
+				},
+				success : function(vo){
+					alert("신고가 완료되었습니다.");
+				},
+				error : function(){
+					alert('### 통신 에러 ###');
+				}
+			});
 			$('#myModal2').modal("hide");
-			
 		});
 	});
 	$(document).on("click", '.out1', function() {
@@ -168,8 +208,7 @@
 		$('#myModal2').modal("hide");
 	});
 	
-	
-	//댓글메인
+	//댓글메인=========================================================================
 	var upno = 1;
 	var upid = '';
 	$(document).on("click", '.thiscomt', function() {
@@ -206,12 +245,12 @@
 						if(vo[i].c_upid == null){
 							comt.append('<li class="list-group-item pt-0 pb-1 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo[i].c_no+'" data-user="'+vo[i].c_mid+'" ><strong>'+vo[i].c_mid+'</strong> '+vo[i].c_body+'</span>'
 									   +'<span></span>'
-									   +'<span class="comtmodi">···</span>'
+									   +'<span class="comtmodi my-auto">···</span>'
 									   +'</li>');
 						}else{
 							comt.append('<li class="list-group-item pt-0 pb-1 active"  style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo[i].c_no+'" data-user="'+vo[i].c_mid+'"  ><strong>'+vo[i].c_mid+'</strong> <i>'+vo[i].c_upid+'</i> '+vo[i].c_body+'</span>'
 									   +'<span></span>'
-									   +'<span class="comtmodi">···</span>'
+									   +'<span class="comtmodi my-auto">···</span>'
 									   +'</li>');
 						}
 					}
@@ -227,7 +266,61 @@
 		}
 	});
 	
-	// 검색 후 무한스크롤===========================================================================================
+	//포스트 신고,삭제============================================================
+	$(document).on("click", '.postmodi', function() {
+		var thispost = $(this).parent().parent();
+		var buser = $(this).attr("data-buser");
+		bno = $(this).attr("data-bno");
+		if(buser == sid){
+			$('#myModal3').modal("show");
+		}else{
+			$('#myModal4').modal("show");
+		}
+		
+		//삭제로직
+		$(document).on("click", '#delproc2', function() {
+			$.ajax({
+				url : "/www/delPost.mr",
+				type : "post",
+				dataType : "json",
+				data : {
+					b_no : bno
+				},
+				success : function(vo3){
+					thispost.remove();
+				},
+				error : function(){
+					alert('### 통신 에러 ###');
+				}
+			});
+			$('#myModal3').modal("hide");
+		});
+		//신고로직
+		$(document).on("click", '#decproc2', function() {
+			$.ajax({
+				url : "/www/decPost.mr",
+				type : "post",
+				dataType : "json",
+				data : {
+					b_no : bno,
+					m_id : sid
+				},
+				success : function(vo3){
+					alert("신고가 완료되었습니다.");
+				},
+				error : function(){
+					alert('### 통신 에러 ###');
+				}
+			});
+			$('#myModal4').modal("hide");
+		});
+	});
+	$(document).on("click", '.out1', function() {
+		$('#myModal3').modal("hide");
+		$('#myModal4').modal("hide");
+	});
+	
+	// 무한스크롤===========================================================================================
 	var rno = 1;
 	var isEnd = false;
 	$(window).scroll(function(){

@@ -19,15 +19,34 @@
 				board
 			WHERE
 				b_mno IN (SELECT f_following FROM follow WHERE f_follower = (SELECT m_no FROM member WHERE m_id=#{m_id}))
+				AND b_isshow = 'Y'
  			)
  		WHERE
 			rno BETWEEN #{rno} AND #{rno}+4
 	</select>
 	
-	<delete id="DelComt" parameterType="cmVO">
-		DELETE comt
+	<update id="DelComt" parameterType="cmVO">
+		UPDATE comt
+		SET c_isshow = 'N'
 		WHERE c_no = #{c_no}
-	</delete>
+	</update>
+	<update id="DecComt" parameterType="cmVO">
+		INSERT INTO report VALUES(
+			(SELECT NVL(max(r_no)+1, 100000000001) FROM report), (SELECT m_no FROM member WHERE m_id = #{c_mid}), #{c_no},
+			'comt', '부적절한 댓글로 신고합니다.' , 'N', sysdate, 10000001
+		)
+	</update>
+	<update id="DelPost" parameterType="bVO">
+		UPDATE board
+		SET b_isshow = 'N'
+		WHERE b_no = #{b_no}
+	</update>
+	<update id="DecPost" parameterType="bVO">
+		INSERT INTO report VALUES(
+			(SELECT NVL(max(r_no)+1, 100000000001) FROM report), (SELECT m_no FROM member WHERE m_id = #{m_id}), #{b_no},
+			'board', '부적절한 포스팅으로 신고합니다.' , 'N', sysdate, 10000001
+		)
+	</update>
 	
 	<select id="SearchBefore" parameterType="bVO" resultType="bVO">
 	<![CDATA[    
@@ -39,7 +58,7 @@
 			FROM
 				board
 			WHERE
-				b_emotion = 2
+				b_isshow = 'Y'
 			ORDER BY DBMS_RANDOM.value
 			)
 		WHERE
@@ -67,6 +86,7 @@
 			(SELECT c_no, c_bno, c_mno, c_like, c_upno, c_date, c_isshow, c_body,
 			 		(SELECT b.c_mno FROM comt b WHERE b.c_no = a.c_upno ) c_upmno
 			 FROM comt a WHERE c_bno = #{b_no})	
+		WHERE c_isshow='Y'
 		ORDER BY c_no
 	</select>
 	<insert id="ComtWrite1" parameterType="cmVO">

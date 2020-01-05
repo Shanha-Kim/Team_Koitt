@@ -25,9 +25,25 @@ public class ShanhaDAO {
 		return list;
 	}
 	public int delComt(ComtVO cmVO) {
-		int cnt = sqlSession.delete("sSQL.DelComt", cmVO);
+		int cnt = sqlSession.update("sSQL.DelComt", cmVO);
 		return cnt;
 	}
+	public int decComt(ComtVO cmVO) {
+		int cnt = sqlSession.insert("sSQL.DecComt", cmVO);
+		return cnt;
+	}
+	public int delPost(BoardVO bVO) {
+		int cnt = sqlSession.update("sSQL.DelPost", bVO);
+		return cnt;
+	}
+	public int decPost(BoardVO bVO) {
+		int cnt = sqlSession.insert("sSQL.DecPost", bVO);
+		return cnt;
+	}
+	
+	
+	
+	
 	public List<BoardVO> showBefore(BoardVO bVO){
 		List<BoardVO> list = sqlSession.selectList("sSQL.SearchBefore", bVO);
 		return list;
