@@ -59,7 +59,7 @@
 	</div>
 
      <!-- modal, content detail -->
-    <div class="modal" id="myModal1">
+    <div class="modal" id="myModal">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content bg-primary">
           <!-- Modal body -->
@@ -74,8 +74,7 @@
               </div>
               <!-- Modal right -->
               <div class="col text-left" style="padding: 10px;">
-                <h3 id="mid" class="card-header" style="padding: 10px;">
-                </h3>
+                <h3 class="card-header" style="padding: 10px; display:flex; justify-content:space-between;"><span id="mid" ></span><span></span><span class="postmodi my-auto">···</span></h3>
                 <!-- 일정 크기 이상 작아지면 보이는 유튜브-->
                 <div class="youtube mobile-youtube mb-3">
                   <iframe id="ylink2" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -91,6 +90,7 @@
                 <!-- comment -->
                 <div class="bg-primary comment-scroll">
                   <ul id="comt" class="list-group list-group-flush p-0 m-p">
+<!--                     <li data-cno="100000000001"  data-user="rmccuish5" class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">USERNAME</strong> Cras justo odio</li> -->
                   </ul>
                 </div>
                 <div class="pt-3">
@@ -98,6 +98,59 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal 신고, 삭제 -->
+    <div class="modal" id="myModal1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-light rounded">
+          <!-- Modal body -->
+          <div id="delproc" class="modal-body" style="border-bottom:0.5px solid black;">
+          	<h5 class="text-center" > 삭제 </h4>
+          </div>
+          <div class="modal-body">
+          	<h5 class="text-center out1" > 취소 </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="myModal2">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-light rounded">
+          <!-- Modal body -->
+          <div id="decproc" class="modal-body" style="border-bottom:0.5px solid black;">
+          	<h5 class="text-center "> 신고 </h4>
+          </div>
+          <div class="modal-body">
+          	<h5 class="text-center out1" > 취소 </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="myModal3">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-light rounded">
+          <!-- Modal body -->
+          <div id="delproc2" class="modal-body" style="border-bottom:0.5px solid black;">
+          	<h5 class="text-center" > 삭제 </h4>
+          </div>
+          <div class="modal-body">
+          	<h5 class="text-center out1" > 취소 </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="myModal4">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-light rounded">
+          <!-- Modal body -->
+          <div id="decproc2" class="modal-body" style="border-bottom:0.5px solid black;">
+          	<h5 class="text-center "> 신고 </h4>
+          </div>
+          <div class="modal-body">
+          	<h5 class="text-center out1" > 취소 </h4>
           </div>
         </div>
       </div>
@@ -158,14 +211,73 @@
         	$(location).attr("href", "/www/randomseleced.mr?b_emotion=5");
         })
         
-        /* 게시물 상세보기 */
-        var bno = "";
+      //세션 ID 저장===========================================================================================
+    	var sid = '<c:out value="${SID}"/>';
+    	
+    	//댓글, 글 삭제, 신고처리================================================================================
+    	$(document).on("click", '.comtmodi', function() {
+    		var thiscomt = $(this).parent();
+    		cno = $(this).prev().prev().attr("data-cno");
+    		cuser = $(this).prev().prev().attr("data-user");
+    		if(cuser == sid){
+    			$('#myModal1').modal("show");
+    		}else{
+    			$('#myModal2').modal("show");
+    		}
+    		
+    		//삭제로직
+    		$(document).on("click", '#delproc', function() {
+    			$.ajax({
+    				url : "/www/delComt.mr",
+    				type : "post",
+    				dataType : "json",
+    				data : {
+    					c_no : cno
+    				},
+    				success : function(vo){
+    					thiscomt.remove();
+    				},
+    				error : function(){
+    					alert('### 통신 에러 ###');
+    				}
+    			});
+    			$('#myModal1').modal("hide");
+    		});
+    		//신고로직
+    		$(document).on("click", '#decproc', function() {
+    			$.ajax({
+    				url : "/www/decComt.mr",
+    				type : "post",
+    				dataType : "json",
+    				data : {
+    					c_no : cno,
+    					c_mid : sid
+    				},
+    				success : function(vo){
+    					alert("신고가 완료되었습니다.");
+    				},
+    				error : function(){
+    					alert('### 통신 에러 ###');
+    				}
+    			});
+    			$('#myModal2').modal("hide");
+    		});
+    	});
+    	$(document).on("click", '.out1', function() {
+    		$('#myModal1').modal("hide");
+    		$('#myModal2').modal("hide");
+    	});
+    	
+    	//포스트 상세보기===========================================================================================
+    	
+    	var bno = "";
     	$('.square').click(function(){
+    		var thispost = $(this);
     		bno = $(this).attr('id');
     		$("#c_body").val("");
     		$("#comt").html("");
     		
-    		$('#myModal1').modal("show");
+    		$('#myModal').modal("show");
     		$.ajax({
     			url : "/www/showDetail.mr",
     			type : "post",
@@ -176,20 +288,20 @@
     			success : function(vo){
     				$('#mid').html('<img id="psname" class="profile"  />'+vo.m_id);
     				$('#bbody').html(vo.b_body);
-    				$('#blike').html('<strong> ' + vo.b_like + " likes</strong>");
+    				$('#blike').html('<strong> ' + vo.b_like + ' likes</strong>');
     				$('#stitle').html(vo.s_title);
     				$('#psname').attr("src", "/www/profile/" + vo.sname);
     				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
     				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
     				for(var i=0 in vo.comt){
     					if(vo.comt[i].c_upid == null){
-    						$('#comt').append('<li data-cno="'+vo.comt[i].c_no+'" data-user="'+vo.comt[i].c_mid+'"  class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+vo.comt[i].c_mid+'</strong> '+vo.comt[i].c_body+'</li>');
+    						$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo.comt[i].c_no+'" data-user="'+vo.comt[i].c_mid+'"><strong class="user">'+vo.comt[i].c_mid+'</strong> '+vo.comt[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
     					}else{
-    						$('#comt').append('<li data-cno="'+vo.comt[i].c_no+'" data-user="'+vo.comt[i].c_mid+'"  class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+vo.comt[i].c_mid+'</strong> <i>'+vo.comt[i].c_upid+'</i> '+vo.comt[i].c_body+'</li>');
+    						$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo.comt[i].c_no+'" data-user="'+vo.comt[i].c_mid+'"><strong class="user">'+vo.comt[i].c_mid+'</strong> <i>'+vo.comt[i].c_upid+'</i> '+vo.comt[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
     					}
     				} 
     				
-    				//좋아요 누르기
+    				//좋아요 누르기===========================================================================================
     				$('#heart').click(function(e){
     					e.preventDefault();
     					$.ajax({
@@ -209,19 +321,20 @@
     					});
     				});
     				
-    				//댓글기능
+    				//댓글기능===========================================================================================
     				var upno = 1;
     				var upid = '';
-    				$(document).on("click", '.list-group-item', function() {
+    				$(document).on("click", '.thiscomt', function() {
     					upno = $(this).attr('data-cno');
     					upno = Number(upno);
     					upid = $(this).attr('data-user');
     					$("#c_body").val(upid+" ");
     				});
+    				
     				$("#c_body").keyup(function(e){
     					if(e.keyCode == 13){
     						e.preventDefault();
-    						setTimeout(function(){}, 500);
+    						setTimeout(function(){console.log("시간지연성공 ");}, 500);
     						var cbody = $('#c_body').val();
     						if(cbody == ""){
     							return;
@@ -237,15 +350,15 @@
     								c_upno : upno,
     								c_upid : upid
     							},
-    							success : function(vo){
+    							success : function(vo2){
     								$('#comt').html("");
     								for(var i=0 in vo){
-    									if(vo[i].c_upid == null){
-    										$('#comt').append('<li data-cno="'+vo[i].c_no+'" data-user="'+vo[i].c_mid+'"  class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+vo[i].c_mid+'</strong> '+vo[i].c_body+'</li>');
+    									if(vo2[i].c_upid == null){
+    										$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo2[i].c_no+'" data-user="'+vo2[i].c_mid+'"><strong class="user">'+vo2[i].c_mid+'</strong> '+vo2[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
     									}else{
-    										$('#comt').append('<li data-cno="'+vo[i].c_no+'" data-user="'+vo[i].c_mid+'"  class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">'+vo[i].c_mid+'</strong> <i>'+vo[i].c_upid+'</i> '+vo[i].c_body+'</li>');
+    										$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo2[i].c_no+'" data-user="'+vo2[i].c_mid+'"><strong class="user" >'+vo2[i].c_mid+'</strong> <i>'+vo2[i].c_upid+'</i> '+vo2[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
     									}
-    								} 
+    								}
     								
     								$("#c_body").val("");
     								upno = 1;
@@ -256,6 +369,58 @@
     							}
     						});
     					}
+    				});
+    				
+    				//포스트 신고,삭제=================================
+    				$(document).on("click", '.postmodi', function() {
+    					buser = vo.m_id;
+    					if(buser == sid){
+    						$('#myModal3').modal("show");
+    					}else{
+    						$('#myModal4').modal("show");
+    					}
+    					
+    					//삭제로직
+    					$(document).on("click", '#delproc2', function() {
+    						$.ajax({
+    							url : "/www/delPost.mr",
+    							type : "post",
+    							dataType : "json",
+    							data : {
+    								b_no : bno
+    							},
+    							success : function(vo3){
+    								thispost.remove();
+    							},
+    							error : function(){
+    								alert('### 통신 에러 ###');
+    							}
+    						});
+    						$('#myModal3').modal("hide");
+    					});
+    					//신고로직
+    					$(document).on("click", '#decproc2', function() {
+    						$.ajax({
+    							url : "/www/decPost.mr",
+    							type : "post",
+    							dataType : "json",
+    							data : {
+    								b_no : bno,
+    								m_id : sid
+    							},
+    							success : function(vo3){
+    								alert("신고가 완료되었습니다.");
+    							},
+    							error : function(){
+    								alert('### 통신 에러 ###');
+    							}
+    						});
+    						$('#myModal4').modal("hide");
+    					});
+    				});
+    				$(document).on("click", '.out1', function() {
+    					$('#myModal3').modal("hide");
+    					$('#myModal4').modal("hide");
     				});
     			},
     			error : function(){
