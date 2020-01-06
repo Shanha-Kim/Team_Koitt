@@ -129,7 +129,7 @@ public class HeeyoonDAO {
 	public List<BoardVO> likelist(String SID) {
 		List<BoardVO> list3 =  sqlSession.selectList("hSQL.likedboard", SID);
 		return list3;
-		
 	}
+	
 }
 

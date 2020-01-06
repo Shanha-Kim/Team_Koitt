@@ -100,6 +100,7 @@ public class Heeyoon {
 		  //팔로우 버튼 눌렀을 때 팔로잉 리스트 뽑아오기
 		  List<MemberVO> list2 = hDAO.following((String)session.getAttribute("SID"));
 		  mv.addObject("LIST2",list2);
+		  
 		  return mv;
 
 	  }

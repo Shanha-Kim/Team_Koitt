@@ -59,6 +59,13 @@
 		 });
 		  */
 		  
+		/*   
+		  $("#conform").click(function(){
+			 $(location).attr('href','/www/profilelist.mr'); 
+		  });
+		   */
+		  
+		  
 		  $("#tembtn").click(function(){
 			alert("계정이 비활성화 되었습니다.")
 			$(location).attr('href','/www/lock.mr');
@@ -134,7 +141,7 @@
 					</div>
 
 					<div class="configtextbox text-center">
-						<button type="submit" class="btn btn-info"  style="width: 40%; display: inline;">회원정보 수정</button>
+						<button type="submit"  class="btn btn-info" id="conform" style="width: 40%; display: inline;">회원정보 수정</button>
 						<br>
 
 						<div class="card-header">계정을 일시적으로 비활성화 하고 싶습니까?</div>
