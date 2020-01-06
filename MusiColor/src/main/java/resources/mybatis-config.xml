@@ -19,6 +19,7 @@
 		<typeAlias alias="sVO" type="com.musicolor.www.vo.SongVO"/>
 		<typeAlias alias="cmVO" type="com.musicolor.www.vo.ComtVO"/>
 		<typeAlias alias="rVO" type="com.musicolor.www.vo.ReportVO"/>
+		<typeAlias alias="chVO" type="com.musicolor.www.vo.ChartVO"/>
 	</typeAliases>
 	
 	<!--  mybatis에서 사용할 질의명령문서 추가  -->
