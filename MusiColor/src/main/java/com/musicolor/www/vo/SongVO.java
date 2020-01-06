@@ -10,8 +10,8 @@ public class SongVO {
 	private int s_vno; // 가수번호
 	private String s_title; // 노래제목
 	private long s_ano; // 사진번호
-	private List<String> songlist;
-	private List<String> vocallist;
+	private List<String> songlist; //크롤링 노래
+	private List<String> vocallist;//크롤링 가수
 	// vocal 테이블
 	private String v_name; // 가수 이름
 	
