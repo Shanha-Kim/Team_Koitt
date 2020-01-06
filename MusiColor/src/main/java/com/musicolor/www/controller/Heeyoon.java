@@ -130,6 +130,7 @@ public class Heeyoon {
 		  
 		  return mv;
 	  }
+	  
 	  //팔로워    Y or N 체크 컨트롤러 
 	  
 	  @RequestMapping("followercheck.mr")

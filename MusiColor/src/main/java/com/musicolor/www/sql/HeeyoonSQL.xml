@@ -234,6 +234,7 @@ WHERE
 				)	
 </select>
 
+
 <!-- 팔로워 처음 걸때 전담 sql -->
 
 <insert id  ="finsert" parameterType="mVO">

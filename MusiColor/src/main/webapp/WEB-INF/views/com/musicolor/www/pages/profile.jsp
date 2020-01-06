@@ -634,6 +634,8 @@ h6 {
 							   var amu = $(this).attr('class'); 
 							 	setFname(tmp);
 
+							 	
+							 	
 								
 								
 								// 팔로워 add & cansle ajax
