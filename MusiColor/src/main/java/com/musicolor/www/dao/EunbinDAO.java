@@ -30,7 +30,6 @@ public class EunbinDAO {
 	}
 
 	public List<SongVO> searchSong(SongVO vo) {
-		System.out.println(vo.getKeywords());
 		return sqlSession.selectList("eSQL.searchSong", vo);
 	}
 	public int findMno(String m_id) {
@@ -92,5 +91,33 @@ public class EunbinDAO {
 	
 	public int reupdateReport(SongVO vo) {
 		return sqlSession.update("eSQL.reupdateReport", vo);
+	}
+	
+	public int todayMember() {
+		return sqlSession.selectOne("eSQL.todayMember");
+	}
+	
+	public int totalMember() {
+		return sqlSession.selectOne("eSQL.totalMember");
+	}
+	
+	public int todayBoard() {
+		return sqlSession.selectOne("eSQL.todayBoard");
+	}
+	
+	public int totalBoard() {
+		return sqlSession.selectOne("eSQL.totalBoard");
+	}
+	
+	public List<SongVO> vocalChart() {
+		return sqlSession.selectList("eSQL.vocalChart");
+	}
+	
+	public List<ChartVO> boardChart() {
+		return sqlSession.selectList("eSQL.boardChart");
+	}
+	
+	public List<ChartVO> boardChartSelected(int emo) {
+		return sqlSession.selectList("eSQL.boardChartSelected", emo);
 	}
 }

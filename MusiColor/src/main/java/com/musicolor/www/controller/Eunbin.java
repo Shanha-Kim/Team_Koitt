@@ -1,7 +1,9 @@
 package com.musicolor.www.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -263,5 +265,107 @@ public class Eunbin {
 		}
 		
 		return cnt;
+	}
+	
+	// 날짜 생성 함수
+	public List<String> getmonths(){
+		// 현재 년, 월 생성
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get ( cal.YEAR );
+		int month = cal.get ( cal.MONTH ) + 1;
+		String date = "";
+		
+		List<String> monthNumber = new ArrayList<String>();
+		
+		for(int i = 0; i < 12; i++) {
+			date = year + "-" + String.format("%02d", month);
+			monthNumber.add(date);
+			
+			month--;
+			
+			if (month == 0) {
+				year = year - 1;
+				month = 12;
+			}
+		}
+		
+		return monthNumber;
+	}
+	
+	// 차트 내용 생성 함수
+	public List getPosts(List<ChartVO> clist, List<String> monthNumber) {
+		// board 갯수
+		List blist = new ArrayList();
+		// clist 를 위한 j
+		int j = 0;
+		
+		for(int i = 0; i < 12; i++) {
+				if(j < clist.size()) {
+					if(monthNumber.get(i).equals(clist.get(j).getMonth())) {
+						blist.add(clist.get(j).getCnt());
+						j++;
+					} else {
+						blist.add(0);
+					}
+				} else {
+					blist.add(0);
+				}
+			} 
+		
+		return blist;
+	}
+	
+	@RequestMapping("/adminChart.mr")
+	public ModelAndView adminChart(ModelAndView mv) {
+		// today's member, total member, today's post, total post
+		Map<String, Object> count = new HashMap<String, Object>();
+		count.put("todayMember", eDAO.todayMember());
+		count.put("totalMember", eDAO.totalMember());
+		count.put("todayBoard", eDAO.todayBoard());
+		count.put("totalBoard", eDAO.totalBoard());
+		
+		// vocalChart
+		List<SongVO> vocal = eDAO.vocalChart();
+				
+		mv.addObject("COUNT", count);
+		mv.addObject("VOCAL", vocal);
+		
+		// 12달 생성
+		List<String> monthNumber = getmonths();
+		
+		// 모든 게시물
+		List<ChartVO> alist = eDAO.boardChart();
+		List blist = getPosts(alist, monthNumber);
+		
+		// 사랑 게시물
+		List<ChartVO> alist1 = eDAO.boardChartSelected(1);
+		List blist1 = getPosts(alist1, monthNumber);
+		
+		//  기쁨 게시물
+		List<ChartVO> alist2 = eDAO.boardChartSelected(2);
+		List blist2 = getPosts(alist2, monthNumber);
+		
+		//  평온 게시물
+		List<ChartVO> alist3 = eDAO.boardChartSelected(3);
+		List blist3 = getPosts(alist3, monthNumber);
+		
+		//  슬픔 게시물
+		List<ChartVO> alist4 = eDAO.boardChartSelected(4);
+		List blist4 = getPosts(alist4, monthNumber);
+		
+		//  분노 게시물
+		List<ChartVO> alist5 = eDAO.boardChartSelected(5);
+		List blist5 = getPosts(alist5, monthNumber);
+		
+		mv.addObject("CHART", blist);
+		mv.addObject("CHART1", blist1);
+		mv.addObject("CHART2", blist2);
+		mv.addObject("CHART3", blist3);
+		mv.addObject("CHART4", blist4);
+		mv.addObject("CHART5", blist5);
+		mv.addObject("NUMBER", monthNumber);
+		
+		mv.setViewName("pages/adminChart");
+		return mv;
 	}
 }

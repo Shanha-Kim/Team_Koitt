@@ -262,6 +262,96 @@
 				r_no = #{r_no}
 		</set>
 	</update>
+	
+	<select id="todayMember" resultType="int">
+		SELECT
+		    count(*)
+		FROM
+		    member
+		WHERE
+		   m_date = sysdate
+	</select>
+	
+	<select id="totalMember" resultType="int">
+		SELECT
+		    count(*)
+		FROM
+		    member
+	</select>
+	
+	<select id="todayBoard" resultType="int">
+		SELECT
+		    count(*)
+		FROM
+		    board
+		WHERE
+		   b_date = sysdate
+	</select>
+	
+	<select id="totalBoard" resultType="int">
+		SELECT
+		    count(*)
+		FROM
+		    board
+	</select>
+	
+	<select id="vocalChart" resultType="sVO">
+	<![CDATA[
+		SELECT
+		    *
+		FROM
+		    (SELECT
+		        (SELECT v_name FROM vocal WHERE v_no = b_vno) v_name,
+		        count(*) chart
+		    FROM
+		        board
+		    WHERE
+		        b_isshow = 'Y'
+		    GROUP BY
+		        b_vno
+		    ORDER BY
+		        chart DESC)
+		WHERE rownum <= 8
+	]]>
+	</select>
+	
+	<select id="boardChart" resultType="chVO">
+	<![CDATA[
+		SELECT
+		    *
+		FROM
+		    (SELECT
+		        to_char(b_date, 'yyyy-mm') month, count(*) cnt
+		    FROM
+		        board
+		    GROUP BY
+		        to_char(b_date, 'yyyy-mm')
+		    ORDER BY
+		        month DESC)
+		WHERE
+		    rownum <= 12
+	]]>
+	</select>
+	
+	<select id="boardChartSelected" parameterType="int" resultType="chVO">
+	<![CDATA[
+		SELECT
+		    *
+		FROM
+		    (SELECT
+		        to_char(b_date, 'yyyy-mm') month, count(*) cnt
+		    FROM
+		        board
+		    WHERE
+		    	b_emotion = #{emo}
+		    GROUP BY
+		        to_char(b_date, 'yyyy-mm')
+		    ORDER BY
+		        month DESC)
+		WHERE
+		    rownum <= 12
+	]]>
+	</select>
 </mapper>
 
 

@@ -34,7 +34,7 @@
 	      	관리자 ${AID} 님
 	      </li>
     	<li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-chart-area f-20"></i></a>
+        <a class="nav-link" href="/www/adminChart.mr"><i class="fas fa-chart-area f-20"></i></a>
     	</li>
     	<li class="nav-item">
         <a class="nav-link" href="/www/adminrepo.mr"><i class="fas fa-flag f-20"></i></a>

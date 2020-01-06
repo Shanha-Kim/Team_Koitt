@@ -150,6 +150,7 @@
 	        	$(location).attr("href", "/www/adminrepoSelected.mr?r_isokay=Y");
 	        })
 	        
+	        /* 편집창 진입 */
 			$('.processing').click(
 					function() {
 						var sno = $(this).attr('id');
@@ -195,11 +196,13 @@
 						});
 					});
 			
+	  		/* 파일 미리보기 변경 */
 			$('#sFile').change(function(e) {
 				var tmp = URL.createObjectURL(e.target.files[0]);
 				$('#sname').attr('src', tmp);
 			});
 
+	  		/* 신고 내용 처리 */
 			$('#edit').click(function() {
 				var fileCheck = $("#sFile").val();
 
