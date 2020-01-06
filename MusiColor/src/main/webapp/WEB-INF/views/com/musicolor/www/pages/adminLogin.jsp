@@ -21,7 +21,7 @@
 <body class="bg-primary">
 	<jsp:include page="adminNav.jsp" flush="false" />
     
-	<c:if test="${empty SID}">
+	<c:if test="${empty AID}">
 		<div class="container" id="main">
 			<div class="card text-white bg-primary mb-" style="max-width:40rem;">
 				<div class="card-header">Login</div>
@@ -48,11 +48,11 @@
 			</div>
 	    </div>  
 	</c:if>
-	<c:if test="${not empty SID}">
+	<c:if test="${not empty AID}">
 		<div align="center">
 			<div class="card text-white bg-primary mb-3" style="max-width: 40rem; margin-top: 20rem;">
 				<div class="card-body">
-					<h4 class="card-title" style="">${SID}님은 이미 로그인하셨습니다.</h4>
+					<h4 class="card-title" style="">${AID}님은 이미 로그인하셨습니다.</h4>
 					<button id="goToMain" type="button" class="btn btn-info" style="width: 100%; display: inline;">메인으로</button>
 				</div>
 			  </div>
