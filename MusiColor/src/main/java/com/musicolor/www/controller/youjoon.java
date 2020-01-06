@@ -1,5 +1,6 @@
 package com.musicolor.www.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +45,14 @@ public class youjoon {
 		// 로그인 처리를 해주면 되는데
 		// 로그인 처리는 세션에 아이디를 입력해주기로 하자.
 		session.setAttribute("SID", vo.getM_id());
+		session.setAttribute("isFail", "");
 		rv.setUrl("/www/tempMain.mr");
 		mv.setView(rv);
 		} else {
 		// 이 경우는 로그인에 실패한 경우이므로 다시 로그인 페이지로 이동한다.
 		System.out.println("### 로그인 실패");
-
+		
+		session.setAttribute("isFail", "fail");	// 로그인 실패를 알려주기 위한 세션(alert 창 띄워준 후 바로 "")
 		msg = 1;
 		rv.setUrl("/www/login.mr");
 		mv.setView(rv); 

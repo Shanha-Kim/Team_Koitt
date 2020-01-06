@@ -65,7 +65,7 @@
 			
 						<div class="form-group">
 							<label for="m_tel">Tel</label>
-							<input name="m_tel" type="tel" class="form-control" id="m_tel" placeholder="Enter Your Phone Number">
+							<input name="m_tel" type="tel" class="form-control" id="m_tel" placeholder="Enter Your Phone Number [ex) 010-1234-1234]">
 							<p id="m_telCheckInfo" class="text-info"></p>
 						</div>
 						<br>
@@ -94,11 +94,11 @@
 <script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
 <script type="text/javascript">
 	var ck = 0;
-	var getCheckId= RegExp(/^[a-zA-Z0-9]{4,12}$/);
-	var getCheckPw= RegExp(/^[a-zA-Z0-9]{6,18}$/);
-	var getCheckName= RegExp(/^[가-힣a-zA-Z]{1,14}$/);
+	var getCheckId = RegExp(/^[a-zA-Z0-9-_]{4,16}$/);
+	var getCheckPw = RegExp(/^[a-zA-Z0-9`~!@#$%^&*()-_=+\|]{6,18}$/);
+	var getCheckName = RegExp(/^[가-힣a-zA-Z]{1,14}$/);
 	var getCheckMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-	var getCheckTel = RegExp(/^[0-9_\.\-]+-[0-9\-]+-[0-9\-]+/);
+	var getCheckTel = RegExp(/^[0-9_\+\-]+-[0-9\+\-]+-[0-9\+\-]+/);
 	
 	function ckFunc(data){	// 중복확인 하면 이 함수로 ck의 값을 바꿈
 		ck = data;
@@ -112,11 +112,20 @@
 		
 		$('#m_id').keyup(function(){
 			ck = 0;
-			$('#idCheckInfo').attr('class', '');
-			$('#idCheckInfo').toggleClass('invalid-feedback');
-			$('#m_id').attr('class', '');
-			$('#m_id').toggleClass('form-control is-invalid');
-			$('#idCheckInfo').html("중복확인이 필요합니다.");
+			if(!getCheckId.test($("#m_id").val())){
+				ck = 2;
+				$('#idCheckInfo').attr('class', '');
+				$('#idCheckInfo').toggleClass('invalid-feedback');
+				$('#m_id').attr('class', '');
+				$('#m_id').toggleClass('form-control is-invalid');
+				$('#idCheckInfo').html("4~16자의 영문 대 소문자, 숫자와 특수기호 (_),(-)만 사용 가능합니다." + ck);
+			} else{
+				$('#idCheckInfo').attr('class', '');
+				$('#idCheckInfo').toggleClass('invalid-feedback');
+				$('#m_id').attr('class', '');
+				$('#m_id').toggleClass('form-control is-invalid');
+				$('#idCheckInfo').html("중복확인이 필요합니다." + ck);
+			}
 		})
 		
 		
@@ -124,8 +133,9 @@
 			var sid = $('#m_id').val();
 			
 			if(sid == ''){
-				$('#idCheckInfo').toggleClass('font-red');
-				$('#idCheckInfo').html("아이디를 입력해주세요.");
+				$('#idCheckInfo').attr('class', '');
+				$('#idCheckInfo').toggleClass('invalid-feedback');
+				$('#idCheckInfo').html("아이디를 입력해주세요." + ck);
 				
 				return false;
 			}
@@ -140,13 +150,20 @@
 				
 				success : function(data){
 					var idCk = data;
-					if(idCk == 1){
+					if(!getCheckId.test($("#m_id").val())){
+						// 아이디 형식에 맞지 않는 경우
+						$('#idCheckInfo').attr('class', '');
+						$('#idCheckInfo').toggleClass('invalid-feedback');
+						$('#m_id').attr('class', '');
+						$('#m_id').toggleClass('form-control is-invalid');
+						$('#idCheckInfo').html("4~16자의 영문 대 소문자, 숫자와 특수기호 (_),(-)만 사용 가능합니다." + ck);
+					} else if(idCk == 1){
 						// 이미 회원가입 한 사람이 있는 경우
 						$('#idCheckInfo').attr('class', '');
 						$('#idCheckInfo').toggleClass('invalid-feedback');
 						$('#m_id').attr('class', '');
 						$('#m_id').toggleClass('form-control is-invalid');
-						$('#idCheckInfo').html("이미 가입된 아이디입니다.")
+						$('#idCheckInfo').html("이미 가입된 아이디입니다." + ck)
 					} else {
 						// 아직 해당 아이디로 회원가입한 사람이 없는 경우
 						// 따라서 사용할 수 있는 아이디
@@ -180,11 +197,25 @@
 		$('#m_pw').change(function(){
 			// change 비밀번호 유효성 검사
 			if(!getCheckPw.test($("#m_pw").val())){
-				$('#m_pw').attr('class', '');
-				$('#m_pw').toggleClass('form-control is-invalid');
-				$('#m_pwCheckInfo').attr('class', '');
-				$('#m_pwCheckInfo').toggleClass('invalid-feedback');
-				$('#m_pwCheckInfo').html('6~18자 사이의 길이로 작성해야 합니다.');
+				if($("#m_pw").val().length < 6){
+					$('#m_pw').attr('class', '');
+					$('#m_pw').toggleClass('form-control is-invalid');
+					$('#m_pwCheckInfo').attr('class', '');
+					$('#m_pwCheckInfo').toggleClass('invalid-feedback');
+					$('#m_pwCheckInfo').html('너무 짧습니다. 6~18자 사이의 길이로 작성해주세요.');
+				} else if($("#m_pw").val().length > 18){
+					$('#m_pw').attr('class', '');
+					$('#m_pw').toggleClass('form-control is-invalid');
+					$('#m_pwCheckInfo').attr('class', '');
+					$('#m_pwCheckInfo').toggleClass('invalid-feedback');
+					$('#m_pwCheckInfo').html('너무 깁니다. 6~18자 사이의 길이로 작성해주세요.');
+				} else {
+					$('#m_pw').attr('class', '');
+					$('#m_pw').toggleClass('form-control is-invalid');
+					$('#m_pwCheckInfo').attr('class', '');
+					$('#m_pwCheckInfo').toggleClass('invalid-feedback');
+					$('#m_pwCheckInfo').html('사용할 수 없는 문자가 있습니다.');
+				}
 			} else {
 				$('#m_pw').attr('class', '');
 				$('#m_pw').toggleClass('form-control is-valid');
@@ -226,6 +257,20 @@
 			} else {
 				$('#m_email').attr('class', '');
 				$('#m_email').toggleClass('form-control is-valid');
+			}
+		})
+		
+		$('#m_tel').change(function(){
+			// change 전화번호 유효성 검사
+			if(!getCheckTel.test($("#m_tel").val())){
+				$('#m_tel').attr('class', '');
+				$('#m_tel').toggleClass('form-control is-invalid');
+				$('#m_telCheckInfo').attr('class', '');
+				$('#m_telCheckInfo').toggleClass('invalid-feedback');
+				$('#m_telCheckInfo').html('전화번호를 형식에 맞게 입력해주세요. ex) 010-1234-1234');
+			} else {
+				$('#m_tel').attr('class', '');
+				$('#m_tel').toggleClass('form-control is-valid');
 			}
 		})
 	})
@@ -310,6 +355,13 @@
 		// 전화번호 입력 확인
 		if($("#m_tel").val() == "") {
 			alert("전화번호를 입력해주세요.");
+			$("#m_tel").focus();
+			return false;
+		}
+		
+		// 전화번호 유효성 검사
+		if(!getCheckTel.test($("#m_tel").val())){
+			alert("전화번호 형식에 맞게 입력해주세요.");
 			$("#m_tel").focus();
 			return false;
 		}
