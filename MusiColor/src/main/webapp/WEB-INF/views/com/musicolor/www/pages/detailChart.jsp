@@ -11,7 +11,7 @@
 <!-- Bootstrap CSS & theme -->
 <link rel="stylesheet" href="/www/css/bootstrap-lux.css">
 <link rel="stylesheet" href="/www/css/bootstrap.custom.css">
-<link href="/www/css/random.css" rel="stylesheet" type="text/css">
+
 
 
 <!-- Font Awesome 5 -->
@@ -25,59 +25,55 @@
 	<jsp:include page="nav.jsp" flush="false" />
 
 	<div class="container" id="main">
-		<!-- card -->
+<!-- card -->
 		<div class="card mb-3 bg-primary mb-5" id="sad">
-			<h3 class="card-header">hot 10</h3>
-			<!-- video -->
-			<div class="youtube">
-				<iframe width="1012" height="506"
-					src="https://www.youtube.com/embed/aAkMkVFwAoo" frameborder="0"
-					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-					allowfullscreen></iframe>
+			<h3 class="card-header">hot MR</h3>
+<!-- video -->
+		<c:set var="list" value="0" />
+		<c:forEach var="data" items="${LIST}" varStatus="status" end="0">
+		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		    <div class="youtube">
+				<iframe width="1012" height="506" src="https://www.youtube.com/embed/aAkMkVFwAoo" frameborder="0" ></iframe>
 			</div>
-			<!-- body -->
-			<div class="card-body pb-0">
-
-
-				<div>
-					<ul class="pagination pagination-lg">
-						<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a>
-						</li>
-						<li class="page-item active"><a class="page-link" href="#">1</a>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">4</a></li>
-						<li class="page-item"><a class="page-link" href="#">5</a></li>
-						<li class="page-item"><a class="page-link" href="#">6</a></li>
-						<li class="page-item"><a class="page-link" href="#">7</a></li>
-						<li class="page-item"><a class="page-link" href="#">8</a></li>
-
-						<li class="page-item"><a class="page-link" href="#">&raquo;</a>
-						</li>
-					</ul>
-				</div>
+		    </div>
+		    <div class="carousel-item">
+		    <div class="youtube">
+				<iframe width="1012" height="506" src="https://www.youtube.com/embed/sPJsuHJBLQA" frameborder="0" ></iframe>
 			</div>
+			</div>
+		    <div class="carousel-item">
+		    <div class="youtube">
+				<iframe width="1012" height="506" src="https://www.youtube.com/embed/oBKpJiVEcnU"
+				<%-- "https://www.youtube.com/watch?v=${data.y_link}" --%> frameborder="0" ></iframe>
+			</div>
+			</div>
+		  </div>
+		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Previous</span>
+		  </a>
+		  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Next</span>
+		  </a>
 		</div>
+		</c:forEach>
+			
+			
+			<!-- body -->
 
+		</div>
+		
 		<div class="row">
 			<div class="col-4 big-square">
 				<div class="square small-angry">
-					<img class="album" src="/www/img/christmas-4689129_640.jpg" />
+					
 				</div>
 			</div>
-			<div class="col-4 big-square">
-				<div class="square small-sad">
-					<img class="album" src="/www/img/christmas-4689129_640.jpg" />
-				</div>
-			</div>
-			<div class="col-4 big-square">
-				<div class="square small-happy">
-					<img class="album" src="/www/img/christmas-4689129_640.jpg" />
-				</div>
-			</div>
-
 		</div>
+		
 
 		<!-- 정렬 기준 탭 -->
 		<div class="btn-group btn-block mb-5" role="group">
@@ -89,7 +85,21 @@
 			<button type="button" class="btn btn-primary text-muted" id="btn-5">분노</button>
 		</div>
 
-		<table class="table table-hover text-center">
+
+<div class="bd-example">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+          <h5>MUSICOLOR CHART</h5>
+          <p>MUSICOLOR CHART</p>
+        <div class="carousel-caption d-none d-md-block">
+
+        </div>      
+        <table class="table table-hover text-center">
 			<thead>
 				<tr>
 					<th>CHART</th>
@@ -115,6 +125,48 @@
 				</c:forEach>
 			</tbody>
 		</table>
+
+      </div>
+      <div class="carousel-item">
+          <h5>BILLBOARD CHART</h5>
+          <p>BILLBOARD CHART</p>
+        <div class="carousel-caption d-none d-md-block">
+
+        </div>      
+        <table class="table table-hover text-center">
+			<thead>
+				<tr>
+					<th>CHART</th>
+					<th>VOCAL</th>
+					<th>SONG</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:set var="list" value="0" />
+				<c:forEach var="data" items="${LIST2}" varStatus="status" >
+					<tr>
+						<td class="align-middle">${status.count}</td>
+						
+						<td class="align-middle">${data}</td>
+						<td class="align-middle">${LIST3.get(status.index)}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>		
+		
 	</div>
 
 	<!-- Optional JavaScript -->

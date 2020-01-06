@@ -1,13 +1,16 @@
 package com.musicolor.www.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import com.musicolor.www.services.*;
 
 import com.musicolor.www.dao.*;
+
 import com.musicolor.www.vo.*;
 
 @Controller
@@ -15,21 +18,46 @@ public class Jinhyeok {
 	
 	@Autowired
 	JinhyeokDAO jDAO;
-	
+
+
 	@RequestMapping("/bfMain.mr")
 	public ModelAndView bfMain(ModelAndView mv) {
+		ArrayList<SongVO> list = (ArrayList<SongVO>) jDAO.getChart();
+		mv.addObject("LIST", list);
+		
+		Crawling Jinhyeok = new Crawling();
+		List<String> songlist = Jinhyeok.songlist;
+		List<String> vocallist = Jinhyeok.vocallist;	
+//		SongVO sVO = new SongVO();
+//		sVO.setSonglist(songlist);
+//		sVO.setVocallist(vocallist);
+//		mv.addObject("BILL", sVO);
+		
+		mv.addObject("LIST2", songlist);
+		mv.addObject("LIST3", vocallist);
+				
 		mv.setViewName("pages/bfMain");
+
 		return mv;
 	}
 
+	
 	// chart Controller
-
 	@RequestMapping("/detailChart.mr")
 	public ModelAndView detailChart(ModelAndView mv) {
 		ArrayList<SongVO> list = (ArrayList<SongVO>) jDAO.getChart();
 		mv.addObject("LIST", list);
+		
+		Crawling Jinhyeok = new Crawling();
+		List<String> songlist = Jinhyeok.songlist;
+		List<String> vocallist = Jinhyeok.vocallist;	
+		SongVO sVO = new SongVO();
+		
+		mv.addObject("LIST2", songlist);
+		mv.addObject("LIST3", vocallist);
+		
 		mv.setViewName("pages/detailChart");
-
+		
 		return mv;
 	}
 

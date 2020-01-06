@@ -21,130 +21,100 @@
     <jsp:include page="nav.jsp" flush="false" />
     
 	<div class="container" id="main">
-      <!-- chart -->
-    <div class="card mb-3 bg-primary mb-5" id="angry">
+	
+<!-- chart -->
+
+<div class="bd-example">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+          <h5>MUSICOLOR CHART</h5>
+          <p>MUSICOLOR CHART</p>
+        <div class="carousel-caption d-none d-md-block">
+
+        </div>      
+        <table class="table table-hover text-center">
+			<thead>
+				<tr>
+					<th>CHART</th>
+					<th>ALBUM</th>
+					<th>VOCAL</th>
+					<th>SONG</th>
+					<th>YOUTUBE</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:set var="list" value="0" />
+				<c:forEach var="data" items="${LIST}" varStatus="status" end="4">
+					<tr>
+						<td class="align-middle">${status.index + 1}</td>
+						<td class="align-middle"><img
+							src="/www/album/${data.a_sname}" width="80px"></td>
+						<td class="align-middle">${data.v_name}</td>
+						<td class="align-middle">${data.s_title}</td>
+						<td class="align-middle"><a
+							href="https://www.youtube.com/watch?v=${data.y_link}"><i
+								class="fab fa-youtube white"></i></a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+      </div>
+      <div class="carousel-item">
+          <h5>BILLBOARD CHART</h5>
+          <p>BILLBOARD CHART</p>
+        <div class="carousel-caption d-none d-md-block">
+
+        </div>      
+        <table class="table table-hover text-center">
+			<thead>
+				<tr>
+					<th>CHART</th>
+					<th>VOCAL</th>
+					<th>SONG</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:set var="list" value="0" />
+				<c:forEach var="data" items="${LIST2}" varStatus="status" end="4">
+					<tr>
+						<td class="align-middle">${status.count}</td>
+						
+						<td class="align-middle">${data}</td>
+						<td class="align-middle">${LIST3.get(status.index)}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>	
 		
-	  <div class="row">
-		<div class="col-6">
-		<table class="table table-sm">
-  <thead>
-    <tr>
-      <h4 style="color: aliceblue;text-align: center;">빌보드</h4>	
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-	<tr>
-      <th scope="row">4</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-	<tr>
-      <th scope="row">5</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-	<tr>
-      <th scope="row">5</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-	<tr>
-      <th scope="row">5</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-	  	<tr>
-      <th scope="row">5</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
+	
+		
+       
+	
+		
+		
+		
 	  
-  </tbody>
-</table>  
-		</div>
-		<div class="col-6">
-		<table class="table table-sm">
-  <thead>
-    <tr>
-      <h4 style="color: aliceblue;text-align: center;">빌보드</h4>	
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-	<tr>
-      <th scope="row">4</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-	<tr>
-      <th scope="row">5</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-	  	<tr>
-      <th scope="row">5</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-	  	<tr>
-      <th scope="row">5</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-	  	<tr>
-      <th scope="row">5</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-  </tbody>
-</table>
-		</div>
-	  </div>
  	
-    </div> 
+    
 <!-- Modal -->		
 <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">and more...</button>
 
