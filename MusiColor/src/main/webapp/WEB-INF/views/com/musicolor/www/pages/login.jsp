@@ -59,6 +59,9 @@
 						<br>
 						<button type="submit" class="btn btn-info" style="width: 49.5%; display: inline;">로그인</button>
 						<button id="join" type="button" class="btn btn-info" style="width: 49.5%; display: inline;">회원가입</button>
+						<br>	<br>
+						<button id="findid" type="button" class="btn btn-info" style="width: 99.5%; display: inline;">아아디 비밀번호 찾기 </button>
+					
 					</div> 
 				</form>
 			</div>
