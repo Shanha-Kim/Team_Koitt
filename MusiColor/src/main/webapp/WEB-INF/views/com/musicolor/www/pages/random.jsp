@@ -352,7 +352,7 @@
     							},
     							success : function(vo2){
     								$('#comt').html("");
-    								for(var i=0 in vo){
+    								for(var i=0 in vo2){
     									if(vo2[i].c_upid == null){
     										$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo2[i].c_no+'" data-user="'+vo2[i].c_mid+'"><strong class="user">'+vo2[i].c_mid+'</strong> '+vo2[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
     									}else{
