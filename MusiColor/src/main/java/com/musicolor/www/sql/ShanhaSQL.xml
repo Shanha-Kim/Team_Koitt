@@ -184,14 +184,14 @@
 				board
 			WHERE
 				<if test="key_tab != null and key_tab == 'All'">
-					b_sno IN (SELECT s_no FROM song WHERE s_title REPLACE(UPPER(LIKE), ' ', '') '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%') OR
+					b_sno IN (SELECT s_no FROM song WHERE  REPLACE(UPPER(s_title), ' ', '') LIKE '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%') OR
 					b_vno IN (SELECT v_no FROM vocal WHERE REPLACE(UPPER(v_name), ' ', '') LIKE '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%') OR
 					b_mno IN (SELECT m_no FROM member WHERE REPLACE(UPPER(m_id), ' ', '') LIKE '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%') OR
 					REPLACE(UPPER(b_body), ' ', '') LIKE '%#'||REPLACE(UPPER(#{key_main}), ' ','')||'%'
 				
 				</if>
 				<if test="key_tab != null and key_tab == 'Song'">
-					b_sno IN (SELECT s_no FROM song WHERE s_title REPLACE(UPPER(LIKE), ' ', '') '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%')
+					b_sno IN (SELECT s_no FROM song WHERE  REPLACE(UPPER(s_title), ' ', '') LIKE '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%')
 				</if>
 				<if test="key_tab != null and key_tab == 'Artist'">
 					b_vno IN (SELECT v_no FROM vocal WHERE REPLACE(UPPER(v_name), ' ', '') LIKE '%'||REPLACE(UPPER(#{key_main}), ' ','')||'%')	
