@@ -171,7 +171,6 @@ public class Shanha {
             
             mailSender.send(message);
         } catch (Exception e) {
-            System.out.println(e);
         }
         
 		return dice;
@@ -207,7 +206,6 @@ public class Shanha {
             
             mailSender.send(message);
         } catch (Exception e) {
-            System.out.println(e);
         }
         rv.setUrl("/findpwafter.mr");
         mv.setView(rv);

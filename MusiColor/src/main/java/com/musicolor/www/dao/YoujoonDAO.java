@@ -13,7 +13,6 @@ public class YoujoonDAO {
 	SqlSessionTemplate sqlSession;
 	
 	public int loginProc(MemberVO mVO) {
-		System.out.println("### id " + mVO.getM_id() + " | pw : " + mVO.getM_pw());
 		int cnt = sqlSession.selectOne("mSQL.login", mVO);
 		
 		return cnt; 
@@ -32,7 +31,6 @@ public class YoujoonDAO {
 	}
 	
 	public MemberVO findIdProc(MemberVO mVO) {
-		System.out.println("dao 함수");
 		MemberVO fId = sqlSession.selectOne("mSQL.findId", mVO);
 		
 		return fId;

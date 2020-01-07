@@ -44,9 +44,6 @@ public class Eunbin {
 		int cnt = eDAO.vocalUpdate(vo);
 		if (cnt == 1) {
 			
-			System.out.println(vo.getS_vno());
-			
-			System.out.println(vo.getV_name());
 		} else {
 		}
 		return vo;
@@ -301,7 +298,6 @@ public class Eunbin {
 		}
 		
 		// 관리자 mno 가져오기
-		System.out.println(vo.getId());
 		int m_no = eDAO.findADMno(vo.getId());
 		vo.setM_no(m_no);
 		
@@ -339,7 +335,6 @@ public class Eunbin {
 		}
 		
 		// 관리자 mno 가져오기
-		System.out.println(vo.getId());
 		int m_no = eDAO.findADMno(vo.getId());
 		vo.setM_no(m_no);
 		

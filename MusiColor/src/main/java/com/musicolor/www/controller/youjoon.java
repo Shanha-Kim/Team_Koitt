@@ -50,7 +50,6 @@ public class youjoon {
 		mv.setView(rv);
 		} else {
 		// 이 경우는 로그인에 실패한 경우이므로 다시 로그인 페이지로 이동한다.
-		System.out.println("### 로그인 실패");
 		
 		session.setAttribute("isFail", "fail");	// 로그인 실패를 알려주기 위한 세션(alert 창 띄워준 후 바로 "")
 		msg = 1;
@@ -65,7 +64,6 @@ public class youjoon {
 	public ModelAndView logout(ModelAndView mv,
 								RedirectView rv,
 								HttpSession session) {
-		System.out.println("### /logout.mr");
 		session.setAttribute("SID", "");
 		rv.setUrl("/feed.mr");
 		mv.setView(rv); 
@@ -90,10 +88,8 @@ public class youjoon {
 		int cnt = mDAO.insertMemb(mVO);
 		
 		if(cnt != 1) {
-			System.out.println("### 회원가입 실패");
 			rv.setUrl("/join.mr");
 		} else {
-			System.out.println("### 회원가입 성공");
 			rv.setUrl("/joinSuccess.mr");
 		}
 		mv.setView(rv);
@@ -139,20 +135,17 @@ public class youjoon {
 									ModelAndView mv,
 									RedirectView rv,
 									MemberVO mVO) {
-		System.out.println("findIdProc");
 		
 		MemberVO fId = mDAO.findIdProc(mVO);
 		
 		if(fId != null) {
 
 			// 입력 사항과 일치하는 회원이 있는 경우
-			System.out.println("### 아이디 찾기 성공");
 			
 			session.setAttribute("FID", fId.getM_id());
 			rv.setUrl("/findId.mr");
 			mv.setView(rv);
 		} else {
-			System.out.println("### 아이디 찾기 실패111");
 			
 			session.setAttribute("findFail", "fail");
 			rv.setUrl("/findId.mr");

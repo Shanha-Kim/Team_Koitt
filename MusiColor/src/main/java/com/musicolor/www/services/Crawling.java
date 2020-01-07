@@ -23,12 +23,10 @@ public class Crawling {
 			//##################여기는 음악제목################
 			songlist = content_song.eachText();
 //			for(String x : songlist) {
-//				System.out.println(x);
 //			}
 			//##################여기는 가수이름################
 			vocallist = content_vocal.eachText();
 //			for(String x : vocallist) {
-//				System.out.println(x);
 //			}
 
 		} catch (IOException e) { //Jsoup의 connect 부분에서 IOException 오류가 날 수 있으므로 사용한다.   

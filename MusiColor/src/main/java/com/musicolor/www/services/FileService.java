@@ -76,10 +76,8 @@ public class FileService {
 		long len = 0;
 
 		String spath = session.getServletContext().getRealPath("resources/album");
-		System.out.println("spath: " + spath);
 //		String rePath = spath.substring(0, spath.indexOf("\\source\\.metadata"));
 		String rePath = "/Users/mac297/git/Team_koitt/MusiColor/src/main/webapp/resources/album";
-		System.out.println("rePath : " + rePath);
 
 		String oriName = "";
 		try {
@@ -110,24 +108,18 @@ public class FileService {
 			String smove = spath + vo.getA_sname();
 			String remove = rePath + vo.getA_sname();
 
-			System.out.println("smove : " + smove);
-			System.out.println("remove : " + remove);
 			File sfile = new File(smove);
 			File refile = new File(remove);
 
 			if (refile.exists() == true) {
 				refile.delete();
-				System.out.println("refile 삭제 완료");
 			} else if (sfile.exists() == true) {
 				sfile.delete();
-				System.out.println("sfile 삭제 완료");
 			}
 
 			fVO.setNo(vo.getS_ano());
 			fVO.setCheck(vo.getCheck());
 
-			System.out.println("no : " + fVO.getNo());
-			System.out.println("check : " + fVO.getCheck());
 		}
 		fVO.setOname(oriName);
 		fVO.setSname(saveName);
