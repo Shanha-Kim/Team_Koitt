@@ -209,7 +209,7 @@ public class Shanha {
         } catch (Exception e) {
             System.out.println(e);
         }
-        rv.setUrl("/www/findpwafter.mr");
+        rv.setUrl("/findpwafter.mr");
         mv.setView(rv);
         
 		return mv;

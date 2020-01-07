@@ -9,7 +9,7 @@ public class Music {
 	
 	@RequestMapping("/")
 	public ModelAndView goMain(ModelAndView mv, RedirectView rv) {
-		rv.setUrl("/www/bfMain.mr");
+		rv.setUrl("/bfMain.mr");
 		mv.setView(rv);
 		return mv;
 	}

@@ -44,7 +44,7 @@ public class Heeyoon {
 		mVO.setM_no(hDAO.mNo(SID));
 		fileSrvc.setDAO(fDAO);
 		fileSrvc.singleUpProc(session, mVO); 
-		rv.setUrl("/www/profconfig.mr");
+		rv.setUrl("/profconfig.mr");
 		mv.setView(rv);
 		return mv;
 	}
@@ -52,7 +52,7 @@ public class Heeyoon {
 	@RequestMapping("profiletext.mr") //프로필 텍스트 수정 controller
 	public ModelAndView configtext(ModelAndView mv, MemberVO mVO, RedirectView rv ) {
 		hDAO.profiletextconfig(mVO);
-		rv.setUrl("/www/profconfig.mr");
+		rv.setUrl("/profconfig.mr");
 		mv.setView(rv);
 		return mv;
 	}
@@ -126,7 +126,7 @@ public class Heeyoon {
 		  mVO.setM_id(str);
 		  int cnt = hDAO.prolock(mVO);
 		  mv.addObject("LOCK", cnt);	  
-		  rv.setUrl("/www/profilelist.mr");
+		  rv.setUrl("/profilelist.mr");
 		  mv.setView(rv);
 		  return mv;
 	  }
@@ -138,7 +138,7 @@ public class Heeyoon {
 		  mVO.setM_id(str);
 		  int cnt = hDAO.prounlock(mVO);
 		  mv.addObject("UNLOCK",cnt);
-		  rv.setUrl("/www/profilelist.mr");
+		  rv.setUrl("/profilelist.mr");
 		  mv.setView(rv);
 		  
 		  return mv;

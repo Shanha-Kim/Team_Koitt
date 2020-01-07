@@ -46,7 +46,7 @@ public class youjoon {
 		// 로그인 처리는 세션에 아이디를 입력해주기로 하자.
 		session.setAttribute("SID", vo.getM_id());
 		session.setAttribute("isFail", "");
-		rv.setUrl("/www/feed.mr");
+		rv.setUrl("/feed.mr");
 		mv.setView(rv);
 		} else {
 		// 이 경우는 로그인에 실패한 경우이므로 다시 로그인 페이지로 이동한다.
@@ -54,7 +54,7 @@ public class youjoon {
 		
 		session.setAttribute("isFail", "fail");	// 로그인 실패를 알려주기 위한 세션(alert 창 띄워준 후 바로 "")
 		msg = 1;
-		rv.setUrl("/www/login.mr");
+		rv.setUrl("/login.mr");
 		mv.setView(rv); 
 		}
 
@@ -67,7 +67,7 @@ public class youjoon {
 								HttpSession session) {
 		System.out.println("### /logout.mr");
 		session.setAttribute("SID", "");
-		rv.setUrl("/www/feed.mr");
+		rv.setUrl("/feed.mr");
 		mv.setView(rv); 
 		
 		return mv;
@@ -91,10 +91,10 @@ public class youjoon {
 		
 		if(cnt != 1) {
 			System.out.println("### 회원가입 실패");
-			rv.setUrl("/www/join.mr");
+			rv.setUrl("/join.mr");
 		} else {
 			System.out.println("### 회원가입 성공");
-			rv.setUrl("/www/joinSuccess.mr");
+			rv.setUrl("/joinSuccess.mr");
 		}
 		mv.setView(rv);
 		return mv;
@@ -149,13 +149,13 @@ public class youjoon {
 			System.out.println("### 아이디 찾기 성공");
 			
 			session.setAttribute("FID", fId.getM_id());
-			rv.setUrl("/www/findId.mr");
+			rv.setUrl("/findId.mr");
 			mv.setView(rv);
 		} else {
 			System.out.println("### 아이디 찾기 실패111");
 			
 			session.setAttribute("findFail", "fail");
-			rv.setUrl("/www/findId.mr");
+			rv.setUrl("/findId.mr");
 			mv.setView(rv);			
 		}
 		

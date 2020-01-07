@@ -112,9 +112,9 @@ public class Eunbin {
 		int cnt = eDAO.boardIn(vo);
 		
 		if(cnt == 1) {
-			rv.setUrl("/www/random.mr"); // 임시 경로
+			rv.setUrl("/random.mr"); // 임시 경로
 		} else {
-			rv.setUrl("/www/upload.mr");
+			rv.setUrl("/upload.mr");
 		}
 		mv.setView(rv);
 		
@@ -175,10 +175,10 @@ public class Eunbin {
 		
 		if(cnt == 1) {
 			session.setAttribute("AID", vo.getM_id());
-			rv.setUrl("/www/admin.mr");
+			rv.setUrl("/admin.mr");
 			mv.setView(rv);
 		} else {
-			rv.setUrl("/www/adminLogin.mr");
+			rv.setUrl("/adminLogin.mr");
 			mv.setView(rv); 
 		}
 
@@ -188,7 +188,7 @@ public class Eunbin {
 	@RequestMapping("/adminLogout.mr")
 	public ModelAndView logout(ModelAndView mv, RedirectView rv, HttpSession session) {
 		session.setAttribute("AID", "");
-		rv.setUrl("/www/admin.mr");
+		rv.setUrl("/admin.mr");
 		mv.setView(rv); 
 		
 		return mv;
