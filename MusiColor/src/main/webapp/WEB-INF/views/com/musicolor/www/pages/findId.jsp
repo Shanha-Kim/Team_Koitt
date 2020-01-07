@@ -98,7 +98,6 @@
 					<h4 class="card-title" style="">입력하신 정보와 일치하는 아이디가 없습니다.</h4>
 					<br>
 					<h4 class="card-title" style="">입력 사항을 다시 한 번 확인해주세요.</h4>
-					<button id="goToMain" type="button" class="btn btn-info" style="width: 100%; display: inline;">메인으로</button>
 				</div>
 			  </div>
 		</div>
@@ -115,7 +114,7 @@
 					<h3 class="card-title" style="">${FID}</h3>
 					<br>
 					<h4 style="margin-bottom: 20px;" class="card-title" style="">입니다.</h4>
-					<button id="goToMain" type="button" class="btn btn-info" style="width: 100%; display: inline;">메인으로</button>
+					<button id="login" type="button" class="btn btn-info" style="width: 100%; display: inline;">로그인 페이지로</button>
 				</div>
 			  </div>
 		</div>
