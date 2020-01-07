@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/www/css/bootstrap-lux.css">
 <link rel="stylesheet" href="/www/css/bootstrap.custom.css">
 <link rel="stylesheet" href="/www/css/random.css">
+<link rel="stylesheet" href="/www/css/random.css" >
 
 <style>
 body {
@@ -33,7 +34,7 @@ button {
 	margin-left: 500px;
 }
 
-.imgBox {
+ .imgBox {
 	width: 150px;
 	height: 150px;
 	border: 1px solid white;
@@ -78,13 +79,11 @@ h6 {
 	height: 300px;
 }
 
-.menubar {
-	position: fiexed; width : 500px;
-	margin-top: -50px;
-	margin-left: 400px;
-	margin-bottom: 100px;
-	margin-top: -50px;
-	width: 500px;
+.member{
+    float: right;
+    position: relative;
+    margin-top: 160px;
+
 }
 
 #logo {
@@ -98,8 +97,8 @@ h6 {
 }
 
 .textbox {
-	margin-top: 10px;
-	padding: 10px;
+	margin-top: 80px;
+	padding: 200px;
 }
 
 #profile {
@@ -112,8 +111,8 @@ h6 {
 }
 
 .imglogobox {
-	margin-bottom: -120px;
-	margin-top: 50px;
+
+	float : left;
 }
 
 .modal-header {
@@ -161,6 +160,9 @@ h6 {
   background-clip: content-box, border-box;
 }
 
+.idtext{
+margin-top :80px;
+}
 
 /* 
   #fw2button {
@@ -173,9 +175,19 @@ h6 {
 
 </head>
 <body class="bg-primary">
-	<jsp:include page="nav.jsp" flush="false" />
+	<jsp:include page="nav.jsp" flush="false"/>
+	
+	
+	<div class="idtext">
+	<p>
+  <h1 class="text-muted text-center" id="explain"> ${ID} profile page's</h1>
+  <p class="mb-0"> <a href="#" class="alert-link"></a></p>
+	 
+	 </div>
+	 
 	<div class="container menubar">
 		<div class="row">
+		
 			<div class="col-1"></div>
 			<div class="col-10 main">
 				<div class="contant">
@@ -183,39 +195,46 @@ h6 {
 						<br> <br> <img class="colorimg" style="border-radius: 100px; -moz-border-radius: 100px; -khtml-border-radius: 100px; -webkit-border-radius: 100px;" 
 							src="/www/upload/${VO.sname}" id="logo"> <br>
 					</div>
-					<div class="menubar">
+					<div class="member">
+					<div class="form-group">
+					 
+					 <c:if test="${ID == SID}">
 						<button type="button" id="profile" class="btn btn-info"
-							style="display: block; ">프로필 편집</button>
+							style="display: block; ">프로필 편집</button> 
+						</c:if>
 						<br>
-						<button type="button" class="btn btn-warning" style="">게시물 :
+						
+						<button type="button" 	class="btn btn-warning" style="">게시물 :
 							${CNT}</button>
 						<button type="button" id="fw1btn" class="btn btn-secondary"  style="">팔로워
 							: ${CNT1}</button>
 						<button type="button" id="fw2btn" class="btn btn-success" style="">팔로우
 							: ${CNT2}</button>
+							
+							
+							<c:if test="${ID == SID}">
 						<button type="button" id="likedbtn" class="btn btn-danger" style="">내가
 							좋아요한 게시물</button>
-
+	</c:if>
 						<button type="button" class="btn btn-outline-secondary"
 							id="unlock" data-id="${ISSHOW}">계정을 다시 활성화</button>
-					</div>
+							</div>
+							</div>
 				</div>
+				<br>
 				<div class="textbox">
-					<div class="form-group">
+					 <div class="form-group"> 
 						<label class="control-label" for="disabledInput" >자기소개 한 줄
 						</label> <input disabled="" class="form-control" id="disabledInput"
 							type="text" value="${IVO.m_about}">
-					</div>
+					 </div> 
 				</div>
 				<hr>
-
 				<!-- 				<div class="imggride"> -->
 				<%-- 					<c:forEach var="data" items="${LIST}"> --%>
 				<%-- 						<img src="/www/upload/${data.sname}"> --%>
 				<%-- 					</c:forEach> --%>
 				<!-- 				</div> -->
-
-
 			</div>
 			<div class="col-1"></div>
 		</div>
@@ -378,7 +397,7 @@ h6 {
 					<c:forEach var="data" items="${LIST1}">
 						<div class="d-flex">
 							<!-- 이미지 박스 -->
-							<div class="" id="${data.m_id}"
+							<div class="othersprofile" id="${data.m_id}"
 								style="width: 50px; height: 50px; overflow: hidden; position: relative; display: inline-block; border-radius: 50%;">
 								<!-- 이미지 -->
 								<img class="" src="/www/profile/${data.m_name}"
@@ -386,7 +405,9 @@ h6 {
 							</div>
 							<!-- 아이디, 버튼 영역 -->
 							<div style="display: inline-block; width: 100%;">
+							<a href="/www/profilelist.mr?m_id=${data.m_id}">
 								<span class="fname1" data="${data.m_id}">${data.m_id}</span>
+								</a>
 								<c:if test="${data.m_isban eq 0}">
 									<button type="button" class="canslebtn1 click1"
 										style="float: right;">팔로우</button>
@@ -492,9 +513,6 @@ h6 {
 	</div>
 
 
-
-
-
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
@@ -579,6 +597,9 @@ h6 {
 							});
 
 							
+							
+							
+							
 							$(".click1").click(function() {
 							 var thisbtn = $(this);
 								$("#followccheck").modal();
@@ -633,9 +654,6 @@ h6 {
 								var tmp = $(this).prev().html();
 							   var amu = $(this).attr('class'); 
 							 	setFname(tmp);
-
-							 	
-							 	
 								
 								
 								// 팔로워 add & cansle ajax

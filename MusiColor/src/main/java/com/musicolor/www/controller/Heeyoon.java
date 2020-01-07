@@ -65,40 +65,53 @@ public class Heeyoon {
 	 */
 	
 	  @RequestMapping("profilelist.mr")//개인 프로필 리스트 controller
-	  public ModelAndView profilelist (ModelAndView mv, HttpSession session) {
+	  public ModelAndView profilelist (ModelAndView mv, HttpSession session, String m_id) {
+		  
 		session.setAttribute("SID", "lbrade0");/* lbrade0 */
-		  List<BoardVO> list = hDAO.profileList((String)session.getAttribute("SID"));
+		
+		String bool= "T";
+		
+		String SID= (String)session.getAttribute("SID");
+		
+		if(m_id != SID ) {
+			 
+			bool = "F";
+			SID= m_id;
+		}
+		mv.addObject("BOOL",bool);
+		mv.addObject("ID",SID);
+		  List<BoardVO> list = hDAO.profileList(SID);
 		  mv.addObject("LIST",list);
 		  
 		  //프로필 로고 사진 	
-		  FileVO fVO = hDAO.proflogo((String)session.getAttribute("SID"));
+		  FileVO fVO = hDAO.proflogo(SID);
 		  mv.addObject("VO",fVO);		  
 		  
 		  //프로필 자기소개글 
-		  MemberVO mVO = hDAO.profintro((String)session.getAttribute("SID"));
+		  MemberVO mVO = hDAO.profintro(SID);
 		  mv.addObject("IVO",mVO);
 		
 		  //프로필 계정 비활성화 여부 
-		  String str = (String)session.getAttribute("SID");
+		  String str = SID;
 		  String isshow = hDAO.proisshow(str);
 		  mv.addObject("ISSHOW",isshow);
 		 
 		  //프로필 게시글 카운트 
-		   int cnt= hDAO.profilecont((String)session.getAttribute("SID"));
+		   int cnt= hDAO.profilecont(SID);
 		   mv.addObject("CNT",cnt);
 		  mv.setViewName("pages/profile");
 		  //팔로워 수 카운트
-		  int x = hDAO.followcnt((String)session.getAttribute("SID"));
+		  int x = hDAO.followcnt(SID);
 		  mv.addObject("CNT1", x);
 		  //팔로잉 수 타운트
-		  int y = hDAO.followingcnt((String)session.getAttribute("SID"));
+		  int y = hDAO.followingcnt(SID);
 		  mv.addObject("CNT2",y); 
 		  
 		  //팔로워 버튼 눌렀을 때 팔로워 리스트 뽑아오기
-		  List<MemberVO> list1 = hDAO.follwer((String)session.getAttribute("SID"));
+		  List<MemberVO> list1 = hDAO.follwer(SID);
 		  mv.addObject("LIST1",list1);
 		  //팔로우 버튼 눌렀을 때 팔로잉 리스트 뽑아오기
-		  List<MemberVO> list2 = hDAO.following((String)session.getAttribute("SID"));
+		  List<MemberVO> list2 = hDAO.following(SID);
 		  mv.addObject("LIST2",list2);
 		  
 		  return mv;
