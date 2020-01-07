@@ -162,6 +162,7 @@
         </div>
       </div>
     </div>
+    
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -295,6 +296,7 @@ $(function(){
 				$("#c_body").keyup(function(e){
 					if(e.keyCode == 13){
 						e.preventDefault();
+						e.stopImmediatePropagation();
 						setTimeout(function(){console.log("시간지연성공 ");}, 500);
 						var cbody = $('#c_body').val();
 						if(cbody == ""){

@@ -55,14 +55,18 @@
 							<p id="m_pw_confCheckInfo" class="text-info"></p>
 						</div>
 						<br>
-			          
+			          	
 						<div class="form-group">
 							<label for="m_email">E-mail</label>
 							<input name="m_email" type="text" class="form-control" id="m_email" placeholder="Enter Your E-mail">
-							<p id="m_emailCheckInfo" class="text-info"></p>
+							<small id="m_emailCheckInfo" class="form-text text-muted"></small>
+							<button id="mailauthbtn" type="button" class="btn btn-info" style="padding: 0px; width: 100px; height: 25px; margin-right: 4px;">인증번호 전송</button>
+							<input id="authnum" type="hidden" class="form-control" style="width:30%; margin-top:4px; " placeholder="Enter Your auth-number">
+							<button id="checkauth" type="button" class="btn btn-info" style="padding: 0px; width: 100px; height: 25px; margin-top:4px; margin-right: 4px; display:none;">인증번호 확인</button>
+							<p style="margin-left: 4px; display: inline;" id="mailauthtext" class="text-info"></p>
 						</div>
 						<br>
-			
+						
 						<div class="form-group">
 							<label for="m_tel">Tel</label>
 							<input name="m_tel" type="tel" class="form-control" id="m_tel" placeholder="Enter Your Phone Number [ex) 010-1234-1234]">
@@ -368,6 +372,43 @@
 		
 		form.submit();
 	}
+</script>
+<script type="text/javascript">
+	$(function(){
+		$("#mailauthbtn").click(function(){
+			var mymail = $("#m_email").val();
+			$.ajax({
+				url : "/www/mailauth.mr",
+				type : "post",
+				dataType : "json",
+				data : {
+					mymail : mymail
+				},
+				success : function(num){
+					$("#authnum").attr("type", "text");
+					$("#checkauth").css("display", "block");
+					
+					$("#checkauth").off().click(function(){
+						var dice = $("#authnum").val();
+						if(num == dice){
+							$('#mailauthtext').attr('class', '');
+							$('#mailauthtext').toggleClass('valid-feedback');
+							$('#mailauthtext').html("인증되었습니다.");
+						}else{
+							$('#mailauthtext').attr('class', '');
+							$('#mailauthtext').toggleClass('invalid-feedback');
+							$('#mailauthtext').html("번호가 잘못되었습니다.");
+						}
+						
+					})
+				},
+				error : function(){
+					alert('### 통신 에러 ###');
+				}
+			});
+			
+		})
+	})
 </script>
 </body>
 </html>

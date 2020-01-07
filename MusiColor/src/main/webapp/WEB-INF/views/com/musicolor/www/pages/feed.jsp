@@ -166,7 +166,7 @@
 		}
 		
 		//삭제로직
-		$(document).on("click", '#delproc', function() {
+		$(document).off().on("click", '#delproc', function() {
 			$.ajax({
 				url : "/www/delComt.mr",
 				type : "post",
@@ -184,7 +184,7 @@
 			$('#myModal1').modal("hide");
 		});
 		//신고로직
-		$(document).on("click", '#decproc', function() {
+		$(document).off().on("click", '#decproc', function() {
 			$.ajax({
 				url : "/www/decComt.mr",
 				type : "post",
@@ -219,7 +219,7 @@
 		$("#"+bno).val(upid+" ");
 	});
 	
-	$(document).on("keyup", '.comment-write-dark', function(e){
+	$(document).off().on("keyup", '.comment-write-dark', function(e){
 		if(e.keyCode == 13){
 			e.preventDefault();
 			bno = $(this).prev().attr("data");
@@ -278,7 +278,7 @@
 		}
 		
 		//삭제로직
-		$(document).on("click", '#delproc2', function() {
+		$(document).off().on("click", '#delproc2', function() {
 			$.ajax({
 				url : "/www/delPost.mr",
 				type : "post",
@@ -296,7 +296,7 @@
 			$('#myModal3').modal("hide");
 		});
 		//신고로직
-		$(document).on("click", '#decproc2', function() {
+		$(document).off().on("click", '#decproc2', function() {
 			$.ajax({
 				url : "/www/decPost.mr",
 				type : "post",
@@ -323,7 +323,8 @@
 	// 무한스크롤===========================================================================================
 	var rno = 1;
 	var isEnd = false;
-	$(window).scroll(function(){
+	$(window).scroll(function(e){
+		e.stopImmediatePropagation();
 		var $window = $(this);
 		var scrollTop = $window.scrollTop();
 		var windowHeight = $window.height();
