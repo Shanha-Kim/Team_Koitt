@@ -73,6 +73,10 @@ public class EunbinDAO {
 		return sqlSession.selectOne("eSQL.repoDetail", sno);
 	}
 	
+	public BoardVO repoDetailBoard(String bno) {
+		return sqlSession.selectOne("eSQL.repoDetailBoard", bno);
+	}
+	
 	public int findADMno(String ad_id) {
 		return sqlSession.selectOne("eSQL.findADMno", ad_id);
 	}
@@ -89,8 +93,16 @@ public class EunbinDAO {
 		return sqlSession.update("eSQL.reupdateYoutube", vo);
 	}
 	
-	public int reupdateReport(SongVO vo) {
+	public int reupdateReport(Object vo) {
 		return sqlSession.update("eSQL.reupdateReport", vo);
+	}
+	
+	public int reupdateBoard(BoardVO vo) {
+		return sqlSession.update("eSQL.reupdateBoard", vo);
+	}
+	
+	public int reupdateBMember(BoardVO vo) {
+		return sqlSession.update("eSQL.reupdateBMember", vo);
 	}
 	
 	public int todayMember() {
