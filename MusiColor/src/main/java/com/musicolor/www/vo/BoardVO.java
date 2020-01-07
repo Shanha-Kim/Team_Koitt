@@ -45,7 +45,11 @@ public class BoardVO {
 	//ComtVO 담을 list
 	private ArrayList<ComtVO> comt;
 	
+	private String id;
+	private int m_no;
+	private int ban;
 	
+	private long r_no;
 	
 	public int getRno() {
 		return rno;
@@ -185,6 +189,31 @@ public class BoardVO {
 	public void setY_ismain(char y_ismain) {
 		this.y_ismain = y_ismain;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
+	public int getBan() {
+		return ban;
+	}
+	public void setBan(int ban) {
+		this.ban = ban;
+	}
+	public long getR_no() {
+		return r_no;
+	}
+	public void setR_no(long r_no) {
+		this.r_no = r_no;
+	}
+	
 	
 	
 }
