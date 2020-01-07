@@ -33,7 +33,7 @@
 	<update id="DecComt" parameterType="cmVO">
 		INSERT INTO report VALUES(
 			(SELECT NVL(max(r_no)+1, 100000000001) FROM report), (SELECT m_no FROM member WHERE m_id = #{c_mid}), #{c_no},
-			'comt', '부적절한 댓글로 신고합니다.' , 'N', sysdate, 10000001
+			'comt', '부적절한 댓글로 신고합니다.' , 'N', sysdate, null
 		)
 	</update>
 	<update id="DelPost" parameterType="bVO">
@@ -44,7 +44,7 @@
 	<update id="DecPost" parameterType="bVO">
 		INSERT INTO report VALUES(
 			(SELECT NVL(max(r_no)+1, 100000000001) FROM report), (SELECT m_no FROM member WHERE m_id = #{m_id}), #{b_no},
-			'board', '부적절한 포스팅으로 신고합니다.' , 'N', sysdate, 10000001
+			'board', '부적절한 포스팅으로 신고합니다.' , 'N', sysdate, null
 		)
 	</update>
 	
