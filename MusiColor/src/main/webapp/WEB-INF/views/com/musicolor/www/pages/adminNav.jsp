@@ -48,6 +48,9 @@
           <a class="nav-link" href="/www/adminLogout.mr"><i class="fas fa-sign-in-alt fa-rotate-180 f-20"></i></a>
       </li>
       </c:if>
+      <li class="nav-item">
+          <a class="nav-link" href="/www/bfMain.mr"><i class="fas fa-sync-alt f-20"></i></i></a>
+      </li>
     </ul>
   </nav>
   <!-- Optional JavaScript -->

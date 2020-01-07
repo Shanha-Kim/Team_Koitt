@@ -58,7 +58,7 @@
       </li>
       </c:if>
       <li class="nav-item">
-          <a class="nav-link" href="/www/adminLogin.mr"><i class="fas fa-exclamation-triangle f-20"></i></a>
+          <a class="nav-link" href="/www/adminLogin.mr"><i class="fas fa-sync-alt f-20"></i></i></a>
       </li>
     </ul>
   </nav>
