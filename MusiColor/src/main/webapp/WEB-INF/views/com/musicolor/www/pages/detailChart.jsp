@@ -30,24 +30,21 @@
 			<h3 class="card-header">hot MR</h3>
 <!-- video -->
 		<c:set var="list" value="0" />
-		<c:forEach var="data" items="${LIST}" varStatus="status" end="0">
+		<%-- <c:forEach var="data" items="${LIST}" varStatus="status" end="0"> --%>
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
 		    <div class="youtube">
-				<iframe width="1012" height="506" src="https://www.youtube.com/embed/aAkMkVFwAoo" frameborder="0" ></iframe>
+				<iframe id="yt1"  src="" frameborder="0" 
+				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+				allowfullscreen></iframe>
 			</div>
 		    </div>
 		    <div class="carousel-item">
-		    <div class="youtube">
-				<iframe width="1012" height="506" src="https://www.youtube.com/embed/sPJsuHJBLQA" frameborder="0" ></iframe>
-			</div>
+
 			</div>
 		    <div class="carousel-item">
-		    <div class="youtube">
-				<iframe width="1012" height="506" src="https://www.youtube.com/embed/oBKpJiVEcnU"
-				<%-- "https://www.youtube.com/watch?v=${data.y_link}" --%> frameborder="0" ></iframe>
-			</div>
+
 			</div>
 		  </div>
 		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -59,21 +56,19 @@
 		    <span class="sr-only">Next</span>
 		  </a>
 		</div>
-		</c:forEach>
+		<%-- </c:forEach> --%>
 			
 			
 			<!-- body -->
 
 		</div>
 		
-		<div class="row">
-			<div class="col-4 big-square">
-				<div class="square small-angry">
-					
-				</div>
-			</div>
-		</div>
-		
+		<!-- 랜덤 이미지 스크롤 이동 버튼 -->
+		<c:forEach var="data" items="${RAN}" varStatus="status" >
+			<button type="button" class="btn btn-outline-secondary">
+				<a href="#test1"><img src="/www/album/${LIST.get(data).a_sname}" width="120px"></a>
+			</button>
+		</c:forEach>
 
 		<!-- 정렬 기준 탭 -->
 		<div class="btn-group btn-block mb-5" role="group">
@@ -105,22 +100,26 @@
 					<th>CHART</th>
 					<th>ALBUM</th>
 					<th>VOCAL</th>
-					<th>SONG</th>
 					<th>YOUTUBE</th>
+					<th>SONG</th>
 				</tr>
 			</thead>
 			<tbody>
+			
+			<!-- Collapse -->
 				<c:set var="list" value="0" />
 				<c:forEach var="data" items="${LIST}" varStatus="status">
-					<tr>
+					<tr class="t1" id="${data.s_no }">
 						<td class="align-middle">${status.index + 1}</td>
-						<td class="align-middle"><img
+						<td id="test1" class="align-middle"><img
 							src="/www/album/${data.a_sname}" width="80px"></td>
 						<td class="align-middle">${data.v_name}</td>
-						<td class="align-middle">${data.s_title}</td>
 						<td class="align-middle"><a
 							href="https://www.youtube.com/watch?v=${data.y_link}"><i
 								class="fab fa-youtube white"></i></a></td>
+						<td class="align-middle">${data.s_title}</td>	
+					</tr>
+					<tr id="s${data.s_no}" style="display: none;">
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -142,26 +141,25 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:set var="list" value="0" />
 				<c:forEach var="data" items="${LIST2}" varStatus="status" >
 					<tr>
 						<td class="align-middle">${status.count}</td>
-						
 						<td class="align-middle">${data}</td>
 						<td class="align-middle">${LIST3.get(status.index)}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<p>This is a paragraph.</p>
 
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
       <span class="sr-only">Previous</span>
     </a>
     <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
       <span class="sr-only">Next</span>
     </a>
   </div>
@@ -175,8 +173,42 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script>
-      $(function() {
-    	  
+		/* 스크롤이동 */
+		$("a[href^='#']").click(function(event){
+			event.preventDefault();
+			var target = $(this.hash);
+			$('html, body').scrollTop(target.offset().top);
+		});
+		/* 상세보기 토글 */
+		$(document).ready(function(){
+			  $('.t1').click(function(){
+				  var tno = $(this).attr('id');
+				  tno = '#s' + tno;
+				  $(tno).html("");
+				  $(tno).append('<h3 style="color: white;">TEST</h3>');
+				  $(tno).stop().slideToggle(100);
+			  });
+			});
+		/* 슬라이드 유튜브 */
+		$.ajax({
+			url : "/www/youT.mr",
+			type : "post",
+			dataType : "json",
+			data : {
+				b_sno : bsno
+				
+			},
+			success : function(data){
+				$('#yt1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
+			},
+			error : function(){
+				alert('### 통신 에러 ###');
+			}
+		});
+		
+		
+		
+      $(function() { 
     	/* 버튼 이벤트 */
     	var scode = '${CODE}';
   		if(scode == 1){

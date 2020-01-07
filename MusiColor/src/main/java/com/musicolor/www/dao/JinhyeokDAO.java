@@ -21,4 +21,8 @@ public class JinhyeokDAO {
 		List<SongVO> list = sqlSession.selectList("jSQL.getChartSelected", b_emotion);
 		return list;
 	}
+	
+	public int getYt(SongVO vo) {
+		return sqlSession.insert("jSQL.youtube", vo);
+	}
 }

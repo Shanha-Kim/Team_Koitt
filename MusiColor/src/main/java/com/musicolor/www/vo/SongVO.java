@@ -10,8 +10,7 @@ public class SongVO {
 	private int s_vno; // 가수번호
 	private String s_title; // 노래제목
 	private long s_ano; // 사진번호
-	private List<String> songlist; //크롤링 노래
-	private List<String> vocallist;//크롤링 가수
+
 	// vocal 테이블
 	private String v_name; // 가수 이름
 	
@@ -49,18 +48,7 @@ public class SongVO {
 	
 	
 	
-	public List<String> getSonglist() {
-		return songlist;
-	}
-	public void setSonglist(List<String> songlist) {
-		this.songlist = songlist;
-	}
-	public List<String> getVocallist() {
-		return vocallist;
-	}
-	public void setVocallist(List<String> vocallist) {
-		this.vocallist = vocallist;
-	}
+
 	public long getS_no() {
 		return s_no;
 	}

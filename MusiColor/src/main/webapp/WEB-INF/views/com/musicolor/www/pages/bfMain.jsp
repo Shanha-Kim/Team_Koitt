@@ -43,8 +43,8 @@
 					<th>CHART</th>
 					<th>ALBUM</th>
 					<th>VOCAL</th>
-					<th>SONG</th>
 					<th>YOUTUBE</th>
+					<th>SONG</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,10 +55,10 @@
 						<td class="align-middle"><img
 							src="/www/album/${data.a_sname}" width="80px"></td>
 						<td class="align-middle">${data.v_name}</td>
-						<td class="align-middle">${data.s_title}</td>
 						<td class="align-middle"><a
 							href="https://www.youtube.com/watch?v=${data.y_link}"><i
 								class="fab fa-youtube white"></i></a></td>
+						<td class="align-middle">${data.s_title}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -93,13 +93,14 @@
 		</table>
 
       </div>
+    
+ 
+    
     </div>
     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
     <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
   </div>

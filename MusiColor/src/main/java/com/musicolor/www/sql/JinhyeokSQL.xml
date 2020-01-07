@@ -55,6 +55,18 @@
 		WHERE rownum <= 50
 	]]>
 	</select>
+	
+	<select id="getYt" resultType="sVO">
+	<![CDATA[
+		select
+		    Y_LINK
+		from
+		    youtube
+		where
+		    y_sno = #{b_sno}
+	]]>	
+	</select>
+	
 </mapper>
 
 
