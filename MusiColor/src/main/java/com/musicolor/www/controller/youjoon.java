@@ -126,13 +126,40 @@ public class youjoon {
 		return cnt;
 	}
 	
+	@RequestMapping("/findId.mr")
+	public ModelAndView findId(ModelAndView mv) {
+		
+		mv.setViewName("pages/findId");
+		
+		return mv;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping("/findIdProc.mr")
+	public ModelAndView findIdProc(HttpSession session,
+									ModelAndView mv,
+									RedirectView rv,
+									MemberVO mVO) {
+		System.out.println("findIdProc");
+		
+		MemberVO fId = mDAO.findIdProc(mVO);
+		
+		if(fId != null) {
+
+			// 입력 사항과 일치하는 회원이 있는 경우
+			System.out.println("### 아이디 찾기 성공");
+			
+			session.setAttribute("FID", fId.getM_id());
+			rv.setUrl("/www/findId.mr");
+			mv.setView(rv);
+		} else {
+			System.out.println("### 아이디 찾기 실패111");
+			
+			session.setAttribute("findFail", "fail");
+			rv.setUrl("/www/findId.mr");
+			mv.setView(rv);			
+		}
+		
+		return mv;
+	}
 	
 }

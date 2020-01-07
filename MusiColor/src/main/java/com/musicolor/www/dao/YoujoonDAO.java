@@ -30,4 +30,11 @@ public class YoujoonDAO {
 		
 		return cnt;
 	}
+	
+	public MemberVO findIdProc(MemberVO mVO) {
+		System.out.println("dao 함수");
+		MemberVO fId = sqlSession.selectOne("mSQL.findId", mVO);
+		
+		return fId;
+	}
 }

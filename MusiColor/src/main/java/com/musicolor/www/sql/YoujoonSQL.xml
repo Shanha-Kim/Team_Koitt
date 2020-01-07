@@ -37,4 +37,14 @@
 			m_id = #{m_id}
 	</select>
 	
+	<select id="findId" resultType="mVO" parameterType="mVO">
+		SELECT
+			m_id
+		FROM
+			member
+		WHERE
+			m_email = #{m_email} AND
+			m_tel = #{m_tel}
+	</select>
+	
 </mapper>
