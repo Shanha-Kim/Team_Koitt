@@ -44,6 +44,7 @@ public class SongVO {
 	// report num
 	private long r_no;
 	
+	private int ban;
 	
 	
 	
@@ -168,4 +169,11 @@ public class SongVO {
 	public void setR_no(long r_no) {
 		this.r_no = r_no;
 	}
+	public int getBan() {
+		return ban;
+	}
+	public void setBan(int ban) {
+		this.ban = ban;
+	}
+	
 }
