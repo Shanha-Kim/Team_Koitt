@@ -51,7 +51,7 @@
           <a class="nav-link" href="/www/upload.mr"><i class="fas fa-cloud-upload-alt f-20"></i></a>
         </li>
       <li class="nav-item">
-        <a class="nav-link" href="/www/profilelist.mr"><i class="fas fa-user f-20"></i></a>
+        <a class="nav-link" href="/www/profilelist.mr?m_id=${SID}"><i class="fas fa-user f-20"></i></a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="/www/logout.mr"><i class="fas fa-sign-in-alt fa-rotate-180 f-20"></i></a>

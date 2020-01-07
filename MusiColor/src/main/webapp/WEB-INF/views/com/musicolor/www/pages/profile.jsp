@@ -220,6 +220,7 @@ margin-top :80px;
 							id="unlock" data-id="${ISSHOW}">계정을 다시 활성화</button>
 							</div>
 							</div>
+							 
 				</div>
 				<br>
 				<div class="textbox">
