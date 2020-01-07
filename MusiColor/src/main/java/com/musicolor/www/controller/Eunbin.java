@@ -224,9 +224,24 @@ public class Eunbin {
 	}
 	
 	@ResponseBody
-	@RequestMapping("repoUpdate.mr")
+	@RequestMapping("/repoDetailBoard.mr")
+	public BoardVO repoDetailBoard(String bno) {
+		return eDAO.repoDetailBoard(bno);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/repoUpdate.mr")
 	public int repoUpdate(HttpSession session, SongVO vo) {
 		int cnt = 0;
+		int bcnt = 0;
+		int mcnt = 0;
+		if (vo.getBan() == 1) {
+			// 곡 최초 작성자 ban, 즉 youtube mno ban
+			mcnt = eDAO.reupdateSMember(vo);
+		} else {
+			bcnt = 1;
+			mcnt = 1;
+		}
 		
 		// youtube 주소 메인부 추출
 		String tmp = vo.getY_link();
@@ -260,11 +275,95 @@ public class Eunbin {
 			rcnt = eDAO.reupdateReport(vo);
 		}
 		
-		if(rcnt == 1) {
+		if(rcnt == 1 && vo.getBan() == 1) {
+			cnt = 2;
+		} else if (rcnt == 1){
 			cnt = 1;
 		}
 		
 		return cnt;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/repoUpdateBoard.mr")
+	public int repoUpdateBoard(HttpSession session, BoardVO vo) {
+		int cnt = 0;
+		int bcnt = 0;
+		int mcnt = 0;
+		if (vo.getBan() == 1) {
+			// board isshow 'N'
+			bcnt = eDAO.reupdateBoard(vo);
+			// board 작성자 ban
+			mcnt = eDAO.reupdateBMember(vo);
+		} else {
+			bcnt = 1;
+			mcnt = 1;
+		}
+		
+		// 관리자 mno 가져오기
+		System.out.println(vo.getId());
+		int m_no = eDAO.findADMno(vo.getId());
+		vo.setM_no(m_no);
+		
+		// report isokay 변경
+		int rcnt = 0;
+		// 반환값 설정
+		if(bcnt == 1 && mcnt == 1) {
+			// report isokay 변경
+			rcnt = eDAO.reupdateReport(vo);
+		}
+		
+		if(rcnt == 1 && vo.getBan() == 1) {
+			cnt = 2;
+		} else if (rcnt == 1){
+			cnt = 1;
+		}
+		
+		return cnt;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/repoUpdateComt.mr")
+	public int repoUpdateBoard(HttpSession session, ComtVO vo) {
+		int cnt = 0;
+		int cmcnt = 0;
+		int mcnt = 0;
+		if (vo.getBan() == 1) {
+			// comt isshow 'N'
+			cmcnt = eDAO.reupdateComt(vo);
+			// comt 작성자 ban
+			mcnt = eDAO.reupdateCMember(vo);
+		} else {
+			cmcnt = 1;
+			mcnt = 1;
+		}
+		
+		// 관리자 mno 가져오기
+		System.out.println(vo.getId());
+		int m_no = eDAO.findADMno(vo.getId());
+		vo.setM_no(m_no);
+		
+		// report isokay 변경
+		int rcnt = 0;
+		// 반환값 설정
+		if(cmcnt == 1 && mcnt == 1) {
+			// report isokay 변경
+			rcnt = eDAO.reupdateReport(vo);
+		}
+		
+		if(rcnt == 1 && vo.getBan() == 1) {
+			cnt = 2;
+		} else if (rcnt == 1){
+			cnt = 1;
+		}
+		
+		return cnt;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/repoDetailComt.mr")
+	public ComtVO repoDetailComt(String cno) {
+		return eDAO.repoDetailComt(cno);
 	}
 	
 	// 날짜 생성 함수

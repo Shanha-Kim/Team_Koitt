@@ -214,6 +214,24 @@
 		    s_no = #{sno}
 	</select>
 	
+	<select id="repoDetailBoard" parameterType="String" resultType="bVO">
+		SELECT
+			b_body
+		FROM
+			board
+		WHERE
+			b_no = #{bno}
+	</select>
+	
+	<select id="repoDetailComt" parameterType="String" resultType="cmVO">
+		SELECT
+			c_body
+		FROM
+			comt
+		WHERE
+			c_no = #{cno}
+	</select>
+	
 	<select id="findADMno" parameterType="string" resultType="int">
 		SELECT
 		    ad_no
@@ -253,13 +271,63 @@
 		</set>
 	</update>
 	
-	<update id="reupdateReport" parameterType="sVO">
+	<update id="reupdateReport" parameterType="Object">
 		UPDATE
 			report
 		<set>
 				r_isokay = 'Y', r_admin = #{m_no}
 			WHERE
 				r_no = #{r_no}
+		</set>
+	</update>
+	
+	<update id="reupdateBoard" parameterType="bVO">
+		UPDATE
+			board
+		<set>
+				b_isshow = 'N'
+			WHERE
+				b_no = #{b_no}
+		</set>
+	</update>
+	
+	<update id="reupdateComt" parameterType="cmVO">
+		UPDATE
+			comt
+		<set>
+				c_isshow = 'N'
+			WHERE
+				c_no = #{c_no}
+		</set>
+	</update>
+	
+	<update id="reupdateSMember" parameterType="SVO">
+		UPDATE
+			member
+		<set>
+				m_isban = m_isban + 1
+			WHERE
+				m_no = (SELECT y_mno FROM youtube WHERE y_no = #{y_no})
+		</set>
+	</update>
+	
+	<update id="reupdateBMember" parameterType="bVO">
+		UPDATE
+			member
+		<set>
+				m_isban = m_isban + 1
+			WHERE
+				m_no = (SELECT b_mno FROM board WHERE b_no = #{b_no})
+		</set>
+	</update>
+	
+	<update id="reupdateCMember" parameterType="cmVO">
+		UPDATE
+			member
+		<set>
+				m_isban = m_isban + 1
+			WHERE
+				m_no = (SELECT c_mno FROM comt WHERE c_no = #{c_no})
 		</set>
 	</update>
 	
