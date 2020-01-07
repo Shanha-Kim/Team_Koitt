@@ -334,7 +334,6 @@
     				$("#c_body").keyup(function(e){
     					if(e.keyCode == 13){
     						e.preventDefault();
-    						setTimeout(function(){console.log("시간지연성공 ");}, 500);
     						var cbody = $('#c_body').val();
     						if(cbody == ""){
     							return;

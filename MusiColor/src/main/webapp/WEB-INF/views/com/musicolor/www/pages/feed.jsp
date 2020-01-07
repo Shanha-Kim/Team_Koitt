@@ -330,7 +330,6 @@
 		var windowHeight = $window.height();
 		var documentHeight = $(document).height();
         
-        console.log("documentHeight:" + documentHeight + " | scrollTop:" + scrollTop + " | windowHeight: " + windowHeight );
         
         // scrollbar의 thumb가 바닥 전 20px까지 도달 하면 리스트를 가져온다.
         if( scrollTop + windowHeight + 20 > documentHeight ){
@@ -339,7 +338,6 @@
         }
     });
 	var listplus = function(){
-		console.log(isEnd);
         if(isEnd == true){
             return;
         }
@@ -347,7 +345,6 @@
         // renderList 함수에서 html 코드를 보면 <li> 태그에 data-no 속성이 있는 것을 알 수 있다.
         // ajax에서는 data- 속성의 값을 가져오기 위해 data() 함수를 제공.
         rno += 5;
-       	console.log(rno);
         $.ajax({
             url:"/plusListFeed.mr",
             type: "post",
@@ -358,7 +355,6 @@
             success: function(vo){
                 // 가져온 데이터가 8개 이하일 경우 무한 스크롤 종료
                 var length = vo.length;
-                console.log(length);
                 if( length < 5 ){
                     isEnd = true;
                 }

@@ -660,7 +660,6 @@ margin-top :80px;
 	
 								$(document).on("click", "#addagin", function() {
 	
-									console.log(sid + f_name);
 									
 									$.ajax({
 	
@@ -677,8 +676,6 @@ margin-top :80px;
 	 											
 											var idx = amu.indexOf(' ');
 											var now2 = amu.substring(idx + 1);
-											console.log(idx);
-											console.log(now2);
 											if (now2 == 'click1') {
 												thisbtn1.removeClass('click1');
 												thisbtn1.addClass('click2');

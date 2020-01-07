@@ -297,7 +297,6 @@ $(function(){
 					if(e.keyCode == 13){
 						e.preventDefault();
 						e.stopImmediatePropagation();
-						setTimeout(function(){console.log("시간지연성공 ");}, 500);
 						var cbody = $('#c_body').val();
 						if(cbody == ""){
 							return;
@@ -477,7 +476,6 @@ $(function(){
 	    });
 	}
 	var listplus = function(){
-		console.log(isEnd);
         if(isEnd == true){
             return;
         }
@@ -485,7 +483,6 @@ $(function(){
         // renderList 함수에서 html 코드를 보면 <li> 태그에 data-no 속성이 있는 것을 알 수 있다.
         // ajax에서는 data- 속성의 값을 가져오기 위해 data() 함수를 제공.
         rno += 9;
-       	console.log(rno);
         $.ajax({
             url:"/plusList.mr",
             type: "post",
@@ -496,7 +493,6 @@ $(function(){
             success: function(vo){
                 // 가져온 데이터가 8개 이하일 경우 무한 스크롤 종료
                 var length = vo.length;
-                console.log(length);
                 if( length < 9 ){
                     isEnd = true;
                 }
