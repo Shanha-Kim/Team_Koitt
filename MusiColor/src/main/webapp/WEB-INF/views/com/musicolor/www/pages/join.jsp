@@ -98,6 +98,7 @@
 <script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
 <script type="text/javascript">
 	var ck = 0;
+	var mailCk = 0;
 	var getCheckId = RegExp(/^[a-zA-Z0-9-_]{4,16}$/);
 	var getCheckPw = RegExp(/^[a-zA-Z0-9`~!@#$%^&*()-_=+\|]{6,18}$/);
 	var getCheckName = RegExp(/^[가-힣a-zA-Z]{1,14}$/);
@@ -106,6 +107,10 @@
 	
 	function ckFunc(data){	// 중복확인 하면 이 함수로 ck의 값을 바꿈
 		ck = data;
+	}
+	
+	function mailCkFunc(data){	// 중복확인 하면 이 함수로 mailck의 값을 바꿈
+		mailck = data;
 	}
 
 	$('#goToMain').click(function() {
@@ -132,7 +137,7 @@
 			}
 		})
 		
-		
+		// 아이디 중복 확인
 		$('#idCheck').click(function(){
 			var sid = $('#m_id').val();
 			
@@ -184,6 +189,43 @@
 				}
 			});
 		});
+		
+		// 이메일 인증
+		$("#mailauthbtn").click(function(){
+			var mymail = $("#m_email").val();
+			$.ajax({
+				url : "/www/mailauth.mr",
+				type : "post",
+				dataType : "json",
+				data : {
+					mymail : mymail
+				},
+				success : function(num){
+					$("#authnum").attr("type", "text");
+					$("#checkauth").css("display", "block");
+					
+					$("#checkauth").off().click(function(){
+						var dice = $("#authnum").val();
+						if(num == dice){
+							mailCkFunc(true);
+							$('#mailauthtext').attr('class', '');
+							$('#mailauthtext').toggleClass('valid-feedback');
+							$('#mailauthtext').html("인증되었습니다.");
+							
+						}else{
+							$('#mailauthtext').attr('class', '');
+							$('#mailauthtext').toggleClass('invalid-feedback');
+							$('#mailauthtext').html("번호가 잘못되었습니다.");
+						}
+						
+					})
+				},
+				error : function(){
+					alert('### 통신 에러 ###');
+				}
+			});
+		})
+		
 		$('#m_name').change(function(){
 			// change 이름 유효성 검사
 			if(!getCheckName.test($("#m_name").val())){
@@ -356,6 +398,12 @@
 			return false;
 		}
 		
+		// 이메일 인증 확인
+		if(mailCk != true){
+			alert("이메일 인증을 해주세요.");
+			return false;
+		}
+		
 		// 전화번호 입력 확인
 		if($("#m_tel").val() == "") {
 			alert("전화번호를 입력해주세요.");
@@ -370,11 +418,12 @@
 			return false;
 		}
 		
+
 		form.submit();
 	}
 </script>
 <script type="text/javascript">
-	$(function(){
+	/* $(function(){
 		$("#mailauthbtn").click(function(){
 			var mymail = $("#m_email").val();
 			$.ajax({
@@ -408,7 +457,7 @@
 			});
 			
 		})
-	})
+	}) */
 </script>
 </body>
 </html>
