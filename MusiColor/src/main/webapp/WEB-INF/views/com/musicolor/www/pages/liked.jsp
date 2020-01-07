@@ -7,9 +7,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>searchbefore</title>
-<link rel="stylesheet" href="/www/css/bootstrap.custom.css" >
-<link rel="stylesheet" href="/www/css/bootstrap-lux.css" >
-<link rel="stylesheet" href="/www/css/random.css" >
+<link rel="stylesheet" href="/css/bootstrap.custom.css" >
+<link rel="stylesheet" href="/css/bootstrap-lux.css" >
+<link rel="stylesheet" href="/css/random.css" >
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Optional JavaScript -->
@@ -27,7 +27,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIKELIST}" begin="0" end="2">
         <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -35,7 +35,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIKELIST}" begin="3" end="5">
         <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -43,7 +43,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIKELIST}" begin="6" end="8">
         <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -113,7 +113,7 @@ $(function(){
 		
 		$('#myModal1').modal("show");
 		$.ajax({
-			url : "/www/showDetail.mr",
+			url : "/showDetail.mr",
 			type : "post",
 			dataType : "json",
 			data : {
@@ -124,7 +124,7 @@ $(function(){
 				$('#bbody').html(vo.b_body);
 				$('#blike').html('<strong> ' + vo.b_like + ' likes</strong>');
 				$('#stitle').html(vo.s_title);
-				$('#psname').attr("src", "/www/profile/" + vo.sname);
+				$('#psname').attr("src", "/profile/" + vo.sname);
 				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
 				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
 				for(var i=0 in vo.comt){
@@ -139,7 +139,7 @@ $(function(){
 				$('#heart').click(function(e){
 					e.preventDefault();
 					$.ajax({
-						url : "/www/likeProc.mr",
+						url : "/likeProc.mr",
 						type : "post",
 						dataType : "json",
 						data : {
@@ -174,7 +174,7 @@ $(function(){
 							return;
 						}
 						$.ajax({
-							url : "/www/comtWrite.mr",
+							url : "/comtWrite.mr",
 							type : "post",
 							dataType : "json",
 							data : {
@@ -251,7 +251,7 @@ $(function(){
         rno += 9;
        	console.log(rno);
         $.ajax({
-            url:"/www/plusList.mr",
+            url:"/plusList.mr",
             type: "post",
             dataType: "json",
             data : {
@@ -269,7 +269,7 @@ $(function(){
        				resultlist+='<div class="row">';
    					for(var i=0; i<length; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
@@ -279,14 +279,14 @@ $(function(){
        				resultlist+='<div class="row">';
    					for(var i=0; i<3; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
    					resultlist+='<div class="row">';
    					for(var i=3; i<length; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
@@ -296,21 +296,21 @@ $(function(){
        				resultlist+='<div class="row">';
    					for(var i=0; i<3; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
    					resultlist+='<div class="row">';
    					for(var i=3; i<6; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
    					resultlist+='<div class="row">';
    					for(var i=6; i<length; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';

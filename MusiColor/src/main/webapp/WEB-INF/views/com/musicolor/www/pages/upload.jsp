@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
 <!-- Bootstrap CSS & theme -->
-<link rel="stylesheet" href="/www/css/bootstrap-lux.css" />
-<link rel="stylesheet" href="/www/css/bootstrap.custom.css" />
-<link rel="stylesheet" href="/www/css/upload.css" />
+<link rel="stylesheet" href="/css/bootstrap-lux.css" />
+<link rel="stylesheet" href="/css/bootstrap.custom.css" />
+<link rel="stylesheet" href="/css/upload.css" />
 
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -96,7 +96,7 @@
 		</div>
 	</div>
 
-	<form id="addMusic" method="POST" action="/www/musicUpdate.mr" enctype="multipart/form-data">
+	<form id="addMusic" method="POST" action="/musicUpdate.mr" enctype="multipart/form-data">
 		<!-- second modal, music add -->
 		<div class="modal" id="myModal2">
 			<div class="modal-dialog">
@@ -231,7 +231,7 @@
 				var keywords = $('#keywords').val();
 
 								$.ajax({
-									url : "/www/searchSong.mr",
+									url : "/searchSong.mr",
 									type : "post",
 									dataType : "json",
 									data : {
@@ -239,7 +239,7 @@
 									},
 									success : function(data) {
 										for ( var i = 0 in data) {
-											$('#searchTable').append('<tr id="' + data[i].s_no + '"><td><img src="/www/album/'
+											$('#searchTable').append('<tr id="' + data[i].s_no + '"><td><img src="/album/'
 												+ data[i].a_sname
 												+ '" width="50"></td><td class="vocal">'
 												+ data[i].v_name
@@ -301,7 +301,7 @@
 		    	 
 		        $.ajax({
 		            type : "post",
-		            url : "/www/reportProc.mr",
+		            url : "/reportProc.mr",
 		            data : queryString,
 		            dataType : "json",
 		            success : function(data) {
@@ -332,7 +332,7 @@
 			$("#vocalSearch").click(function() {
 				var vocal = $('#v_name').val();
 				$.ajax({
-					url : "/www/vocalSearch.mr",
+					url : "/vocalSearch.mr",
 					type : "post",
 					dataType : "json",
 					data : {
@@ -372,7 +372,7 @@
 			$('#vocalUpdate').click(function() {
 				var vocal = $('#vocalResult').val();
 				$.ajax({
-					url : "/www/vocalUpdate.mr",
+					url : "/vocalUpdate.mr",
 					type : "post",
 					dataType : "json",
 					data : {
@@ -410,7 +410,7 @@
 		        $.ajax({
 		            type: "POST",
 		            enctype: 'multipart/form-data',
-		            url: "/www/musicUpdate.mr",
+		            url: "/musicUpdate.mr",
 		            data: data,
 		            processData: false,
 		            contentType: false,

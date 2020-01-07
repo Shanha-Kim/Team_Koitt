@@ -8,8 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS & theme -->
-<link rel="stylesheet" href="/www/css/bootstrap-lux.css">
-<link rel="stylesheet" href="/www/css/bootstrap.custom.css">
+<link rel="stylesheet" href="/css/bootstrap-lux.css">
+<link rel="stylesheet" href="/css/bootstrap.custom.css">
 
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -53,15 +53,15 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#login').click(function() {
-			$(location).attr('href', '/www/login.mr');
+			$(location).attr('href', '/login.mr');
 		})
 		
 		$('#join').click(function() {
-			$(location).attr('href', '/www/join.mr');
+			$(location).attr('href', '/join.mr');
 		})
 		
 		$('#logout').click(function(){
-			$(location).attr('href', '/www/logout.mr');
+			$(location).attr('href', '/logout.mr');
 		});
 	});
 </script>

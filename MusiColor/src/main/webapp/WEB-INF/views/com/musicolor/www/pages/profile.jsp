@@ -12,10 +12,9 @@
 
 <!-- Bootstrap CSS & theme -->
 
-<link rel="stylesheet" href="/www/css/bootstrap-lux.css">
-<link rel="stylesheet" href="/www/css/bootstrap.custom.css">
-<link rel="stylesheet" href="/www/css/random.css">
-<link rel="stylesheet" href="/www/css/random.css" >
+<link rel="stylesheet" href="/css/bootstrap-lux.css">
+<link rel="stylesheet" href="/css/bootstrap.custom.css">
+<link rel="stylesheet" href="/css/random.css">
 
 <style>
 body {
@@ -193,7 +192,7 @@ margin-top :80px;
 				<div class="contant">
 					<div class="imglogobox">
 						<br> <br> <img class="colorimg" style="border-radius: 100px; -moz-border-radius: 100px; -khtml-border-radius: 100px; -webkit-border-radius: 100px;" 
-							src="/www/upload/${VO.sname}" id="logo"> <br>
+							src="/upload/${VO.sname}" id="logo"> <br>
 					</div>
 					<div class="member">
 					<div class="form-group">
@@ -233,7 +232,7 @@ margin-top :80px;
 				<hr>
 				<!-- 				<div class="imggride"> -->
 				<%-- 					<c:forEach var="data" items="${LIST}"> --%>
-				<%-- 						<img src="/www/upload/${data.sname}"> --%>
+				<%-- 						<img src="/upload/${data.sname}"> --%>
 				<%-- 					</c:forEach> --%>
 				<!-- 				</div> -->
 			</div>
@@ -247,7 +246,7 @@ margin-top :80px;
 			<c:forEach var="data" items="${LIST}" begin="0" end="2">
 				<div class="col-4 big-square">
 					<div class="square small-${data.b_emotion}" id="${data.b_no}">
-						<img class="album" src="/www/album/${data.sname}" />
+						<img class="album" src="/album/${data.sname}" />
 					</div>
 				</div>
 			</c:forEach>
@@ -257,7 +256,7 @@ margin-top :80px;
 			<c:forEach var="data" items="${LIST}" begin="3" end="5">
 				<div class="col-4 big-square">
 					<div class="square small-${data.b_emotion}" id="${data.b_no}">
-						<img class="album" src="/www/album/${data.sname}" />
+						<img class="album" src="/album/${data.sname}" />
 					</div>
 				</div>
 			</c:forEach>
@@ -267,7 +266,7 @@ margin-top :80px;
 			<c:forEach var="data" items="${LIST}" begin="6" end="8">
 				<div class="col-4 big-square">
 					<div class="square small-${data.b_emotion}" id="${data.b_no}">
-						<img class="album" src="/www/album/${data.sname}" />
+						<img class="album" src="/album/${data.sname}" />
 					</div>
 				</div>
 			</c:forEach>
@@ -294,7 +293,7 @@ margin-top :80px;
 							<!-- Modal right -->
 							<div class="col text-left" style="padding: 10px;">
 								<h3 class="card-header" style="padding: 10px;">
-									<img class="profile" src="/www/img/profile1.jpg" />USERNAME
+									<img class="profile" src="/img/profile1.jpg" />USERNAME
 								</h3>
 								<!-- 일정 크기 이상 작아지면 보이는 유튜브-->
 								<div class="youtube mobile-youtube mb-3">
@@ -401,12 +400,12 @@ margin-top :80px;
 							<div class="othersprofile" id="${data.m_id}"
 								style="width: 50px; height: 50px; overflow: hidden; position: relative; display: inline-block; border-radius: 50%;">
 								<!-- 이미지 -->
-								<img class="" src="/www/profile/${data.m_name}"
+								<img class="" src="/profile/${data.m_name}"
 									style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" />
 							</div>
 							<!-- 아이디, 버튼 영역 -->
 							<div style="display: inline-block; width: 100%;">
-							<a href="/www/profilelist.mr?m_id=${data.m_id}">
+							<a href="/profilelist.mr?m_id=${data.m_id}">
 								<span class="fname1" data="${data.m_id}">${data.m_id}</span>
 								</a>
 								<c:if test="${data.m_isban eq 0}">
@@ -448,7 +447,7 @@ margin-top :80px;
 							<div class="" id="${data.m_id}"
 								style="width: 50px; height: 50px; overflow: hidden; position: relative; display: inline-block; border-radius: 50%;">
 								<!-- 이미지 -->
-								<img class="" src="/www/profile/${data.m_name}"
+								<img class="" src="/profile/${data.m_name}"
 									style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" />
 							</div>
 							<!-- 아이디, 버튼 영역 -->
@@ -521,7 +520,7 @@ margin-top :80px;
 	<!-- Font Awesome 5 -->
 	<!-- <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" /> -->
-	<!--  <script type="text/javascript" src="/www/js/jquery-3.4.1.min.js"></script>  -->
+	<!--  <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>  -->
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script
@@ -563,12 +562,12 @@ margin-top :80px;
 
 							}
 							$('#profile').click(function() {
-								$(location).attr('href', '/www/profconfig.mr');
+								$(location).attr('href', '/profconfig.mr');
 
 							});
 
 							$('#likedbtn').click(function() {
-								$(location).attr('href', '/www/likedlist.mr');
+								$(location).attr('href', '/likedlist.mr');
 
 							});
 
@@ -586,7 +585,7 @@ margin-top :80px;
 							});
 
 							$('#unlock2').click(function() {
-								$(location).attr('href', '/www/unlock.mr');
+								$(location).attr('href', '/unlock.mr');
 							});
 
 							$("#fw1btn").click(function() {
@@ -613,7 +612,7 @@ margin-top :80px;
 								$(document).on("click", "#fcansle", function() {
 									
 										$.ajax({
-											url : "/www/followercheck.mr",
+											url : "/followercheck.mr",
 											type : "post",
 											dataType : "json",
 											data : {
@@ -665,7 +664,7 @@ margin-top :80px;
 									
 									$.ajax({
 	
-										url : "/www/followercheck.mr",
+										url : "/followercheck.mr",
 										type : "post",
 										dataType : "json",
 										data : {

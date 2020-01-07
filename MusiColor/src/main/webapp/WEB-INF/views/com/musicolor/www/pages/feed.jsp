@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS & theme -->
-    <link rel="stylesheet" href="/www/css/bootstrap-lux.css" />
-    <link rel="stylesheet" href="/www/css/bootstrap.custom.css" />
+    <link rel="stylesheet" href="/css/bootstrap-lux.css" />
+    <link rel="stylesheet" href="/css/bootstrap.custom.css" />
 
     <!-- Font Awesome 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -23,7 +23,7 @@
       <!-- content1 -->
       <c:forEach var="data" items="${LIST}" varStatus="num">
       <div class="card mb-3 bg-primary mb-5 angry">
-        <h3 class="card-header" style="display:flex; justify-content:space-between;"><span><img class="profile" src="/www/profile/${data.sname }" />${data.m_id}</span><span></span><span class="postmodi my-auto"  data-buser="${data.m_id}" data-bno="${data.b_no}">···</span></h3>
+        <h3 class="card-header" style="display:flex; justify-content:space-between;"><span><img class="profile" src="/profile/${data.sname }" />${data.m_id}</span><span></span><span class="postmodi my-auto"  data-buser="${data.m_id}" data-bno="${data.b_no}">···</span></h3>
         <!-- video -->
         <div class="youtube">
           <iframe src="https://www.youtube.com/embed/${data.y_link }" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -135,7 +135,7 @@
 		bno = $(this).prev().attr("data");
 		var span = $(this).next();
 		$.ajax({
-			url : "/www/likeProc.mr",
+			url : "/likeProc.mr",
 			type : "post",
 			dataType : "json",
 			data : {
@@ -168,7 +168,7 @@
 		//삭제로직
 		$(document).off().on("click", '#delproc', function() {
 			$.ajax({
-				url : "/www/delComt.mr",
+				url : "/delComt.mr",
 				type : "post",
 				dataType : "json",
 				data : {
@@ -186,7 +186,7 @@
 		//신고로직
 		$(document).off().on("click", '#decproc', function() {
 			$.ajax({
-				url : "/www/decComt.mr",
+				url : "/decComt.mr",
 				type : "post",
 				dataType : "json",
 				data : {
@@ -229,7 +229,7 @@
 			}
 			var comt = $("#"+bno+"a");
 			$.ajax({
-				url : "/www/comtWrite.mr",
+				url : "/comtWrite.mr",
 				type : "post",
 				dataType : "json",
 				data : {
@@ -280,7 +280,7 @@
 		//삭제로직
 		$(document).off().on("click", '#delproc2', function() {
 			$.ajax({
-				url : "/www/delPost.mr",
+				url : "/delPost.mr",
 				type : "post",
 				dataType : "json",
 				data : {
@@ -298,7 +298,7 @@
 		//신고로직
 		$(document).off().on("click", '#decproc2', function() {
 			$.ajax({
-				url : "/www/decPost.mr",
+				url : "/decPost.mr",
 				type : "post",
 				dataType : "json",
 				data : {
@@ -349,7 +349,7 @@
         rno += 5;
        	console.log(rno);
         $.ajax({
-            url:"/www/plusListFeed.mr",
+            url:"/plusListFeed.mr",
             type: "post",
             dataType: "json",
             data : {
@@ -365,7 +365,7 @@
                 var resultlist = '';
 				for(var i=0; i<length; i++){
    					resultlist+='<div class="card mb-3 bg-primary mb-5 angry">';
-					resultlist+='<h3 class="card-header"><img class="profile" src="/www/profile/'+vo[i].sname+'" />'+vo[i].m_id+'</h3>';
+					resultlist+='<h3 class="card-header"><img class="profile" src="/profile/'+vo[i].sname+'" />'+vo[i].m_id+'</h3>';
 					resultlist+='<div class="youtube">';
 					resultlist+='<iframe src="https://www.youtube.com/embed/'+vo[i].y_link+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 					resultlist+='</div>';

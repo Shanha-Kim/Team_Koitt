@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS & theme -->
-    <link rel="stylesheet" href="/www/css/bootstrap-lux.css" />
-    <link rel="stylesheet" href="/www/css/bootstrap.custom.css" />
-    <link rel="stylesheet" href="/www/css/random.css" />
+    <link rel="stylesheet" href="/css/bootstrap-lux.css" />
+    <link rel="stylesheet" href="/css/bootstrap.custom.css" />
+    <link rel="stylesheet" href="/css/random.css" />
 
     <!-- Font Awesome 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -36,7 +36,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIST}" begin="0" end="2">
         <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -44,7 +44,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIST}" begin="3" end="5">
         <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -52,7 +52,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIST}" begin="6" end="8">
         <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -188,27 +188,27 @@
   		
   		/* 버튼 페이지 이동 */
         $("#btn-0").click(function(){
-        	$(location).attr("href", "/www/random.mr");
+        	$(location).attr("href", "/random.mr");
         })
         
         $("#btn-1").click(function(){
-        	$(location).attr("href", "/www/randomseleced.mr?b_emotion=1");
+        	$(location).attr("href", "/randomseleced.mr?b_emotion=1");
         })
         
         $("#btn-2").click(function(){
-        	$(location).attr("href", "/www/randomseleced.mr?b_emotion=2");
+        	$(location).attr("href", "/randomseleced.mr?b_emotion=2");
         })
         
         $("#btn-3").click(function(){
-        	$(location).attr("href", "/www/randomseleced.mr?b_emotion=3");
+        	$(location).attr("href", "/randomseleced.mr?b_emotion=3");
         })
         
         $("#btn-4").click(function(){
-        	$(location).attr("href", "/www/randomseleced.mr?b_emotion=4");
+        	$(location).attr("href", "/randomseleced.mr?b_emotion=4");
         })
         
         $("#btn-5").click(function(){
-        	$(location).attr("href", "/www/randomseleced.mr?b_emotion=5");
+        	$(location).attr("href", "/randomseleced.mr?b_emotion=5");
         })
         
       //세션 ID 저장===========================================================================================
@@ -228,7 +228,7 @@
     		//삭제로직
     		$(document).on("click", '#delproc', function() {
     			$.ajax({
-    				url : "/www/delComt.mr",
+    				url : "/delComt.mr",
     				type : "post",
     				dataType : "json",
     				data : {
@@ -246,7 +246,7 @@
     		//신고로직
     		$(document).on("click", '#decproc', function() {
     			$.ajax({
-    				url : "/www/decComt.mr",
+    				url : "/decComt.mr",
     				type : "post",
     				dataType : "json",
     				data : {
@@ -279,7 +279,7 @@
     		
     		$('#myModal').modal("show");
     		$.ajax({
-    			url : "/www/showDetail.mr",
+    			url : "/showDetail.mr",
     			type : "post",
     			dataType : "json",
     			data : {
@@ -290,7 +290,7 @@
     				$('#bbody').html(vo.b_body);
     				$('#blike').html('<strong> ' + vo.b_like + ' likes</strong>');
     				$('#stitle').html(vo.s_title);
-    				$('#psname').attr("src", "/www/profile/" + vo.sname);
+    				$('#psname').attr("src", "/profile/" + vo.sname);
     				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
     				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
     				for(var i=0 in vo.comt){
@@ -305,7 +305,7 @@
     				$('#heart').click(function(e){
     					e.preventDefault();
     					$.ajax({
-    						url : "/www/likeProc.mr",
+    						url : "/likeProc.mr",
     						type : "post",
     						dataType : "json",
     						data : {
@@ -340,7 +340,7 @@
     							return;
     						}
     						$.ajax({
-    							url : "/www/comtWrite.mr",
+    							url : "/comtWrite.mr",
     							type : "post",
     							dataType : "json",
     							data : {
@@ -383,7 +383,7 @@
     					//삭제로직
     					$(document).on("click", '#delproc2', function() {
     						$.ajax({
-    							url : "/www/delPost.mr",
+    							url : "/delPost.mr",
     							type : "post",
     							dataType : "json",
     							data : {
@@ -401,7 +401,7 @@
     					//신고로직
     					$(document).on("click", '#decproc2', function() {
     						$.ajax({
-    							url : "/www/decPost.mr",
+    							url : "/decPost.mr",
     							type : "post",
     							dataType : "json",
     							data : {

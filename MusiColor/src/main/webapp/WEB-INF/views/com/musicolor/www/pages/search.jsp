@@ -7,9 +7,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>searchbefore</title>
-<link rel="stylesheet" href="/www/css/bootstrap.custom.css" >
-<link rel="stylesheet" href="/www/css/bootstrap-lux.css" >
-<link rel="stylesheet" href="/www/css/random.css" >
+<link rel="stylesheet" href="/css/bootstrap.custom.css" >
+<link rel="stylesheet" href="/css/bootstrap-lux.css" >
+<link rel="stylesheet" href="/css/random.css" >
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Optional JavaScript -->
@@ -21,7 +21,7 @@
     <jsp:include page="nav.jsp" flush="false" />
 	
     <div class="container" id="main">
-      <form id="search_frm" class="form-inline my-lg-0" method="post" action="/www/searchAfter.mr">
+      <form id="search_frm" class="form-inline my-lg-0" method="post" action="/searchAfter.mr">
       	<input id="search_key" class="form-control col-sm text-center" type="text" placeholder="Search" name="key_main">
       	<input id="search_tab" type="hidden" name="key_tab">
       	<input id="search_rno" type="hidden" name="b_vno" value=1>
@@ -44,7 +44,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIST}" begin="0" end="2">
         <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -52,7 +52,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIST}" begin="3" end="5">
         <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -60,7 +60,7 @@
       <div class="row">
       	<c:forEach var="data" items="${LIST}" begin="6" end="8">
         <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/www/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
         </div>
 		</c:forEach>
       </div>
@@ -173,7 +173,7 @@ $(function(){
 	
 	//리프레쉬버튼===========================================================================================
 	$('#refresh').click(function(){
-		$(location).attr("href", "/www/searchBefore.mr");
+		$(location).attr("href", "/searchBefore.mr");
 	});
 	
 	//댓글, 글 삭제, 신고처리================================================================================
@@ -190,7 +190,7 @@ $(function(){
 		//삭제로직
 		$(document).on("click", '#delproc', function() {
 			$.ajax({
-				url : "/www/delComt.mr",
+				url : "/delComt.mr",
 				type : "post",
 				dataType : "json",
 				data : {
@@ -208,7 +208,7 @@ $(function(){
 		//신고로직
 		$(document).on("click", '#decproc', function() {
 			$.ajax({
-				url : "/www/decComt.mr",
+				url : "/decComt.mr",
 				type : "post",
 				dataType : "json",
 				data : {
@@ -241,7 +241,7 @@ $(function(){
 		
 		$('#myModal').modal("show");
 		$.ajax({
-			url : "/www/showDetail.mr",
+			url : "/showDetail.mr",
 			type : "post",
 			dataType : "json",
 			data : {
@@ -252,7 +252,7 @@ $(function(){
 				$('#bbody').html(vo.b_body);
 				$('#blike').html('<strong> ' + vo.b_like + ' likes</strong>');
 				$('#stitle').html(vo.s_title);
-				$('#psname').attr("src", "/www/profile/" + vo.sname);
+				$('#psname').attr("src", "/profile/" + vo.sname);
 				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
 				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
 				for(var i=0 in vo.comt){
@@ -267,7 +267,7 @@ $(function(){
 				$('#heart').click(function(e){
 					e.preventDefault();
 					$.ajax({
-						url : "/www/likeProc.mr",
+						url : "/likeProc.mr",
 						type : "post",
 						dataType : "json",
 						data : {
@@ -303,7 +303,7 @@ $(function(){
 							return;
 						}
 						$.ajax({
-							url : "/www/comtWrite.mr",
+							url : "/comtWrite.mr",
 							type : "post",
 							dataType : "json",
 							data : {
@@ -346,7 +346,7 @@ $(function(){
 					//삭제로직
 					$(document).on("click", '#delproc2', function() {
 						$.ajax({
-							url : "/www/delPost.mr",
+							url : "/delPost.mr",
 							type : "post",
 							dataType : "json",
 							data : {
@@ -364,7 +364,7 @@ $(function(){
 					//신고로직
 					$(document).on("click", '#decproc2', function() {
 						$.ajax({
-							url : "/www/decPost.mr",
+							url : "/decPost.mr",
 							type : "post",
 							dataType : "json",
 							data : {
@@ -433,7 +433,7 @@ $(function(){
 // 	$("#search_key").keyup(function(e){
 // 		$('#myModal1').modal("show");
 // 		$.ajax({
-// 			url : "/www/preView.mr",
+// 			url : "/preView.mr",
 // 			type : "post",
 // 			dataType : "json",
 // 			data : {
@@ -445,7 +445,7 @@ $(function(){
 // 				$('#bbody').html(vo.b_body);
 // 				$('#blike').append("<strong>" + vo.b_like + "likes</strong>");
 // 				$('#stitle').html(vo.s_title);
-// 				$('#psname').attr("src", "/www/profile/" + vo.sname);
+// 				$('#psname').attr("src", "/profile/" + vo.sname);
 // 				$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
 // 				$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
 // 			},
@@ -487,7 +487,7 @@ $(function(){
         rno += 9;
        	console.log(rno);
         $.ajax({
-            url:"/www/plusList.mr",
+            url:"/plusList.mr",
             type: "post",
             dataType: "json",
             data : {
@@ -505,7 +505,7 @@ $(function(){
        				resultlist+='<div class="row">';
    					for(var i=0; i<length; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
@@ -515,14 +515,14 @@ $(function(){
        				resultlist+='<div class="row">';
    					for(var i=0; i<3; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
    					resultlist+='<div class="row">';
    					for(var i=3; i<length; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
@@ -532,21 +532,21 @@ $(function(){
        				resultlist+='<div class="row">';
    					for(var i=0; i<3; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
    					resultlist+='<div class="row">';
    					for(var i=3; i<6; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';
    					resultlist+='<div class="row">';
    					for(var i=6; i<length; i++){
    						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/www/album/'+vo[i].sname+'" /></div>';
+   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
    						resultlist+='</div>';
    					}
    					resultlist+='</div>';

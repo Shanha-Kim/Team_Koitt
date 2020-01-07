@@ -7,11 +7,11 @@
 	<meta charset="UTF-8">
 	<title>프로필 수정 페이지</title>
 
-	<link rel="stylesheet" href="/www/css/bootstrap-lux.css">
-	<link rel="stylesheet" href="/www/css/bootstrap.custom.css">
+	<link rel="stylesheet" href="/css/bootstrap-lux.css">
+	<link rel="stylesheet" href="/css/bootstrap.custom.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-	<script type="text/javascript" src="/www/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="/www/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		/* $(function(){
 		 $('.profile').click(function(){
@@ -29,7 +29,7 @@
 			
 			
 			$('#backbtn').click(function(){
-			$(location).attr('href','/www/profilelist.mr');	
+			$(location).attr('href','/profilelist.mr');	
 			});
 			
 			$("#addpic").click(function(e){
@@ -61,14 +61,14 @@
 		  
 		/*   
 		  $("#conform").click(function(){
-			 $(location).attr('href','/www/profilelist.mr'); 
+			 $(location).attr('href','/profilelist.mr'); 
 		  });
 		   */
 		  
 		  
 		  $("#tembtn").click(function(){
 			alert("계정이 비활성화 되었습니다.")
-			$(location).attr('href','/www/lock.mr');
+			$(location).attr('href','/lock.mr');
 		  });
 	  });
 		 
@@ -94,11 +94,11 @@
 <body class="bg-primary">
 <jsp:include page="nav.jsp" flush="false" />
 
-	<form action="/www/profilepic.mr" method="post" enctype="multipart/form-data" style="display: none;" id="fileup-frm">
+	<form action="/profilepic.mr" method="post" enctype="multipart/form-data" style="display: none;" id="fileup-frm">
 	 	<input type="file" name="sFile" id="fileup"> 
 	</form>
 	
-	<form action="/www/profiletext.mr" method="post" id="textup-frm" >
+	<form action="/profiletext.mr" method="post" id="textup-frm" >
 	<input type="text" name="m_id" value="${SID}">
 		<div class="container" id="main">
 			<div class="card text-white bg-primary mb-" style="max-width: 40rem;">
@@ -112,7 +112,7 @@
 					<h4 class="card-title" style= "margin-bottom: 30px;">사용자 ID</h4>
 					<div class="imgbox text-center">
 					
-						<img src="/www/upload/${VO.sname}" alt="noimage" class="profIn" id="profImg">
+						<img src="/upload/${VO.sname}" alt="noimage" class="profIn" id="profImg">
 						
 						<p></p>
 						<button type="button" class="btn btn-info" style="padding: 0px; width: 135px; height: 25px;"

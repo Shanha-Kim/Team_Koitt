@@ -8,9 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS & theme -->
-<link rel="stylesheet" href="/www/css/bootstrap.custom.css" >
-<link rel="stylesheet" href="/www/css/bootstrap-lux.css" >
-<link rel="stylesheet" href="/www/css/random.css" >
+<link rel="stylesheet" href="/css/bootstrap.custom.css" >
+<link rel="stylesheet" href="/css/bootstrap-lux.css" >
+<link rel="stylesheet" href="/css/random.css" >
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
@@ -26,7 +26,7 @@
 				<div class="card-header">Sign Up</div>
 				<div class="card-body">
 					<h4 class="card-title" style="margin-bottom: 30px;">Welcome to MUSICOLOR</h4>
-					<form method="POST" action="/www/joinProc.mr" onsubmit="return inputCheck()">
+					<form method="POST" action="/joinProc.mr" onsubmit="return inputCheck()">
 						
 						<div class="form-group">
 							<label for="m_id">ID</label>
@@ -114,7 +114,7 @@
 	}
 
 	$('#goToMain').click(function() {
-		$(location).attr('href', '/www/feed.mr');
+		$(location).attr('href', '/feed.mr');
 	})
 	
 	$(document).ready(function(){
@@ -150,7 +150,7 @@
 			}
 			
 			$.ajax({
-				url : "/www/idCheck.mr",
+				url : "/idCheck.mr",
 				type : "post",
 				dataType: "text",
 				data : {
@@ -194,7 +194,7 @@
 		$("#mailauthbtn").click(function(){
 			var mymail = $("#m_email").val();
 			$.ajax({
-				url : "/www/mailauth.mr",
+				url : "/mailauth.mr",
 				type : "post",
 				dataType : "json",
 				data : {
@@ -426,7 +426,7 @@
 		$("#mailauthbtn").click(function(){
 			var mymail = $("#m_email").val();
 			$.ajax({
-				url : "/www/mailauth.mr",
+				url : "/mailauth.mr",
 				type : "post",
 				dataType : "json",
 				data : {

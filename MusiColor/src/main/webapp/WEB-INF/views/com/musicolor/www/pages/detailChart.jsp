@@ -9,8 +9,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS & theme -->
-<link rel="stylesheet" href="/www/css/bootstrap-lux.css">
-<link rel="stylesheet" href="/www/css/bootstrap.custom.css">
+<link rel="stylesheet" href="/css/bootstrap-lux.css">
+<link rel="stylesheet" href="/css/bootstrap.custom.css">
 
 
 
@@ -66,7 +66,7 @@
 		<!-- 랜덤 이미지 스크롤 이동 버튼 -->
 		<c:forEach var="data" items="${RAN}" varStatus="status" >
 			<button type="button" class="btn btn-outline-secondary">
-				<a href="#test1"><img src="/www/album/${LIST.get(data).a_sname}" width="120px"></a>
+				<a href="#test1"><img src="/album/${LIST.get(data).a_sname}" width="120px"></a>
 			</button>
 		</c:forEach>
 
@@ -112,7 +112,7 @@
 					<tr class="t1" id="${data.s_no }">
 						<td class="align-middle">${status.index + 1}</td>
 						<td id="test1" class="align-middle"><img
-							src="/www/album/${data.a_sname}" width="80px"></td>
+							src="/album/${data.a_sname}" width="80px"></td>
 						<td class="align-middle">${data.v_name}</td>
 						<td class="align-middle"><a
 							href="https://www.youtube.com/watch?v=${data.y_link}"><i
@@ -191,7 +191,7 @@
 			});
 		/* 슬라이드 유튜브 */
 		$.ajax({
-			url : "/www/youT.mr",
+			url : "/youT.mr",
 			type : "post",
 			dataType : "json",
 			data : {
@@ -233,27 +233,27 @@
   		
   		/* 버튼 페이지 이동 */
         $("#btn-0").click(function(){
-        	$(location).attr("href", "/www/detailChart.mr");
+        	$(location).attr("href", "/detailChart.mr");
         })
         
         $("#btn-1").click(function(){
-        	$(location).attr("href", "/www/detailChartSeleced.mr?b_emotion=1");
+        	$(location).attr("href", "/detailChartSeleced.mr?b_emotion=1");
         })
         
         $("#btn-2").click(function(){
-        	$(location).attr("href", "/www/detailChartSeleced.mr?b_emotion=2");
+        	$(location).attr("href", "/detailChartSeleced.mr?b_emotion=2");
         })
         
         $("#btn-3").click(function(){
-        	$(location).attr("href", "/www/detailChartSeleced.mr?b_emotion=3");
+        	$(location).attr("href", "/detailChartSeleced.mr?b_emotion=3");
         })
         
         $("#btn-4").click(function(){
-        	$(location).attr("href", "/www/detailChartSeleced.mr?b_emotion=4");
+        	$(location).attr("href", "/detailChartSeleced.mr?b_emotion=4");
         })
         
         $("#btn-5").click(function(){
-        	$(location).attr("href", "/www/detailChartSeleced.mr?b_emotion=5");
+        	$(location).attr("href", "/detailChartSeleced.mr?b_emotion=5");
         })
       })
 	</script>

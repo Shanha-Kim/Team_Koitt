@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS & theme -->
-<link rel="stylesheet" href="/www/css/bootstrap.custom.css" >
-<link rel="stylesheet" href="/www/css/bootstrap-lux.css" >
+<link rel="stylesheet" href="/css/bootstrap.custom.css" >
+<link rel="stylesheet" href="/css/bootstrap-lux.css" >
 
     <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -53,7 +53,7 @@
 					<tr>
 						<td class="align-middle">${status.index + 1}</td>
 						<td class="align-middle"><img
-							src="/www/album/${data.a_sname}" width="80px"></td>
+							src="/album/${data.a_sname}" width="80px"></td>
 						<td class="align-middle">${data.v_name}</td>
 						<td class="align-middle"><a
 							href="https://www.youtube.com/watch?v=${data.y_link}"><i
@@ -152,7 +152,7 @@
 	<script type="text/javascript">
 		$(function() {
 			$('#login').click(function() {
-				$(location).attr('href', '/www/login.mr');
+				$(location).attr('href', '/login.mr');
 			});
 		});
 	</script>

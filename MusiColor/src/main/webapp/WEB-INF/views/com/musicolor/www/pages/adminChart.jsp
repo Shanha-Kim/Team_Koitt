@@ -9,8 +9,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS & theme -->
-<link rel="stylesheet" href="/www/css/bootstrap-lux.css">
-<link rel="stylesheet" href="/www/css/bootstrap.custom.css">
+<link rel="stylesheet" href="/css/bootstrap-lux.css">
+<link rel="stylesheet" href="/css/bootstrap.custom.css">
 <style>
 html, body {
 	margin: 0;

@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS & theme -->
-<link rel="stylesheet" href="/www/css/bootstrap-lux.css">
-<link rel="stylesheet" href="/www/css/bootstrap.custom.css">
-<link rel="stylesheet" href="/www/css/random.css" />
+<link rel="stylesheet" href="/css/bootstrap-lux.css">
+<link rel="stylesheet" href="/css/bootstrap.custom.css">
+<link rel="stylesheet" href="/css/random.css" />
 
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -75,7 +75,7 @@
 	</div>
 
 	<!-- Song processing modal -->
-	<form id="repoUpdate" method="POST" action="/www/repoUpdate.mr" enctype="multipart/form-data">
+	<form id="repoUpdate" method="POST" action="/repoUpdate.mr" enctype="multipart/form-data">
 		<div class="modal" id="modal">
 			<div class="modal-dialog">
 				<div class="modal-content bg-primary">
@@ -131,7 +131,7 @@
 	</form>
 
 	<!-- Board processing modal -->
-	<form id="repoUpdateBoard" action="/www/repoUpdateBoard.mr" method="POST">
+	<form id="repoUpdateBoard" action="/repoUpdateBoard.mr" method="POST">
 		<div class="modal" id="modal2">
 			<div class="modal-dialog">
 				<div class="modal-content bg-primary">
@@ -168,7 +168,7 @@
 	</form>
 	
 	<!-- Comt processing modal -->
-	<form id="repoUpdateComt" action="/www/repoUpdateComt.mr" method="POST">
+	<form id="repoUpdateComt" action="/repoUpdateComt.mr" method="POST">
 		<div class="modal" id="modal3">
 			<div class="modal-dialog">
 				<div class="modal-content bg-primary">
@@ -226,15 +226,15 @@
 
 			/* 버튼 페이지 이동 */
 			$("#btn-0").click(function() {
-				$(location).attr("href", "/www/adminrepo.mr");
+				$(location).attr("href", "/adminrepo.mr");
 			});
 
 			$("#btn-1").click(function() {
-				$(location).attr("href", "/www/adminrepoSelected.mr?r_isokay=N");
+				$(location).attr("href", "/adminrepoSelected.mr?r_isokay=N");
 			});
 
 			$("#btn-2").click(function() {
-				$(location).attr("href", "/www/adminrepoSelected.mr?r_isokay=Y");
+				$(location).attr("href", "/adminrepoSelected.mr?r_isokay=Y");
 			});
 			
 			/* ban 버튼 체크 시 값 설정 */
@@ -264,7 +264,7 @@
 				$("#repoDetail").html(detail);
 
 				$.ajax({
-					url : "/www/repoDetail.mr",
+					url : "/repoDetail.mr",
 					type : "post",
 					dataType : "json",
 					data : {
@@ -277,7 +277,7 @@
 						$('#s_title').val(data.s_title);
 						$('#s_no').val(data.s_no);
 
-						var sname = "/www/album/" + data.a_sname;
+						var sname = "/album/" + data.a_sname;
 						$('#sname').attr('src', sname);
 						$('#a_sname').val(data.a_sname);
 						$('#s_ano').val(data.s_ano);
@@ -310,7 +310,7 @@
 
 					$.ajax({
 						type : "post",
-						url : "/www/repoUpdate.mr",
+						url : "/repoUpdate.mr",
 						data : queryString,
 						dataType : "json",
 						success : function(data) {
@@ -341,7 +341,7 @@
 					$.ajax({
 						type : "POST",
 						enctype : 'multipart/form-data',
-						url : "/www/repoUpdate.mr",
+						url : "/repoUpdate.mr",
 						data : data,
 						processData : false,
 						contentType : false,
@@ -384,7 +384,7 @@
 				$("#repoDetail_b").html(detail);
 
 				$.ajax({
-					url : "/www/repoDetailBoard.mr",
+					url : "/repoDetailBoard.mr",
 					type : "post",
 					dataType : "json",
 					data : {
@@ -407,7 +407,7 @@
 
 				$.ajax({
 					type : "post",
-					url : "/www/repoUpdateBoard.mr",
+					url : "/repoUpdateBoard.mr",
 					data : queryString,
 					dataType : "json",
 					success : function(data) {
@@ -443,7 +443,7 @@
 				$("#repoDetail_c").html(detail);
 
 				$.ajax({
-					url : "/www/repoDetailComt.mr",
+					url : "/repoDetailComt.mr",
 					type : "post",
 					dataType : "json",
 					data : {
@@ -466,7 +466,7 @@
 
 				$.ajax({
 					type : "post",
-					url : "/www/repoUpdateComt.mr",
+					url : "/repoUpdateComt.mr",
 					data : queryString,
 					dataType : "json",
 					success : function(data) {

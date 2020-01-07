@@ -9,8 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS & theme -->
-<link rel="stylesheet" href="/www/css/bootstrap-lux.css" />
-<link rel="stylesheet" href="/www/css/bootstrap.custom.css" />
+<link rel="stylesheet" href="/css/bootstrap-lux.css" />
+<link rel="stylesheet" href="/css/bootstrap.custom.css" />
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
@@ -26,7 +26,7 @@
 			<div class="card text-white bg-primary mb-" style="max-width:40rem;">
 				<div class="card-header">Find ID</div>
 		
-				<form method="POST" action="/www/findIdProc.mr" onsubmit="return inputCheck()">
+				<form method="POST" action="/findIdProc.mr" onsubmit="return inputCheck()">
 					<div class="card-body">
 						<h4 class="card-title" style="margin-bottom: 30px;">아이디를 잊어버리셨나요?</h4>
 						<h5 style="margin: 8px 0px 42px 0px;" class="card-title" style="margin-bottom: 30px;">회원 정보에 등록한 이메일 주소와 전화번호를 입력해주세요.</h5>
@@ -132,10 +132,10 @@
   	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#goToMain').click(function() {
-			$(location).attr('href', '/www/feed.mr');
+			$(location).attr('href', '/feed.mr');
 		})
 		$('#login').click(function() {
-			$(location).attr('href', '/www/login.mr');
+			$(location).attr('href', '/login.mr');
 		})
 		
 		$('#mail').keyup(function(){
