@@ -6,9 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.musicolor.www.vo.BoardVO;
-import com.musicolor.www.vo.ComtVO;
-import com.musicolor.www.vo.FileVO;
+import com.musicolor.www.vo.*;
 
 public class ShanhaDAO {
 	@Autowired
@@ -40,10 +38,10 @@ public class ShanhaDAO {
 		int cnt = sqlSession.insert("sSQL.DecPost", bVO);
 		return cnt;
 	}
-	
-	
-	
-	
+	public String findPW(MemberVO mVO) {
+		String pw = sqlSession.selectOne("sSQL.FindPW", mVO);
+		return pw;
+	}
 	public List<BoardVO> showBefore(BoardVO bVO){
 		List<BoardVO> list = sqlSession.selectList("sSQL.SearchBefore", bVO);
 		return list;

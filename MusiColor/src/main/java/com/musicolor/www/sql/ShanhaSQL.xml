@@ -6,6 +6,11 @@
 
 
 <mapper namespace="sSQL">
+	<select id="FindPW" parameterType="mVO" resultType="String">
+		SELECT m_pw FROM member WHERE
+		m_email = #{m_email} AND
+		m_id = #{m_id}
+	</select>
 	<select id="ShowFeed" parameterType="bVO"  resultType="bVO">
 		SELECT * FROM
 			(SELECT
