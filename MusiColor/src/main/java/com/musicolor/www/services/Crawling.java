@@ -11,7 +11,7 @@ public class Crawling {
 	public List<String> songlist;
 	public List<String> vocallist;
 	
-	public Crawling() {
+	public Crawling() { 
 		try {
 			//웹에서 내용을 가져온다.
 			Document doc = Jsoup.connect("https://www.billboard.com/charts/hot-100/").get();
