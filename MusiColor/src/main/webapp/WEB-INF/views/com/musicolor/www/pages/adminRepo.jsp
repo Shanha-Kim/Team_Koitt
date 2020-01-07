@@ -142,13 +142,13 @@
 							<div class="alert alert-dismissible alert-danger">
 								<h4 class="alert-heading" id="repoKind_b"></h4>
 								<p class="mb-0" id="repoDetail_b"></p>
-								<input type="text" name="r_no" id="r_no_b">
+								<input type="hidden" name="r_no" id="r_no_b">
 							</div>
 
 							<div class="form-group">
 								<label for="b_body">CONTENT</label>
 								<textarea class="form-control" id="b_body" name="b_body" rows="10" placeholder="WRITE" style="resize: none;" readonly="readonly"></textarea>
-								<input name="b_no" id="b_no" type="text">
+								<input name="b_no" id="b_no" type="hidden">
 							</div>
 							<div class="form-group text-center">
 								<div class="custom-control custom-switch">
@@ -158,7 +158,7 @@
 							</div>
 							<div class="text-center mt-5">
 								<button type="submit" type="button" class="btn btn-black btn-block" id="editBoard">변경</button>
-								<input type="text" name="id" id="id" value="${AID}">
+								<input type="hidden" name="id" id="id" value="${AID}">
 							</div>
 						</div>
 					</div>
@@ -179,13 +179,13 @@
 							<div class="alert alert-dismissible alert-danger">
 								<h4 class="alert-heading" id="repoKind_c"></h4>
 								<p class="mb-0" id="repoDetail_c"></p>
-								<input type="text" name="r_no" id="r_no_c">
+								<input type="hidden" name="r_no" id="r_no_c">
 							</div>
 
 							<div class="form-group">
 								<label for="b_body">CONTENT</label>
 								<textarea class="form-control" id="c_body" name="c_body" rows="10" placeholder="WRITE" style="resize: none;" readonly="readonly"></textarea>
-								<input name="c_no" id="c_no" type="text">
+								<input name="c_no" id="c_no" type="hidden">
 							</div>
 							<div class="form-group text-center">
 								<div class="custom-control custom-switch">
@@ -195,7 +195,7 @@
 							</div>
 							<div class="text-center mt-5">
 								<button type="submit" type="button" class="btn btn-black btn-block" id="editComt">변경</button>
-								<input type="text" name="id" id="id" value="${AID}">
+								<input type="hidden" name="id" id="id" value="${AID}">
 							</div>
 						</div>
 					</div>
