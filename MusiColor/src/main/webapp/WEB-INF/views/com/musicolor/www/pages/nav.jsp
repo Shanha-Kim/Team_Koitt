@@ -21,7 +21,12 @@
 
   <!-- nav -->
   <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
-    <a class="navbar-brand" href="/www/feed.mr"><p class="logo">musicolor</p></a>
+  	<c:if test="${empty SID}">
+    	<a class="navbar-brand" href="/www/bfMain.mr"><p class="logo">musicolor</p></a>
+    </c:if>
+  	<c:if test="${not empty SID}">
+    	<a class="navbar-brand" href="/www/feed.mr"><p class="logo">musicolor</p></a>
+    </c:if>
     
     <ul class="nav navbar-nav ml-auto">
     	<c:if test="${empty SID}">
@@ -52,6 +57,9 @@
           <a class="nav-link" href="/www/logout.mr"><i class="fas fa-sign-in-alt fa-rotate-180 f-20"></i></a>
       </li>
       </c:if>
+      <li class="nav-item">
+          <a class="nav-link" href="/www/adminLogin.mr"><i class="fas fa-exclamation-triangle f-20"></i></a>
+      </li>
     </ul>
   </nav>
   <!-- Optional JavaScript -->

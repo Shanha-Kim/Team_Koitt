@@ -21,7 +21,12 @@
 
   <!-- nav -->
   <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
-    <a class="navbar-brand" href="/www/admin.mr"><p class="adminlogo">ADMIN</p></a>
+  	<c:if test="${empty AID}">
+    	<a class="navbar-brand" href="/www/adminLogin.mr"><p class="adminlogo">ADMIN</p></a>
+    </c:if>
+  	<c:if test="${not empty AID}">
+    	<a class="navbar-brand" href="/www/admin.mr"><p class="adminlogo">ADMIN</p></a>
+    </c:if>
     
     <ul class="nav navbar-nav ml-auto">
     <c:if test="${empty AID}">
