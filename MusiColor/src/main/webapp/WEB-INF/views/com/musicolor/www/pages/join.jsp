@@ -109,8 +109,8 @@
 		ck = data;
 	}
 	
-	function mailCkFunc(data){	// 중복확인 하면 이 함수로 mailck의 값을 바꿈
-		mailck = data;
+	function mailCkFunc(data){	// 이메일 인증을 하면 이 함수로 mailck의 값을 바꿈
+		mailCk = data;
 	}
 
 	$('#goToMain').click(function() {
@@ -417,7 +417,6 @@
 			$("#m_tel").focus();
 			return false;
 		}
-		
 
 		form.submit();
 	}
