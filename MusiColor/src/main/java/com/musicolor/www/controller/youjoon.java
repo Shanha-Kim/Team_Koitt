@@ -46,7 +46,7 @@ public class youjoon {
 		// 로그인 처리는 세션에 아이디를 입력해주기로 하자.
 		session.setAttribute("SID", vo.getM_id());
 		session.setAttribute("isFail", "");
-		rv.setUrl("/www/tempMain.mr");
+		rv.setUrl("/www/feed.mr");
 		mv.setView(rv);
 		} else {
 		// 이 경우는 로그인에 실패한 경우이므로 다시 로그인 페이지로 이동한다.
@@ -67,7 +67,7 @@ public class youjoon {
 								HttpSession session) {
 		System.out.println("### /logout.mr");
 		session.setAttribute("SID", "");
-		rv.setUrl("/www/tempMain.mr");
+		rv.setUrl("/www/feed.mr");
 		mv.setView(rv); 
 		
 		return mv;

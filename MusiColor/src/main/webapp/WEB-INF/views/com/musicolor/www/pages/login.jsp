@@ -94,7 +94,7 @@
   	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#goToMain').click(function() {
-			$(location).attr('href', '/www/tempMain.mr');
+			$(location).attr('href', '/www/feed.mr');
 		})
 		$('#join').click(function() {
 			$(location).attr('href', '/www/join.mr');

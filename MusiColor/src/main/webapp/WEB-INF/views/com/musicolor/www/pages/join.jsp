@@ -109,7 +109,7 @@
 	}
 
 	$('#goToMain').click(function() {
-		$(location).attr('href', '/www/tempMain.mr');
+		$(location).attr('href', '/www/feed.mr');
 	})
 	
 	$(document).ready(function(){
