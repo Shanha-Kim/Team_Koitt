@@ -230,11 +230,11 @@
 			});
 
 			$("#btn-1").click(function() {
-				$(location).attr("href", "/adminrepoSelected.mr?r_isokay=N");
+				$(location).attr("href", "/adminrepo.mr?r_isokay=N");
 			});
 
 			$("#btn-2").click(function() {
-				$(location).attr("href", "/adminrepoSelected.mr?r_isokay=Y");
+				$(location).attr("href", "/adminrepo.mr?r_isokay=Y");
 			});
 			
 			/* ban 버튼 체크 시 값 설정 */

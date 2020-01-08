@@ -44,6 +44,9 @@ public class Eunbin {
 		int cnt = eDAO.vocalUpdate(vo);
 		if (cnt == 1) {
 			
+			System.out.println(vo.getS_vno());
+			
+			System.out.println(vo.getV_name());
 		} else {
 		}
 		return vo;
@@ -67,6 +70,7 @@ public class Eunbin {
 		vo.setY_link(yLink);
 		
 		// mno 가져오기
+		System.out.println("id : " +vo.getId());
 		int m_no = eDAO.findMno(vo.getId());
 		vo.setY_mno(m_no);
 		
@@ -106,12 +110,17 @@ public class Eunbin {
 		int m_no = eDAO.findMno(m_id);
 		vo.setB_mno(m_no);
 		
+		// b_body 개행 처리
+		String body = vo.getB_body();
+		body = body.replace("\r\n","<br>");
+		vo.setB_body(body);
+		
 		int cnt = eDAO.boardIn(vo);
 		
 		if(cnt == 1) {
-			rv.setUrl("/random.mr"); // 임시 경로
+			rv.setUrl("/www/feed.mr");
 		} else {
-			rv.setUrl("/upload.mr");
+			rv.setUrl("/www/upload.mr");
 		}
 		mv.setView(rv);
 		
@@ -121,23 +130,14 @@ public class Eunbin {
 // random Controller
 	
 	@RequestMapping("/random.mr")
-	public ModelAndView random(ModelAndView mv, BoardVO bVO) {
-		List<BoardVO> list = eDAO.randomSearch();
-		mv.addObject("LIST", list);
-		mv.setViewName("pages/random");
-		
-		return mv;
-	}	
-	
-	@RequestMapping("/randomseleced.mr")
-	public ModelAndView randomSelected(ModelAndView mv, BoardVO bVO, String b_emotion) {
-		List<BoardVO> list = eDAO.randomSelected(b_emotion);
+	public ModelAndView random(ModelAndView mv, BoardVO bVO, String b_emotion) {
+		List<BoardVO> list = eDAO.randomSearch(b_emotion);
 		mv.addObject("LIST", list);
 		mv.addObject("CODE", b_emotion);
 		mv.setViewName("pages/random");
 		
 		return mv;
-	}
+	}	
 	
 // report Controller
 	
@@ -172,10 +172,10 @@ public class Eunbin {
 		
 		if(cnt == 1) {
 			session.setAttribute("AID", vo.getM_id());
-			rv.setUrl("/admin.mr");
+			rv.setUrl("/www/admin.mr");
 			mv.setView(rv);
 		} else {
-			rv.setUrl("/adminLogin.mr");
+			rv.setUrl("/www/adminLogin.mr");
 			mv.setView(rv); 
 		}
 
@@ -185,23 +185,15 @@ public class Eunbin {
 	@RequestMapping("/adminLogout.mr")
 	public ModelAndView logout(ModelAndView mv, RedirectView rv, HttpSession session) {
 		session.setAttribute("AID", "");
-		rv.setUrl("/admin.mr");
+		rv.setUrl("/www/admin.mr");
 		mv.setView(rv); 
 		
 		return mv;
 	}
 	
 	@RequestMapping("/adminrepo.mr")
-	public ModelAndView adminRepo(ModelAndView mv) {
-		List<ReportVO> list = eDAO.getReport();
-		mv.addObject("LIST", list);
-		mv.setViewName("pages/adminRepo");
-		return mv;
-	}
-	
-	@RequestMapping("/adminrepoSelected.mr")
-	public ModelAndView adminRepoSelected(ModelAndView mv, String r_isokay) {
-		List<ReportVO> list = eDAO.getReportSelected(r_isokay);
+	public ModelAndView adminRepo(ModelAndView mv, String r_isokay) {
+		List<ReportVO> list = eDAO.getReport(r_isokay);
 		mv.addObject("LIST", list);
 		mv.addObject("CODE", r_isokay);
 		mv.setViewName("pages/adminRepo");
@@ -298,6 +290,7 @@ public class Eunbin {
 		}
 		
 		// 관리자 mno 가져오기
+		System.out.println(vo.getId());
 		int m_no = eDAO.findADMno(vo.getId());
 		vo.setM_no(m_no);
 		
@@ -335,6 +328,7 @@ public class Eunbin {
 		}
 		
 		// 관리자 mno 가져오기
+		System.out.println(vo.getId());
 		int m_no = eDAO.findADMno(vo.getId());
 		vo.setM_no(m_no);
 		

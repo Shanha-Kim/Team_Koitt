@@ -192,23 +192,23 @@
         })
         
         $("#btn-1").click(function(){
-        	$(location).attr("href", "/randomseleced.mr?b_emotion=1");
+        	$(location).attr("href", "/random.mr?b_emotion=1");
         })
         
         $("#btn-2").click(function(){
-        	$(location).attr("href", "/randomseleced.mr?b_emotion=2");
+        	$(location).attr("href", "/random.mr?b_emotion=2");
         })
         
         $("#btn-3").click(function(){
-        	$(location).attr("href", "/randomseleced.mr?b_emotion=3");
+        	$(location).attr("href", "/random.mr?b_emotion=3");
         })
         
         $("#btn-4").click(function(){
-        	$(location).attr("href", "/randomseleced.mr?b_emotion=4");
+        	$(location).attr("href", "/random.mr?b_emotion=4");
         })
         
         $("#btn-5").click(function(){
-        	$(location).attr("href", "/randomseleced.mr?b_emotion=5");
+        	$(location).attr("href", "/random.mr?b_emotion=5");
         })
         
       //세션 ID 저장===========================================================================================
@@ -331,9 +331,10 @@
     					$("#c_body").val(upid+" ");
     				});
     				
-    				$("#c_body").keyup(function(e){
+    				$("#c_body").off().keyup(function(e){
     					if(e.keyCode == 13){
     						e.preventDefault();
+    						setTimeout(function(){console.log("시간지연성공 ");}, 500);
     						var cbody = $('#c_body').val();
     						if(cbody == ""){
     							return;
