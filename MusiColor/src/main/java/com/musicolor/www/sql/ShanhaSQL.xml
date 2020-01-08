@@ -59,7 +59,7 @@
 			*
 		FROM
 			(SELECT
-				b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, b_emotion
+				b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, b_emotion, b_body
 			FROM
 				board
 			WHERE

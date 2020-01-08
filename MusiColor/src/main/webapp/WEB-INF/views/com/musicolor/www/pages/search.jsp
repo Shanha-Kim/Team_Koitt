@@ -35,32 +35,18 @@
         <button id="User" type="button" class="btn btn-primary text-muted" >User</button>
         <button id="Hashtag" type="button" class="btn btn-primary text-muted" >Hashtag</button>
       </div>
-
+	
       <div class="text-center mb-3" id="refresh">
         <a class="badge badge-pill badge-danger hover">REFRESH THIS PAGE</a>
       </div>
-
       <!-- 앨범 이미지 -->
       <div class="row">
-      	<c:forEach var="data" items="${LIST}" begin="0" end="2">
+      	<c:forEach var="data" items="${LIST}">
         <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
-        </div>
-		</c:forEach>
-      </div>
-
-      <div class="row">
-      	<c:forEach var="data" items="${LIST}" begin="3" end="5">
-        <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
-        </div>
-		</c:forEach>
-      </div>
-
-      <div class="row">
-      	<c:forEach var="data" items="${LIST}" begin="6" end="8">
-        <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}">
+          	<div class="half-square"><img class="album" src="/album/${data.sname}" /></div>
+			<div class="half-square" style="top:50%;">${data.b_body } </div>
+          </div>
         </div>
 		</c:forEach>
       </div>
