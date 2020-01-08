@@ -112,8 +112,7 @@
 	]]>
 	</select>
 	
-	<select id="randomSearch" resultType="bVO">
-	<![CDATA[    
+	<select id="randomSearch" parameterType="String" resultType="bVO"> 
 		SELECT
 			*
 		FROM
@@ -122,27 +121,13 @@
 				(SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
 			FROM
 				board
+			<if test="value != null">
+	    	WHERE
+	    		b_emotion = #{value}
+    		</if>
 			ORDER BY DBMS_RANDOM.value
 			)
-		WHERE
-			rownum <= 9
-	]]>
-	</select>
-	
-	<select id="randomSelected" parameterType="String" resultType="bVO">
-	<![CDATA[    
-		SELECT
-			*
-		FROM
-			(SELECT
-				b_emotion, b_no, 
-				(SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
-			FROM
-				board
-			WHERE
-				b_emotion = #{b_emotion}
-			ORDER BY DBMS_RANDOM.value
-			)
+	<![CDATA[   
 		WHERE
 			rownum <= 9
 	]]>
@@ -173,7 +158,7 @@
 			and ad_pw = #{m_pw}
 	</select>
 	
-	<select id="getReport" resultType="rVO">
+	<select id="getReport" parameterType="String" resultType="rVO">
 		SELECT
     		r_no, r_problem, r_kind, r_detail, r_isokay,
     		TO_CHAR(r_date, 'YYYY/MM/DD')r_date,
@@ -182,21 +167,10 @@
     		(SELECT ad_id FROM admin WHERE ad_no = r_admin) adid
 		FROM
     		report
-		ORDER BY
-    		r_no DESC
-	</select>
-	
-	<select id="getReportSelected" parameterType="String" resultType="rVO">
-		SELECT
-    		r_no, r_problem, r_kind, r_detail, r_isokay,
-    		TO_CHAR(r_date, 'YYYY/MM/DD')r_date,
-    		(SELECT m_id FROM member WHERE m_no = r_mno) id,
-    		(SELECT s_title FROM song WHERE s_no = r_problem) song,
-    		(SELECT ad_id FROM admin WHERE ad_no = r_admin) adid
-		FROM
-    		report
-    	WHERE
-    		r_isokay = #{r_isokay}
+    	<if test="value != null">
+	    	WHERE
+	    		r_isokay = #{value}
+    	</if>
 		ORDER BY
     		r_no DESC
 	</select>

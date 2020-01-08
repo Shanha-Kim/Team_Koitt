@@ -40,13 +40,8 @@ public class EunbinDAO {
 	}
 	
 // 	random DAO
-	public List<BoardVO> randomSearch(){
-		List<BoardVO> list = sqlSession.selectList("eSQL.randomSearch");
-		return list;
-	}
-	
-	public List<BoardVO> randomSelected(String b_emotion){
-		List<BoardVO> list = sqlSession.selectList("eSQL.randomSelected", b_emotion);
+	public List<BoardVO> randomSearch(String b_emotion){
+		List<BoardVO> list = sqlSession.selectList("eSQL.randomSearch", b_emotion);
 		return list;
 	}
 	
@@ -61,12 +56,8 @@ public class EunbinDAO {
 		return sqlSession.selectOne("eSQL.adminLogin", mVO);
 	}
 	
-	public List<ReportVO> getReport(){
-		return sqlSession.selectList("eSQL.getReport");
-	}
-	
-	public List<ReportVO> getReportSelected(String r_isokay){
-		return sqlSession.selectList("eSQL.getReportSelected", r_isokay);
+	public List<ReportVO> getReport(String r_isokay){
+		return sqlSession.selectList("eSQL.getReport", r_isokay);
 	}
 	
 	public SongVO repoDetail(String sno) {
