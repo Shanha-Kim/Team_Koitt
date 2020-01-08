@@ -163,6 +163,8 @@ h6 {
 margin-top :80px;
 }
 
+	
+
 /* 
   #fw2button {
   top: 20%;
@@ -211,10 +213,23 @@ margin-top :80px;
 							: ${CNT2}</button>
 							
 							
+							<c:if test='${SID != ID}' >
+							
+							<c:if test='${NYCK != "Y"}' >
+							<button type="button" id="yesfollow" class="btn btn-black" style="">팔로우하기 
+							</button>
+							</c:if>
+							<c:if test ='${NYCK == "Y" }'>
+							<button type="button" id="nofollow" class="btn btn-black" style="">팔로우취소
+							</button>
+							</c:if>
+							</c:if>
+							
+							
 							<c:if test="${ID == SID}">
 						<button type="button" id="likedbtn" class="btn btn-danger" style="">내가
 							좋아요한 게시물</button>
-	</c:if>
+						</c:if>
 						<button type="button" class="btn btn-outline-secondary"
 							id="unlock" data-id="${ISSHOW}">계정을 다시 활성화</button>
 							</div>
@@ -240,7 +255,7 @@ margin-top :80px;
 		</div>
 	</div>
 
-	<div class="container menubar" id="main">
+	<div class="container menubar" id="main" style="margin-top :-100px">
 		<!-- 앨범 이미지 -->
 		<div class="row">
 			<c:forEach var="data" items="${LIST}" begin="0" end="2">
@@ -405,8 +420,8 @@ margin-top :80px;
 							</div>
 							<!-- 아이디, 버튼 영역 -->
 							<div style="display: inline-block; width: 100%;">
-							<a href="/profilelist.mr?m_id=${data.m_id}">
-								<span class="fname1" data="${data.m_id}">${data.m_id}</span>
+								<a href="/profilelist.mr?m_id=${data.m_id}"  data="${data.m_id}">
+									<span class="fname1" >${data.m_id}</span>
 								</a>
 								<c:if test="${data.m_isban eq 0}">
 									<button type="button" class="canslebtn1 click1"
@@ -452,8 +467,9 @@ margin-top :80px;
 							</div>
 							<!-- 아이디, 버튼 영역 -->
 							<div style="display: inline-block; width: 100%;">
-								<span class="fname2" data="${data.m_id}">${data.m_id}</span>
-
+							<a href="/profilelist.mr?m_id=${data.m_id}"  data="${data.m_id}">
+								<span class="fname2" >${data.m_id}</span>
+											</a>
 								<button type="button" class="canslebtn2 click1"
 									style="float: right;" >팔로우</button>
 							</div>
@@ -513,6 +529,58 @@ margin-top :80px;
 	</div>
 
 
+
+<!-- 상대방 홈페이지에서 팔로워 걸기 모달창  -->
+
+	<div class="modal" id="othersaddfollow">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Music color</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body text-center">
+					<h4>팔로워를 추가 하겠습니까?</h4>
+					<br>
+					<button class="btn btn-primary btn-block" id="yesconform">확인</button>
+					<button class="btn btn-secondary btn-block" data-dismiss="modal"
+						aria-label="Close">취소</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- 상대방 홈페이지에서 팔로워 취소하기 모달창 -->
+<div class="modal" id="otherscanslefollow">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Music color</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body text-center">
+					<h4>팔로워를 취소 하겠습니까?</h4>
+					<br>
+					<button class="btn btn-primary btn-block" id="noconform">확인</button>
+					<button class="btn btn-secondary btn-block" data-dismiss="modal"
+						aria-label="Close">취소</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
@@ -531,14 +599,17 @@ margin-top :80px;
 	<script type="text/javascript">
 		var f_name = '';
 		var sid = '${SID}';
+		
 		function setFname(data){
 			f_name = data;
 		}
 		$(document).ready(function() {
-
+			
 							$(document)
 									.ready(
 											function() {
+												
+												
 												$('head')
 														.append(
 																'<style type="text/css">.modal .modal-body {max-height: '
@@ -596,24 +667,37 @@ margin-top :80px;
 								$('#fw2button').modal();
 							});
 
+							$("#yesfollow").click(function(){
+								$('#othersaddfollow').modal();
+								
+							});
+							$("#nofollow").click(function(){
+								$('#otherscanslefollow').modal();
+								
+							});
 							
 							
 							
 							
-							$(".click1").click(function() {
+							
+							
+							$(".click1").off().click(function() {
 							 var thisbtn = $(this);
 								$("#followccheck").modal();
-								f_name = $(this).prev().attr("data");
+								var tmp = $(this).prev().attr("data");
+								
 								var amu1 = $(this).attr('class'); 
 								
 								
 								// 팔로잉 cansle ajax
 								
-								$(document).on("click", "#fcansle", function() {
+								$(document).off().on("click", "#fcansle", function() {
+									setFname(tmp);
+									var sid = '${SID}';
 									
 										$.ajax({
 											url : "/followercheck.mr",
-											type : "post",
+											type : "post",	
 											dataType : "json",
 											data : {
 												m_id : sid,
@@ -645,22 +729,26 @@ margin-top :80px;
 									});
 							});
 							
+							
 							$(".click2").click(function() {
-								var getid = $(this).prev().attr("data");
-						
+								var itm = $(this);
+								/* alert('### a : ' + itm.siblings().eq(0).attr('data')); */
+								var getid = $(this).prev().attr("data"); 
+								
 								var thisbtn1 = $(this);
 								$("#addid").text(getid + "님을 팔로워로 추가하시겠습니까?");
 								$("#followacheck").modal();
-								var tmp = $(this).prev().html();
+							
+								/* var tmp = $(this).prev().attr('data'); */
 							   var amu = $(this).attr('class'); 
-							 	setFname(tmp);
 								
 								
 								// 팔로워 add & cansle ajax
 	
 								$(document).on("click", "#addagin", function() {
-	
-									
+								 	setFname(getid);
+									var sid = '${SID}';
+
 									$.ajax({
 	
 										url : "/followercheck.mr",
@@ -695,7 +783,60 @@ margin-top :80px;
 							});
 							
 							
-	
+							
+							
+		/* 	========================================================================================= */
+				/* 상대방 홈페이지에서 팔로워 추가 ajax */				
+							
+				/* 
+							$(document).on("click", "#yesconform", function() {
+								
+								$.ajax({
+									url : "/followercheck.mr",
+									type : "post",
+									dataType : "json",
+									data : {
+										m_id : sid,
+										m_name : f_name
+									},
+									success : function(vo) {
+											
+									$("#othersaddfollow").modal("hide");
+										
+										},
+									error : function() {
+										alert('### 통신 에러 ###');
+									}
+								});
+							}); */
+					
+		
+							/* 상대방 홈페이지에서 팔로잉 취소 ajax */
+				
+						/* 	
+							$(document).on("click", "#noconform", function() {
+								
+								$.ajax({
+									url : "/otheresfollowcansle.mr",
+									type : "post",
+									dataType : "json",
+									data : {
+										m_id : sid,
+										m_name : f_name
+									},
+									success : function(vo) {
+									$("#otherscanslefollow").modal("hide");
+									
+ 										
+										},
+									error : function() {
+										alert('### 통신 에러 ###');
+									}
+								});
+							});
+					
+				 */
+						
 	
 			$(".square").click(function() {
 				$("#myModal1").modal("show") //앨범 이미지 누르면 모달창 열림

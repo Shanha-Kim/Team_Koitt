@@ -311,7 +311,7 @@ FROM
 follow
 
 WHERE
-	f_following = ( SELECT
+	f_follower = ( SELECT
 	
 			m_no 
 		FROM

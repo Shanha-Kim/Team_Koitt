@@ -82,6 +82,9 @@ public class HeeyoonDAO {
 		int cnt = sqlSession.selectOne("hSQL.followcheck", mVO);
 		// 팔로워가 N인지 Y인지 확인
 		
+		  System.out.println(mVO.getM_id());
+		  System.out.println(mVO.getM_name());
+		 
 		if (cnt == 0) { // null 값
 			int cnt1 = sqlSession.insert("hSQL.finsert", mVO);
 
@@ -97,7 +100,6 @@ public class HeeyoonDAO {
 			}
 		}
 	}
-	
 	
 
 	// 팔로잉 한 사람들 뽑아오기 전담처리 함수
@@ -132,5 +134,16 @@ public class HeeyoonDAO {
 		return list3;
 	}
 	
+	//상대방 홈페이지에서 팔로워 취소 처리 전담함수
+	public int otherscansle(MemberVO mVO) {
+		return sqlSession.update("hSQL.fcansle",mVO);
+		
+	}
+	
+	//팔로워 n 인지 y 인지 체크
+	public MemberVO nyck(MemberVO mVO){
+		return sqlSession.selectOne("hSQL.nycheck",mVO);
+		
+	}
 }
 
