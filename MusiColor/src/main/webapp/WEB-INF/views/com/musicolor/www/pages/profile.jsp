@@ -667,10 +667,7 @@ margin-top :80px;
 								$('#fw2button').modal();
 							});
 
-							$("#yesfollow").click(function(){
-								$('#othersaddfollow').modal();
-								
-							});
+							
 							$("#nofollow").click(function(){
 								$('#otherscanslefollow').modal();
 								
@@ -739,7 +736,7 @@ margin-top :80px;
 								$("#addid").text(getid + "님을 팔로워로 추가하시겠습니까?");
 								$("#followacheck").modal();
 							
-								/* var tmp = $(this).prev().attr('data'); */
+							
 							   var amu = $(this).attr('class'); 
 								
 								
@@ -788,8 +785,22 @@ margin-top :80px;
 		/* 	========================================================================================= */
 				/* 상대방 홈페이지에서 팔로워 추가 ajax */				
 							
-				/* 
+								
+								$("#yesfollow").click(function(){
+									$('#othersaddfollow').modal();
+								});
+									
+					
+								var getid = $(this).prev().attr("data"); 
+				
+								
 							$(document).on("click", "#yesconform", function() {
+								
+								var sid = '${SID}';
+								setFname(getid);
+								
+								alert("팔로워 추가 할때" +f_name);
+								
 								
 								$.ajax({
 									url : "/followercheck.mr",
@@ -803,17 +814,18 @@ margin-top :80px;
 											
 									$("#othersaddfollow").modal("hide");
 										
+									
 										},
 									error : function() {
 										alert('### 통신 에러 ###');
 									}
 								});
-							}); */
+							}); 
 					
 		
 							/* 상대방 홈페이지에서 팔로잉 취소 ajax */
 				
-						/* 	
+						
 							$(document).on("click", "#noconform", function() {
 								
 								$.ajax({
@@ -835,7 +847,7 @@ margin-top :80px;
 								});
 							});
 					
-				 */
+				 
 						
 	
 			$(".square").click(function() {

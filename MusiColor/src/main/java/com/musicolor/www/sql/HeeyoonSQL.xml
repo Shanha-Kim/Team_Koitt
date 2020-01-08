@@ -283,7 +283,7 @@ f_following = (SELECT M_NO FROM MEMBER WHERE M_ID = #{m_name})
  
 </update>
 
-<!-- 팔로우 다시 걸기 처리 점담 sql -->
+<!-- 팔로우 다시 걸기 처리 전담 sql -->
 <update id="fadd"  parameterType="mVO">
 UPDATE
 	follow

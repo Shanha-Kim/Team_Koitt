@@ -81,9 +81,6 @@ public class HeeyoonDAO {
 	public void followcheck(MemberVO mVO) {
 		int cnt = sqlSession.selectOne("hSQL.followcheck", mVO);
 		// 팔로워가 N인지 Y인지 확인
-		
-		  System.out.println(mVO.getM_id());
-		  System.out.println(mVO.getM_name());
 		 
 		if (cnt == 0) { // null 값
 			int cnt1 = sqlSession.insert("hSQL.finsert", mVO);
@@ -143,7 +140,8 @@ public class HeeyoonDAO {
 	//팔로워 n 인지 y 인지 체크
 	public MemberVO nyck(MemberVO mVO){
 		return sqlSession.selectOne("hSQL.nycheck",mVO);
-		
 	}
+	
+
 }
 
