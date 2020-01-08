@@ -22,7 +22,7 @@ public class JinhyeokDAO {
 		return list;
 	}
 	
-	public int getYt(SongVO vo) {
-		return sqlSession.insert("jSQL.youtube", vo);
+	public SongVO getYt(String b_sno) {
+		return sqlSession.selectOne("jSQL.youtube", b_sno);
 	}
 }

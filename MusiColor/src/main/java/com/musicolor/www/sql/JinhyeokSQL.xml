@@ -56,10 +56,10 @@
 	]]>
 	</select>
 	
-	<select id="getYt" resultType="sVO">
+	<select id="getYt" resultType="sVO" parameterType="String">
 	<![CDATA[
 		select
-		    Y_LINK
+		    y_link
 		from
 		    youtube
 		where

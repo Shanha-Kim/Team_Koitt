@@ -29,23 +29,27 @@
 		<div class="card mb-3 bg-primary mb-5" id="sad">
 			<h3 class="card-header">hot MR</h3>
 <!-- video -->
-		<c:set var="list" value="0" />
-		<%-- <c:forEach var="data" items="${LIST}" varStatus="status" end="0"> --%>
+		
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		  <div class="carousel-inner">
+		  
 		    <div class="carousel-item active">
-		    <div class="youtube">
-				<iframe id="yt1"  src="" frameborder="0" 
-				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-				allowfullscreen></iframe>
-			</div>
+			    <div class="youtube">
+					<iframe id="yt1"  src="https://www.youtube.com/embed/OxgiiyLp5pk" frameborder="0" 
+					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+					allowfullscreen></iframe>
+				</div>
 		    </div>
-		    <div class="carousel-item">
-
-			</div>
-		    <div class="carousel-item">
-
-			</div>
+		   
+		   <c:forEach var="data" items="${RAN}" varStatus="status" >
+			   <div class="carousel-item">
+					<div class="youtube">
+						<iframe id="yt2" src="https://www.youtube.com/embed/${LIST.get(data).y_link}" frameborder="0" 
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+						allowfullscreen></iframe>
+					</div>
+				</div>
+			</c:forEach>
 		  </div>
 		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
 		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -56,7 +60,7 @@
 		    <span class="sr-only">Next</span>
 		  </a>
 		</div>
-		<%-- </c:forEach> --%>
+		
 			
 			
 			<!-- body -->
@@ -181,34 +185,34 @@
 		});
 		/* 상세보기 토글 */
 		$(document).ready(function(){
-			  $('.t1').click(function(){
-				  var tno = $(this).attr('id');
-				  tno = '#s' + tno;
-				  $(tno).html("");
-				  $(tno).append('<h3 style="color: white;">TEST</h3>');
-				  $(tno).stop().slideToggle(100);
-			  });
-			});
-		/* 슬라이드 유튜브 */
-		$.ajax({
-			url : "/youT.mr",
-			type : "post",
-			dataType : "json",
-			data : {
-				b_sno : bsno
-				
-			},
-			success : function(data){
-				$('#yt1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
-			},
-			error : function(){
-				alert('### 통신 에러 ###');
-			}
-		});
+/* 			 var bsno = 0;
+			 function setBsno(data){
+				 bsno = data;
+			 } */
+			$('.t1').click(function(){
+				var tno = $(this).attr('id');
+				tno = '#s' + tno;
+				$(tno).html("");
+				$(tno).append('<h3 style="color: white;">TEST</h3>');
+				$(tno).stop().slideToggle(100);
+			 });
+			  
+			/* 슬라이드 유튜브 */
+/* 			$.ajax({
+				url : "/youT.mr",
+				type : "post",
+				dataType : "json",
+				data : {
+					b_sno : bsno
+				},
+				success : function(data){
+					$('#yt1').attr("src", "https://www.youtube.com/embed/" + data.y_link);
+				},
+				error : function(){
+					alert('### 통신 에러 ###');
+				}
+			}); */
 		
-		
-		
-      $(function() { 
     	/* 버튼 이벤트 */
     	var scode = '${CODE}';
   		if(scode == 1){
@@ -234,28 +238,28 @@
   		/* 버튼 페이지 이동 */
         $("#btn-0").click(function(){
         	$(location).attr("href", "/detailChart.mr");
-        })
+        });
         
         $("#btn-1").click(function(){
         	$(location).attr("href", "/detailChartSeleced.mr?b_emotion=1");
-        })
+        });
         
         $("#btn-2").click(function(){
         	$(location).attr("href", "/detailChartSeleced.mr?b_emotion=2");
-        })
+        });
         
         $("#btn-3").click(function(){
         	$(location).attr("href", "/detailChartSeleced.mr?b_emotion=3");
-        })
+        });
         
         $("#btn-4").click(function(){
         	$(location).attr("href", "/detailChartSeleced.mr?b_emotion=4");
-        })
+        });
         
         $("#btn-5").click(function(){
         	$(location).attr("href", "/detailChartSeleced.mr?b_emotion=5");
-        })
-      })
-	</script>
+        });
+});
+</script>
 </body>
 </html>

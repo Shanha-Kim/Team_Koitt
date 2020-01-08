@@ -98,13 +98,30 @@ public class Jinhyeok {
 		return mv;
 	}
 	
-	@RequestMapping("/youT.mr")
-	@ResponseBody
-	public SongVO youT(SongVO vo) {
-		String tmp = vo.getY_link();
-		return vo;
-	}
-	
+	/*
+	 * @RequestMapping("/youT.mr")
+	 * 
+	 * @ResponseBody public SongVO youT(SongVO vo) { String tmp = vo.getY_link();
+	 * 
+	 * SongVO b_sno = jDAO.getYt(tmp);
+	 * 
+	 * return b_sno; }
+	 */
+
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
