@@ -21,7 +21,7 @@
 	<jsp:include page="nav.jsp" flush="false" />
 
 	<form method="post" action="boardIn.mr" id="boardIn">
-		<div class="container" id="main">
+		<div class="container bg-primary" id="main">
 			<div class="row form-group ml-2 mr-2">
 				<div class="col custom-control custom-radio text-center">
 					<input type="radio" id="love" name="b_emotion" class="custom-control-input" checked="" value="1" />
@@ -215,14 +215,25 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script>
 		$(function() {
-			/* 감정 라디오 클릭시 배경색 전환 
-			$("input:radio[name=b_emotion]").click(function(){
- 
-		        if($("input[name=radio]:checked").val() == "4"){
-		        	$('body').removeClass();
-		            $('body').attr('class', 'sadbody');
-		        }
-		    }); */
+			/* 감정 라디오 클릭시 배경색 전환
+			$('input[type=radio][name=b_emotion]').change(function() {
+			    if (this.value == '1') {
+			        alert("Allot Thai Gayo Bhai");
+			    }
+			    else if (this.value == '2') {
+			        alert("배경색 전환");
+			        $("body").attr("id","sadbody");
+			    }
+			    else if (this.value == '3') {
+			        alert("Transfer Thai Gayo");
+			    }
+			    else if (this.value == '4') {
+			        alert("Transfer Thai Gayo");
+			    }
+			    else if (this.value == '5') {
+			        alert("Transfer Thai Gayo");
+			    }
+			});*/
 			
 			/* 노래 제목 검색 */
 			$("#searchSong").click(function() {
@@ -372,6 +383,7 @@
 
 			/* 보컬 추가 */
 			$('#vocalUpdate').click(function() {
+					
 				var vocal = $('#vocalResult').val();
 				$.ajax({
 					url : "/vocalUpdate.mr",
@@ -395,11 +407,67 @@
 			
 			/* 게시물 작성 */
 			$('#boardWriteProc').click(function() {
+				/* 폼 항목 모두 채웠는지 확인 */
+				if($("#m_id").val() == "") {
+					alert("정상 로그인 되지 않은 사용자입니다.");
+					$(location).attr("href", "/bfMain.mr");
+					return false;
+				};
+				
+				if($("#keywords").val() == "") {
+					alert("노래를 입력해주세요.");
+					return false;
+				};
+				
+				if($("#b_sno").val() == "") {
+					alert("노래를 검색 후 입력해주세요.");
+					return false;
+				};
+				
+				if($("#b_body").val() == "") {
+					alert("게시물 내용을 입력해주세요.");
+					return false;
+				};
+				
+				
 				$('#boardIn').submit();
 			});
 			
 			/* 파일 업로드 비동기 처리 */
 			$('#add').click(function(){
+				/* 폼 항목 모두 채웠는지 확인 */
+				if($("#id").val() == "") {
+					alert("정상 로그인 되지 않은 사용자입니다.");
+					$(location).attr("href", "/bfMain.mr");
+					return false;
+				};
+				
+				if($("#v_name").val() == "") {
+					alert("가수를 입력해주세요.");
+					return false;
+				};
+				
+				if($("#s_vno").val() == "") {
+					alert("가수를 검색 후 입력해주세요.");
+					return false;
+				};
+				
+				if($("#s_title").val() == "") {
+					alert("노래를 입력해주세요.");
+					return false;
+				};
+				
+				if($("#y_link").val() == "") {
+					alert("유튜브를 입력해주세요.");
+					return false;
+				};
+				
+				if($("#sFile").val() == "") {
+					alert("앨범을 첨부해주세요.");
+					return false;
+				};
+				
+				
 		        event.preventDefault();
 
 		        var form = $('#addMusic')[0];
