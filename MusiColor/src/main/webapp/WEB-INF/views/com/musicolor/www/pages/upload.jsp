@@ -53,7 +53,7 @@
 			</div>
 
 			<div class="row mb-3">
-				<textarea class="form-control bg-primary" id="b_body" name="b_body" rows="10" placeholder="WRITE"></textarea>
+				<textarea class="form-control bg-primary" id="b_body" name="b_body" rows="10" placeholder="WRITE" style="resize: none;" ></textarea>
 			</div>
 
 			<input name="m_id" type="hidden" id="m_id" value="${SID}">
@@ -69,7 +69,7 @@
 	</form>
 
 	<!-- first modal, search music -->
-	<div class="modal" id="myModal1">
+	<div class="modal" id="myModal1" data-toggle="modal">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content bg-primary">
 				<!-- Modal body -->
@@ -98,7 +98,7 @@
 
 	<form id="addMusic" method="POST" action="/musicUpdate.mr" enctype="multipart/form-data">
 		<!-- second modal, music add -->
-		<div class="modal" id="myModal2">
+		<div class="modal" id="myModal2" data-toggle="modal">
 			<div class="modal-dialog">
 				<div class="modal-content bg-primary">
 					<!-- Modal body -->
@@ -138,7 +138,7 @@
 	</form>
 
 	<!-- third modal, search music -->
-	<div class="modal" id="myModal3">
+	<div class="modal" id="myModal3" data-toggle="modal">
 		<div class="modal-dialog">
 			<div class="modal-content bg-primary">
 				<!-- Modal body -->
@@ -165,7 +165,7 @@
 	</div>
 	
 	<!-- fourth modal, bug report -->
-	<div class="modal" id="myModal4">
+	<div class="modal" id="myModal4" data-toggle="modal">
 		<div class="modal-dialog">
 			<div class="modal-content bg-primary">
 				<!-- Modal body -->
@@ -238,6 +238,8 @@
 										keywords : keywords
 									},
 									success : function(data) {
+										$('#searchTable > tbody').html('');
+										
 										for ( var i = 0 in data) {
 											$('#searchTable').append('<tr id="' + data[i].s_no + '"><td><img src="/album/'
 												+ data[i].a_sname
@@ -265,7 +267,7 @@
 							});
 		    
 			/* 검색한 노래 정보 삽입 */
-			$(document).on("click", "#searchTable .song", function() {
+			$(document).off().on("click", "#searchTable .song", function() {
 				$("#myModal1").modal("hide");
 				
 				var keywords = $(this).text();
@@ -281,8 +283,6 @@
 				$('#b_vno').val(savevno);
 				$('#b_yno').val(saveyno);
 				$('#b_ano').val(saveano);
-
-				$('#searchTable > tbody').remove();
 			})
 			
 			/* bug 신고 */
@@ -339,6 +339,8 @@
 						v_name : vocal
 					},
 					success : function(data) {
+						$('#vocalResultTable > tbody').html('');
+						
 						for ( var i = 0 in data) {
 							$('#vocalResultTable').append(
 								'<tr><td id="' + data[i].s_vno + '">'
@@ -360,8 +362,8 @@
 			$(document).on("click", "#vocalResultTable tr td", function() {
 				var vocal = $(this).text();
 				var vocalNo = $(this).attr('id');
+				
 				$("#myModal3").modal("hide");
-				$('#vocalResultTable > tbody').remove(); // 검색 기록 삭제
 				$("#myModal2").modal("show");
 
 				$('#v_name').val(vocal);
@@ -380,7 +382,6 @@
 					},
 					success : function(data) {
 						$("#myModal3").modal("hide")
-						$('#vocalResultTable > tbody').remove(); // 검색 기록 삭제
 						$("#myModal2").modal("show")
 
 						$('#v_name').val(data.v_name);
