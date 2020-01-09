@@ -22,7 +22,8 @@ public class JinhyeokDAO {
 		return list;
 	}
 	
-	public SongVO getYt(String b_sno) {
-		return sqlSession.selectOne("jSQL.youtube", b_sno);
-	}
+	/*
+	 * public SongVO getYt(String b_sno) { return
+	 * sqlSession.selectOne("jSQL.youtube", b_sno); }
+	 */
 }

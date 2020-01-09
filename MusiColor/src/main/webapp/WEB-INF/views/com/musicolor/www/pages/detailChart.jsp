@@ -72,7 +72,7 @@
 		<!-- 랜덤 이미지 스크롤 이동 버튼 -->
 		<c:forEach var="data" items="${RAN}" varStatus="status" >
 			<button type="button" class="btn btn-outline-secondary">
-				<a href="#test1"><img src="/album/${LIST.get(data).a_sname}" width="120px"></a>
+				<a href="#test1"><img src="/album/${LIST.get(data).a_sname}" width="112.03px"></a>
 			</button>
 		</c:forEach>
 

@@ -56,7 +56,7 @@
 	]]>
 	</select>
 	
-	<select id="getYt" resultType="sVO" parameterType="String">
+<!-- 	<select id="getYt" resultType="sVO" parameterType="String">
 	<![CDATA[
 		select
 		    y_link
@@ -65,7 +65,7 @@
 		where
 		    y_sno = #{b_sno}
 	]]>	
-	</select>
+	</select> -->
 	
 </mapper>
 
