@@ -210,7 +210,7 @@
 							mailCkFunc(true);
 							$('#mailauthtext').attr('class', '');
 							$('#mailauthtext').toggleClass('valid-feedback');
-							$('#mailauthtext').html("인증되었습니다." + mailCk);
+							$('#mailauthtext').html("인증되었습니다.");
 							
 						}else{
 							$('#mailauthtext').attr('class', '');
