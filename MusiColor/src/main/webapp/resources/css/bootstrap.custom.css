@@ -216,7 +216,8 @@ iframe {
 	}
 }
 
-@font-face {
-  font-family: webisfree;
-  src: url('/font/webisfree.ttf');
+@font-face { font-family: 'BMHANNAAir'; src: url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css') format('woff'); font-weight: normal; font-style: normal; }
+
+*{
+	font-family: 'BMHANNAAir';
 }
