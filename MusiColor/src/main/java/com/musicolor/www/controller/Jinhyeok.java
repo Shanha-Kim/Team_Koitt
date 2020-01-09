@@ -31,10 +31,7 @@ public class Jinhyeok {
 		Crawling Jinhyeok = new Crawling();
 		List<String> songlist = Jinhyeok.songlist;
 		List<String> vocallist = Jinhyeok.vocallist;	
-//		SongVO sVO = new SongVO();
-//		sVO.setSonglist(songlist);
-//		sVO.setVocallist(vocallist);
-//		mv.addObject("BILL", sVO);
+
 		
 		mv.addObject("LIST2", songlist);
 		mv.addObject("LIST3", vocallist);
@@ -86,7 +83,7 @@ public class Jinhyeok {
 		return list;
 	}
 	
-	// Collections.shuffle(Arrays.asList(배열));
+
 
 	@RequestMapping("/detailChartSeleced.mr")
 	public ModelAndView detailChartSelected(ModelAndView mv, String b_emotion) {
@@ -106,15 +103,7 @@ public class Jinhyeok {
 		return mv;
 	}
 	
-	/*
-	 * @RequestMapping("/youT.mr")
-	 * 
-	 * @ResponseBody public SongVO youT(SongVO vo) { String tmp = vo.getY_link();
-	 * 
-	 * SongVO b_sno = jDAO.getYt(tmp);
-	 * 
-	 * return b_sno; }
-	 */
+
 
 	
 	

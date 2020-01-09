@@ -56,16 +56,7 @@
 	]]>
 	</select>
 	
-<!-- 	<select id="getYt" resultType="sVO" parameterType="String">
-	<![CDATA[
-		select
-		    y_link
-		from
-		    youtube
-		where
-		    y_sno = #{b_sno}
-	]]>	
-	</select> -->
+
 	
 </mapper>
 

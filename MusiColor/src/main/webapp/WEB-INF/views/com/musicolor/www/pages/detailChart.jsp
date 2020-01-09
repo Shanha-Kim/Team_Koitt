@@ -156,7 +156,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<p>This is a paragraph.</p>
+		
 
       </div>
     </div>
@@ -180,17 +180,10 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script>
 		/* 스크롤이동 */
-		$("a[href^='#']").click(function(event){
-			event.preventDefault();
-			var target = $(this.hash);
-			$('html, body').scrollTop(target.offset().top);
-		});
+		
 		/* 상세보기 토글 */
 		$(document).ready(function(){
-/* 			 var bsno = 0;
-			 function setBsno(data){
-				 bsno = data;
-			 } */
+
 			$('.t1').click(function(){
 				var tno = $(this).attr('id');
 				tno = '#s' + tno;
@@ -199,21 +192,7 @@
 				$(tno).stop().slideToggle(100);
 			 });
 			  
-			/* 슬라이드 유튜브 */
-/* 			$.ajax({
-				url : "/youT.mr",
-				type : "post",
-				dataType : "json",
-				data : {
-					b_sno : bsno
-				},
-				success : function(data){
-					$('#yt1').attr("src", "https://www.youtube.com/embed/" + data.y_link);
-				},
-				error : function(){
-					alert('### 통신 에러 ###');
-				}
-			}); */
+
 		
     	/* 버튼 이벤트 */
     	var scode = '${CODE}';
