@@ -24,7 +24,7 @@
 		<div class="card text-white bg-primary mb-3" style="max-width: 40rem;">
 			<h4 class="card-title" style="margin-bottom: 30px;">Welcome!</h4>
 			<h3 class="card-title" style="">환영합니다! 회원가입에 성공하셨습니다.</h3>
-			<button id="login" type="button" class="btn btn-info" style="width: 100%; display: inline;">로그인 페이지로</button>
+			<button id="login" type="button" class="btn btn-black" style="width: 100%; display: inline;">로그인 페이지로</button>
 		</div>
 	</div>
 

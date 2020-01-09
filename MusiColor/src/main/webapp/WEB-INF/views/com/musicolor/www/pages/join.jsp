@@ -32,7 +32,7 @@
 							<label for="m_id">ID</label>
 							<input name="m_id" type="text" class="form-control" id="m_id" aria-describedby="idHelp" placeholder="Enter Your ID">
 							<small id="idHelp" class="form-text text-muted">ID를 입력하시고 중복 확인을 하세요.</small>
-							<button id="idCheck" type="button" class="btn btn-info" style="padding: 0px; width: 100px; height: 25px; margin-right: 4px;">중복 확인</button>
+							<button id="idCheck" type="button" class="btn btn-black" style="padding: 0px; width: 100px; height: 25px; margin-right: 4px;">중복 확인</button>
 							<p style="margin-left: 4px; display: inline;" id="idCheckInfo" class="text-info"></p>
 						</div>
 						
@@ -60,9 +60,9 @@
 							<label for="m_email">E-mail</label>
 							<input name="m_email" type="text" class="form-control" id="m_email" placeholder="Enter Your E-mail">
 							<small id="m_emailCheckInfo" class="form-text text-muted"></small>
-							<button id="mailauthbtn" type="button" class="btn btn-info" style="padding: 0px; width: 100px; height: 25px; margin-right: 4px;">인증번호 전송</button>
+							<button id="mailauthbtn" type="button" class="btn btn-black" style="padding: 0px; width: 100px; height: 25px; margin-right: 4px;">인증번호 전송</button>
 							<input id="authnum" type="hidden" class="form-control" style="width:30%; margin-top:4px; " placeholder="Enter Your auth-number">
-							<button id="checkauth" type="button" class="btn btn-info" style="padding: 0px; width: 100px; height: 25px; margin-top:4px; margin-right: 4px; display:none;">인증번호 확인</button>
+							<button id="checkauth" type="button" class="btn btn-black" style="padding: 0px; width: 100px; height: 25px; margin-top:4px; margin-right: 4px; display:none;">인증번호 확인</button>
 							<p style="margin-left: 4px; display: inline;" id="mailauthtext" class="text-info"></p>
 						</div>
 						<br>
@@ -74,7 +74,7 @@
 						</div>
 						<br>
 						
-						<button id="submit-btn" type="submit" class="btn btn-info" style="width: 100%; display: inline;">회원 가입</button>
+						<button id="submit-btn" type="submit" class="btn btn-black" style="width: 100%; display: inline;">회원 가입</button>
 					</form>
 	        </div>
 			</div>
@@ -133,7 +133,7 @@
 				$('#idCheckInfo').toggleClass('invalid-feedback');
 				$('#m_id').attr('class', '');
 				$('#m_id').toggleClass('form-control is-invalid');
-				$('#idCheckInfo').html("중복확인이 필요합니다." + ck);
+				$('#idCheckInfo').html("중복확인이 필요합니다.");
 			}
 		})
 		
@@ -144,7 +144,7 @@
 			if(sid == ''){
 				$('#idCheckInfo').attr('class', '');
 				$('#idCheckInfo').toggleClass('invalid-feedback');
-				$('#idCheckInfo').html("아이디를 입력해주세요." + ck);
+				$('#idCheckInfo').html("아이디를 입력해주세요.");
 				
 				return false;
 			}
@@ -165,14 +165,14 @@
 						$('#idCheckInfo').toggleClass('invalid-feedback');
 						$('#m_id').attr('class', '');
 						$('#m_id').toggleClass('form-control is-invalid');
-						$('#idCheckInfo').html("4~16자의 영문 대 소문자, 숫자와 특수기호 (_),(-)만 사용 가능합니다." + ck);
+						$('#idCheckInfo').html("4~16자의 영문 대 소문자, 숫자와 특수기호 (_),(-)만 사용 가능합니다.");
 					} else if(idCk == 1){
 						// 이미 회원가입 한 사람이 있는 경우
 						$('#idCheckInfo').attr('class', '');
 						$('#idCheckInfo').toggleClass('invalid-feedback');
 						$('#m_id').attr('class', '');
 						$('#m_id').toggleClass('form-control is-invalid');
-						$('#idCheckInfo').html("이미 가입된 아이디입니다." + ck)
+						$('#idCheckInfo').html("이미 가입된 아이디입니다.")
 					} else {
 						// 아직 해당 아이디로 회원가입한 사람이 없는 경우
 						// 따라서 사용할 수 있는 아이디
@@ -181,7 +181,7 @@
 						$('#m_id').attr('class', '');
 						$('#m_id').toggleClass('form-control is-valid');
 						ckFunc(true);
-						$('#idCheckInfo').html("사용할 수 있는 아이디 입니다. " + ck);
+						$('#idCheckInfo').html("사용할 수 있는 아이디 입니다. ");
 					}
 				},
 				error : function(){

@@ -61,8 +61,8 @@
 	          </div>
 	          </div> -->
 						<br>
-						<button type="submit" class="btn btn-info" style="width: 49.5%; display: inline;">로그인</button>
-						<button id="join" type="button" class="btn btn-info" style="width: 49.5%; display: inline;">회원가입</button>
+						<button type="submit" class="btn btn-black" style="width: 49.5%; display: inline;">로그인</button>
+						<button id="join" type="button" class="btn btn-black" style="width: 49.5%; display: inline;">회원가입</button>
 					</div> 
 				</form>
 			</div>
