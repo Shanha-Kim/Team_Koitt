@@ -65,7 +65,7 @@ public class youjoon {
 								RedirectView rv,
 								HttpSession session) {
 		session.setAttribute("SID", "");
-		rv.setUrl("/feed.mr");
+		rv.setUrl("/bfMain.mr");
 		mv.setView(rv); 
 		
 		return mv;
@@ -99,15 +99,6 @@ public class youjoon {
 	public ModelAndView joinSuccess(ModelAndView mv) {
 		
 		mv.setViewName("pages/joinSuccess");	
-		
-		return mv; 
-	}
-	
-	// 임시 메인 페이지
-	@RequestMapping("/tempMain.mr")
-	public ModelAndView tempMain(ModelAndView mv) {
-		
-		mv.setViewName("pages/tempMain");	
 		
 		return mv; 
 	}
