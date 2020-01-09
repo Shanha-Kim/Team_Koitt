@@ -146,7 +146,7 @@ html, body {
 							}
 						},
 						scaleY : {
-							values : '0:30:15',
+							values : '0:150:75',
 							guide : {
 								rules : [ {
 									lineWidth : '0px',

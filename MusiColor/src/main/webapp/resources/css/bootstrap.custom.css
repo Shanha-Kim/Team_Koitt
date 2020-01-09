@@ -215,3 +215,8 @@ iframe {
   	font-size: 15px;
 	}
 }
+
+@font-face {
+  font-family: webisfree;
+  src: url('/font/webisfree.ttf');
+}

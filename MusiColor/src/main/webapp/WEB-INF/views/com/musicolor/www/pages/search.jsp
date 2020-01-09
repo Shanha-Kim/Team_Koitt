@@ -12,11 +12,8 @@
 <link rel="stylesheet" href="/css/random.css" >
 <!-- Font Awesome 5 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-
-</head>
+<link href="https://fonts.googleapis.com/css?family=Quicksand:700&display=swap" rel="stylesheet">
+ 
  <body class="bg-primary">
     <jsp:include page="nav.jsp" flush="false" />
 	
@@ -45,7 +42,7 @@
         <div class="col-4 big-square">
           <div class="square small-${data.b_emotion}" id="${data.b_no}">
           	<div class="half-square" style=" height:100%;"><img class="album" src="/album/${data.sname}" /></div>
-			<p class="half-square" style="height:50%; top:50%;opacity:1;padding:15px; color:black;">${data.b_body } </p>
+			<p class="half-square text-center align-middle" style="background-color:rgba(0, 0, 0, 0.5); bottom:0; color:white; font-family: 'Quicksand', sans-serif;">@${data.m_id}</p>
           </div>
         </div>
 		</c:forEach>
