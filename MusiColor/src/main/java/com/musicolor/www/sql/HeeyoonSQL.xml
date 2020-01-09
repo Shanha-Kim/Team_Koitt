@@ -6,7 +6,7 @@
 			
  
 <mapper namespace="hSQL">
- 
+  
 
 <!-- 프로필 사진 올리기 SQL -->
 <update id="addpic" parameterType="fVO">
