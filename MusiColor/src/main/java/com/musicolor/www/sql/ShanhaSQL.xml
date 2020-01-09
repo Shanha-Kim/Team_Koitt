@@ -60,7 +60,7 @@
 		FROM
 			(SELECT
 				b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, b_emotion, b_body, 
-				(SELECT m_id WHERE member FROM m_no=b_mno) m_id
+				(SELECT m_id FROM member WHERE m_no = b_mno) m_id
 			FROM
 				board
 			WHERE
