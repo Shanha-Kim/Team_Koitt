@@ -44,8 +44,8 @@
       	<c:forEach var="data" items="${LIST}">
         <div class="col-4 big-square">
           <div class="square small-${data.b_emotion}" id="${data.b_no}">
-          	<div class="half-square"><img class="album" src="/album/${data.sname}" /></div>
-			<div class="half-square" style="top:50%;">${data.b_body } </div>
+          	<div class="half-square" style=" height:100%;"><img class="album" src="/album/${data.sname}" /></div>
+			<p class="half-square" style="height:50%; top:50%;opacity:1;padding:15px; color:black;">${data.b_body } </p>
           </div>
         </div>
 		</c:forEach>

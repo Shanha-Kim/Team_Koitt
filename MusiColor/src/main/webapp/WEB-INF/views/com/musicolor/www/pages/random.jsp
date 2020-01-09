@@ -34,25 +34,11 @@
 
       <!-- 앨범 이미지 -->
       <div class="row">
-      	<c:forEach var="data" items="${LIST}" begin="0" end="2">
+      	<c:forEach var="data" items="${LIST}">
         <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
-        </div>
-		</c:forEach>
-      </div>
-
-      <div class="row">
-      	<c:forEach var="data" items="${LIST}" begin="3" end="5">
-        <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
-        </div>
-		</c:forEach>
-      </div>
-
-      <div class="row">
-      	<c:forEach var="data" items="${LIST}" begin="6" end="8">
-        <div class="col-4 big-square">
-          <div class="square small-${data.b_emotion}" id="${data.b_no}"><img class="album" src="/album/${data.sname}" /></div>
+          <div class="square small-${data.b_emotion}" id="${data.b_no}">
+	          <div class="half-square" style=" height:100%;"><img class="album" src="/album/${data.sname}" /></div>
+			  <p class="half-square" style="height:50%; top:50%;opacity:1;padding:15px; color:black;">${data.b_body } </p>
         </div>
 		</c:forEach>
       </div>
