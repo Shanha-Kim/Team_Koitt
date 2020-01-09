@@ -36,6 +36,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/join.mr"><i class="fas fa-user-plus f-20"></i></a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/adminLogin.mr"><i class="fas fa-sync-alt f-20"></i></i></a>
+      </li>
       </c:if>
       <c:if test="${not empty SID}">
     	<li class="nav-item">
@@ -57,9 +60,6 @@
           <a class="nav-link" href="/logout.mr"><i class="fas fa-sign-in-alt fa-rotate-180 f-20"></i></a>
       </li>
       </c:if>
-      <li class="nav-item">
-          <a class="nav-link" href="/adminLogin.mr"><i class="fas fa-sync-alt f-20"></i></i></a>
-      </li>
     </ul>
   </nav>
   <!-- Optional JavaScript -->
