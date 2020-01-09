@@ -94,6 +94,14 @@ public class Jinhyeok {
 		mv.addObject("LIST", list);
 		mv.addObject("CODE", b_emotion);
 		mv.setViewName("pages/detailChart");
+		
+		/* 크롤링 */
+		Crawling Jinhyeok = new Crawling();
+		List<String> songlist = Jinhyeok.songlist;
+		List<String> vocallist = Jinhyeok.vocallist;	
+		SongVO sVO = new SongVO();
+		mv.addObject("LIST2", songlist);
+		mv.addObject("LIST3", vocallist);
 
 		return mv;
 	}
