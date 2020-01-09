@@ -6,7 +6,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>프로필 수정 페이지</title>
-
 	<link rel="stylesheet" href="/css/bootstrap-lux.css">
 	<link rel="stylesheet" href="/css/bootstrap.custom.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -111,8 +110,9 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		/* $(function(){
 		 $('.profile').click(function(){
@@ -125,7 +125,7 @@
 		$(function () {
 			var sid='${SID}';
 			$("#myBtn").click(function () {
-				$("#myModal").modal();
+				$("#myModal").modal("show");
 			});
 			
 			$('#backbtn').click(function(){

@@ -25,6 +25,7 @@
 			WHERE
 				b_mno IN (SELECT f_following FROM follow WHERE f_follower = (SELECT m_no FROM member WHERE m_id=#{m_id}))
 				AND b_isshow = 'Y'
+			ORDER BY b_date 
  			)
  		WHERE
 			rno BETWEEN #{rno} AND #{rno}+4
