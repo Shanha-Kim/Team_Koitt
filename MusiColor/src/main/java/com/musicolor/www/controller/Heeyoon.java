@@ -62,8 +62,9 @@ public class Heeyoon {
 	 * 
 	 * mv.setViewName("pages/profile"); return mv; }
 	 */
-
-	@RequestMapping("profilelist.mr") // 개인 프로필 리스트 controller
+	
+	@ResponseBody
+	@RequestMapping("profilelist.mr")// 개인 프로필 리스트 controller
 	public ModelAndView profilelist(ModelAndView mv, HttpSession session, String m_id ) {
 
 		/* session.setAttribute("SID", "lbrade0"); lbrade0 */
@@ -83,14 +84,16 @@ public class Heeyoon {
 			mVO.setM_id(SID);
 			mVO.setM_name(m_id);
 			 
+				
 			nyck = ""+hDAO.nyck(mVO);
 			
 		}
 		
 		
 		mv.addObject("NYCK",nyck);
+		System.out.println(nyck);
 		
-		mv.addObject("ID", SID);
+		mv.addObject("ID", SID);	
 		List<BoardVO> list = hDAO.profileList(SID);
 		mv.addObject("LIST", list);
 

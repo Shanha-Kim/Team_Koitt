@@ -140,6 +140,7 @@ public class HeeyoonDAO {
 	//팔로워 n 인지 y 인지 체크
 	public MemberVO nyck(MemberVO mVO){
 		return sqlSession.selectOne("hSQL.nycheck",mVO);
+
 	}
 	
 

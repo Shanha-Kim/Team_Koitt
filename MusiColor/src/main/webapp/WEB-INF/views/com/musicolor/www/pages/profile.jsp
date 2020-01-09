@@ -216,11 +216,11 @@ margin-top :80px;
 							<c:if test='${SID != ID}' >
 							
 							<c:if test='${NYCK != "Y"}' >
-							<button type="button" id="yesfollow" class="btn btn-black" style="">팔로우하기 
+							<button type="button" id="yesfollow" class="btn btn-black" data="${ID}">팔로우하기 
 							</button>
 							</c:if>
 							<c:if test ='${NYCK == "Y" }'>
-							<button type="button" id="nofollow" class="btn btn-black" style="">팔로우취소
+							<button type="button" id="nofollow" class="btn btn-black" data="${ID}"> 팔로우취소
 							</button>
 							</c:if>
 							</c:if>
@@ -603,6 +603,7 @@ margin-top :80px;
 		function setFname(data){
 			f_name = data;
 		}
+		
 		$(document).ready(function() {
 			
 							$(document)
@@ -737,7 +738,7 @@ margin-top :80px;
 								$("#followacheck").modal();
 							
 							
-							   var amu = $(this).attr('class'); 
+							  	 var amu = $(this).attr('class'); 
 								
 								
 								// 팔로워 add & cansle ajax
@@ -787,19 +788,17 @@ margin-top :80px;
 							
 								
 								$("#yesfollow").click(function(){
-									$('#othersaddfollow').modal();
-								});
+
+								$('#othersaddfollow').modal();
+							
+								var getid = $(this).attr("data"); 
 									
-					
-								var getid = $(this).prev().attr("data"); 
-				
-								
-							$(document).on("click", "#yesconform", function() {
+								$(document).on("click", "#yesconform", function() {
 								
 								var sid = '${SID}';
 								setFname(getid);
 								
-								alert("팔로워 추가 할때" +f_name);
+								alert(sid+f_name);
 								
 								
 								$.ajax({
@@ -821,7 +820,7 @@ margin-top :80px;
 									}
 								});
 							}); 
-					
+								});
 		
 							/* 상대방 홈페이지에서 팔로잉 취소 ajax */
 				
