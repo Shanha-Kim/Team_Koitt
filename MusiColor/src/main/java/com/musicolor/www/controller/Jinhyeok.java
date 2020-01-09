@@ -69,7 +69,7 @@ public class Jinhyeok {
 		
 		loop:
 		for(int i = 0; i < size; i++) {
-			if(i == 4) break;
+			if(i == 3) break;
 			int idx = (int)(Math.random()* size);
 			for(int j = 0; j < i; j++) {
 				if(idx == list.get(j)) {

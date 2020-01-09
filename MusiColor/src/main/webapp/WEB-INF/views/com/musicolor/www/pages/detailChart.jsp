@@ -53,13 +53,11 @@
 				</div>
 			</c:forEach>
 		  </div>
-		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		    <span class="sr-only">Previous</span>
+		  <a class="carousel-control-prev" href="#carouselExampleControls"  data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>		    
 		  </a>
-		  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		    <span class="sr-only">Next</span>
+		  <a class="carousel-control-next" href="#carouselExampleControls"  data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>    
 		  </a>
 		</div>
 		
@@ -70,21 +68,20 @@
 		</div>
 		
 		<!-- 랜덤 이미지 스크롤 이동 버튼 -->
-		<c:forEach var="data" items="${RAN}" varStatus="status" >
-			<button type="button" class="btn btn-outline-secondary">
-				<a href="#test1"><img src="/album/${LIST.get(data).a_sname}" width="112.03px"></a>
-			</button>
-		</c:forEach>
+		<div class="container">
+		  <div class="row">
+			<c:forEach var="data" items="${RAN}" varStatus="status" >
+			    <div class="col-sm">
+					<a href="#${LIST.get(data).y_link}">
+					<button type="button" class="btn btn-outline-secondary" >
+						<img src="/album/${LIST.get(data).a_sname}" width="110">
+					</button>
+					</a>
+			    </div>
+			</c:forEach>
+		  </div>
+		</div>		
 
-		<!-- 정렬 기준 탭 -->
-		<div class="btn-group btn-block mb-5" role="group">
-			<button type="button" class="btn btn-primary text-muted" id="btn-0">ALL</button>
-			<button type="button" class="btn btn-primary text-muted" id="btn-1">사랑</button>
-			<button type="button" class="btn btn-primary text-muted" id="btn-2">기쁨</button>
-			<button type="button" class="btn btn-primary text-muted" id="btn-3">평온</button>
-			<button type="button" class="btn btn-primary text-muted" id="btn-4">슬픔</button>
-			<button type="button" class="btn btn-primary text-muted" id="btn-5">분노</button>
-		</div>
 
 
 <div class="bd-example">
@@ -97,9 +94,15 @@
       <div class="carousel-item active">
           <h5>MUSICOLOR CHART</h5>
           <p>MUSICOLOR CHART</p>
-        <div class="carousel-caption d-none d-md-block">
-
-        </div>      
+		<!-- 정렬 기준 탭 -->
+		<div class="btn-group btn-block mb-5" role="group">
+			<button type="button" class="btn btn-primary text-muted" id="btn-0">ALL</button>
+			<button type="button" class="btn btn-primary text-muted" id="btn-1">사랑</button>
+			<button type="button" class="btn btn-primary text-muted" id="btn-2">기쁨</button>
+			<button type="button" class="btn btn-primary text-muted" id="btn-3">평온</button>
+			<button type="button" class="btn btn-primary text-muted" id="btn-4">슬픔</button>
+			<button type="button" class="btn btn-primary text-muted" id="btn-5">분노</button>
+		</div>
         <table class="table table-hover text-center">
 			<thead>
 				<tr>
@@ -115,15 +118,15 @@
 			<!-- Collapse -->
 				<c:set var="list" value="0" />
 				<c:forEach var="data" items="${LIST}" varStatus="status">
-					<tr class="t1" id="${data.s_no }">
-						<td class="align-middle">${status.index + 1}</td>
+					<tr class="t1" id="${data.s_no }" >
+						<td id="${data.y_link}" class="align-middle">${status.index + 1}</td>
 						<td id="test1" class="align-middle"><img
 							src="/album/${data.a_sname}" width="80px"></td>
 						<td class="align-middle">${data.v_name}</td>
+						<td class="align-middle">${data.s_title}</td>	
 						<td class="align-middle"><a
 							href="https://www.youtube.com/watch?v=${data.y_link}"><i
 								class="fab fa-youtube white"></i></a></td>
-						<td class="align-middle">${data.s_title}</td>	
 					</tr>
 					<tr id="s${data.s_no}" style="display: none;">
 					</tr>
@@ -160,14 +163,6 @@
 
       </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-      <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-      <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
-      <span class="sr-only">Next</span>
-    </a>
   </div>
 </div>		
 		
@@ -179,18 +174,23 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script>
-		/* 스크롤이동 */
 		
-		/* 상세보기 토글 */
 		$(document).ready(function(){
-
-			$('.t1').click(function(){
+			
+		/* 스크롤이동 */
+			$(".btn-outline-secondary").click(function(){
+				var songname = $(this).attr("data");
+				
+			})
+			
+		/* 상세보기 토글 */
+/* 			$('.t1').click(function(){
 				var tno = $(this).attr('id');
 				tno = '#s' + tno;
 				$(tno).html("");
 				$(tno).append('<h3 style="color: white;">TEST</h3>');
 				$(tno).stop().slideToggle(100);
-			 });
+			 }); */
 			  
 
 		
