@@ -34,11 +34,13 @@
 		  <div class="carousel-inner">
 		  
 		    <div class="carousel-item active">
-			    <div class="youtube">
-					<iframe id="yt1"  src="https://www.youtube.com/embed/OxgiiyLp5pk" frameborder="0" 
-					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-					allowfullscreen></iframe>
-				</div>
+		    	<c:forEach var="data" items="${LIST}" varStatus="status" begin="5" end="5">
+				    <div class="youtube">
+						<iframe id="yt1"  src="https://www.youtube.com/embed/${data.y_link}" frameborder="0" 
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+						allowfullscreen></iframe>
+					</div>
+				</c:forEach>
 		    </div>
 		   
 		   <c:forEach var="data" items="${RAN}" varStatus="status" >
