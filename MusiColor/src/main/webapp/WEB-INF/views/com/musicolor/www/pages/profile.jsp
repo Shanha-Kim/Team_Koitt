@@ -79,7 +79,7 @@ h6 {
 }
 
 .member{
-    float: right;
+	display:inline-block;
     position: relative;
     margin-top: 160px;
 
@@ -111,7 +111,8 @@ h6 {
 
 .imglogobox {
 
-	float : left;
+	display:flex;
+	float:right;
 }
 
 .modal-header {
@@ -152,11 +153,13 @@ h6 {
 }
 
 .colorimg{
+
   border: 6px solid transparent;
   border-radius: 50%;
   background-image: linear-gradient(white, white), radial-gradient(circle at top left, #11998e, #191919, #38ef7d);
   background-origin: border-box;
   background-clip: content-box, border-box;
+  display:inline-block;
 }
 
 .idtext{
@@ -191,11 +194,10 @@ margin-top :80px;
 		
 			<div class="col-1"></div>
 			<div class="col-10 main">
-				<div class="contant">
-					<div class="imglogobox">
-						<br> <br> <img class="colorimg" style="border-radius: 100px; -moz-border-radius: 100px; -khtml-border-radius: 100px; -webkit-border-radius: 100px;" 
+				
+				<div class="imglogobox">
+					<img class="colorimg" style=" border-radius: 100%; width:20%; height:20%; margin-right:50px;"
 							src="/profile/${VO.sname}" id="logo"> <br>
-					</div>
 					<div class="member">
 						<div class="form-group" id="newbar">
 							<c:if test="${ID == SID}">
@@ -230,7 +232,6 @@ margin-top :80px;
 								id="unlock" data-id="${ISSHOW}">계정을 다시 활성화</button>
 						</div>
 					</div>
-							 
 				</div>
 				<br>
 				<div class="textbox">
@@ -639,7 +640,6 @@ margin-top :80px;
 					$('#otherscanslefollow').modal();
 					
 				});
-				
 				
 				
 				
