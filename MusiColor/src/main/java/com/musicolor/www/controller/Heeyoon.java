@@ -66,32 +66,35 @@ public class Heeyoon {
 	@ResponseBody
 	@RequestMapping("profilelist.mr")// 개인 프로필 리스트 controller
 	public ModelAndView profilelist(ModelAndView mv, HttpSession session, String m_id ) {
-
-		/* session.setAttribute("SID", "lbrade0"); lbrade0 */
-
-		
 		String SID = (String) session.getAttribute("SID");
 		String nyck = "";
 		if (m_id.equals(SID)) {
-		
+			// 팔로워 버튼 눌렀을 때 팔로워 리스트 뽑아오기
+			List<MemberVO> list1 = hDAO.follwer(SID);
+			mv.addObject("LIST1", list1);
+			
+			// 팔로우 버튼 눌렀을 때 팔로잉 리스트 뽑아오기
+			List<MemberVO> list2 = hDAO.following(SID);
+			mv.addObject("LIST2", list2);
 			
 		}else {
-			
 			MemberVO mVO= new MemberVO(); 
-			
-			SID=m_id;
-			
 			mVO.setM_id(SID);
 			mVO.setM_name(m_id);
-			 
-				
-			nyck = ""+hDAO.nyck(mVO);
+			nyck = ""+hDAO.nyck(mVO).getM_isshow();
 			
+			// 팔로워 버튼 눌렀을 때 팔로워 리스트 뽑아오기
+			List<MemberVO> list1 = hDAO.follwer2(mVO);
+			mv.addObject("LIST1", list1);
+			
+			// 팔로우 버튼 눌렀을 때 팔로잉 리스트 뽑아오기
+			List<MemberVO> list2 = hDAO.following2(mVO);
+			mv.addObject("LIST2", list2);
+			
+			SID=m_id;
 		}
 		
-		
 		mv.addObject("NYCK",nyck);
-		System.out.println(nyck);
 		
 		mv.addObject("ID", SID);	
 		List<BoardVO> list = hDAO.profileList(SID);
@@ -120,13 +123,6 @@ public class Heeyoon {
 		// 팔로잉 수 타운트
 		int y = hDAO.followingcnt(SID);
 		mv.addObject("CNT2", y);
-
-		// 팔로워 버튼 눌렀을 때 팔로워 리스트 뽑아오기
-		List<MemberVO> list1 = hDAO.follwer(SID);
-		mv.addObject("LIST1", list1);
-		// 팔로우 버튼 눌렀을 때 팔로잉 리스트 뽑아오기
-		List<MemberVO> list2 = hDAO.following(SID);
-		mv.addObject("LIST2", list2);
 
 		return mv;
 
@@ -170,7 +166,6 @@ public class Heeyoon {
 	// 좋아요한 게시물 보이기
 	@RequestMapping("likedlist.mr")
 	public ModelAndView likedlist(ModelAndView mv, HttpSession session) {
-		session.setAttribute("SID", "kk");
 		String SID = (String) session.getAttribute("SID");
 		List<BoardVO> list3 = hDAO.likelist(SID);
 		mv.addObject("LIKELIST", list3);
@@ -181,10 +176,9 @@ public class Heeyoon {
 	//상대방 팔로워 취소 controller
 	
 	@RequestMapping("otheresfollowcansle.mr")
-	public int otherscansle( MemberVO mVO ,HttpSession session) {
-		String SID = (String)session.getAttribute("SID");
+	@ResponseBody
+	public int otherscansle(MemberVO mVO) {
 		hDAO.otherscansle(mVO);
-		
 		return 0;
 	}
 	

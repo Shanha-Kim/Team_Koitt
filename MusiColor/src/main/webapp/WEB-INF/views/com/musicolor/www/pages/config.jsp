@@ -10,69 +10,6 @@
 	<link rel="stylesheet" href="/css/bootstrap-lux.css">
 	<link rel="stylesheet" href="/css/bootstrap.custom.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		/* $(function(){
-		 $('.profile').click(function(){
-		 $(location).attr('href','');
-		
-		 });
-		
-		 });	
-		 */
-		$(function () {
-			$("#myBtn").click(function () {
-				$("#myModal").modal();
-			});
-			
-			
-			
-			$('#backbtn').click(function(){
-			$(location).attr('href','/profilelist.mr');	
-			});
-			
-			$("#addpic").click(function(e){
-				e.preventDefault();
-				$("#fileup").click();
-				$("#fileup").change(function(){
-				alert("첨부가 완료 되었습니다.");
-				$(".close").click();
-				$("#fileup-frm").submit();
-				
-				});
-			});
-			
-			$('#fileup').change(function (e){
-		          var tmp = URL.createObjectURL(e.target.files[0]);
-		          $('#profImg').attr('src', tmp);
-		          });
-			
-	/* 	
-		$('#fileup-frm').submit();
-
-		});
-		 $(function(){
-			
-			 
-			 
-		 });
-		  */
-		  
-		/*   
-		  $("#conform").click(function(){
-			 $(location).attr('href','/profilelist.mr'); 
-		  });
-		   */
-		  
-		  
-		  $("#tembtn").click(function(){
-			alert("계정이 비활성화 되었습니다.")
-			$(location).attr('href','/lock.mr');
-		  });
-	  });
-		 
-	</script>
 	<style>
 		.box {
 			justify-content: space-between;
@@ -112,7 +49,7 @@
 					<h4 class="card-title" style= "margin-bottom: 30px;">사용자 ID</h4>
 					<div class="imgbox text-center">
 					
-						<img src="/upload/${VO.sname}" alt="noimage" class="profIn" id="profImg">
+						<img src="/profile/${VO.sname}" alt="noimage" class="profIn" id="profImg">
 						
 						<p></p>
 						<button type="button" class="btn btn-info" style="padding: 0px; width: 135px; height: 25px;"
@@ -174,7 +111,68 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		/* $(function(){
+		 $('.profile').click(function(){
+		 $(location).attr('href','');
+		
+		 });
+		
+		 });	
+		 */
+		$(function () {
+			var sid='${SID}';
+			$("#myBtn").click(function () {
+				$("#myModal").modal();
+			});
+			
+			$('#backbtn').click(function(){
+			$(location).attr('href',"/profilelist.mr?m_id="+sid);	
+			});
+			
+			$("#addpic").click(function(e){
+				e.preventDefault();
+				$("#fileup").click();
+				$("#fileup").change(function(e){
+					alert("첨부가 완료 되었습니다.");
+					$(".close").click();
+					$("#fileup-frm").submit();
+					var tmp = URL.createObjectURL(e.target.files[0]);
+		          	$('#profImg').attr('src', tmp);
+				});
+			});
+			
+			$('#fileup').change(function (e){
+	          
+			});
+			
+	/* 	
+		$('#fileup-frm').submit();
 
+		});
+		 $(function(){
+			
+			 
+			 
+		 });
+		  */
+		  
+		/*   
+		  $("#conform").click(function(){
+			 $(location).attr('href','/profilelist.mr'); 
+		  });
+		   */
+		  
+		  
+		  $("#tembtn").click(function(){
+			alert("계정이 비활성화 되었습니다.")
+			$(location).attr('href','/lock.mr');
+		  });
+	  });
+		 
+</script>
 </body>
 
 </html>

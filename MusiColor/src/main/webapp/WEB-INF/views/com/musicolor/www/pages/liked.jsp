@@ -414,10 +414,10 @@
 						});
 			}
 			
-			/* 
+			 
 			$('#backbtn').click(function() {
-				$(location).attr('href', '/profilelist.mr');
-			}); */
+				$(location).attr('href', '/profilelist.mr?m_id='+sid);
+			}); 
 			
 		})
 	</script>

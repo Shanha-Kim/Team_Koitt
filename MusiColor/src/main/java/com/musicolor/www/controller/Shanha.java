@@ -98,7 +98,6 @@ public class Shanha {
 	//검색페이지
 	@RequestMapping("/searchBefore.mr")
 	public ModelAndView searchBefore(ModelAndView mv, BoardVO bVO, HttpSession session) {
-		session.setAttribute("SID", "nhearle1");
 		ArrayList<BoardVO> list = (ArrayList<BoardVO>)sDAO.showBefore(bVO);
 		mv.addObject("LIST", list);
 		mv.setViewName("pages/search");

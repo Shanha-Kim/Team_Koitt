@@ -30,9 +30,9 @@ public class FileService {
 
 		long len = 0;
 
-		String spath = session.getServletContext().getRealPath("resources/upload");
+		String spath = session.getServletContext().getRealPath("resources/profile");
 		String rePath = spath.substring(0, spath.indexOf("\\.metadata"));
-		rePath = rePath + "\\Team_koitt\\MusiColor\\src\\main\\webapp\\resources\\upload";
+		rePath = rePath + "\\Team_koitt\\MusiColor\\src\\main\\webapp\\resources\\profile";
 
 		String oriName = "";
 		try {

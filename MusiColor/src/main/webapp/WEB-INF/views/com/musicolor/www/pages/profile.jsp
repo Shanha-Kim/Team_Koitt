@@ -194,46 +194,42 @@ margin-top :80px;
 				<div class="contant">
 					<div class="imglogobox">
 						<br> <br> <img class="colorimg" style="border-radius: 100px; -moz-border-radius: 100px; -khtml-border-radius: 100px; -webkit-border-radius: 100px;" 
-							src="/upload/${VO.sname}" id="logo"> <br>
+							src="/profile/${VO.sname}" id="logo"> <br>
 					</div>
 					<div class="member">
-					<div class="form-group">
-					 
-					 <c:if test="${ID == SID}">
-						<button type="button" id="profile" class="btn btn-info"
-							style="display: block; ">프로필 편집</button> 
-						</c:if>
-						<br>
-						
-						<button type="button" 	class="btn btn-warning" style="">게시물 :
-							${CNT}</button>
-						<button type="button" id="fw1btn" class="btn btn-secondary"  style="">팔로워
-							: ${CNT1}</button>
-						<button type="button" id="fw2btn" class="btn btn-success" style="">팔로우
-							: ${CNT2}</button>
+						<div class="form-group" id="newbar">
+							<c:if test="${ID == SID}">
+							<button type="button" id="profile" class="btn btn-info"
+								style="display: block; ">프로필 편집</button> 
+							</c:if>
+							<br>
 							
-							
+							<button type="button" 	class="btn btn-warning" style="">게시물 :
+								${CNT}</button>
+							<button type="button" id="fw1btn" class="btn btn-secondary"  style="">팔로워
+								: ${CNT2}</button>
+							<button type="button" id="fw2btn" class="btn btn-success" style="">팔로우
+								: ${CNT1}</button>
+								
 							<c:if test='${SID != ID}' >
-							
 							<c:if test='${NYCK != "Y"}' >
-							<button type="button" id="yesfollow" class="btn btn-black" data="${ID}">팔로우하기 
-							</button>
+								<button type="button" id="yesfollow" class="btn btn-black" data="${ID}">팔로우하기 
+								</button>
 							</c:if>
 							<c:if test ='${NYCK == "Y" }'>
-							<button type="button" id="nofollow" class="btn btn-black" data="${ID}"> 팔로우취소
-							</button>
+								<button type="button" id="nofollow" class="btn btn-black" data="${ID}"> 팔로우취소
+								</button>
 							</c:if>
 							</c:if>
-							
-							
+								
 							<c:if test="${ID == SID}">
-						<button type="button" id="likedbtn" class="btn btn-danger" style="">내가
-							좋아요한 게시물</button>
-						</c:if>
-						<button type="button" class="btn btn-outline-secondary"
-							id="unlock" data-id="${ISSHOW}">계정을 다시 활성화</button>
-							</div>
-							</div>
+							<button type="button" id="likedbtn" class="btn btn-danger" style="">내가
+								좋아요한 게시물</button>
+							</c:if>
+							<button type="button" class="btn btn-outline-secondary"
+								id="unlock" data-id="${ISSHOW}">계정을 다시 활성화</button>
+						</div>
+					</div>
 							 
 				</div>
 				<br>
@@ -258,27 +254,7 @@ margin-top :80px;
 	<div class="container menubar" id="main" style="margin-top :-100px">
 		<!-- 앨범 이미지 -->
 		<div class="row">
-			<c:forEach var="data" items="${LIST}" begin="0" end="2">
-				<div class="col-4 big-square">
-					<div class="square small-${data.b_emotion}" id="${data.b_no}">
-						<img class="album" src="/album/${data.sname}" />
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-
-		<div class="row">
-			<c:forEach var="data" items="${LIST}" begin="3" end="5">
-				<div class="col-4 big-square">
-					<div class="square small-${data.b_emotion}" id="${data.b_no}">
-						<img class="album" src="/album/${data.sname}" />
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-
-		<div class="row">
-			<c:forEach var="data" items="${LIST}" begin="6" end="8">
+			<c:forEach var="data" items="${LIST}">
 				<div class="col-4 big-square">
 					<div class="square small-${data.b_emotion}" id="${data.b_no}">
 						<img class="album" src="/album/${data.sname}" />
@@ -407,8 +383,6 @@ margin-top :80px;
 					<div class="canslebtn"></div>
 				</div>
 				<div class="modal-body">
-
-
 					<c:forEach var="data" items="${LIST1}">
 						<div class="d-flex">
 							<!-- 이미지 박스 -->
@@ -443,7 +417,6 @@ margin-top :80px;
 	</div>
 
 	<!-- 	팔로잉 모달창 -->
-
 	<div class="modal" id="fw2button">
 		<div class="modal-dialog" role="document" style="width: 44%;">
 			<div class="modal-content" style="overflow: scroll; height: 400px;">
@@ -469,9 +442,15 @@ margin-top :80px;
 							<div style="display: inline-block; width: 100%;">
 							<a href="/profilelist.mr?m_id=${data.m_id}"  data="${data.m_id}">
 								<span class="fname2" >${data.m_id}</span>
-											</a>
+							</a>
+							<c:if test="${data.m_isban eq 0}">
 								<button type="button" class="canslebtn2 click1"
-									style="float: right;" >팔로우</button>
+									style="float: right;">팔로우</button>
+							</c:if>
+							<c:if test="${data.m_isban ne 0}">
+								<button type="button" class="canslebtn2 click2"
+									style="float: right;">팔로우</button>
+							</c:if>
 							</div>
 						</div>
 					</c:forEach>
@@ -483,7 +462,6 @@ margin-top :80px;
 		</div>
 	</div>
 	<!-- 팔로워 취소 확인 모달창 -->
-
 	<div class="modal" id="followccheck">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -605,258 +583,223 @@ margin-top :80px;
 		}
 		
 		$(document).ready(function() {
-			
-							$(document)
-									.ready(
-											function() {
-												
-												
-												$('head')
-														.append(
-																'<style type="text/css">.modal .modal-body {max-height: '
-																		+ ($(
-																				'body')
-																				.height() * .8)
-																		+ 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>');
-											});
+				$('head').append('<style type="text/css">.modal .modal-body {max-height: '
+								+ ($('body').height() * .8)
+								+ 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>');
 
+				var isshow = $("#unlock").attr('data-id');
+				if (isshow == 'Y') { /* 계정활성화 되었을때 */
 
-							var isshow = $("#unlock").attr('data-id');
-							if (isshow == 'Y') { /* 계정활성화 되었을때 */
+					$("#unlock").css('display', 'none');
+					$('#main').removeClass('blur');
 
-								$("#unlock").css('display', 'none');
-								$('#main').removeClass('blur');
+				} else {
 
-							} else {
+					$('#unlock').css('display', 'block');
+					$('#main').addClass('blur');
 
-								$('#unlock').css('display', 'block');
-								$('#main').addClass('blur');
+				}
+				$('#profile').click(function() {
+					$(location).attr('href', '/profconfig.mr');
 
-							}
-							$('#profile').click(function() {
-								$(location).attr('href', '/profconfig.mr');
+				});
 
-							});
+				$('#likedbtn').click(function() {
+					$(location).attr('href', '/likedlist.mr');
 
-							$('#likedbtn').click(function() {
-								$(location).attr('href', '/likedlist.mr');
+				});
 
-							});
-
-							$('.profIn')
-									.change(
-											function(e) {
-												var tmp = URL
-														.createObjectURL(e.target.files[0]);
-												$('#profImg').attr('src', tmp);
-											});
-
-							$("#unlock").click(function() {
-								$('#myModal').modal();
-
-							});
-
-							$('#unlock2').click(function() {
-								$(location).attr('href', '/unlock.mr');
-							});
-
-							$("#fw1btn").click(function() {
-								$('#fw1button').modal();
-							});
-
-							$("#fw2btn").click(function() {
-								$('#fw2button').modal();
-							});
-
-							
-							$("#nofollow").click(function(){
-								$('#otherscanslefollow').modal();
-								
-							});
-							
-							
-							
-							
-							
-							
-							$(".click1").off().click(function() {
-							 var thisbtn = $(this);
-								$("#followccheck").modal();
-								var tmp = $(this).prev().attr("data");
-								
-								var amu1 = $(this).attr('class'); 
-								
-								
-								// 팔로잉 cansle ajax
-								
-								$(document).off().on("click", "#fcansle", function() {
-									setFname(tmp);
-									var sid = '${SID}';
-									
-										$.ajax({
-											url : "/followercheck.mr",
-											type : "post",	
-											dataType : "json",
-											data : {
-												m_id : sid,
-												m_name : f_name
-											},
-											success : function(vo) {
-												$('#followccheck').modal("hide");
-												
-												var idx1 = amu1.indexOf(' ');
-												var now3 = amu1.substring(idx1 + 1);
-
-												if (now3 == 'click2') {
-
-													thisbtn.removeClass('click2');
-													thisbtn.addClass('click1');
-
-												} else {
-													thisbtn.removeClass('click1');
-													thisbtn.addClass('click2');
-
-												} 
-		 
-												},
-											error : function() {
-												alert('### 통신 에러 ###');
-											}
-										});
-
-									});
-							});
-							
-							
-							$(".click2").click(function() {
-								var itm = $(this);
-								/* alert('### a : ' + itm.siblings().eq(0).attr('data')); */
-								var getid = $(this).prev().attr("data"); 
-								
-								var thisbtn1 = $(this);
-								$("#addid").text(getid + "님을 팔로워로 추가하시겠습니까?");
-								$("#followacheck").modal();
-							
-							
-							  	 var amu = $(this).attr('class'); 
-								
-								
-								// 팔로워 add & cansle ajax
-	
-								$(document).on("click", "#addagin", function() {
-								 	setFname(getid);
-									var sid = '${SID}';
-
-									$.ajax({
-	
-										url : "/followercheck.mr",
-										type : "post",
-										dataType : "json",
-										data : {
-											m_id : sid,
-											m_name : f_name
-										},
-	
-										success : function(vo) {
-	 										$('#followacheck').modal("hide");
-	 											
-											var idx = amu.indexOf(' ');
-											var now2 = amu.substring(idx + 1);
-											if (now2 == 'click1') {
-												thisbtn1.removeClass('click1');
-												thisbtn1.addClass('click2');
-											} else {
-												thisbtn1.removeClass('click2');
-												thisbtn1.addClass('click1');
-											} 
-										},
-										error : function() {
-											alert('### 통신 에러 ###');
-										}
-									});
+				$('.profIn')
+						.change(
+								function(e) {
+									var tmp = URL
+											.createObjectURL(e.target.files[0]);
+									$('#profImg').attr('src', tmp);
 								});
-	
-								
 
-							});
+				$("#unlock").click(function() {
+					$('#myModal').modal();
+
+				});
+
+				$('#unlock2').click(function() {
+					$(location).attr('href', '/unlock.mr');
+				});
+
+				$("#fw1btn").click(function() {
+					$('#fw1button').modal();
+				});
+
+				$("#fw2btn").click(function() {
+					$('#fw2button').modal();
+				});
+
+				
+				$("#nofollow").click(function(){
+					$('#otherscanslefollow').modal();
+					
+				});
+				
+				
+				
+				
+				
+				
+				$(".click1").off().click(function() {
+				 var thisbtn = $(this);
+					$("#followccheck").modal();
+					var tmp = $(this).prev().attr("data");
+					
+					var amu1 = $(this).attr('class'); 
+					
+					
+					// 팔로잉 cansle ajax
+					
+					$(document).off().on("click", "#fcansle", function() {
+						setFname(tmp);
+						var sid = '${SID}';
+						$.ajax({
+							url : "/followercheck.mr",
+							type : "post",	
+							dataType : "json",
+							data : {
+								m_id : sid,
+								m_name : f_name
+							},
+							success : function(vo) {
+								$('#followccheck').modal("hide");
+								
+								var idx1 = amu1.indexOf(' ');
+								var now3 = amu1.substring(idx1 + 1);
+
+								if (now3 == 'click2') {
+									thisbtn.removeClass('click2');
+									thisbtn.addClass('click1');
+								} else {
+									thisbtn.removeClass('click1');
+									thisbtn.addClass('click2');
+								} 
+							},
+							error : function() {
+								alert('### 통신 에러 ###');
+							}
+						});
+					});
+				});
+				
+				
+				$(".click2").click(function() {
+					var itm = $(this);
+					/* alert('### a : ' + itm.siblings().eq(0).attr('data')); */
+					var getid = $(this).prev().attr("data"); 
+					
+					var thisbtn1 = $(this);
+					$("#addid").text(getid + "님을 팔로워로 추가하시겠습니까?");
+					$("#followacheck").modal();
+				
+				
+				  	 var amu = $(this).attr('class'); 
+					
+					
+					// 팔로워 add & cansle ajax
+
+					$(document).on("click", "#addagin", function() {
+					 	setFname(getid);
+						var sid = '${SID}';
+
+						$.ajax({
+
+							url : "/followercheck.mr",
+							type : "post",
+							dataType : "json",
+							data : {
+								m_id : sid,
+								m_name : f_name
+							},
+
+							success : function(vo) {
+									$('#followacheck').modal("hide");
+										
+								var idx = amu.indexOf(' ');
+								var now2 = amu.substring(idx + 1);
+								if (now2 == 'click1') {
+									thisbtn1.removeClass('click1');
+									thisbtn1.addClass('click2');
+								} else {
+									thisbtn1.removeClass('click2');
+									thisbtn1.addClass('click1');
+								} 
+							},
+							error : function() {
+								alert('### 통신 에러 ###');
+							}
+						});
+					});
+
+					
+
+				});
 							
 							
 							
 							
 		/* 	========================================================================================= */
 				/* 상대방 홈페이지에서 팔로워 추가 ajax */				
-							
 								
-								$("#yesfollow").click(function(){
-
-								$('#othersaddfollow').modal();
-							
-								var getid = $(this).attr("data"); 
-									
-								$(document).on("click", "#yesconform", function() {
+		$("#yesfollow").click(function(){
+			$('#othersaddfollow').modal();
+			var getid = $(this).attr("data"); 
+			$(document).off().on("click", "#yesconform", function() {
+				var sid = '${SID}';
+				setFname(getid);
 								
-								var sid = '${SID}';
-								setFname(getid);
-								
-								alert(sid+f_name);
-								
-								
-								$.ajax({
-									url : "/followercheck.mr",
-									type : "post",
-									dataType : "json",
-									data : {
-										m_id : sid,
-										m_name : f_name
-									},
-									success : function(vo) {
-											
-									$("#othersaddfollow").modal("hide");
-										
-									
-										},
-									error : function() {
-										alert('### 통신 에러 ###');
-									}
-								});
-							}); 
-								});
+				$.ajax({
+					url : "/followercheck.mr",
+					type : "post",
+					dataType : "json",
+					data : {
+						m_id : sid,
+						m_name : f_name
+					},
+					success : function(vo) {
+						$("#othersaddfollow").modal("hide");
+						$("#yesfollow").remove();
+						$("#newbar").append('<button type="button" id="nofollow" class="btn btn-black" data="'+f_name+'">팔로우취소</button>');
+					},
+					error : function() {
+						alert('### 통신 에러 ###');
+					}
+				});
+			}); 
+		});
 		
-							/* 상대방 홈페이지에서 팔로잉 취소 ajax */
-				
+		/* 상대방 홈페이지에서 팔로잉 취소 ajax */
 						
-							$(document).on("click", "#noconform", function() {
-								
-								$.ajax({
-									url : "/otheresfollowcansle.mr",
-									type : "post",
-									dataType : "json",
-									data : {
-										m_id : sid,
-										m_name : f_name
-									},
-									success : function(vo) {
-									$("#otherscanslefollow").modal("hide");
-									
- 										
-										},
-									error : function() {
-										alert('### 통신 에러 ###');
-									}
-								});
-							});
-					
-				 
-						
-	
-			$(".square").click(function() {
-				$("#myModal1").modal("show") //앨범 이미지 누르면 모달창 열림
+		$(document).off().on("click", "#noconform", function() {
+			var f_name = '${ID}';
+			$.ajax({
+				url : "/otheresfollowcansle.mr",
+				type : "post",
+				dataType : "json",
+				data : {
+					m_id : sid,
+					m_name : f_name
+				},
+				success : function(vo) {
+					$("#otherscanslefollow").modal("hide");
+					$("#nofollow").remove();
+					$("#newbar").append('<button type="button" id="yesfollow" class="btn btn-black" data="'+f_name+'">팔로우하기</button>');
+				},
+				error : function() {
+					alert('### 통신 에러 ###');
+				}
 			});
-			
-			
-			
-						});
+		});
+	
+		$(".square").click(function() {
+			$("#myModal1").modal("show") //앨범 이미지 누르면 모달창 열림
+		});
+	});
 	</script>
-
 </body>
 </html>

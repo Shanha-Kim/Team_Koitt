@@ -74,7 +74,10 @@ public class HeeyoonDAO {
 	public List<MemberVO> follwer(String SID) {
 		List<MemberVO> list1 = sqlSession.selectList("hSQL.follwer", SID);
 		return list1;
-
+	}
+	public List<MemberVO> follwer2(MemberVO mVO) {
+		List<MemberVO> list1 = sqlSession.selectList("hSQL.follwer2", mVO);
+		return list1;
 	}
 
 	// 팔로우 체크 함수 N Y 구분 전담 처리 함수
@@ -102,6 +105,10 @@ public class HeeyoonDAO {
 	// 팔로잉 한 사람들 뽑아오기 전담처리 함수
 	public List<MemberVO> following(String SID) {
 		List<MemberVO> list2 = sqlSession.selectList("hSQL.following", SID);
+		return list2;
+	}
+	public List<MemberVO> following2(MemberVO mVO) {
+		List<MemberVO> list2 = sqlSession.selectList("hSQL.following2", mVO);
 		return list2;
 	}
 
