@@ -21,7 +21,7 @@
     <jsp:include page="nav.jsp" flush="false" />
 
     <div class="container" id="main">
-      <h1 class="text-muted text-center" id="explain">YOU LOOK SO EMO</h1>
+      <h1 class="text-center" id="explain"></h1>
       <!-- 감정 선택 버튼 -->
       <div class="btn-group btn-block mb-5" role="group">
         <button type="button" class="btn btn-primary text-muted" id="btn-0">ALL</button>
@@ -37,8 +37,9 @@
       	<c:forEach var="data" items="${LIST}">
         <div class="col-4 big-square">
           <div class="square small-${data.b_emotion}" id="${data.b_no}">
-	          <div class="half-square" style=" height:100%;"><img class="album" src="/album/${data.sname}" /></div>
-			  <p class="half-square" style="height:50%; top:50%;opacity:1;padding:15px; color:black;">${data.b_body } </p>
+          	<div class="half-square" style=" height:100%;"><img class="album" src="/album/${data.sname}" /></div>
+			<p class="half-square text-center align-middle" style="background-color:rgba(0, 0, 0, 0.5); bottom:0; color:white;">@${data.m_id}</p>
+          </div>
         </div>
 		</c:forEach>
       </div>
@@ -149,27 +150,44 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
       $(function() {
-    	  
     	/* 버튼 이벤트 */
     	var scode = '${CODE}';
   		if(scode == 1){
   			$('#btn-1').removeClass('text-muted');
   			$('#btn-1').addClass('selected');
+  			
+  			$('#explain').html('YOU LOOK SO LOVELY');
+  			$('#explain').css('color', '#ffdde1');
   		} else if(scode == 2){
   			$('#btn-2').removeClass('text-muted');
   			$('#btn-2').addClass('selected');
+  			
+  			$('#explain').html('YOU LOOK SO HAPPY');
+  			$('#explain').css('color', '#d9e021');
   		} else if(scode == 3){
   			$('#btn-3').removeClass('text-muted');
   			$('#btn-3').addClass('selected');
+  			
+  			$('#explain').html('YOU LOOK SO PEACEFUL');
+  			$('#explain').css('color', '#38ef7d');
   		} else if(scode == 4){
   			$('#btn-4').removeClass('text-muted');
   			$('#btn-4').addClass('selected');
+  			
+  			$('#explain').html('YOU LOOK SO SAD');
+  			$('#explain').css('color', '#514a9d');
   		} else if(scode == 5){
   			$('#btn-5').removeClass('text-muted');
   			$('#btn-5').addClass('selected');
+  			
+  			$('#explain').html('YOU LOOK SO ANGRY');
+  			$('#explain').css('color', '#b20a2c');
   		} else {
   			$('#btn-0').removeClass('text-muted');
   			$('#btn-0').addClass('selected');
+  			
+  			$('#explain').html('HOW DO YOU FEEL');
+  			$('#explain').css('color', '#919aa1');
   		}
   		
   		/* 버튼 페이지 이동 */
