@@ -118,7 +118,8 @@
 		FROM
 			(SELECT
 				b_emotion, b_no, 
-				(SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname
+				(SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname,
+				(SELECT m_id FROM member WHERE m_no = b_mno) m_id
 			FROM
 				board
 			<if test="value != null">
