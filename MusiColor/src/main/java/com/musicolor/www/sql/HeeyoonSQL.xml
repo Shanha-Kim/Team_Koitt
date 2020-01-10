@@ -103,6 +103,19 @@ WHERE
 	upper(m_id) = upper(#{SID})
 </select>
 
+<!-- 프로필 수정페이지에서 원래있던 정보 가져오기  -->
+<select id ="configinfo" resultType="mVO" parameterType="String">
+
+SELECT
+	m_name m_name , m_about m_about, m_email m_email, m_tel m_tel
+
+FROM
+	member
+WHERE
+	upper(m_id) =upper(#{SID})
+
+</select>
+
 <!-- 게시물 카운트 전담처리함수 -->
 
 <select id ="textcount" resultType="int" parameterType="String">
@@ -412,6 +425,7 @@ WHERE
               )
 
 </select>
+
 
 
 

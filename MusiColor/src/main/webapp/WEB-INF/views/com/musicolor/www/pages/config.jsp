@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -56,26 +57,27 @@
 					</div>
 					<p></p>
 					<div class="form-group">
+					
 						<label for="realname">닉네임</label> <input type="text" class="form-control" name="m_name"
-							id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Name">
+							id="exampleInputEmail1" aria-describedby="emailHelp" value="${INFO.m_name}">
 					</div>
 					<br>
 					<div class="form-group">
 						<label for="username">소개글</label> <input type="text" class="form-control" name="m_about"
-							id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your introduction">
+							id="exampleInputEmail1" aria-describedby="emailHelp" value="${INFO.m_about}">
 					</div>
 					<br>
 					<div class="card-header">개인 정보 </div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">E-mail</label> <input type="email" class="form-control" name="m_email"
-							id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your E-mail">
+							id="exampleInputEmail1" aria-describedby="emailHelp" value="${INFO.m_email} ">
 					</div>
 					<br>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Tel</label> <input type="text" class="form-control" name="m_tel"
-							id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Phone Number">
+							id="exampleInputEmail1" aria-describedby="emailHelp" value="${INFO.m_tel}">
 					</div>
-
+			
 					<div class="configtextbox text-center">
 						<button type="submit"  class="btn btn-info" id="conform" style="width: 40%; display: inline;">회원정보 수정</button>
 						<br>

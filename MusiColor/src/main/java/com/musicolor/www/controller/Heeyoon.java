@@ -3,6 +3,7 @@ package com.musicolor.www.controller;
 import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,14 @@ public class Heeyoon {
 	public ModelAndView configform(ModelAndView mv, HttpSession session) {
 		/* session.setAttribute("SID", "kk"); */
 		mv.setViewName("pages/config");
+		
+		/* 개인프로필 수정페이지에서 정보 가져오기 */
+		MemberVO VO = new MemberVO();
+		
+		String SID = (String)session.getAttribute("SID");
+		
+		 VO =hDAO.configinfo(SID);
+		mv.addObject("INFO",VO);
 		return mv;
 	}
  
@@ -49,12 +58,13 @@ public class Heeyoon {
 	}
 	
 	@RequestMapping("profiletext.mr") // 프로필 텍스트 수정 controller
-	public ModelAndView configtext(ModelAndView mv, MemberVO mVO, RedirectView rv) {
+	public ModelAndView configtext(ModelAndView mv, MemberVO mVO, RedirectView rv, HttpSession session) {
 		hDAO.profiletextconfig(mVO);
 //		FileVO vo = hDAO.getSname(FileVO fVO);
 		rv.setUrl("/profconfig.mr");
 //		mv.addObject("VO", vo);
 		mv.setView(rv);
+		
 		return mv;
 	}
 

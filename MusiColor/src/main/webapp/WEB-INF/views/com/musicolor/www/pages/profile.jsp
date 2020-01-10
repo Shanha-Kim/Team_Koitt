@@ -402,10 +402,12 @@ margin-top :80px;
 									<button type="button" class="canslebtn1 click1"
 										style="float: right;">팔로우</button>
 								</c:if>
+								
 								<c:if test="${data.m_isban ne 0}">
 									<button type="button" class="canslebtn1 click2"
 										style="float: right;">팔로우</button>
 								</c:if>
+							
 							</div>
 						</div>
 					</c:forEach>

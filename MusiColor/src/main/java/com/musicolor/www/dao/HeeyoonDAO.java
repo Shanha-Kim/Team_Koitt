@@ -51,6 +51,11 @@ public class HeeyoonDAO {
 		return sqlSession.selectOne("hSQL.introtext", SID);
 	}
 
+	//개인프로필 수정페이지에서 원래있던 정보 가져오기 전담처리 함수
+	public MemberVO configinfo(String SID) {
+		return sqlSession.selectOne("hSQL.configinfo",SID);
+	}
+	
 	// 개인 프로필 앨범 수 카운트 점담 처리 함수
 	public int profilecont(String SID) {
 		return sqlSession.selectOne("hSQL.textcount", SID);
