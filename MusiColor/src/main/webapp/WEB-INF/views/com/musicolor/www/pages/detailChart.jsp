@@ -11,6 +11,7 @@
 <!-- Bootstrap CSS & theme -->
 <link rel="stylesheet" href="/css/bootstrap-lux.css">
 <link rel="stylesheet" href="/css/bootstrap.custom.css">
+<link rel="stylesheet" href="/css/random.css" />
 
 
 
