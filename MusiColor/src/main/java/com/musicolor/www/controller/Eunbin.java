@@ -456,4 +456,23 @@ public class Eunbin {
 		mv.setViewName("pages/adminChart");
 		return mv;
 	}
+	
+	/* error page */
+	@RequestMapping("/error.mr")
+	public ModelAndView error(ModelAndView mv) {
+		mv.setViewName("pages/error");
+		return mv;
+	}
+	
+	@RequestMapping("/404.mr")
+	public ModelAndView error404(ModelAndView mv) {
+		mv.setViewName("pages/404");
+		return mv;
+	}
+	
+	@RequestMapping("/500.mr")
+	public ModelAndView error500(ModelAndView mv) {
+		mv.setViewName("pages/500");
+		return mv;
+	}
 }
