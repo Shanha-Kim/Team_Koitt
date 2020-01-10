@@ -1,8 +1,15 @@
- 	# 개인프로필 리스트 
+ 	# 개인프로필 리스트 수정 폼 
  	
  	요청내용	: profconfig.mr
-	파라미터	:
-	컨트롤러	:
-	처리함수	:
-	응답문서	:
+	파라미터	: SID
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: 
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/config.jsp
 	
+	# 프로필 사진 수정 
+	
+	요청내용	: profconfig.mr
+	파라미터	: SID
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: 
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/config.jsp

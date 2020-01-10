@@ -97,7 +97,7 @@ h6 {
 
 .textbox {
 	margin-top: 80px;
-	padding: 200px;
+	padding : 150px;
 }
 
 #profile {

@@ -34,7 +34,6 @@ public class HeeyoonDAO {
 		return fVO;
 	}
 	
-	
 	// 멤버에다 아이디 값 넣어주기
 	public int mNo(String SID) {
 		return sqlSession.selectOne("hSQL.mNo", SID);
