@@ -36,7 +36,7 @@ public class Heeyoon {
 		mv.setViewName("pages/config");
 		return mv;
 	}
-
+ 
 	@RequestMapping("profilepic.mr") // 프로필 사진 수정 controller
 	public ModelAndView configpic(ModelAndView mv, HttpSession session, MemberVO mVO, RedirectView rv) {
 		String SID = (String) session.getAttribute("SID");

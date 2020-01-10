@@ -15,7 +15,7 @@ public class HeeyoonDAO {
 	// 개인프로필 사진 수정 전담 처리 함수
 	public int addpic(FileVO fVO) {
 		return sqlSession.update("hSQL.addpic", fVO);
-
+ 
 	}
 
 	// 개인프로필 사진 리스트 전담 처리 함수

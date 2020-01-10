@@ -47,7 +47,7 @@
 				<div class="card-body">
 					<h4 class="card-title" style= "margin-bottom: 30px;">사용자 ID</h4>
 					<div class="imgbox text-center">
-					
+						
 						<img src="/profile/${s_name}" alt="noimage" class="profIn" id="profImg">
 						
 						<p></p>
