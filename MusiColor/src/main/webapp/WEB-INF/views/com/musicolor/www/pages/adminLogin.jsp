@@ -53,7 +53,7 @@
 			<div class="card text-white bg-primary mb-3" style="max-width: 40rem; margin-top: 20rem;">
 				<div class="card-body">
 					<h4 class="card-title" style="">${AID}님은 이미 로그인하셨습니다.</h4>
-					<button id="goToMain" type="button" class="btn btn-info" style="width: 100%; display: inline;">메인으로</button>
+					<button id="goToMain" type="button" class="btn btn-black" style="width: 100%; display: inline;">메인으로</button>
 				</div>
 			  </div>
 		</div>
@@ -68,7 +68,7 @@
   	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#goToMain').click(function() {
-			$(location).attr('href', '/tempMain.mr');
+			$(location).attr('href', '/admin.mr');
 		})
 	}); 
 	</script>
