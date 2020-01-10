@@ -1,1 +1,75 @@
- 
+ # 유준요청성계
+
+1. 로그인 폼 보기 요청
+	요청내용	:	/login.mr
+	파라미터	:	무
+	컨트롤러	:	com.musicolor.www.controller.youjoon
+	처리함수	:	loginForm()
+	응답문서	:	/WEB-INF/views/com/musicolor/www/pages/login.jsp
+
+2. 로그인 처리 요청
+	요청내용	:	/loginProc.mr
+	파라미터	:	m_id, m_pw
+	컨트롤러	:	com.musicolor.www.controller.youjoon
+	처리함수	:	loginProc()
+	응답문서	:	
+				로그인 성공 시
+				/WEB-INF/views/com/musicolor/www/pages/feed.jsp
+
+				로그인 실패 시
+				/WEB-INF/views/com/musicolor/www/pages/login.jsp
+
+3. 로그아웃 요청
+	요청내용	:	/logout.mr
+	파라미터	:	무
+	컨트롤러	:	com.musicolor.www.controller.youjoon
+	처리함수	:	logout()
+	응답문서	:	/WEB-INF/views/com/musicolor/www/pages/bfMain.jsp
+
+4. 회원가입 폼 보기 요청
+	요청내용	:	/join.mr
+	파라미터	:	무
+	컨트롤러	:	com.musicolor.www.controller.youjoon
+	처리함수	:	joinForm()
+	응답문서	:	/WEB-INF/views/com/musicolor/www/pages/join.jsp
+
+5. 회원 아이디 체크 요청 - 비동기 처리 (Ajax)
+	요청내용	:	/idCheck.mr
+	파라미터	:	m_id
+	컨트롤러	:	com.musicolor.www.controller.youjoon
+	처리함수	:	idCheck()
+	응답문서	:	무
+
+6. 회원가입 처리 요청
+	요청내용	:	/join.mr
+	파라미터	:	m_id, m_pw, m_name, m_email, m_tel
+	컨트롤러	:	com.musicolor.www.controller.youjoon
+	처리함수	:	joinProc()
+	응답문서	:	
+				회원가입 성공 시
+				/WEB-INF/views/com/musicolor/www/pages/joinSuccess.jsp
+
+				회원가입 실패 시
+				/WEB-INF/views/com/musicolor/www/pages/join.jsp
+
+7. 회원가입 성공페이지 뷰 요청
+	요청내용	:	/joinSuccess.mr
+	파라미터	:	무
+	컨트롤러	:	com.musicolor.www.controller.youjoon
+	처리함수	:	joinSuccess()
+	응답문서	:	/WEB-INF/views/com/musicolor/www/pages/joinSuccess.jsp
+
+
+8. 아이디 찾기 뷰 요청
+	요청내용	:	/findId.mr
+	파라미터	:	무
+	컨트롤러	:	com.musicolor.www.controller.youjoon
+	처리함수	:	findId()
+	응답문서	:	/WEB-INF/views/com/musicolor/www/pages/findId.jsp
+
+9. 아이디 찾기 처리 요청
+	요청내용	:	/findIdProc.mr
+	파라미터	:	무
+	컨트롤러	:	com.musicolor.www.controller.youjoon
+	처리함수	:	findIdProc()
+	응답문서	:	/WEB-INF/views/com/musicolor/www/pages/findId.jsp
