@@ -22,15 +22,19 @@ public class HeeyoonDAO {
 	public List<BoardVO> profileList(String SID) {
 		List<BoardVO> list = sqlSession.selectList("hSQL.addalbumpic", SID);
 		return list;
-
 	}
 
 	// 개인 프로필 텍스트 수정 전담처리 함수
 	public int profiletextconfig(MemberVO mVO) {
 		return sqlSession.update("hSQL.profileconfig", mVO);
-
 	}
-
+	//
+	public FileVO getSname(FileVO fVO) {
+		
+		return fVO;
+	}
+	
+	
 	// 멤버에다 아이디 값 넣어주기
 	public int mNo(String SID) {
 		return sqlSession.selectOne("hSQL.mNo", SID);

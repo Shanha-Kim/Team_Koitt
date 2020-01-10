@@ -42,16 +42,18 @@ public class Heeyoon {
 		String SID = (String) session.getAttribute("SID");
 		mVO.setM_no(hDAO.mNo(SID));
 		fileSrvc.setDAO(fDAO);
-		fileSrvc.singleUpProc(session, mVO);
-		rv.setUrl("/profconfig.mr");
+		String s_name = fileSrvc.singleUpProc(session, mVO);
+		rv.setUrl("/profconfig.mr?"+s_name);
 		mv.setView(rv);
 		return mv;
 	}
-
+	
 	@RequestMapping("profiletext.mr") // 프로필 텍스트 수정 controller
 	public ModelAndView configtext(ModelAndView mv, MemberVO mVO, RedirectView rv) {
 		hDAO.profiletextconfig(mVO);
+//		FileVO vo = hDAO.getSname(FileVO fVO);
 		rv.setUrl("/profconfig.mr");
+//		mv.addObject("VO", vo);
 		mv.setView(rv);
 		return mv;
 	}
