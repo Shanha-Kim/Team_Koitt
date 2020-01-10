@@ -39,30 +39,39 @@ public class Eunbin {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/vocalUpdate.mr")
-	public SongVO musicUpdate(ModelAndView mv, SongVO vo) {
-		int cnt = eDAO.vocalUpdate(vo);
-		if (cnt == 1) {
-			
-			System.out.println(vo.getS_vno());
-			
-			System.out.println(vo.getV_name());
-		} else {
-		}
-		return vo;
-	}
-	
-	@ResponseBody
-	@RequestMapping("vocalSearch.mr")
-	public List<SongVO> vocalSearch(SongVO vo) {
-		List<SongVO> list = eDAO.vocalSearch(vo);
-		
+	@RequestMapping("/searchSong.mr")
+	public List<SongVO> searchSong(SongVO vo) {
+		List<SongVO> list = eDAO.searchSong(vo);
 		return list;
 	}
 	
 	@ResponseBody
-	@RequestMapping("musicUpdate.mr")
-	public Map<String, Object> musicUpdate(HttpSession session, RedirectView rv, ModelAndView mv, SongVO vo) {
+	@RequestMapping("/reportProc.mr")
+	public int reportProc(ReportVO vo) {
+		// mno 가져오기
+		int m_no = eDAO.findMno(vo.getId());
+		vo.setR_mno(m_no);
+		
+		return eDAO.reportProc(vo);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/vocalSearch.mr")
+	public List<SongVO> vocalSearch(SongVO vo) {
+		List<SongVO> list = eDAO.vocalSearch(vo);
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/vocalUpdate.mr")
+	public SongVO musicUpdate(SongVO vo) {
+		eDAO.vocalUpdate(vo);
+		return vo;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/musicUpdate.mr")
+	public Map<String, Object> musicUpdate(HttpSession session, SongVO vo) {
 		// youtube 주소 메인부 추출
 		String tmp = vo.getY_link();
 		int idx = tmp.indexOf("=");
@@ -70,7 +79,6 @@ public class Eunbin {
 		vo.setY_link(yLink);
 		
 		// mno 가져오기
-		System.out.println("id : " +vo.getId());
 		int m_no = eDAO.findMno(vo.getId());
 		vo.setY_mno(m_no);
 		
@@ -80,6 +88,7 @@ public class Eunbin {
 		
 		// 업로드된 앨범 파일 번호 vo 에 세팅
 		vo.setS_ano(a_no);
+		
 		// 노래 업로드
 		int scnt = eDAO.songUpdate(vo);
 		
@@ -97,15 +106,9 @@ public class Eunbin {
 		return map;
 	}
 	
-	@ResponseBody
-	@RequestMapping("searchSong.mr")
-	public List<SongVO> searchSong(SongVO vo) {
-		List<SongVO> list = eDAO.searchSong(vo);
-		return list;
-	}
-	
-	@RequestMapping("boardIn.mr")
+	@RequestMapping("/boardIn.mr")
 	public ModelAndView boardIn(HttpSession session, RedirectView rv, ModelAndView mv, BoardVO vo) {
+		// 가져온 id 값 통해 mno 세팅
 		String m_id = vo.getM_id();
 		int m_no = eDAO.findMno(m_id);
 		vo.setB_mno(m_no);
@@ -115,6 +118,7 @@ public class Eunbin {
 		body = body.replace("\r\n","<br>");
 		vo.setB_body(body);
 		
+		// 게시물 작성 처리
 		int cnt = eDAO.boardIn(vo);
 		
 		if(cnt == 1) {
@@ -138,19 +142,6 @@ public class Eunbin {
 		
 		return mv;
 	}	
-	
-// report Controller
-	
-	@ResponseBody
-	@RequestMapping("/reportProc.mr")
-	public int reportProc(ReportVO vo) {
-		// mno 가져오기
-		int m_no = eDAO.findMno(vo.getId());
-		vo.setR_mno(m_no);
-		
-		int cnt = eDAO.reportProc(vo);
-		return cnt;
-	}
 	
 // admin Controller
 	
@@ -183,7 +174,7 @@ public class Eunbin {
 	}
 	
 	@RequestMapping("/adminLogout.mr")
-	public ModelAndView logout(ModelAndView mv, RedirectView rv, HttpSession session) {
+	public ModelAndView adminLogout(ModelAndView mv, RedirectView rv, HttpSession session) {
 		session.setAttribute("AID", "");
 		rv.setUrl("/admin.mr");
 		mv.setView(rv); 
@@ -191,7 +182,9 @@ public class Eunbin {
 		return mv;
 	}
 	
-	@RequestMapping("/adminrepo.mr")
+//	admin report Controller
+	
+	@RequestMapping("/adminRepo.mr")
 	public ModelAndView adminRepo(ModelAndView mv, String r_isokay) {
 		List<ReportVO> list = eDAO.getReport(r_isokay);
 		mv.addObject("LIST", list);
@@ -218,12 +211,20 @@ public class Eunbin {
 		return eDAO.repoDetailBoard(bno);
 	}
 	
+
+	@ResponseBody
+	@RequestMapping("/repoDetailComt.mr")
+	public ComtVO repoDetailComt(String cno) {
+		return eDAO.repoDetailComt(cno);
+	}
+	
 	@ResponseBody
 	@RequestMapping("/repoUpdate.mr")
 	public int repoUpdate(HttpSession session, SongVO vo) {
 		int cnt = 0;
 		int bcnt = 0;
 		int mcnt = 0;
+		
 		if (vo.getBan() == 1) {
 			// 곡 최초 작성자 ban, 즉 youtube mno ban
 			mcnt = eDAO.reupdateSMember(vo);
@@ -242,7 +243,7 @@ public class Eunbin {
 		int m_no = eDAO.findADMno(vo.getId());
 		vo.setM_no(m_no);
 		
-		// 앨범 수정
+		// 앨범 수정, 파일이 포함 여부에 따라 실행 결정
 		if(vo.getCheck() == 1) {
 			fileSrvc.setDAO(fDAO);
 			fileSrvc.singleUpProc(session, vo);
@@ -250,6 +251,7 @@ public class Eunbin {
 		
 		// 가수 수정
 		int vcnt = eDAO.reupdateVocal(vo);
+		
 		// 노래 수정
 		int scnt = eDAO.reupdateSong(vo);
 		
@@ -264,6 +266,7 @@ public class Eunbin {
 			rcnt = eDAO.reupdateReport(vo);
 		}
 		
+		// alert 문구 처리를 위해 cnt 값 다르게 반환
 		if(rcnt == 1 && vo.getBan() == 1) {
 			cnt = 2;
 		} else if (rcnt == 1){
@@ -348,12 +351,8 @@ public class Eunbin {
 		
 		return cnt;
 	}
-	
-	@ResponseBody
-	@RequestMapping("/repoDetailComt.mr")
-	public ComtVO repoDetailComt(String cno) {
-		return eDAO.repoDetailComt(cno);
-	}
+
+//	admin chart Controller
 	
 	// 날짜 생성 함수
 	public List<String> getmonths(){
@@ -457,7 +456,8 @@ public class Eunbin {
 		return mv;
 	}
 	
-	/* error page */
+//	error page
+	
 	@RequestMapping("/error.mr")
 	public ModelAndView error(ModelAndView mv) {
 		mv.setViewName("pages/error");
