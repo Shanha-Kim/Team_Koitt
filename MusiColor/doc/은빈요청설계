@@ -1,1 +1,183 @@
- 
+# upload
+
+	1. 업로드 페이지 요청
+		요청내용 : /upload.mr
+		파라미터 :
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : upload
+		응답문서 : upload.jsp
+
+	2. 음악 검색
+		요청내용 : /searchSong.mr
+		파라미터 : SongVO (keywords)
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : searchSong()
+		응답문서 : json
+	
+	3. 리포트 작성
+		요청내용 : /reportProc.mr
+		파라미터 : ReportVO (id, r_problem, r_kind, r_detail)
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : reportProc()
+		응답문서 : json
+
+	4. 보컬 검색
+		요청내용 : /vocalSearch.mr
+		파라미터 : SongVO (v_name)
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : vocalSearch()
+		응답문서 : json
+
+	5. 보컬 등록 	
+		요청내용 : /vocalUpdate.mr
+		파라미터 : SongVO (v_name)
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : musicUpdate()
+		응답문서 : json
+
+	6. 음악 등록
+		요청내용 : /musicUpdate.mr 
+		파라미터 : SongVO (s_vno, v_name, s_title, y_link, sFile, id)
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : musicUpdate()
+		응답문서 : json
+
+	7. 글 작성
+		요청내용 : /boardIn.mr
+		파라미터 : BoardVO ()
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : boardIn (b_emotion, b_body, m_id, b_sno, b_vno, b_yno, b_ano)
+		응답문서 :		성공 - /feed.mr
+					실패 - /upload.mr
+
+----------------------------------------------------------------------------------------------------
+# random
+
+	1. 랜덤 페이지 요청
+		요청내용 : /random.mr
+		파라미터 : [b_emotion]
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : random()
+		응답문서 : random.jsp
+		
+	...
+	상세 모달 내용은 산하님 작성 코드에서 사용
+	...
+
+----------------------------------------------------------------------------------------------------
+# admin	
+
+	1. 어드민 메인 페이지 요청
+		요청내용 : /admin.mr
+		파라미터 : 
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : admin()
+		응답문서 : adminMain.jsp
+	
+	2. 어드민 로그인 페이지 요청
+		요청내용 : /adminLogin.mr
+		파라미터 : 
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : adminLoginForm()
+		응답문서 : adminLogin.jsp
+	
+	3. 어드민 로그인 요청
+		요청내용 : /adminLoginProc.mr
+		파라미터 : MemberVO (m_id, m_pw)
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : adminLoginProc()
+		응답문서 :		성공 - /admin.mr
+					실패 - /adminLogin.mr"
+	
+	4. 어드민 로그아웃 요청
+		요청내용 : /adminLogout.mr
+		파라미터 : 
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : adminLogout()
+		응답문서 :	 /admin.mr
+
+----------------------------------------------------------------------------------------------------	
+# admin report
+	
+	1. 어드민 리포트 페이지 요청
+		요청내용 : /adminRepo.mr
+		파라미터 : [r_isokay]
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : adminRepo()
+		응답문서 : adminRepo.jsp
+		
+	2. 어드민 리포트 곡 관련 상세 보기
+		요청내용 : /repoDetail.mr
+		파라미터 : sno
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : repoDetail()
+		응답문서 :	 json
+		
+	3. 어드민 리포트 글 관련 상세보기
+		요청내용 : /repoDetailBoard.mr
+		파라미터 : bno
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : repoDetailBoard()
+		응답문서 :	 json
+		
+	4. 어드민 리포트 댓글 관련 상세 보기
+		요청내용 : /repoDetailComt.mr
+		파라미터 : cno
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : repoDetailComt()
+		응답문서 :	 json
+		
+	5. 어드민 리포트 곡 관련 처리
+		요청내용 : /repoUpdate.mr
+		파라미터 : SongVO(r_no, v_name, s_vno, s_title, s_no, y_link, y_no, sFile, check, a_sname, s_ano, ban, id)
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : repoUpdate()
+		응답문서 :	 json
+		
+	6. 어드민 리포트 글 관련 처리
+		요청내용 : /repoUpdateBoard.mr
+		파라미터 : BoardVO (r_no, b_no, ban, id)
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : repoUpdateBoard()
+		응답문서 :	 json
+		
+	7. 어드민 리포트 댓글 관련 처리
+		요청내용 : /repoUpdateComt.mr
+		파라미터 : ComtVO (r_no, c_no, ban, id)
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : repoUpdateBoard()
+		응답문서 : json	 
+
+----------------------------------------------------------------------------------------------------
+# admin chart 
+
+	1. 어드민 차트 페이지 요청
+		요청내용 : /adminChart.mr
+		파라미터 : 
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : adminChart()
+		응답문서 :	 adminChart.jsp
+
+----------------------------------------------------------------------------------------------------
+# error
+
+	1. error 페이지 요청
+		요청내용 : /error.mr
+		파라미터 : 
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : error404()
+		응답문서 :	 error.jsp
+		
+	2. error404 페이지 요청 
+		요청내용 : /404.mr
+		파라미터 : 
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : error404()
+		응답문서 :	 404.jsp
+		
+	3. error500 페이지 요청 
+		요청내용 : /500.mr
+		파라미터 : 
+		컨트롤러 : com.musicolor.www.controller.Eunbin
+		처리함수 : error500()
+		응답문서 :	 500.jsp
