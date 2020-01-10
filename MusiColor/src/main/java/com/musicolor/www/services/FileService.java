@@ -27,13 +27,14 @@ public class FileService {
 	// 프로필사진
 	public String singleUpProc(HttpSession session, MemberVO vo) {
 		String saveName = "";
-
 		long len = 0;
- 
+		System.out.println("#########start of single~");
 		String spath = session.getServletContext().getRealPath("resources/profile");
+		System.out.println("spath : "+ spath);
 		String rePath = spath.substring(0, spath.indexOf("\\.metadata"));
+		System.out.println("repath : "+ rePath);
 		rePath = rePath + "\\Team_koitt\\MusiColor\\src\\main\\webapp\\resources\\profile";
-		
+		System.out.println("new-repath : "+rePath);
 		String oriName = "";
 		try {
 			oriName = vo.getsFile().getOriginalFilename();
@@ -42,7 +43,8 @@ public class FileService {
 		}
 		
 		saveName = FileUtil.rename(spath, oriName);
-
+//		B:\Spring\source\Team_koitt\MusiColor\src\main\webapp\resources\profile
+		
 		try {
 			File file = new File(spath, saveName);
 			vo.getsFile().transferTo(file);
@@ -57,12 +59,11 @@ public class FileService {
 			e.printStackTrace();
 		}
 		FileVO fVO = new FileVO();
+		rePath = "/resources/profile";
 		fVO.setNo(vo.getM_no());
 		fVO.setOname(oriName);
 		fVO.setSname(saveName);
-		
 		fVO.setDir(rePath);
-		
 		fVO.setLen(len);
 		fDAO.profilePicture(fVO);
 		
@@ -70,7 +71,6 @@ public class FileService {
 	}
 
 	// 앨범사진
-
 	public long singleUpProc(HttpSession session, SongVO vo) {
 
 		String saveName = "";

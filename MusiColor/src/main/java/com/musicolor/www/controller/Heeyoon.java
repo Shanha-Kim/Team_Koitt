@@ -33,25 +33,29 @@ public class Heeyoon {
 
 	@RequestMapping("profconfig.mr") // 개인 프로필 수정 폼 보이기
 	public ModelAndView configform(ModelAndView mv, HttpSession session) {
-		/* session.setAttribute("SID", "kk"); */
 		mv.setViewName("pages/config");
 		
 		/* 개인프로필 수정페이지에서 정보 가져오기 */
 		MemberVO VO = new MemberVO();
-		
 		String SID = (String)session.getAttribute("SID");
+		FileVO fVO = hDAO.proflogo(SID);
+		mv.addObject("s_name", fVO.getSname());
 		
-		 VO =hDAO.configinfo(SID);
+		VO =hDAO.configinfo(SID);
 		mv.addObject("INFO",VO);
 		return mv;
 	}
- 
+	
 	@RequestMapping("profilepic.mr") // 프로필 사진 수정 controller
 	public ModelAndView configpic(ModelAndView mv, HttpSession session, MemberVO mVO, RedirectView rv) {
-		String SID = (String) session.getAttribute("SID");
-		mVO.setM_no(hDAO.mNo(SID));
+		String sid = (String) session.getAttribute("SID");
+		System.out.println("#########bf setmno : " + mVO.getsFile().getOriginalFilename());
+		mVO.setM_no(hDAO.mNo(sid));
+		System.out.println("########bf setdao");
 		fileSrvc.setDAO(fDAO);
+		System.out.println("########bf singleUp");
 		String s_name = fileSrvc.singleUpProc(session, mVO);
+		System.out.println(s_name);
 		rv.setUrl("/profconfig.mr?"+s_name);
 		mv.setView(rv);
 		return mv;

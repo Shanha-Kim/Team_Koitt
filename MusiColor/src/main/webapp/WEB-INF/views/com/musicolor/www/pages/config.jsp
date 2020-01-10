@@ -30,13 +30,13 @@
 
 <body class="bg-primary">
 <jsp:include page="nav.jsp" flush="false" />
-
-	<form action="/profilepic.mr" method="post" enctype="multipart/form-data" style="display: none;" id="fileup-frm">
-	 	<input type="file" name="sFile" id="fileup"> 
+	
+	<form action="/profilepic.mr" method="post" enctype="multipart/form-data" id="fileup-frm">
+	 	<input type="file" name="sFile" id="fileup"> 이게 파일업로드
 	</form>
 	
 	<form action="/profiletext.mr" method="post" id="textup-frm" >
-	<input type="text" name="m_id" value="${SID}">
+		<input type="text" name="m_id" value="${SID}">
 		<div class="container" id="main">
 			<div class="card text-white bg-primary mb-" style="max-width: 40rem;">
 
@@ -53,7 +53,7 @@
 						
 						<p></p>
 						<button type="button" class="btn btn-info" style="padding: 0px; width: 135px; height: 25px;"
-							name="sFile" id="myBtn"> 프로필 사진 바꾸기</button>
+								id="myBtn" > 프로필 사진 바꾸기</button>
 					</div>
 					<p></p>
 					<div class="form-group">
@@ -116,14 +116,6 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-		/* $(function(){
-		 $('.profile').click(function(){
-		 $(location).attr('href','');
-		
-		 });
-		
-		 });	
-		 */
 		$(function () {
 			var sid='${SID}';
 			$("#myBtn").click(function () {
@@ -137,41 +129,20 @@
 			$("#addpic").click(function(e){
 				e.preventDefault();
 				$("#fileup").click();
-				$("#fileup").change(function(e){
-					alert("첨부가 완료 되었습니다.");
-					$(".close").click();
-					$("#fileup-frm").submit();
-					var tmp = URL.createObjectURL(e.target.files[0]);
-		          	$('#profImg').attr('src', tmp);
-				});
 			});
 			
-			$('#fileup').change(function (e){
-	          
+			$("#fileup").change(function(e){
+				$(".close").click();
+				var tmp = URL.createObjectURL(e.target.files[0]);
+	          	$('#profImg').attr('src', tmp);
+				alert("수정이 완료 되었습니다.");
+				$("#fileup-frm").submit();
 			});
 			
-	/* 	
-		$('#fileup-frm').submit();
-
-		});
-		 $(function(){
-			
-			 
-			 
-		 });
-		  */
-		  
-		/*   
-		  $("#conform").click(function(){
-			 $(location).attr('href','/profilelist.mr'); 
-		  });
-		   */
-		  
-		  
-		  $("#tembtn").click(function(){
-			alert("계정이 비활성화 되었습니다.")
-			$(location).attr('href','/lock.mr');
-		  });
+			$("#tembtn").click(function(){
+			  alert("계정이 비활성화 되었습니다.")
+			  $(location).attr('href','/lock.mr');
+			});
 	  });
 		 
 </script>
