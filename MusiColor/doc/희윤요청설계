@@ -1,4 +1,4 @@
- 	# 개인프로필 리스트 수정 폼 
+ 	# 개인프로필 리스트 수정
  	
  	요청내용	: profconfig.mr
 	파라미터	: SID
@@ -6,10 +6,127 @@
 	처리함수	: 
 	응답문서	: /WEB-INF/views/com/musicolor/www/pages/config.jsp
 	
-	# 프로필 사진 수정 
+	# 프로필 사진 수정 & 텍스트 수정
 	
 	요청내용	: profconfig.mr
-	파라미터	: SID
+	파라미터	: fVO
 	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
-	처리함수	: 
+	처리함수	: addpic()
 	응답문서	: /WEB-INF/views/com/musicolor/www/pages/config.jsp
+
+	텍스트
+	
+	요청내용	: profiletext.mr
+	파라미터	: mVO
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: profiletextconfig()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/config.jsp
+	
+	
+	#개인 프로필 리스트 (프로필에 올려진 앨범리스트)
+	
+	요청내용	: profilelist.mr
+	파라미터	: b_no , s_name , b_emotion
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: profileList()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/profile.jsp
+	
+	
+	#자기소개글 & 로고 넘기기
+	
+	요청내용	: profilelist.mr
+	파라미터	: mVO (m_about)
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: profintro()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/profile.jsp
+	
+	로고
+	
+	
+	요청내용	: profilelist.mr
+	파라미터	: fVO (s_name , o_name , dir)
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: proflogo()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/profile.jsp
+	
+  	
+  	#팔로워 & 팔로잉
+  	
+  	팔로워 신청
+  	
+  		
+	요청내용	: profilelist.mr
+	파라미터	: mVO( m_id, m_name)
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: insert()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/profile.jsp
+	
+	
+	팔로워 취소
+	
+  	요청내용	: profilelist.mr
+	파라미터	: mVO(f_isshow)
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: cansle()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/profile.jsp
+  	
+  	
+  	
+  	
+  	 팔로워 뽑아오기 
+  	
+  	
+	요청내용	: profilelist.mr
+	파라미터	: mVO( m_id, m_name, m_isban)
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: follwer()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/profile.jsp
+	
+	
+	 팔로잉 뽑아오기
+	
+	요청내용	: profilelist.mr
+	파라미터	: mVO( m_id, m_name, m_isban)
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: follwing()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/profile.jsp
+	
+	#계정 비활성화
+	
+	요청내용	: profilelist.mr
+	파라미터	: SID (m_isshow)
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: prolock()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/profile.jsp
+	
+	#계정 활성화
+	
+	요청내용	: profilelist.mr
+	파라미터	: SID (m_isshow)
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: prounlock()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/profile.jsp
+	
+	
+	
+	
+	
+	
+  	# 내가 좋아요한 게시글 보이기
+  	
+  	요청내용	: profilelist.mr
+	파라미터	: bVO (s_name, b_emotion, m_id)
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: likelist()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/liked.jsp
+	
+	
+  	
+  	 
+  	
+	
+	
+	
+	
+	
+	
