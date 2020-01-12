@@ -28,12 +28,11 @@ public class FileService {
 	public String singleUpProc(HttpSession session, MemberVO vo) {
 		String saveName = "";
 		long len = 0;
-		System.out.println("#########start of single~");
 		String spath = session.getServletContext().getRealPath("resources/profile");
 		System.out.println("spath : "+ spath);
-		String rePath = spath.substring(0, spath.indexOf("\\.metadata"));
+		String rePath = spath.substring(0, spath.indexOf("\\source"));
 		System.out.println("repath : "+ rePath);
-		rePath = rePath + "\\Team_koitt\\MusiColor\\src\\main\\webapp\\resources\\profile";
+		rePath = rePath + "\\git\\Team_koitt\\MusiColor\\src\\main\\webapp\\resources\\profile";
 		System.out.println("new-repath : "+rePath);
 		String oriName = "";
 		try {
@@ -43,7 +42,6 @@ public class FileService {
 		}
 		
 		saveName = FileUtil.rename(spath, oriName);
-//		B:\Spring\source\Team_koitt\MusiColor\src\main\webapp\resources\profile
 		
 		try {
 			File file = new File(spath, saveName);

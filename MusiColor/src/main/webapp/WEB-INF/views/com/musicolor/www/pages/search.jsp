@@ -479,57 +479,57 @@ $(function(){
                     isEnd = true;
                 }
                 var resultlist = '';
-       			if(length<4){
-       				resultlist+='<div class="row">';
-   					for(var i=0; i<length; i++){
-   						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
-   						resultlist+='</div>';
-   					}
-   					resultlist+='</div>';
-       				$('#main').append(resultlist);
-       			}
-       			if(length>=4 && length<7){
-       				resultlist+='<div class="row">';
-   					for(var i=0; i<3; i++){
-   						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
-   						resultlist+='</div>';
-   					}
-   					resultlist+='</div>';
-   					resultlist+='<div class="row">';
-   					for(var i=3; i<length; i++){
-   						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
-   						resultlist+='</div>';
-   					}
-   					resultlist+='</div>';
-   					$('#main').append(resultlist);
-       			}
-       			if(length>=7){
-       				resultlist+='<div class="row">';
-   					for(var i=0; i<3; i++){
-   						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
-   						resultlist+='</div>';
-   					}
-   					resultlist+='</div>';
-   					resultlist+='<div class="row">';
-   					for(var i=3; i<6; i++){
-   						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
-   						resultlist+='</div>';
-   					}
-   					resultlist+='</div>';
-   					resultlist+='<div class="row">';
-   					for(var i=6; i<length; i++){
-   						resultlist+='<div class="col-4 big-square">';
-   						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
-   						resultlist+='</div>';
-   					}
-   					resultlist+='</div>';
-   					$('#main').append(resultlist);
-       			}
+   				resultlist+='<div class="row">';
+				for(var i=0; i<length; i++){
+					resultlist+='<div class="col-4 big-square">';
+					resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><div class="half-square" style=" height:100%;">';
+					resultlist+='<img class="album" src="/album/'+vo[i].sname+'" /></div>';
+					resultlist+='<p class="half-square text-center align-middle" style="background-color:rgba(0, 0, 0, 0.5); bottom:0; color:white;">@'+vo[i].m_id+'</p>';
+					resultlist+='</div></div>';
+				}
+				resultlist+='</div>';
+   				$('#main').append(resultlist);
+//        			if(length>=4 && length<7){
+//        				resultlist+='<div class="row">';
+//    					for(var i=0; i<3; i++){
+//    						resultlist+='<div class="col-4 big-square">';
+//    						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
+//    						resultlist+='</div>';
+//    					}
+//    					resultlist+='</div>';
+//    					resultlist+='<div class="row">';
+//    					for(var i=3; i<length; i++){
+//    						resultlist+='<div class="col-4 big-square">';
+//    						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
+//    						resultlist+='</div>';
+//    					}
+//    					resultlist+='</div>';
+//    					$('#main').append(resultlist);
+//        			}
+//        			if(length>=7){
+//        				resultlist+='<div class="row">';
+//    					for(var i=0; i<3; i++){
+//    						resultlist+='<div class="col-4 big-square">';
+//    						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
+//    						resultlist+='</div>';
+//    					}
+//    					resultlist+='</div>';
+//    					resultlist+='<div class="row">';
+//    					for(var i=3; i<6; i++){
+//    						resultlist+='<div class="col-4 big-square">';
+//    						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
+//    						resultlist+='</div>';
+//    					}
+//    					resultlist+='</div>';
+//    					resultlist+='<div class="row">';
+//    					for(var i=6; i<length; i++){
+//    						resultlist+='<div class="col-4 big-square">';
+//    						resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].no+'"><img class="album" src="/album/'+vo[i].sname+'" /></div>';
+//    						resultlist+='</div>';
+//    					}
+//    					resultlist+='</div>';
+//    					$('#main').append(resultlist);
+//        			}
             }
         });
     }

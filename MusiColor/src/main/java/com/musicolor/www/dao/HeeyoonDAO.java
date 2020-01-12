@@ -23,6 +23,10 @@ public class HeeyoonDAO {
 		List<BoardVO> list = sqlSession.selectList("hSQL.addalbumpic", SID);
 		return list;
 	}
+	public List<BoardVO> plusprofileList(BoardVO bVO) {
+		List<BoardVO> list = sqlSession.selectList("hSQL.plusaddalbumpic", bVO);
+		return list;
+	}
 
 	// 개인 프로필 텍스트 수정 전담처리 함수
 	public int profiletextconfig(MemberVO mVO) {

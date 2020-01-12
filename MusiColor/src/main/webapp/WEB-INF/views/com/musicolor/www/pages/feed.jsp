@@ -166,7 +166,7 @@
 		}
 		
 		//삭제로직
-		$(document).off().on("click", '#delproc', function() {
+		$(document).on("click", '#delproc', function() {
 			$.ajax({
 				url : "/delComt.mr",
 				type : "post",
@@ -184,7 +184,7 @@
 			$('#myModal1').modal("hide");
 		});
 		//신고로직
-		$(document).off().on("click", '#decproc', function() {
+		$(document).on("click", '#decproc', function() {
 			$.ajax({
 				url : "/decComt.mr",
 				type : "post",
@@ -219,7 +219,7 @@
 		$("#"+bno).val(upid+" ");
 	});
 	
-	$(document).off().on("keyup", '.comment-write-dark', function(e){
+	$(document).on("keyup", '.comment-write-dark', function(e){
 		if(e.keyCode == 13){
 			e.preventDefault();
 			bno = $(this).prev().attr("data");
@@ -278,7 +278,7 @@
 		}
 		
 		//삭제로직
-		$(document).off().on("click", '#delproc2', function() {
+		$(document).on("click", '#delproc2', function() {
 			$.ajax({
 				url : "/delPost.mr",
 				type : "post",
@@ -296,7 +296,7 @@
 			$('#myModal3').modal("hide");
 		});
 		//신고로직
-		$(document).off().on("click", '#decproc2', function() {
+		$(document).on("click", '#decproc2', function() {
 			$.ajax({
 				url : "/decPost.mr",
 				type : "post",
@@ -369,7 +369,7 @@
 					resultlist+='<span class="ml-auto">';
 					resultlist+='<input class="bno" type="hidden" data="'+vo[i].b_no+'">';
 					resultlist+='<i class="heart far fa-heart"></i>';
-					resultlist+='<span>'+vo[i].b_like+' likes</span></span>';
+					resultlist+='<span> '+vo[i].b_like+' likes</span></span>';
 					resultlist+='<h6 class="card-subtitle text-muted mb-2 mt-2">'+vo[i].s_title+'</h6>';
 					resultlist+='<p class="card-text">'+vo[i].b_body+'</p>';
 					resultlist+='</div>';

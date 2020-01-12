@@ -126,8 +126,13 @@ public class Shanha {
 	@RequestMapping("/plusList.mr")
 	@ResponseBody
 	public ArrayList<BoardVO> plusList(BoardVO bVO, HttpSession session){
-		bVO.setKey_main((String)session.getAttribute("key_main"));
-		bVO.setKey_tab((String)session.getAttribute("key_tab"));
+		if(session.getAttribute("key_tab") != null) {
+			bVO.setKey_main((String)session.getAttribute("key_main"));
+			bVO.setKey_tab((String)session.getAttribute("key_tab"));
+		}else {
+			bVO.setKey_main("11");
+			bVO.setKey_tab("aa");
+		}
 		ArrayList<BoardVO> list = (ArrayList<BoardVO>)sDAO.searchAfter(bVO);
 		return list;
 	}

@@ -1,6 +1,7 @@
 package com.musicolor.www.controller;
 
 import java.lang.ProcessBuilder.Redirect;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.Session;
@@ -49,13 +50,9 @@ public class Heeyoon {
 	@RequestMapping("profilepic.mr") // 프로필 사진 수정 controller
 	public ModelAndView configpic(ModelAndView mv, HttpSession session, MemberVO mVO, RedirectView rv) {
 		String sid = (String) session.getAttribute("SID");
-		System.out.println("#########bf setmno : " + mVO.getsFile().getOriginalFilename());
 		mVO.setM_no(hDAO.mNo(sid));
-		System.out.println("########bf setdao");
 		fileSrvc.setDAO(fDAO);
-		System.out.println("########bf singleUp");
 		String s_name = fileSrvc.singleUpProc(session, mVO);
-		System.out.println(s_name);
 		rv.setUrl("/profconfig.mr?"+s_name);
 		mv.setView(rv);
 		return mv;
@@ -78,6 +75,15 @@ public class Heeyoon {
 	 * 
 	 * mv.setViewName("pages/profile"); return mv; }
 	 */
+	
+	@ResponseBody
+	@RequestMapping("plusprofile.mr")
+	public ArrayList<BoardVO> plusprofile(HttpSession session, BoardVO bVO) {
+		String SID = (String) session.getAttribute("SID");
+		bVO.setM_id(SID);
+		ArrayList<BoardVO> list = (ArrayList<BoardVO>)hDAO.plusprofileList(bVO);
+		return list;
+	}
 	
 	@ResponseBody
 	@RequestMapping("profilelist.mr")// 개인 프로필 리스트 controller

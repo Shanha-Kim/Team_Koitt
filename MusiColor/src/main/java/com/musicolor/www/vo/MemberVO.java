@@ -32,7 +32,6 @@ public class MemberVO {
 		return sFile;
 	}
 	public void setsFile(MultipartFile sFile) {
-		System.out.println("*** file setting");
 		this.sFile = sFile;
 	}
 	public MultipartFile[] getFile() {

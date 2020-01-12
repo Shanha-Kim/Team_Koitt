@@ -55,11 +55,24 @@ m_no =#{m_no}
             AND 
             
 <![CDATA[
-            rownum <= 9 
+            rownum <= 9
 ]]>
 
 </select> 
+<select id ="plusaddalbumpic"  resultType="bVO" parameterType="bVO" >
+		SELECT * FROM
+		
+			(SELECT
+	            b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, b_emotion, ROWNUM rno
+	         FROM
+	            board
+	         WHERE
+	            b_mno = (SELECT m_no  FROM member WHERE upper(m_id) =upper(#{m_id})))
+            
+		WHERE
+		rno BETWEEN #{rno} AND #{rno}+8
 
+</select> 
  <select id="mNo" resultType="int" parameterType="String">
  	SELECT
  		m_no

@@ -36,36 +36,19 @@
 			press 'like's</h1>
 
 		<!-- 앨범 이미지 -->
-		<div class="row">
-			<c:forEach var="data" items="${LIKELIST}" begin="0" end="2">
-				<div class="col-4 big-square">
-					<div class="square small-${data.b_emotion}" id="${data.b_no}">
-						<img class="album" src="/album/${data.sname}" />
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-
-		<div class="row">
-			<c:forEach var="data" items="${LIKELIST}" begin="3" end="5">
-				<div class="col-4 big-square">
-					<div class="square small-${data.b_emotion}" id="${data.b_no}">
-						<img class="album" src="/album/${data.sname}" />
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-
-		<div class="row">
-			<c:forEach var="data" items="${LIKELIST}" begin="6" end="8">
-				<div class="col-4 big-square">
-					<div class="square small-${data.b_emotion}" id="${data.b_no}">
-						<img class="album" src="/album/${data.sname}" />
-					</div>
-				</div>
-			</c:forEach>
-		</div>
+		 <!-- 앨범 이미지 -->
+      <div class="row">
+      	<c:forEach var="data" items="${LIKELIST}">
+        <div class="col-4 big-square">
+          <div class="square small-${data.b_emotion}" id="${data.b_no}">
+          	<div class="half-square" style=" height:100%;"><img class="album" src="/album/${data.sname}" /></div>
+			<p class="half-square text-center align-middle" style="background-color:rgba(0, 0, 0, 0.5); bottom:0; color:white;">@${SID}</p>
+          </div>
+        </div>
+		</c:forEach>
+      </div>
 	</div>
+
 	<!-- modal, content detail -->
 	<div class="modal" id="myModal1">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
