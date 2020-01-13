@@ -1,223 +1,249 @@
 /* 기본 템플릿 700px 로 확장*/
 #main {
-  margin-top: 100px;
-  max-width: 700px;
+	margin-top: 100px;
+	max-width: 700px;
 }
 
 /* 사이트 전체 스크롤 블랙으로 통일 */
 ::-webkit-scrollbar-track {
-  background-color: #1a1a1a;
+	background-color: #1a1a1a;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  background-color: #1a1a1a;
+	width: 10px;
+	background-color: #1a1a1a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: black;
-  border: 2px solid black;
+	background-color: black;
+	border: 2px solid black;
 }
 
 /* 특별한 돋보여야 하는 버튼이 아니라면 해당 버튼으로 통일해주세요 */
 .btn-black {
-  color: white;
-  background: black;
+	color: white;
+	background: black;
 }
 
 .btn-black:hover {
-  color: white;
-  background: #333333;
+	color: white;
+	background: #333333;
 }
 
 /* 회색 글씨는 부트 스트랩에 있는 기본 클래스 text-muted 이용하시면 됩니다. */
 .white {
-  color: white;
+	color: white;
 }
 
 /* 로고 */
 .logo {
-  position: relative;
-  white-space: nowrap;
-  color: white;
-  font-family: neon;
-  margin-left: 50px;
-  font-size: 1.5rem;
+	position: relative;
+	white-space: nowrap;
+	color: white;
+	font-family: neon;
+	margin-left: 50px;
+	font-size: 1.5rem;
 }
 
 .logo:before {
-  content: "musicolor";
-  position: absolute;
-  position: absolute;
-  white-space: nowrap;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, #d585ff, #00ffee);
-  -webkit-background-clip: text;
-  color: transparent;
+	content: "musicolor";
+	position: absolute;
+	position: absolute;
+	white-space: nowrap;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to right, #d585ff, #00ffee);
+	-webkit-background-clip: text;
+	color: transparent;
 }
 
 .adminlogo {
-  position: relative;
-  white-space: nowrap;
-  color: white;
-  font-family: neon;
-  margin-left: 50px;
-  font-size: 1.5rem;
+	position: relative;
+	white-space: nowrap;
+	color: white;
+	font-family: neon;
+	margin-left: 50px;
+	font-size: 1.5rem;
 }
 
 .adminlogo:before {
-  content: "ADMIN";
-  position: absolute;
-  position: absolute;
-  white-space: nowrap;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, #d585ff, #00ffee);
-  -webkit-background-clip: text;
-  color: transparent;
+	content: "ADMIN";
+	position: absolute;
+	position: absolute;
+	white-space: nowrap;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to right, #d585ff, #00ffee);
+	-webkit-background-clip: text;
+	color: transparent;
 }
 
-
 .navbar {
-  padding-top: 10px;
-  padding-bottom: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 /* 가로 nav */
 .navbar-nav {
-  flex-direction: row;
+	flex-direction: row;
 }
 
 /* nav 아이콘 크기 */
 .f-20 {
-  font-size: 20px;
+	font-size: 20px;
 }
 
 /* youtube 크기 반응형 */
 .youtube {
-  position: relative;
-  height: 0;
-  padding-bottom: 56.25%;
+	position: relative;
+	height: 0;
+	padding-bottom: 56.25%;
 }
 
 /* youtube 크기 반응형 */
 iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+	position: absolute;
+	width: 100%;
+	height: 100%;
 }
 
 .emo-anxious {
-  background-color: #833c98;
+	background-color: #833c98;
 }
 
 .emo-hurt {
-  background-color: #f79d1b;
+	background-color: #f79d1b;
 }
 
 .emo-embarrassed {
-  background-color: ;
+	background-color:;
 }
 
 .emo-happy {
-  background-color: ;
+	background-color:;
 }
 
 .comment-write-dark {
-  width: 100%;
-  height: 15px;
-  border: none;
-  outline: none;
-  background: none;
-  color: #414445;
+	width: 100%;
+	height: 15px;
+	border: none;
+	outline: none;
+	background: none;
+	color: #414445;
 }
 
 .profile {
-  width: 30px;
-  height: 30px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-right: 10px;
+	width: 30px;
+	height: 30px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-right: 10px;
 }
 
 /* -------------------------------------------------- */
 /* content border gradient */
 .angry:before {
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  z-index: -1;
-  background: linear-gradient(235deg, #ff5e62, #191919, #b20a2c);
+	content: "";
+	position: absolute;
+	top: -3px;
+	left: -3px;
+	right: -3px;
+	bottom: -3px;
+	z-index: -1;
+	background: linear-gradient(235deg, #ff5e62, #191919, #b20a2c);
 }
 
 .angry:after {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  z-index: -2; 
-  filter: blur(15px);
-  background: linear-gradient(235deg, #ff5e62, #191919, #b20a2c);
+	content: "";
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	z-index: -2;
+	filter: blur(15px);
+	background: linear-gradient(235deg, #ff5e62, #191919, #b20a2c);
 }
 
 .sad:before {
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  z-index: -1;
-  background: linear-gradient(235deg, #24c6dc, #191919, #514a9d);
+	content: "";
+	position: absolute;
+	top: -3px;
+	left: -3px;
+	right: -3px;
+	bottom: -3px;
+	z-index: -1;
+	background: linear-gradient(235deg, #24c6dc, #191919, #514a9d);
 }
 
 .sad:after {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  z-index: -2;
-  filter: blur(15px);
-  background: linear-gradient(235deg, #24c6dc, #191919, #514a9d);
+	content: "";
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	z-index: -2;
+	filter: blur(15px);
+	background: linear-gradient(235deg, #24c6dc, #191919, #514a9d);
 }
 
-@media (max-width: 700px) {
+@media ( max-width : 700px) {
 	/* nav 아이콘 여백 */
-	.navbar-nav > li{
-	  padding-left:0px;
-	  padding-right:0px;
-	  margin-left:7px;
-	  margin-right:7px;
+	.navbar-nav>li {
+		padding-left: 0px;
+		padding-right: 0px;
+		margin-left: 7px;
+		margin-right: 7px;
 	}
 	.logo {
-	  position: relative;
-	  white-space: nowrap;
-	  color: white;
-	  font-family: neon;
-	  margin-left: 10px;
-	  font-size: 1rem;
+		position: relative;
+		white-space: nowrap;
+		color: white;
+		font-family: neon;
+		margin-left: 10px;
+		font-size: 1rem;
 	}
 	.f-20 {
-  	font-size: 15px;
+		font-size: 15px;
 	}
 }
 
-@font-face { font-family: 'BMHANNAAir'; src: url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css') format('woff'); font-weight: normal; font-style: normal; }
-
-*{
+@font-face {
 	font-family: 'BMHANNAAir';
+	src:
+		url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'BMHANNAAir';
+}
+
+.link {
+	color: white;
+	text-decoration: none;
+}
+
+.link:visited {
+	color: white;
+	text-decoration: none;
+}
+
+.link:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.link:active {
+	color: white;
+	text-decoration: none;
 }

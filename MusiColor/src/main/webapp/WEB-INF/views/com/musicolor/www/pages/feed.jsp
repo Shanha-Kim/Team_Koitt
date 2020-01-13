@@ -23,7 +23,7 @@
       <!-- content1 -->
       <c:forEach var="data" items="${LIST}" varStatus="num">
       <div class="card mb-3 bg-primary mb-5 angry">
-        <h3 class="card-header" style="display:flex; justify-content:space-between;"><span><img class="profile" src="/profile/${data.sname }" /><a href="/profilelist.mr?m_id=${data.m_id}">${data.m_id}</span></a><span></span><span class="postmodi my-auto"  data-buser="${data.m_id}" data-bno="${data.b_no}">···</span></h3>
+        <h3 class="card-header" style="display:flex; justify-content:space-between;"><span><img class="profile" src="/profile/${data.sname }" /><a class="link" href="/profilelist.mr?m_id=${data.m_id}">${data.m_id}</span></a><span></span><span class="postmodi my-auto"  data-buser="${data.m_id}" data-bno="${data.b_no}">···</span></h3>
         <!-- video -->
         <div class="youtube">
           <iframe src="https://www.youtube.com/embed/${data.y_link }" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

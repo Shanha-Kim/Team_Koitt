@@ -230,7 +230,7 @@ $(function(){
 				b_no : bno
 			},
 			success : function(vo){
-				$('#mid').html('<img id="psname" class="profile"  /><a href="/profilelist.mr?m_id='+vo.m_id+'">'+vo.m_id+'</a>');
+				$('#mid').html('<img id="psname" class="profile"  /><a class="link" href="/profilelist.mr?m_id='+vo.m_id+'">'+vo.m_id+'</a>');
 // 				$('#mid').html('<img id="psname" class="profile"  />'+vo.m_id);
 				$('#bbody').html(vo.b_body);
 				$('#blike').html('<strong> ' + vo.b_like + ' likes</strong>');
