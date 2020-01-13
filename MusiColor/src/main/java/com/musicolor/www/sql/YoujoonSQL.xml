@@ -17,6 +17,16 @@
 			m_id = #{m_id}
 			and m_pw = #{m_pw}
 	</select>
+	
+	<select id="loginBan" resultType="int" parameterType="mVO">
+		SELECT
+			m_isban
+		FROM
+			member 
+		WHERE
+			m_id = #{m_id}
+			and m_pw = #{m_pw}
+	</select>
  
 
 	<insert id="insertMemb" parameterType="mVO">

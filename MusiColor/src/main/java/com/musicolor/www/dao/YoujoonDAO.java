@@ -17,6 +17,10 @@ public class YoujoonDAO {
 		
 		return cnt; 
 	}
+	
+	public int loginBan(MemberVO mVO) {
+		 return sqlSession.selectOne("mSQL.loginBan", mVO);
+	}
 	 
 	public int insertMemb(MemberVO mVO) {
 		
