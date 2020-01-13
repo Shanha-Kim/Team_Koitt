@@ -23,6 +23,9 @@ public class HeeyoonDAO {
 		List<BoardVO> list = sqlSession.selectList("hSQL.addalbumpic", SID);
 		return list;
 	}
+	
+	
+	//무한 스크롤 처리 함수 
 	public List<BoardVO> plusprofileList(BoardVO bVO) {
 		List<BoardVO> list = sqlSession.selectList("hSQL.plusaddalbumpic", bVO);
 		return list;
@@ -32,7 +35,8 @@ public class HeeyoonDAO {
 	public int profiletextconfig(MemberVO mVO) {
 		return sqlSession.update("hSQL.profileconfig", mVO);
 	}
-	//
+	
+	// 파일 업로드에서 s_name  가져오기 함수 
 	public FileVO getSname(FileVO fVO) {
 		
 		return fVO;
@@ -123,7 +127,7 @@ public class HeeyoonDAO {
 		List<MemberVO> list2 = sqlSession.selectList("hSQL.following2", mVO);
 		return list2;
 	}
-
+  
 	// 팔로우 취소 전담 처리 함수
 	public int cansle(MemberVO mVO) {
 		return sqlSession.update("hSQL.fcansle", mVO);

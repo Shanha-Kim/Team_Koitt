@@ -112,12 +112,10 @@
 			//포스트 상세보기===========================================================================================
 
 			var bno = "";
-			$('.square')
-					.click(
-							function() {
-								bno = $(this).attr('id');
-								$("#c_body").val("");
-								$("#comt").html("");
+			$('.square').click(function() {
+					bno = $(this).attr('id');
+					$("#c_body").val("");
+					$("#comt").html("");
 
 								$('#myModal1').modal("show");
 								$

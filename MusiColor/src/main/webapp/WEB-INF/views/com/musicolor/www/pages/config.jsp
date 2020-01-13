@@ -49,7 +49,7 @@
 					<h4 class="card-title" style= "margin-bottom: 30px;">사용자 ID</h4>
 					<div class="imgbox text-center">
 						
-						<img src="/profile/${s_name}" alt="noimage" class="profIn" id="profImg">
+						<img src="/profile/${s_name}" alt="noimage" class="profIn" id="profImg" style=" border-radius: 100%; width:20%; height:20%; ">
 						
 						<p></p>
 						<button type="button" class="btn btn-info" style="padding: 0px; width: 135px; height: 25px;"
@@ -125,6 +125,12 @@
 			$('#backbtn').click(function(){
 			$(location).attr('href',"/profilelist.mr?m_id="+sid);	
 			});
+			
+			$('#conform').click(function(){
+			$(location).attr('href',"/profilelist.mr?m_id="+sid);	
+				
+			});
+			
 			
 			$("#addpic").click(function(e){
 				e.preventDefault();
