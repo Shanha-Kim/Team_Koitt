@@ -65,7 +65,8 @@ m_no =#{m_no}
 		SELECT * FROM
 		
 			(SELECT
-	            b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, b_emotion, ROWNUM rno
+	            b_no, (SELECT a_sname FROM albumpicture WHERE b_ano = a_no) sname, b_emotion, ROWNUM rno,
+	            #{m_id} m_id
 	         FROM
 	            board
 	         WHERE
