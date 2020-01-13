@@ -18,7 +18,7 @@
 				(SELECT p_sname FROM profilepicture WHERE p_no=(SELECT m_pno FROM member WHERE m_no=b_mno)) sname, 
 				(SELECT y_link FROM youtube WHERE y_no=b_yno) y_link,
 				(SELECT s_title FROM song WHERE s_no=b_sno) s_title,
-				b_like, b_body, b_date, b_no,
+				b_like, b_body, b_date, b_no, b_emotion,
 				ROWNUM rno
 			FROM
 				board

@@ -246,7 +246,7 @@ $(function(){
 				} 
 				
 				//좋아요 누르기===========================================================================================
-				$('#heart').click(function(e){
+				$(document).on("click", '#heart', function(e) {
 					e.preventDefault();
 					$.ajax({
 						url : "/likeProc.mr",

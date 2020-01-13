@@ -158,10 +158,14 @@ public class HeeyoonDAO {
 	
 	//팔로워 n 인지 y 인지 체크
 	public MemberVO nyck(MemberVO mVO){
-		return sqlSession.selectOne("hSQL.nycheck",mVO);
-
+		int cnt = sqlSession.selectOne("hSQL.followcheck", mVO);
+		MemberVO vo = new MemberVO();
+		if(cnt == 0) {
+			vo.setM_isshow("N");
+		}else {
+			vo = sqlSession.selectOne("hSQL.nycheck", mVO);
+		}
+		return vo;
 	}
-	
-
 }
 

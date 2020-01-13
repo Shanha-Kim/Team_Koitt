@@ -85,7 +85,6 @@ public class Heeyoon {
 		return list;
 	}
 	
-	@ResponseBody
 	@RequestMapping("profilelist.mr")// 개인 프로필 리스트 controller
 	public ModelAndView profilelist(ModelAndView mv, HttpSession session, String m_id ) {
 		String SID = (String) session.getAttribute("SID");
@@ -121,15 +120,15 @@ public class Heeyoon {
 		mv.addObject("ID", SID);	
 		List<BoardVO> list = hDAO.profileList(SID);
 		mv.addObject("LIST", list);
-
+		
 		// 프로필 로고 사진
 		FileVO fVO = hDAO.proflogo(SID);
 		mv.addObject("VO", fVO);
-
+		
 		// 프로필 자기소개글
 		MemberVO mVO = hDAO.profintro(SID);
 		mv.addObject("IVO", mVO);
-
+		
 		// 프로필 계정 비활성화 여부
 		String str = SID;
 		String isshow = hDAO.proisshow(str);

@@ -22,7 +22,7 @@
     <div class="container" id="main">
       <!-- content1 -->
       <c:forEach var="data" items="${LIST}" varStatus="num">
-      <div class="card mb-3 bg-primary mb-5 angry">
+      <div class="card mb-3 bg-primary mb-5 emo-${data.b_emotion }">
         <h3 class="card-header" style="display:flex; justify-content:space-between;"><span><img class="profile" src="/profile/${data.sname }" /><a class="link" href="/profilelist.mr?m_id=${data.m_id}">${data.m_id}</span></a><span></span><span class="postmodi my-auto"  data-buser="${data.m_id}" data-bno="${data.b_no}">···</span></h3>
         <!-- video -->
         <div class="youtube">
