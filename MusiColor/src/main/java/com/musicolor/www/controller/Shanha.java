@@ -114,6 +114,7 @@ public class Shanha {
 	public ModelAndView searchAfter(ModelAndView mv, BoardVO bVO, HttpSession session) {
 		session.setAttribute("key_main", bVO.getKey_main());
 		session.setAttribute("key_tab", bVO.getKey_tab());
+		bVO.setR_no(1);
 		String tabnow = bVO.getKey_tab();
 		ArrayList<BoardVO> list = (ArrayList<BoardVO>)sDAO.searchAfter(bVO);
 		mv.addObject("LIST", list);

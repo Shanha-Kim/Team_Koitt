@@ -72,7 +72,7 @@ public class youjoon {
 		rv.setUrl("/login.mr");
 		mv.setView(rv); 
 		}
-
+		
 		return mv;
 	}
 	  

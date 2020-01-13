@@ -130,8 +130,7 @@
 	var sid = '${SID}';
     //좋아요 누르기===========================================================================================
 	var bno = 1;
-	$('.heart').click(function(e){
-		e.preventDefault();
+	$(document).on("click", '.heart', function() {
 		bno = $(this).prev().attr("data");
 		var span = $(this).next();
 		$.ajax({

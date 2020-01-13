@@ -220,7 +220,7 @@
 				rno
 			)
 		WHERE
-		rno BETWEEN #{rno} AND #{rno}+8
+		rno BETWEEN #{r_no} AND #{r_no}+8
 	</select>
 	<select id="PreView"  resultType="fVO" parameterType="bVO">
 	<![CDATA[    

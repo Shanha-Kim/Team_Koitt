@@ -21,7 +21,6 @@
       	<input id="search_key" class="form-control col-sm text-center" type="text" placeholder="Search" name="key_main">
       	<input id="search_tab" type="hidden" name="key_tab">
       	<input id="search_rno" type="hidden" name="b_vno" value=1>
-      	
       </form>
       <!-- 감정 선택 버튼 -->
       <div class="btn-group btn-block mb-2" role="group" aria-label="Basic example" id="tab">
@@ -215,7 +214,7 @@ $(function(){
 	//포스트 상세보기===========================================================================================
 	
 	var bno = "";
-	$('.square').click(function(){
+	$(document).on("click", '.square', function() {
 		var thispost = $(this);
 		bno = $(this).attr('id');
 		$("#c_body").val("");
