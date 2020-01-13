@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -20,19 +19,9 @@
 body {
 	
 }
-
 button {
 	margin-top: 130px;
 }
-
-.col {
-	position: relative;
-	width: 350px;
-	height: 300px;
-	margin-top: -180px;
-	margin-left: 500px;
-}
-
  .imgBox {
 	width: 150px;
 	height: 150px;
@@ -40,120 +29,75 @@ button {
 	margin-left: 250px;
 	margin-top: 100px;
 }
-
 .imgBox img {
 	width: 100%;
 	height: 100%;
 }
-
 }
 header {
 	border: 1px solid white;
 	margins-top: 20px;
 	margin: 0 auto;
 }
-
 header * {
 	position: relative;
 }
-
 .pro {
 	position: absolute;
 	margin-top: -90px;
 }
-
 h6 {
 	color: white;
 }
-
 .imggride {
 	justify-content: space-between;
 	position: relative;
 	margin: 0 auto;
 }
-
 .imggride img {
 	padding: 10px;
 	width: 300px;
 	height: 300px;
 }
-
 .member{
 	display:inline-block;
     position: relative;
     margin-top: 160px;
-
 }
-
 #logo {
 	width: 200px;
 	height: 150px;
 	margin-top: 100px;
 }
-
 .main {
 	height: auto;
 }
-
 .textbox {
 	margin-top: 80px;
 	padding : 150px;
 }
-
 #profile {
 	padding: 15px;
 }
-
 .blur {
 	filter: blur(8px);
 	-webkit-filter: blur(8px);
 }
-
 .imglogobox {
-
 	display:flex;
 	float:right;
 }
-
 .modal-header {
 	
 }
-
 .click1 {
 	background-color: blue;
 }
-
 .click2 {
 	background-color: white;
 }
 
-.modal {
-	text-align: center;
-	padding: 0 !important;
-}
-
-.modal:before {
-	content: '';
-	display: inline-block;
-	height: 100%;
-	vertical-align: middle;
-	margin-right: -4px;
-}
-
-.modal-dialog {
-	display: inline-block;
-	text-align: left;
-	vertical-align: middle;
-	overflow-y: initial !important
-}
-
-.modal-body {
-	height: 100%;
-	overflow-y: auto;
-}
-
 .colorimg{
-
   border: 6px solid transparent;
   border-radius: 50%;
   background-image: linear-gradient(white, white), radial-gradient(circle at top left, #11998e, #191919, #38ef7d);
@@ -161,13 +105,10 @@ h6 {
   background-clip: content-box, border-box;
   display:inline-block;
 }
-
 .idtext{
 margin-top :80px;
 }
-
 	
-
 /* 
   #fw2button {
   top: 20%;
@@ -251,7 +192,7 @@ margin-top :80px;
 			<div class="col-1"></div>
 		</div>
 	</div>
-
+	
 	<div class="container menubar" id="main" style="margin-top :-100px">
 	 <!-- 앨범 이미지 -->
       <div class="row">
@@ -289,9 +230,9 @@ margin-top :80px;
 			</div>	
 		</div>
 	</div>
-
+	
 	<!-- 팔로워 버튼  모달창 -->
-	<div class="modal" id="fw1button">
+	<div class="modal" id="fw1button" style="margin-top:200px;">
 		<div class="modal-dialog" role="document" style="width: 44%;">
 			<div class="modal-content" style="overflow: scroll; height: 400px; ">
 				<div class="modal-header">
@@ -326,7 +267,6 @@ margin-top :80px;
 									<button type="button" class="canslebtn1 click2"
 										style="float: right;">팔로우</button>
 								</c:if>
-							
 							</div>
 						</div>
 					</c:forEach>
@@ -339,7 +279,7 @@ margin-top :80px;
 	</div>
 
 	<!-- 	팔로잉 모달창 -->
-	<div class="modal" id="fw2button">
+	<div class="modal" id="fw2button" style="margin-top:200px;">
 		<div class="modal-dialog" role="document" style="width: 44%;">
 			<div class="modal-content" style="overflow: scroll; height: 400px;">
 				<div class="modal-header">
@@ -384,7 +324,7 @@ margin-top :80px;
 		</div>
 	</div>
 	<!-- 팔로워 취소 확인 모달창 -->
-	<div class="modal" id="followccheck">
+	<div class="modal" id="followccheck" style="margin-top:200px;">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -406,7 +346,7 @@ margin-top :80px;
 		</div>
 	</div>
 	<!-- 팔로워 다시 걸기 확인 모달창  -->
-	<div class="modal" id="followacheck">
+	<div class="modal" id="followacheck" style="margin-top:200px;">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -432,7 +372,7 @@ margin-top :80px;
 
 <!-- 상대방 홈페이지에서 팔로워 걸기 모달창  -->
 
-	<div class="modal" id="othersaddfollow">
+	<div class="modal" id="othersaddfollow" style="margin-top:200px;">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -455,7 +395,7 @@ margin-top :80px;
 	</div>
 
 <!-- 상대방 홈페이지에서 팔로워 취소하기 모달창 -->
-<div class="modal" id="otherscanslefollow">
+<div class="modal" id="otherscanslefollow" style="margin-top:200px;">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -1030,9 +970,6 @@ margin-top :80px;
 				}
 			});
 		});
-				
-		
-		
 	});
 	</script>
 </body>

@@ -214,7 +214,8 @@ $(function(){
 	//포스트 상세보기===========================================================================================
 	
 	var bno = "";
-	$(document).on("click", '.square', function() {
+	$(document).on("click", '.square', function(e) {
+		e.stopImmediatePropagation();
 		var thispost = $(this);
 		bno = $(this).attr('id');
 		$("#c_body").val("");
@@ -247,7 +248,7 @@ $(function(){
 				
 				//좋아요 누르기===========================================================================================
 				$(document).on("click", '#heart', function(e) {
-					e.preventDefault();
+					e.stopImmediatePropagation();
 					$.ajax({
 						url : "/likeProc.mr",
 						type : "post",
@@ -268,14 +269,16 @@ $(function(){
 				//댓글기능===========================================================================================
 				var upno = 1;
 				var upid = '';
-				$(document).on("click", '.thiscomt', function() {
+				$(document).on("click", '.thiscomt', function(e) {
+					e.stopImmediatePropagation();
 					upno = $(this).attr('data-cno');
 					upno = Number(upno);
 					upid = $(this).attr('data-user');
 					$("#c_body").val(upid+" ");
 				});
 				
-				$("#c_body").keyup(function(e){
+				$(document).on("keyup", '#c_body', function(e) {
+					e.stopImmediatePropagation();
 					if(e.keyCode == 13){
 						e.preventDefault();
 						e.stopImmediatePropagation();
@@ -316,7 +319,8 @@ $(function(){
 				});
 				
 				//포스트 신고,삭제=================================
-				$(document).on("click", '.postmodi', function() {
+				$(document).on("click", '.postmodi', function(e) {
+					e.stopImmediatePropagation();
 					buser = vo.m_id;
 					if(buser == sid){
 						$('#myModal3').modal("show");
@@ -325,7 +329,8 @@ $(function(){
 					}
 					
 					//삭제로직
-					$(document).on("click", '#delproc2', function() {
+					$(document).on("click", '#delproc2', function(e) {
+						e.stopImmediatePropagation();
 						$.ajax({
 							url : "/delPost.mr",
 							type : "post",
@@ -343,7 +348,8 @@ $(function(){
 						$('#myModal3').modal("hide");
 					});
 					//신고로직
-					$(document).on("click", '#decproc2', function() {
+					$(document).on("click", '#decproc2', function(e) {
+						e.stopImmediatePropagation();
 						$.ajax({
 							url : "/decPost.mr",
 							type : "post",
@@ -389,6 +395,7 @@ $(function(){
 	
 	//검색 엔터===============================================================================================
 	$("#search_key").keydown(function(e){
+		e.stopImmediatePropagation();
 		if(e.keyCode == 13){
 			e.preventDefault();
 			if(tabmenu==""){

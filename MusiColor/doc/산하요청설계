@@ -1,1 +1,106 @@
- 
+ # search
+
+	1. 업로드 페이지 요청
+		요청내용 : /upload.mr
+		파라미터 :
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : upload
+		응답문서 : upload.jsp
+
+	2. 음악 검색
+		요청내용 : /searchSong.mr
+		파라미터 : SongVO (keywords)
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : searchSong()
+		응답문서 : json
+	
+	3. 리포트 작성
+		요청내용 : /reportProc.mr
+		파라미터 : ReportVO (id, r_problem, r_kind, r_detail)
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : reportProc()
+		응답문서 : json
+
+	4. 보컬 검색
+		요청내용 : /vocalSearch.mr
+		파라미터 : SongVO (v_name)
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : vocalSearch()
+		응답문서 : json
+
+	5. 보컬 등록 	
+		요청내용 : /vocalUpdate.mr
+		파라미터 : SongVO (v_name)
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : musicUpdate()
+		응답문서 : json
+
+	6. 음악 등록
+		요청내용 : /musicUpdate.mr 
+		파라미터 : SongVO (s_vno, v_name, s_title, y_link, sFile, id)
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : musicUpdate()
+		응답문서 : json
+
+	7. 글 작성
+		요청내용 : /boardIn.mr
+		파라미터 : BoardVO ()
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : boardIn (b_emotion, b_body, m_id, b_sno, b_vno, b_yno, b_ano)
+		응답문서 :		성공 - /feed.mr
+					실패 - /upload.mr
+
+----------------------------------------------------------------------------------------------------
+# feed
+
+	1. 랜덤 페이지 요청
+		요청내용 : /feed.mr
+		파라미터 : session.getAttribute("SID")
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : goFeed()
+		응답문서 : feed.jsp
+		
+	2. 음악 검색
+		요청내용 : /plusListFeed.mr
+		파라미터 : BoardVO (r_no, m_id)
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : plusListFeed()
+		응답문서 : feed.jsp 
+	
+	3. 리포트 작성
+		요청내용 : /reportProc.mr
+		파라미터 : ReportVO (id, r_problem, r_kind, r_detail)
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : reportProc()
+		응답문서 : json
+
+	4. 보컬 검색
+		요청내용 : /vocalSearch.mr
+		파라미터 : SongVO (v_name)
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : vocalSearch()
+		응답문서 : json
+
+	5. 보컬 등록 	
+		요청내용 : /vocalUpdate.mr
+		파라미터 : SongVO (v_name)
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : musicUpdate()
+		응답문서 : json
+
+	6. 음악 등록
+		요청내용 : /musicUpdate.mr 
+		파라미터 : SongVO (s_vno, v_name, s_title, y_link, sFile, id)
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : musicUpdate()
+		응답문서 : json
+
+	7. 글 작성
+		요청내용 : /boardIn.mr
+		파라미터 : BoardVO ()
+		컨트롤러 : com.musicolor.www.controller.Shanha
+		처리함수 : boardIn (b_emotion, b_body, m_id, b_sno, b_vno, b_yno, b_ano)
+		응답문서 :		성공 - /feed.mr
+					실패 - /upload.mr
+
+----------------------------------------------------------------------------------------------------
