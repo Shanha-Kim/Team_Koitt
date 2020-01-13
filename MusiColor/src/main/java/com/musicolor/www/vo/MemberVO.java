@@ -10,7 +10,7 @@ public class MemberVO {
 	private String m_email;
 	private String m_tel;
 	private int m_isban;
-	private char m_isshow;
+	private String m_isshow;
 	private int m_following;
 	private int m_follower;
 	private long m_pno;
@@ -47,10 +47,10 @@ public class MemberVO {
 	public void setFile(MultipartFile[] file) {
 		this.file = file;
 	}
-	public char getM_isshow() {
+	public String getM_isshow() {
 		return m_isshow;
 	}
-	public void setM_isshow(char m_isshow) {
+	public void setM_isshow(String m_isshow) {
 		this.m_isshow = m_isshow;
 	}
 	public String getM_date() {
