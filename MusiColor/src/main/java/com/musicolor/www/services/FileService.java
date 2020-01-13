@@ -13,27 +13,21 @@ import com.musicolor.www.vo.FileVO;
 import com.musicolor.www.vo.MemberVO;
 import com.musicolor.www.vo.SongVO;
 
-//경로수정 필요합니다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//경로수정 필요합니다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//경로수정 필요합니다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 public class FileService {
 	FileDAO fDAO;
-
+	
 	public void setDAO(FileDAO fDAO) {
 		this.fDAO = fDAO;
 	};
-
+	
 	// 프로필사진
 	public String singleUpProc(HttpSession session, MemberVO vo) {
 		String saveName = "";
 		long len = 0;
 		String spath = session.getServletContext().getRealPath("resources/profile");
-		System.out.println("spath : "+ spath);
-		String rePath = spath.substring(0, spath.indexOf("\\source"));
-		System.out.println("repath : "+ rePath);
-		rePath = rePath + "\\git\\Team_koitt\\MusiColor\\src\\main\\webapp\\resources\\profile";
-		System.out.println("new-repath : "+rePath);
+//		String rePath = spath.substring(0, spath.indexOf("\\source"));
+		String rePath = "/var/lib/tomcat8/webapps/MusiColor/resources/profile";
 		String oriName = "";
 		try {
 			oriName = vo.getsFile().getOriginalFilename();
@@ -77,8 +71,8 @@ public class FileService {
 
 		String spath = session.getServletContext().getRealPath("resources/album");
 //		String rePath = spath.substring(0, spath.indexOf("\\source\\.metadata"));
-		String rePath = "/Users/mac297/git/Team_koitt/MusiColor/src/main/webapp/resources/album";
-
+//		String rePath = "/Users/mac297/git/Team_koitt/MusiColor/src/main/webapp/resources/album";
+		String rePath = "/var/lib/tomcat8/webapps/MusiColor/resources/album";
 		String oriName = "";
 		try {
 			oriName = vo.getsFile().getOriginalFilename();
