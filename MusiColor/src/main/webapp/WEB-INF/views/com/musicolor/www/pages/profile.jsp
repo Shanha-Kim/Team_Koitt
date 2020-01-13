@@ -266,50 +266,6 @@ margin-top :80px;
       </div>
 	</div>
 
-	 <!-- modal, content detail -->
-    <div class="modal" id="myModal0">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-primary">
-          <!-- Modal body -->
-          <div class="modal-body">
-            <div class="row">
-              <!-- Modal left, 일정 크기 이상 작아지면 안보이는 유튜브 -->
-              <div class="col desktop-youtube" style="padding: 10px; border-right: 1px solid #282828;">
-                <div style="height: 25%; width:100%;"></div>
-                <div class="youtube text-left" style="height: 50%; width:100%;">
-                  <iframe id="ylink1"  src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div> 
-              </div>
-              <!-- Modal right -->
-              <div class="col text-left" style="padding: 10px;">
-                <h3 class="card-header" style="padding: 10px; display:flex; justify-content:space-between;"><span id="mid" ></span><span></span><span class="postmodi my-auto">···</span></h3>
-                <!-- 일정 크기 이상 작아지면 보이는 유튜브-->
-                <div class="youtube mobile-youtube mb-3">
-                  <iframe id="ylink2" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="card-body" style="padding: 0px;">
-                  <span class="ml-auto"><i id="heart" class="far fa-heart"></i><span id="blike"></span></span>
-                  <h6 id="stitle" class="card-subtitle text-muted mb-2 mt-2"></h6>
-                  <div class="body-scroll mb-3">
-                    <p id="bbody" class="card-text">
-                    </p>
-                  </div>
-                </div>
-                <!-- comment -->
-                <div class="bg-primary comment-scroll">
-                  <ul id="comt" class="list-group list-group-flush p-0 m-p">
-<!--                     <li data-cno="100000000001"  data-user="rmccuish5" class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">USERNAME</strong> Cras justo odio</li> -->
-                  </ul>
-                </div>
-                <div class="pt-3">
-                  <input id="c_body" class="comment-write-dark" type="text" placeholder="댓글을 입력해주세요" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
 	<!-- 계정 활성화 모달 창  -->
 	<div class="modal" id="myModal">
@@ -330,7 +286,7 @@ margin-top :80px;
 						aria-label="Close">취소</button>
 
 				</div>
-			</div>
+			</div>	
 		</div>
 	</div>
 
@@ -523,6 +479,103 @@ margin-top :80px;
 
 
 
+	 <!-- modal, content detail -->
+    <div class="modal" id="myModal0">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-primary">
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="row">
+              <!-- Modal left, 일정 크기 이상 작아지면 안보이는 유튜브 -->
+              <div class="col desktop-youtube" style="padding: 10px; border-right: 1px solid #282828;">
+                <div style="height: 25%; width:100%;"></div>
+                <div class="youtube text-left" style="height: 50%; width:100%;">
+                  <iframe id="ylink1"  src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div> 
+              </div>
+              <!-- Modal right -->
+              <div class="col text-left" style="padding: 10px;">
+                <h3 class="card-header" style="padding: 10px; display:flex; justify-content:space-between;"><span id="mid" ></span><span></span><span class="postmodi my-auto">···</span></h3>
+                <!-- 일정 크기 이상 작아지면 보이는 유튜브-->
+                <div class="youtube mobile-youtube mb-3">
+                  <iframe id="ylink2" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-body" style="padding: 0px;">
+                  <span class="ml-auto"><i id="heart" class="far fa-heart"></i><span id="blike"></span></span>
+                  <h6 id="stitle" class="card-subtitle text-muted mb-2 mt-2"></h6>
+                  <div class="body-scroll mb-3">
+                    <p id="bbody" class="card-text">
+                    </p>
+                  </div>
+                </div>
+                <!-- comment -->
+                <div class="bg-primary comment-scroll">
+                  <ul id="comt" class="list-group list-group-flush p-0 m-p">
+<!--                     <li data-cno="100000000001"  data-user="rmccuish5" class="list-group-item pt-0 pb-1 pl-0 ml-0 active"><strong class="user">USERNAME</strong> Cras justo odio</li> -->
+                  </ul>
+                </div>
+                <div class="pt-3">
+                  <input id="c_body" class="comment-write-dark" type="text" placeholder="댓글을 입력해주세요" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ <!-- modal 신고, 삭제 -->
+    <div class="modal" id="myModal1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-light rounded">
+          <!-- Modal body -->
+          <div id="delproc" class="modal-body" style="border-bottom:0.5px solid black;">
+          	<h5 class="text-center" > 삭제 </h4>
+          </div>
+          <div class="modal-body">
+          	<h5 class="text-center out1" > 취소 </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="myModal2">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-light rounded">
+          <!-- Modal body -->
+          <div id="decproc" class="modal-body" style="border-bottom:0.5px solid black;">
+          	<h5 class="text-center "> 신고 </h4>
+          </div>
+          <div class="modal-body">
+          	<h5 class="text-center out1" > 취소 </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="myModal3">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-light rounded">
+          <!-- Modal body -->
+          <div id="delproc2" class="modal-body" style="border-bottom:0.5px solid black;">
+          	<h5 class="text-center" > 삭제 </h4>
+          </div>
+          <div class="modal-body">
+          	<h5 class="text-center out1" > 취소 </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="myModal4">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-light rounded">
+          <!-- Modal body -->
+          <div id="decproc2" class="modal-body" style="border-bottom:0.5px solid black;">
+          	<h5 class="text-center "> 신고 </h4>
+          </div>
+          <div class="modal-body">
+          	<h5 class="text-center out1" > 취소 </h4>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 	<!-- Optional JavaScript -->
@@ -535,11 +588,8 @@ margin-top :80px;
 	<!--  <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>  -->
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		var f_name = '';
 		var sid = '${SID}';
@@ -549,167 +599,6 @@ margin-top :80px;
 		}
 		
 		$(document).ready(function() {
-			//포스트 상세보기===========================================================================================
-			
-			var bno = "";
-			$('.square').click(function(){
-				var thispost = $(this);
-				bno = $(this).attr('id');
-				console.log(bno);
-				$("#c_body").val("");
-				$("#comt").html("");
-				
-				$('#myModal0').modal();
-				$.ajax({
-					url : "/showDetail.mr",
-					type : "post",
-					dataType : "json",
-					data : {
-						b_no : bno
-					},
-					success : function(vo){
-						$('#mid').html('<img id="psname" class="profile"  />'+vo.m_id);
-						$('#bbody').html(vo.b_body);
-						$('#blike').html('<strong> ' + vo.b_like + ' likes</strong>');
-						$('#stitle').html(vo.s_title);
-						$('#psname').attr("src", "/profile/" + vo.sname);
-						$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
-						$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
-						for(var i=0 in vo.comt){
-							if(vo.comt[i].c_upid == null){
-								$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo.comt[i].c_no+'" data-user="'+vo.comt[i].c_mid+'"><strong class="user">'+vo.comt[i].c_mid+'</strong> '+vo.comt[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
-							}else{
-								$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo.comt[i].c_no+'" data-user="'+vo.comt[i].c_mid+'"><strong class="user">'+vo.comt[i].c_mid+'</strong> <i>'+vo.comt[i].c_upid+'</i> '+vo.comt[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
-							}
-						} 
-						
-						//좋아요 누르기===========================================================================================
-						$('#heart').click(function(e){
-							e.preventDefault();
-							$.ajax({
-								url : "/likeProc.mr",
-								type : "post",
-								dataType : "json",
-								data : {
-									b_no : bno,
-									m_id : sid
-								},
-								success : function(data){
-									$('#blike').html('<strong> ' + data.b_like + " likes</strong>");
-								},
-								error : function(){
-									alert('### 통신 에러 ###');
-								}
-							});
-						});
-						
-						//댓글기능===========================================================================================
-						var upno = 1;
-						var upid = '';
-						$(document).on("click", '.thiscomt', function() {
-							upno = $(this).attr('data-cno');
-							upno = Number(upno);
-							upid = $(this).attr('data-user');
-							$("#c_body").val(upid+" ");
-						});
-						
-						$("#c_body").keyup(function(e){
-							if(e.keyCode == 13){
-								e.preventDefault();
-								e.stopImmediatePropagation();
-								var cbody = $('#c_body').val();
-								if(cbody == ""){
-									return;
-								}
-								$.ajax({
-									url : "/comtWrite.mr",
-									type : "post",
-									dataType : "json",
-									data : {
-										c_bno : bno,
-										c_mid : sid,
-										c_body : cbody,
-										c_upno : upno,
-										c_upid : upid
-									},
-									success : function(vo2){
-										$('#comt').html("");
-										for(var i=0 in vo2){
-											if(vo2[i].c_upid == null){
-												$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo2[i].c_no+'" data-user="'+vo2[i].c_mid+'"><strong class="user">'+vo2[i].c_mid+'</strong> '+vo2[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
-											}else{
-												$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo2[i].c_no+'" data-user="'+vo2[i].c_mid+'"><strong class="user" >'+vo2[i].c_mid+'</strong> <i>'+vo2[i].c_upid+'</i> '+vo2[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
-											}
-										}
-										
-										$("#c_body").val("");
-										upno = 1;
-										upid = '';
-									},
-									error : function(){
-										alert('### 통신 에러 ###');
-									}
-								});
-							}
-						});
-						
-						//포스트 신고,삭제=================================
-						$(document).on("click", '.postmodi', function() {
-							buser = vo.m_id;
-							if(buser == sid){
-								$('#myModal3').modal("show");
-							}else{
-								$('#myModal4').modal("show");
-							}
-							
-							//삭제로직
-							$(document).on("click", '#delproc2', function() {
-								$.ajax({
-									url : "/delPost.mr",
-									type : "post",
-									dataType : "json",
-									data : {
-										b_no : bno
-									},
-									success : function(vo3){
-										thispost.remove();
-									},
-									error : function(){
-										alert('### 통신 에러 ###');
-									}
-								});
-								$('#myModal3').modal("hide");
-							});
-							//신고로직
-							$(document).on("click", '#decproc2', function() {
-								$.ajax({
-									url : "/decPost.mr",
-									type : "post",
-									dataType : "json",
-									data : {
-										b_no : bno,
-										m_id : sid
-									},
-									success : function(vo3){
-										alert("신고가 완료되었습니다.");
-									},
-									error : function(){
-										alert('### 통신 에러 ###');
-									}
-								});
-								$('#myModal4').modal("hide");
-							});
-						});
-						$(document).on("click", '.out1', function() {
-							$('#myModal3').modal("hide");
-							$('#myModal4').modal("hide");
-						});
-					},
-					error : function(){
-						alert('### 통신 에러 ###');
-					}
-				});
-			});
 			
 			
 			//
@@ -769,7 +658,6 @@ margin-top :80px;
 				$('#otherscanslefollow').modal();
 				
 			});
-			
 			
 			
 			
@@ -975,6 +863,177 @@ margin-top :80px;
 	            }
 	        });
 	    }
+		
+		
+		//포스트 상세보기===========================================================================================
+		
+		var bno = "";
+		$(document).on("click",'.square',function(){
+			var thispost = $(this);
+			bno = $(this).attr('id');
+			console.log(bno);
+			$("#c_body").val("");
+			$("#comt").html("");
+			
+			$('#myModal0').modal('showd');
+			
+			$.ajax({
+				url : "/showDetail.mr",
+				type : "post",
+				dataType : "json",
+				data : {
+					
+					b_no : bno
+				},
+				
+				success : function(vo){
+					$('#mid').html('<img id="psname" class="profile"  />'+vo.m_id);
+					$('#bbody').html(vo.b_body);
+					$('#blike').html('<strong> ' + vo.b_like + ' likes</strong>');
+					$('#stitle').html(vo.s_title);
+					$('#psname').attr("src", "/profile/" + vo.sname);
+					$('#ylink1').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
+					$('#ylink2').attr("src", "https://www.youtube.com/embed/" + vo.y_link);
+					
+					
+					for(var i=0 in vo.comt){
+						if(vo.comt[i].c_upid == null){
+							$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo.comt[i].c_no+'" data-user="'+vo.comt[i].c_mid+'"><strong class="user">'+vo.comt[i].c_mid+'</strong> '+vo.comt[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
+						}else{
+							$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo.comt[i].c_no+'" data-user="'+vo.comt[i].c_mid+'"><strong class="user">'+vo.comt[i].c_mid+'</strong> <i>'+vo.comt[i].c_upid+'</i> '+vo.comt[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
+						}
+					} 
+					
+					//좋아요 누르기===========================================================================================
+					$('#heart').click(function(e){
+						e.preventDefault();
+						$.ajax({
+							url : "/likeProc.mr",
+							type : "post",
+							dataType : "json",
+							data : {
+								b_no : bno,
+								m_id : sid
+							},
+							success : function(data){
+								$('#blike').html('<strong> ' + data.b_like + " likes</strong>");
+							},
+							error : function(){
+								alert('### 통신 에러 ###');
+							}
+						});
+					});
+					
+					//댓글기능===========================================================================================
+					var upno = 1;
+					var upid = '';
+					$(document).on("click", '.thiscomt', function() {
+						upno = $(this).attr('data-cno');
+						upno = Number(upno);
+						upid = $(this).attr('data-user');
+						$("#c_body").val(upid+" ");
+					});
+					
+					$("#c_body").keyup(function(e){
+						if(e.keyCode == 13){
+							e.preventDefault();
+							e.stopImmediatePropagation();
+							var cbody = $('#c_body').val();
+							if(cbody == ""){
+								return;
+							}
+							$.ajax({
+								url : "/comtWrite.mr",
+								type : "post",
+								dataType : "json",
+								data : {
+									c_bno : bno,
+									c_mid : sid,
+									c_body : cbody,
+									c_upno : upno,
+									c_upid : upid
+								},
+								success : function(vo2){
+									$('#comt').html("");
+									for(var i=0 in vo2){
+										if(vo2[i].c_upid == null){
+											$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo2[i].c_no+'" data-user="'+vo2[i].c_mid+'"><strong class="user">'+vo2[i].c_mid+'</strong> '+vo2[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
+										}else{
+											$('#comt').append('<li class="list-group-item pt-0 pb-1 pl-0 ml-0 active" style="display:flex ;justify-content:space-between;"><span class="thiscomt" data-cno="'+vo2[i].c_no+'" data-user="'+vo2[i].c_mid+'"><strong class="user" >'+vo2[i].c_mid+'</strong> <i>'+vo2[i].c_upid+'</i> '+vo2[i].c_body+'</span><span></span><span class="comtmodi my-auto">···</span></li>');
+										}
+									}
+									
+									$("#c_body").val("");
+									upno = 1;
+									upid = '';
+								},
+								error : function(){
+									alert('### 통신 에러 ###');
+								}
+							});
+						}
+					});
+					
+					
+					//포스트 신고,삭제=================================
+					$(document).on("click", '.postmodi', function() {
+						buser = vo.m_id;
+						if(buser == sid){
+							$('#myModal3').modal("show");
+						}else{
+							$('#myModal4').modal("show");
+						}
+						
+						//삭제로직
+						$(document).on("click", '#delproc2', function() {
+							$.ajax({
+								url : "/delPost.mr",
+								type : "post",
+								dataType : "json",
+								data : {
+									b_no : bno
+								},
+								success : function(vo3){
+									thispost.remove();
+								},
+								error : function(){
+									alert('### 통신 에러 ###');
+								}
+							});
+							$('#myModal3').modal("hide");
+						});
+						//신고로직
+						$(document).on("click", '#decproc2', function() {
+							$.ajax({
+								url : "/decPost.mr",
+								type : "post",
+								dataType : "json",
+								data : {
+									b_no : bno,
+									m_id : sid
+								},
+								success : function(vo3){
+									alert("신고가 완료되었습니다.");
+								},
+								error : function(){
+									alert('### 통신 에러 ###');
+								}
+							});
+							$('#myModal4').modal("hide"	);
+						});
+					});
+					$(document).on("click", '.out1', function() {
+						$('#myModal3').modal("hide");
+						$('#myModal4').modal("hide");
+					});
+				},
+				error : function(){
+					alert('### 통신 에러 ###');
+				}
+			});
+		});
+				
+		
 		
 	});
 	</script>
