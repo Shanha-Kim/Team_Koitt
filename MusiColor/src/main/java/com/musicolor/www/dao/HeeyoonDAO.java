@@ -103,7 +103,7 @@ public class HeeyoonDAO {
 		} else {
 			MemberVO check = sqlSession.selectOne("hSQL.nycheck", mVO);
 
-			if (check.getM_isshow() == 'Y') {
+			if (check.getM_isshow() == "Y") {
 				// 팔로워가 Y이면 N 바꿔주기
 				int cnt2 = sqlSession.update("hSQL.fcansle",mVO);
 			} else {
