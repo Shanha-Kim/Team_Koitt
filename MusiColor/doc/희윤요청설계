@@ -115,6 +115,33 @@
 	처리함수	: likelist()
 	응답문서	: /WEB-INF/views/com/musicolor/www/pages/liked.jsp
 	
+	# profile.jsp 버튼들
+	
+	#게시물 카운트
+	
+	
+  	요청내용	: profilelist.mr
+	파라미터	: String
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: profilecont()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/liked.jsp
+	
+	팔로워 카운트
+	
+	요청내용	: profilelist.mr
+	파라미터	:  String
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: followcnt()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/liked.jsp
+	
+  	
+  	팔로잉 카운트
+  	
+  	요청내용	: profilelist.mr
+	파라미터	:  String
+	컨트롤러	: com.musicolor.www.controller.Heeyoon.java
+	처리함수	: followingcnt()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/liked.jsp
 	
   	
   	 

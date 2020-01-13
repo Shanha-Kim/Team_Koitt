@@ -59,6 +59,8 @@ m_no =#{m_no}
 ]]>
 
 </select> 
+
+
 <select id ="plusaddalbumpic"  resultType="bVO" parameterType="bVO" >
 		SELECT * FROM
 		
@@ -399,11 +401,8 @@ FROM
 
 WHERE
 	f_following = (SELECT 
-	
 		m_no
-		
 					FROM
-		
 			member
 					WHERE
 			upper(m_id) =upper(#{SID})) AND f_isshow ='Y'
@@ -438,8 +437,5 @@ WHERE
               )
 
 </select>
-
-
-
 
 </mapper>

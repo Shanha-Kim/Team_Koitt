@@ -590,7 +590,7 @@ margin-top :80px;
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
+	<script>
 		var f_name = '';
 		var sid = '${SID}';
 		
@@ -598,10 +598,8 @@ margin-top :80px;
 			f_name = data;
 		}
 		
-		$(document).ready(function() {
+		$(function() {
 			
-			
-			//
 			$('head').append('<style type="text/css">.modal .modal-body {max-height: '
 							+ ($('body').height() * .8)
 							+ 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>');
@@ -875,7 +873,7 @@ margin-top :80px;
 			$("#c_body").val("");
 			$("#comt").html("");
 			
-			$('#myModal0').modal('showd');
+			$('#myModal0').modal('show');
 			
 			$.ajax({
 				url : "/showDetail.mr",
@@ -974,7 +972,6 @@ margin-top :80px;
 						}
 					});
 					
-					
 					//포스트 신고,삭제=================================
 					$(document).on("click", '.postmodi', function() {
 						buser = vo.m_id;
@@ -1002,6 +999,7 @@ margin-top :80px;
 							});
 							$('#myModal3').modal("hide");
 						});
+						
 						//신고로직
 						$(document).on("click", '#decproc2', function() {
 							$.ajax({

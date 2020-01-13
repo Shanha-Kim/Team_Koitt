@@ -59,7 +59,7 @@ public class HeeyoonDAO {
 		return sqlSession.selectOne("hSQL.configinfo",SID);
 	}
 	
-	// 개인 프로필 앨범 수 카운트 점담 처리 함수
+	// 개인 프로필 앨범 수 카운트 전담 처리 함수
 	public int profilecont(String SID) {
 		return sqlSession.selectOne("hSQL.textcount", SID);
 	}
