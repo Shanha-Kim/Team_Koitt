@@ -184,17 +184,6 @@
 				
 			})
 			
-		/* 상세보기 토글 */
-/* 			$('.t1').click(function(){
-				var tno = $(this).attr('id');
-				tno = '#s' + tno;
-				$(tno).html("");
-				$(tno).append('<h3 style="color: white;">TEST</h3>');
-				$(tno).stop().slideToggle(100);
-			 }); */
-			  
-
-		
     	/* 버튼 이벤트 */
     	var scode = '${CODE}';
   		if(scode == 1){

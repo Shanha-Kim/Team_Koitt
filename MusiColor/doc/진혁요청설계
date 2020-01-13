@@ -1,1 +1,70 @@
- 
+#로그인 전 메인 페이지
+	
+	1. 업로드한 song 리스트 
+	요청내용	: bfMain.mr
+	파라미터	: sVO
+	컨트롤러	: com.musicolor.www.controller.Jinhyeok
+	처리함수	: bfMain()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/bfMain.jsp
+	
+	2. Crawling한 billboard리스트
+	요청내요	: bfMain.mr
+	파라미터	: Crawling
+	컨트롤러	: com.musicolor.www.controller.Jinhyeok
+	처리함수	: bfMain()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/bfMain.jsp
+
+	
+#차트 상세보기 페이지
+
+	1. 업로드 상세 song 리스트
+	요청내용	: detailChart.mr
+	파라미터	: sVO
+	컨트롤러	: com.musicolor.www.controller.Jinhyeok
+	처리함수	: detailChart()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/detailChart.jsp
+	
+	2. Crawling billBoard 상세 리스트
+	요청내용	: detailChart.mr
+	파라미터	: Crawling
+	컨트롤러	: com.musicolor.www.controller.Jinhyeok
+	처리함수	: detailChart()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/detailChart.jsp
+	
+	3. 랜덤이미지 함수 호출
+	요청내용	: detailChart.mr
+	파라미터	: getRandom, sVO
+	컨트롤러	: com.musicolor.www.controller.Jinhyeok
+	처리함수	: detailChart()
+	응답문서	: /WEB-INF/views/com/musicolor/www/pages/detailChart.jsp
+	
+	4. 감정별 탭 선택
+	요청내용	: detailChartSeleced.mr
+	파라미터	: sVO
+	컨트롤러	: com.musicolor.www.controller.Jinhyeok
+	처리함수	: detailChartSelected()
+	응답문서	: json	
+	
+	5. 감정 탭 별 billBoard 리스트
+	요청내용	: detailChartSeleced.mr
+	파라미터	: Crawling
+	컨트롤러	: com.musicolor.www.controller.Jinhyeok
+	처리함수	: detailChartSelected()
+	응답문서	: json	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
