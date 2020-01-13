@@ -5,6 +5,7 @@ import java.util.*;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.musicolor.www.vo.FileVO;
 import com.musicolor.www.vo.MemberVO;
  
 public class YoujoonDAO {
@@ -21,7 +22,11 @@ public class YoujoonDAO {
 	public int loginBan(MemberVO mVO) {
 		 return sqlSession.selectOne("mSQL.loginBan", mVO);
 	}
-	 
+	public long insertprofile() {
+		FileVO fVO = new FileVO();
+		sqlSession.insert("mSQL.insertprof", fVO);
+		return fVO.getNo();
+	}
 	public int insertMemb(MemberVO mVO) {
 		
 		return sqlSession.insert("mSQL.insertMemb", mVO);

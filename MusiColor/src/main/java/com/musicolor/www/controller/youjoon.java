@@ -100,7 +100,8 @@ public class youjoon {
 									RedirectView rv, 
 									HttpSession session,
 									MemberVO mVO) {
-		
+		long pno = mDAO.insertprofile();
+		mVO.setM_pno(pno);
 		int cnt = mDAO.insertMemb(mVO);
 		
 		if(cnt != 1) {

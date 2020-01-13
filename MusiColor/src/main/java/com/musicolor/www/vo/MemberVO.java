@@ -13,6 +13,7 @@ public class MemberVO {
 	private char m_isshow;
 	private int m_following;
 	private int m_follower;
+	private long m_pno;
 	private String m_date;
 	private String m_about; // 자기소개
 	//m_date 활용은 sql문에서 TO_CHAR(m_date, 'YYYY/MM/DD HH24:MI:SS DY') 형태로 활용
@@ -22,6 +23,12 @@ public class MemberVO {
 	
 	
 	
+	public long getM_pno() {
+		return m_pno;
+	}
+	public void setM_pno(long m_pno) {
+		this.m_pno = m_pno;
+	}
 	public String getM_about() {
 		return m_about;
 	}

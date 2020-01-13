@@ -17,24 +17,23 @@
 			m_id = #{m_id}
 			and m_pw = #{m_pw}
 	</select>
-	
-	<select id="loginBan" resultType="int" parameterType="mVO">
-		SELECT
-			m_isban
-		FROM
-			member 
-		WHERE
-			m_id = #{m_id}
-			and m_pw = #{m_pw}
-	</select>
  
-
+	<insert id="insertprof" parameterType="fVO" >
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(P_NO) + 1 , 10000001) FROM profilepicture
+		</selectKey>
+		INSERT INTO
+		    profilepicture
+		VALUES(
+		    #{no}, 'defaultimg.jpg', 'defaultimg.jpg', '/resources/profile', 1000, sysdate
+		)
+	</insert>
 	<insert id="insertMemb" parameterType="mVO">
 		INSERT INTO
-		    member (m_no, m_id, m_name, m_pw, m_email, m_tel)
+		    member (m_no, m_id, m_name, m_pw, m_email, m_tel, m_pno)
 		VALUES(
 		    (SELECT NVL(MAX(M_NO) + 1 , 1001) FROM member),
-		    #{m_id}, #{m_name}, #{m_pw}, #{m_email}, #{m_tel}
+		    #{m_id}, #{m_name}, #{m_pw}, #{m_email}, #{m_tel}, #{m_pno}
 		)
 	</insert>
 	
