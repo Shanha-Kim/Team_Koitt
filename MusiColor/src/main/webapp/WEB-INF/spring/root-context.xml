@@ -14,6 +14,7 @@
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+<!-- 		team-music.cb9mlxyxsoiw.ap-northeast-2.rds.amazonaws.com -->
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
 		<property name="username" value="music" />
 		<property name="password" value="music" />

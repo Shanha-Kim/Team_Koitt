@@ -157,7 +157,7 @@ public class Heeyoon {
 		mVO.setM_id(str);
 		int cnt = hDAO.prolock(mVO);
 		mv.addObject("LOCK", cnt);
-		rv.setUrl("/profilelist.mr");
+		rv.setUrl("/profilelist.mr?m_id="+str);
 		mv.setView(rv);
 		return mv;
 	}
@@ -169,7 +169,7 @@ public class Heeyoon {
 		mVO.setM_id(str);
 		int cnt = hDAO.prounlock(mVO);
 		mv.addObject("UNLOCK", cnt);
-		rv.setUrl("/profilelist.mr");
+		rv.setUrl("/profilelist.mr?m_id="+str);
 		mv.setView(rv);
 
 		return mv;
