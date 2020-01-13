@@ -470,7 +470,7 @@ $(function(){
             type: "post",
             dataType: "json",
             data : {
-				rno : rno
+				r_no : rno
 			},
             success: function(vo){
                 // 가져온 데이터가 8개 이하일 경우 무한 스크롤 종료
