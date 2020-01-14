@@ -359,7 +359,7 @@
                 }
                 var resultlist = '';
 				for(var i=0; i<length; i++){
-   					resultlist+='<div class="card mb-3 bg-primary mb-5 angry">';
+   					resultlist+='<div class="card mb-3 bg-primary mb-5 emo-'+vo[i].b_emotion+'">';
 					resultlist+='<h3 class="card-header"><img class="profile" src="/profile/'+vo[i].sname+'" />'+vo[i].m_id+'</h3>';
 					resultlist+='<div class="youtube">';
 					resultlist+='<iframe src="https://www.youtube.com/embed/'+vo[i].y_link+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
