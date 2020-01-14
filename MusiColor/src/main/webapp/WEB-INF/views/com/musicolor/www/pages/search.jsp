@@ -449,7 +449,7 @@ $(function(){
 	// 무한스크롤은 검색 후에만 적용
 	forscroll = '<c:out value="${forscroll}"/>';
 	if(forscroll == "yes"){
-		$(window).scroll(function(){
+		$(window).off().scroll(function(){
 			var $window = $(this);
 			var scrollTop = $window.scrollTop();
 			var windowHeight = $window.height();
@@ -457,8 +457,8 @@ $(function(){
 	        
 	//         console.log("documentHeight:" + documentHeight + " | scrollTop:" + scrollTop + " | windowHeight: " + windowHeight );
 	        
-	        // scrollbar의 thumb가 바닥 전 20px까지 도달 하면 리스트를 가져온다.
-	        if( scrollTop + windowHeight + 20 > documentHeight ){
+	        // scrollbar의 thumb가 바닥 전 1px까지 도달 하면 리스트를 가져온다.
+	        if( scrollTop + windowHeight + 1 > documentHeight ){
 	        	//너무 짧은시간에 무한스크롤 중복발동 방지
 	            setTimeout(listplus(), 1000);
 	        }
