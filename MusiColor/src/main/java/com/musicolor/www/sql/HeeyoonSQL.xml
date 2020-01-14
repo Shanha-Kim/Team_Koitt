@@ -71,6 +71,7 @@ m_no =#{m_no}
 	            board
 	         WHERE
 	            b_mno = (SELECT m_no  FROM member WHERE upper(m_id) =upper(#{m_id})))
+	            AND b_isshow='Y'
             
 		WHERE
 		rno BETWEEN #{rno} AND #{rno}+8
@@ -150,6 +151,7 @@ WHERE
 			WHERE
 			upper(m_id) = upper(#{SID})	
  	)
+ AND b_isshow='Y'
  
   
 </select>
@@ -420,6 +422,7 @@ b_no, (select a_sname from albumpicture where b_ano = a_no) sname , b_emotion,
 FROM
 	board
 WHERE
+	b_isshow='Y' AND
 	b_no IN 
 (SELECT
 	 bl_bno 
