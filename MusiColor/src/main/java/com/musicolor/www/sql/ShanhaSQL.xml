@@ -13,13 +13,13 @@
 	</select>
 	<select id="ShowFeed" parameterType="bVO"  resultType="bVO">
 		SELECT * FROM
+		(SELECT m_id, sname, y_link, s_title,b_like, b_body, b_date, b_no, b_emotion , ROWNUM rno FROM
 			(SELECT
 				(SELECT m_id FROM member WHERE b_mno=m_no) m_id, 
 				(SELECT p_sname FROM profilepicture WHERE p_no=(SELECT m_pno FROM member WHERE m_no=b_mno)) sname, 
 				(SELECT y_link FROM youtube WHERE y_no=b_yno) y_link,
 				(SELECT s_title FROM song WHERE s_no=b_sno) s_title,
-				b_like, b_body, b_date, b_no, b_emotion,
-				ROWNUM rno
+				b_like, b_body, b_date, b_no, b_emotion
 			FROM
 				board
 			WHERE
@@ -27,7 +27,7 @@
 				OR b_mno = (SELECT m_no FROM member WHERE m_id=#{m_id}))
 				AND b_isshow = 'Y'
 			ORDER BY b_date desc
- 			)
+ 			))
  		WHERE
 			rno BETWEEN #{rno} AND #{rno}+4
 	</select>
