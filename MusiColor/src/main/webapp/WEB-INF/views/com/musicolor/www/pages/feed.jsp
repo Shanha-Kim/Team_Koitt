@@ -288,6 +288,7 @@
 				},
 				success : function(vo3){
 					thispost.remove();
+					alert("삭제가 완료되었습니다.");
 				},
 				error : function(){
 					alert('### 통신 에러 ###');

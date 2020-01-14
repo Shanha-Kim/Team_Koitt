@@ -264,7 +264,7 @@ position: relative;
 
 	<div class="container menubar" id="main" style="margin-top: -100px">
 		<!-- 앨범 이미지 -->
-		<div class="row">
+		<div class="row" id="blist">
 			<c:forEach var="data" items="${LIST}">
 				<div class="col-4 big-square">
 					<div class="square small-${data.b_emotion}" id="${data.b_no}">
@@ -272,7 +272,7 @@ position: relative;
 							<img class="album" src="/album/${data.sname}" />
 						</div>
 						<p class="half-square text-center align-middle"
-							style="background-color: rgba(0, 0, 0, 0.5); bottom: 0; color: white;">@${SID}</p>
+							style="background-color: rgba(0, 0, 0, 0.5); bottom: 0; color: white;">@${param.m_id}</p>
 					</div>
 				</div>
 			</c:forEach>
@@ -887,6 +887,7 @@ position: relative;
 			//무한스크롤===========================================================================================
 			var rno = 1;
 			var isEnd = false;
+			var m_id = '${param.m_id}';
 			$(window).off().scroll(function() {
 				var $window = $(this);
 				var scrollTop = $window.scrollTop();
@@ -913,7 +914,8 @@ position: relative;
 							type : "post",
 							dataType : "json",
 							data : {
-								rno : rno
+								rno : rno,
+								m_id : m_id
 							},
 							success : function(vo) {
 								// 가져온 데이터가 8개 이하일 경우 무한 스크롤 종료
@@ -922,7 +924,6 @@ position: relative;
 									isEnd = true;
 								}
 								var resultlist = '';
-								resultlist += '<div class="row">';
 								for (var i = 0; i < length; i++) {
 									resultlist += '<div class="col-4 big-square">';
 									resultlist += '<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><div class="half-square" style=" height:100%;">';
@@ -931,8 +932,7 @@ position: relative;
 											+ vo[i].m_id + '</p>';
 									resultlist += '</div></div>';
 								}
-								resultlist += '</div>';
-								$('#main').append(resultlist);
+								$('#blist').append(resultlist);
 							}
 						});
 			}
@@ -945,9 +945,8 @@ position: relative;
 							"click",
 							'.square',
 							function() {
-								var thispost = $(this);
+								var thispost = $(this).parent();
 								bno = $(this).attr('id');
-								console.log(bno);
 								$("#c_body").val("");
 								$("#comt").html("");
 
@@ -1135,7 +1134,8 @@ position: relative;
 														.on(
 																"click",
 																'.postmodi',
-																function() {
+																function(e) {
+																	e.stopImmediatePropagation();
 																	buser = vo.m_id;
 																	if (buser == sid) {
 																		$(
@@ -1154,7 +1154,8 @@ position: relative;
 																			.on(
 																					"click",
 																					'#delproc2',
-																					function() {
+																					function(e) {
+																						e.stopImmediatePropagation();
 																						$
 																								.ajax({
 																									url : "/delPost.mr",
@@ -1167,6 +1168,8 @@ position: relative;
 																											vo3) {
 																										thispost
 																												.remove();
+																										$('#myModal0').modal("hide");
+																										alert('삭제가 완료되었습니다.');
 																									},
 																									error : function() {
 																										alert('### 통신 에러 ###');
@@ -1183,7 +1186,8 @@ position: relative;
 																			.on(
 																					"click",
 																					'#decproc2',
-																					function() {
+																					function(e) {
+																						e.stopImmediatePropagation();
 																						$
 																								.ajax({
 																									url : "/decPost.mr",

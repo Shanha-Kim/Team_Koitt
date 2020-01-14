@@ -277,7 +277,7 @@
     	
     	var bno = "";
     	$('.square').click(function(){
-    		var thispost = $(this);
+    		var thispost = $(this).parent();
     		bno = $(this).attr('id');
     		$("#c_body").val("");
     		$("#comt").html("");
@@ -396,6 +396,8 @@
     							},
     							success : function(vo3){
     								thispost.remove();
+    								$('#myModal').modal("hide");
+    								alert("삭제가 완료되었습니다.");
     							},
     							error : function(){
     								alert('### 통신 에러 ###');

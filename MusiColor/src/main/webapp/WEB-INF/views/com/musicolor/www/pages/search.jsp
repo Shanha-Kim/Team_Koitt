@@ -217,7 +217,7 @@ $(function(){
 	var bno = "";
 	$(document).on("click", '.square', function(e) {
 		e.stopImmediatePropagation();
-		var thispost = $(this);
+		var thispost = $(this).parent();
 		bno = $(this).attr('id');
 		$("#c_body").val("");
 		$("#comt").html("");
@@ -340,6 +340,8 @@ $(function(){
 								b_no : bno
 							},
 							success : function(vo3){
+								alert("삭제가 완료되었습니다.");
+								$('#myModal').modal("hide");
 								thispost.remove();
 							},
 							error : function(){
@@ -487,7 +489,6 @@ $(function(){
                     isEnd = true;
                 }
                 var resultlist = '';
-   				resultlist+='<div class="row">';
 				for(var i=0; i<length; i++){
 					resultlist+='<div class="col-4 big-square">';
 					resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><div class="half-square" style=" height:100%;">';
@@ -495,8 +496,7 @@ $(function(){
 					resultlist+='<p class="half-square text-center align-middle" style="background-color:rgba(0, 0, 0, 0.5); bottom:0; color:white;">@'+vo[i].m_id+'</p>';
 					resultlist+='</div></div>';
 				}
-				resultlist+='</div>';
-   				$('#main').append(resultlist);
+   				$('#blist').append(resultlist);
 //        			if(length>=4 && length<7){
 //        				resultlist+='<div class="row">';
 //    					for(var i=0; i<3; i++){

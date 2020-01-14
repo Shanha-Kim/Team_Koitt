@@ -80,7 +80,9 @@ public class Heeyoon {
 	@RequestMapping("plusprofile.mr")
 	public ArrayList<BoardVO> plusprofile(HttpSession session, BoardVO bVO) {
 		String SID = (String) session.getAttribute("SID");
-		bVO.setM_id(SID);
+		if (bVO.getM_id().equals(SID)) {
+		}else {
+		}
 		ArrayList<BoardVO> list = (ArrayList<BoardVO>)hDAO.plusprofileList(bVO);
 		return list;
 	}

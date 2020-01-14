@@ -51,6 +51,7 @@ m_no =#{m_no}
          FROM
             board
          WHERE
+         	b_isshow='Y' AND
             b_mno = (SELECT m_no  FROM member WHERE upper(m_id) =upper(#{SID}))
             AND 
             
@@ -70,8 +71,8 @@ m_no =#{m_no}
 	         FROM
 	            board
 	         WHERE
-	            b_mno = (SELECT m_no  FROM member WHERE upper(m_id) =upper(#{m_id})))
-	            AND b_isshow='Y'
+	            b_mno = (SELECT m_no  FROM member WHERE upper(m_id) =upper(#{m_id}))
+	            AND b_isshow='Y')
             
 		WHERE
 		rno BETWEEN #{rno} AND #{rno}+8
