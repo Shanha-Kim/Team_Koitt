@@ -161,6 +161,9 @@ h6 {
 	border-image-slice: 1;
 }
 
+.cockle{
+position: relative;
+}
 
 </style>
 
@@ -186,6 +189,7 @@ h6 {
 			<div class="col-10 main">
 
 				<div class="imglogobox">
+				<img class="cockle" src="/profile/jester.png" style="width: 10%; height: 10%; margin-right: -140px; margin-top: -20px;">
 					<img class="colorimg"
 						style="border-radius: 100%; width: 20%; height: 20%; margin-right: 50px;"
 						src="/profile/${VO.sname}" id="logo"> <br>
@@ -695,6 +699,26 @@ h6 {
 
 			});
 
+			
+		var mid ='${ID}';
+		
+		if(sid !=mid){
+		
+			$(".cockle").css('display', 'none'); 
+	
+		}else{
+			
+			
+		};
+			
+			
+			
+			 
+				
+			
+			
+			
+			
 			$(".click1").click(function() {
 				var thisbtn = $(this);
 				$("#followccheck").modal();
