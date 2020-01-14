@@ -44,7 +44,7 @@
 						</div>
 						<ol class="breadcrumb" style="padding: 5px 0px 0px 0px; margin: 0px;">
 							<li class="breadcrumb-item"><a href="/findId.mr" class="text-muted">아이디 찾기</a></li>
-							<li class="breadcrumb-item"><a href="#" class="text-muted">비밀번호 찾기</a></li>
+							<li class="breadcrumb-item"><a href="/findpwbefore.mr" class="text-muted">비밀번호 찾기</a></li>
 						</ol>
 	 <!--          <div class="form-check">
 	          <div class="form-check">
