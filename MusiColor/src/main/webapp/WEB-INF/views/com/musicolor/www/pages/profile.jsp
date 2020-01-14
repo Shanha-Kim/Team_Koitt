@@ -33,6 +33,7 @@ button {
 	width: 100%;
 	height: 100%;
 }
+}
 header {
 	border: 1px solid white;
 	margins-top: 20px;
@@ -66,7 +67,7 @@ h6 {
 #logo {
 	width: 200px;
 	height: 150px;
-	margin-top: 100px;
+	margin-top: 35px;
 }
 .main {
 	height: auto;
@@ -103,18 +104,53 @@ h6 {
   background-origin: border-box;
   background-clip: content-box, border-box;
   display:inline-block;
+ 
 }
 .idtext{
 margin-top :80px;
 }
-	
-/* 
-  #fw2button {
-  top: 20%;
-  width:600px;
-  height:750px;
-  margin-top: 50px;
-} */
+
+
+/* 버튼 테두리 색깔 넣기  */	
+
+.small-1 {
+	border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #ee9ca7, #191919, #ffdde1);
+	border-image-slice: 1;
+}
+
+.small-2 {
+		border: 4px solid transparent;
+		border-image: linear-gradient(235deg, #fb872b, #191919, #d9e021);
+		border-image-slice: 1;
+}
+
+.small-3 {
+	border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #11998e, #191919, #38ef7d);
+	border-image-slice: 1;
+}
+
+.small-4 {
+	border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #24c6dc, #191919, #514a9d);
+	border-image-slice: 1;
+}
+
+.small-5 {
+	border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #ff5e62, #191919, #b20a2c);
+	border-image-slice: 1;
+}
+ #newbar{
+		position: absolute;
+		margin-top:-100px;
+		width :560px;
+
+} 
+
+
+
 </style>
 
 </head>
@@ -141,35 +177,46 @@ margin-top :80px;
 					<div class="member">
 						<div class="form-group" id="newbar">
 							<c:if test="${ID == SID}">
-							<button type="button" id="profile" class="btn btn-info"
-								style="display: block; ">프로필 편집</button> 
+							<button type="button" id="profile" class="btn btn-primary text-muted "
+								style="border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #ee9ca7, #191919, #ffdde1);
+	border-image-slice: 1;
+">프로필 편집</button> 
 							</c:if>
 							<br>
-							
-							<button type="button" 	class="btn btn-warning" style="">게시물 :
+							<div class="btn-group btn-block mb-5">
+							<button type="button" 	class="btn btn-primary text-muted" style="border: 4px solid transparent;
+		border-image: linear-gradient(235deg, #fb872b, #191919, #d9e021);
+		border-image-slice: 1;">게시물 :
 								${CNT}</button>
-							<button type="button" id="fw1btn" class="btn btn-secondary"  style="">팔로워
+							<button type="button" id="fw1btn" class="btn btn-primary text-muted" style="border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #11998e, #191919, #38ef7d);
+	border-image-slice: 1;" >팔로워
 								: ${CNT2}</button>
-							<button type="button" id="fw2btn" class="btn btn-success" style="">팔로우
+							<button type="button" id="fw2btn" class="btn btn-primary text-muted" style="border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #24c6dc, #191919, #514a9d);
+	border-image-slice: 1;" >팔로우
 								: ${CNT1}</button>
 								
 							<c:if test='${SID != ID}' >
 							<c:if test='${NYCK != "Y"}' >
-								<button type="button" id="yesfollow" class="btn btn-black" data="${ID}">팔로우하기 
+								<button type="button" id="yesfollow" class="btn btn-primary text-muted" data="${ID}">팔로우하기 
 								</button>
 							</c:if>
 							<c:if test ='${NYCK == "Y" }'>
-								<button type="button" id="nofollow" class="btn btn-black" data="${ID}"> 팔로우취소
+								<button type="button" id="nofollow" class="btn btn-primary text-muted" data="${ID}"> 팔로우취소
 								</button>
 							</c:if>
 							</c:if>
 								
 							<c:if test="${ID == SID}">
-							<button type="button" id="likedbtn" class="btn btn-danger" style="">내가
-								좋아요한 게시물</button>
+							<button type="button" id="likedbtn" class="btn btn-primary text-muted" style="border: 4px solid transparent;
+	border-image: linear-gradient(235deg, #ff5e62, #191919, #b20a2c);
+	border-image-slice: 1;">내가 좋아요한 게시물</button>
 							</c:if>
-							<button type="button" class="btn btn-outline-secondary"
+							<button type="button" class="btn btn btn-primary text-muted"
 								id="unlock" data-id="${ISSHOW}">계정을 다시 활성화</button>
+						</div>
 						</div>
 					</div>
 				</div>
