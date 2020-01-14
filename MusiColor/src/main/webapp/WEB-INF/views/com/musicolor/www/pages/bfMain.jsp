@@ -16,7 +16,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
-<title>bfMainView</title>
+<title>MUSICOLOR</title>
 </head>
 
 <body class="bg-primary">
