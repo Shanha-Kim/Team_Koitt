@@ -46,31 +46,34 @@ public class youjoon {
 									ModelAndView mv, 
 									MemberVO vo) {
 		int cnt = mDAO.loginProc(vo);
+		
+		
 		int msg;
-		int ban = mDAO.loginBan(vo);
-		if(cnt == 1 && ban < 3) {
-		// 이 경우는 아이디와 비밀번호가 일치하는 회원이 한 명 있다는 이야기이므로
-		// 로그인 처리를 해주면 되는데
-		// 로그인 처리는 세션에 아이디를 입력해주기로 하자.
-		session.setAttribute("SID", vo.getM_id());
-		session.setAttribute("isFail", "");
-		rv.setUrl("/feed.mr");
-		mv.setView(rv);
+		if(cnt == 1) {
+			int ban = mDAO.loginBan(vo);
+			if (ban >= 3) {
+				// 신고 누적 3회 이상 회원 로그인 불가
+				session.setAttribute("isBan", "ban");
+				msg = 1;
+				rv.setUrl("/login.mr");
+				mv.setView(rv); 
+				return mv;
+			}
+			// 이 경우는 아이디와 비밀번호가 일치하는 회원이 한 명 있다는 이야기이므로
+			// 로그인 처리를 해주면 되는데
+			// 로그인 처리는 세션에 아이디를 입력해주기로 하자.
+			session.setAttribute("SID", vo.getM_id());
+			session.setAttribute("isFail", "");
+			rv.setUrl("/feed.mr");
+			mv.setView(rv);
 		} 
-		else if(cnt == 1 && ban >= 3){
-			// 신고 누적 3회 이상 회원 로그인 불가
-			session.setAttribute("isBan", "ban");
+		else {
+			// 이 경우는 로그인에 실패한 경우이므로 다시 로그인 페이지로 이동한다.
+			
+			session.setAttribute("isFail", "fail");	// 로그인 실패를 알려주기 위한 세션(alert 창 띄워준 후 바로 "")
 			msg = 1;
 			rv.setUrl("/login.mr");
 			mv.setView(rv); 
-		}
-		else {
-		// 이 경우는 로그인에 실패한 경우이므로 다시 로그인 페이지로 이동한다.
-		
-		session.setAttribute("isFail", "fail");	// 로그인 실패를 알려주기 위한 세션(alert 창 띄워준 후 바로 "")
-		msg = 1;
-		rv.setUrl("/login.mr");
-		mv.setView(rv); 
 		}
 		
 		return mv;

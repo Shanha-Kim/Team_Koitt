@@ -35,7 +35,7 @@
         <a class="badge badge-pill badge-danger hover">REFRESH THIS PAGE</a>
       </div>
       <!-- 앨범 이미지 -->
-      <div class="row">
+      <div class="row" id="blist">
       	<c:forEach var="data" items="${LIST}">
         <div class="col-4 big-square">
           <div class="square small-${data.b_emotion}" id="${data.b_no}">
