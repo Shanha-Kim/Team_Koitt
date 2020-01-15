@@ -10,8 +10,11 @@
 
 # 2. Project Info
   ## 1. 
-  ## 2.
+  ## 2. 
 
+# 3. Contribute
+
+# 4. Code Status
 
 
 
