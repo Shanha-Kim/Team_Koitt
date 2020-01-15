@@ -489,7 +489,7 @@ $(function(){
                 if( length < 9 ){
                     isEnd = true;
                 }
-                var resultlist = '';
+                var resultlist = ''; 
 				for(var i=0; i<length; i++){
 					resultlist+='<div class="col-4 big-square">';
 					resultlist+='<div class="square small-'+vo[i].b_emotion+'" id="'+vo[i].b_no+'"><div class="half-square" style=" height:100%;">';

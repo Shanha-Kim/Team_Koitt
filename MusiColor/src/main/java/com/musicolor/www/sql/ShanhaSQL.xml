@@ -27,7 +27,7 @@
 				OR b_mno = (SELECT m_no FROM member WHERE m_id=#{m_id}))
 				AND b_isshow = 'Y'
 			ORDER BY b_date desc
- 			))
+ 			)) 
  		WHERE
 			rno BETWEEN #{rno} AND #{rno}+4
 	</select>
