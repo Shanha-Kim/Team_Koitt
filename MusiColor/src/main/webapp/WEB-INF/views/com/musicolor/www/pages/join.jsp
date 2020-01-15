@@ -103,7 +103,6 @@
 	var getCheckPw = RegExp(/^[a-zA-Z0-9`~!@#$%^&*()-_=+\|]{6,18}$/);
 	var getCheckName = RegExp(/^[가-힣a-zA-Z]{1,14}$/);
 	var getCheckMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-	var getCheckTel = RegExp(/^[0-9_\+\-]+-[0-9\+\-]+-[0-9\+\-]+/);
 	var getCheckTel = RegExp(/^[0-9-+|]{1,18}$/);
 	
 	function ckFunc(data){	// 중복확인 하면 이 함수로 ck의 값을 바꿈
