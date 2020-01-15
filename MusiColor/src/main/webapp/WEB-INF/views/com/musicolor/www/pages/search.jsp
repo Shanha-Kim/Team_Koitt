@@ -452,7 +452,8 @@ $(function(){
 	// 무한스크롤은 검색 후에만 적용
 	forscroll = '<c:out value="${forscroll}"/>';
 	if(forscroll == "yes"){
-		$(window).off().scroll(function(){
+		$(window).off().scroll(function(e){
+			e.stopImmediatePropagation();
 			var $window = $(this);
 			var scrollTop = $window.scrollTop();
 			var windowHeight = $window.height();

@@ -154,7 +154,8 @@
 	//댓글 삭제, 신고버튼
 	var cno=0;
 	var cuser = '';
-	$(document).on("click", '.comtmodi', function() {
+	$(document).on("click", '.comtmodi', function(e) {
+		e.stopImmediatePropagation();
 		var thiscomt = $(this).parent();
 		cno = $(this).prev().prev().attr("data-cno");
 		cuser = $(this).prev().prev().attr("data-user");
@@ -184,7 +185,8 @@
 			$('#myModal1').modal("hide");
 		});
 		//신고로직
-		$(document).on("click", '#decproc', function() {
+		$(document).on("click", '#decproc', function(e) {
+			e.stopImmediatePropagation();
 			$.ajax({
 				url : "/decComt.mr",
 				type : "post",
@@ -267,7 +269,8 @@
 	});
 	
 	//포스트 신고,삭제============================================================
-	$(document).on("click", '.postmodi', function() {
+	$(document).on("click", '.postmodi', function(e) {
+		e.stopImmediatePropagation();
 		var thispost = $(this).parent().parent();
 		var buser = $(this).attr("data-buser");
 		bno = $(this).attr("data-bno");
@@ -278,7 +281,8 @@
 		}
 		
 		//삭제로직
-		$(document).on("click", '#delproc2', function() {
+		$(document).on("click", '#delproc2', function(e) {
+			e.stopImmediatePropagation();
 			$.ajax({
 				url : "/delPost.mr",
 				type : "post",
@@ -297,7 +301,8 @@
 			$('#myModal3').modal("hide");
 		});
 		//신고로직
-		$(document).on("click", '#decproc2', function() {
+		$(document).on("click", '#decproc2', function(e) {
+			e.stopImmediatePropagation();
 			$.ajax({
 				url : "/decPost.mr",
 				type : "post",
