@@ -59,7 +59,7 @@
 						<ol class="breadcrumb" style="padding: 12px 0px 0px 0px; margin: 0px;">
 							<li class="breadcrumb-item"><a href="/findpwbefore.mr" class="text-muted">비밀번호 찾기</a></li>
 						</ol>
-						<br>
+						<br> 
 						<c:if test="${not empty findFail}">
 							<div align="center">
 								<div class="card text-white bg-primary mb-3" style="max-width: 40rem; margin-top: 10px;">
