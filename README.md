@@ -1,17 +1,17 @@
 
 # 1.MusiColor
   ## 음악에 대한 감상 공유 SNS입니다.
-    감정별 음악차트   
+    > 감정별 음악차트   
       - 사용자가 로드한 게시물을 기반으로 감정별 음착 차트 제공   
-    팔로잉   
+    > 팔로잉   
       - 사용자간 팔로잉을 통해 관심하가 비슷한 사용자의 게시물을 확인할 수 있음   
-    게시물 랜덤추천   
+    > 게시물 랜덤추천   
       - 감정별 시물 랜덤추천기능을 통해 사용자에게 새로운 경험의 창을 제공   
 
 # 2. Project Info
-  ### > 1. Site address - musicolor.xyz
-  ### > 2. DB - Oracle 11g
-  ### > 3. jdk8
+    > 1. Site address - musicolor.xyz
+    > 2. DB - Oracle 11g
+    > 3. jdk8
 
 # 3. Contribute
   
