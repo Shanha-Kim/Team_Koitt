@@ -9,9 +9,9 @@
       - 감정별 시물 랜덤추천기능을 통해 사용자에게 새로운 경험의 창을 제공   
 
 # 2. Project Info
-  ###  1. Site address - musicolor.xyz
-  ###  2. DB - Oracle 11g
-  ###  3. jdk8
+  ### > 1. Site address - musicolor.xyz
+  ### > 2. DB - Oracle 11g
+  ### > 3. jdk8
 
 # 3. Contribute
   
